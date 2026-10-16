@@ -1,0 +1,3182 @@
+[
+  {
+    "id": 79,
+    "count": 2,
+    "description": "",
+    "link": "https://astonholidays.com/activities/ancient-carvings/",
+    "name": "Ancient Carvings",
+    "slug": "ancient-carvings",
+    "taxonomy": "activities",
+    "parent": 0,
+    "meta": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.5 (Yoast SEO v27.7) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Ancient Carvings Archives - Aston Holidays</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://astonholidays.com/activities/ancient-carvings/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Ancient Carvings Archives\" />\n<meta property=\"og:url\" content=\"https://astonholidays.com/activities/ancient-carvings/\" />\n<meta property=\"og:site_name\" content=\"Aston Holidays\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/ancient-carvings\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/activities\\/ancient-carvings\\/\",\"name\":\"Ancient Carvings Archives - Aston Holidays\",\"isPartOf\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/ancient-carvings\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/ancient-carvings\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/astonholidays.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Ancient Carvings\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/astonholidays.com\\/#website\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"name\":\"Aston Holidays\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/astonholidays.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\",\"name\":\"Aston Holidays\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"contentUrl\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"width\":362,\"height\":324,\"caption\":\"Aston Holidays\"},\"image\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Ancient Carvings Archives - Aston Holidays",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://astonholidays.com/activities/ancient-carvings/",
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Ancient Carvings Archives",
+      "og_url": "https://astonholidays.com/activities/ancient-carvings/",
+      "og_site_name": "Aston Holidays",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://astonholidays.com/activities/ancient-carvings/",
+            "url": "https://astonholidays.com/activities/ancient-carvings/",
+            "name": "Ancient Carvings Archives - Aston Holidays",
+            "isPartOf": {
+              "@id": "https://astonholidays.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://astonholidays.com/activities/ancient-carvings/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://astonholidays.com/activities/ancient-carvings/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://astonholidays.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Ancient Carvings"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://astonholidays.com/#website",
+            "url": "https://astonholidays.com/",
+            "name": "Aston Holidays",
+            "description": "",
+            "publisher": {
+              "@id": "https://astonholidays.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://astonholidays.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://astonholidays.com/#organization",
+            "name": "Aston Holidays",
+            "url": "https://astonholidays.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://astonholidays.com/#/schema/logo/image/",
+              "url": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "contentUrl": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "width": 362,
+              "height": 324,
+              "caption": "Aston Holidays"
+            },
+            "image": {
+              "@id": "https://astonholidays.com/#/schema/logo/image/"
+            }
+          }
+        ]
+      }
+    },
+    "thumbnail": {},
+    "_links": {
+      "self": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities/79",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/taxonomies/activities"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/trip?activities=79"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 27,
+    "count": 10,
+    "description": "",
+    "link": "https://astonholidays.com/activities/boating/",
+    "name": "Boating",
+    "slug": "boating",
+    "taxonomy": "activities",
+    "parent": 0,
+    "meta": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.5 (Yoast SEO v27.7) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Boating Archives - Aston Holidays</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://astonholidays.com/activities/boating/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Boating Archives\" />\n<meta property=\"og:url\" content=\"https://astonholidays.com/activities/boating/\" />\n<meta property=\"og:site_name\" content=\"Aston Holidays\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/boating\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/activities\\/boating\\/\",\"name\":\"Boating Archives - Aston Holidays\",\"isPartOf\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/boating\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/boating\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/astonholidays.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Boating\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/astonholidays.com\\/#website\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"name\":\"Aston Holidays\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/astonholidays.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\",\"name\":\"Aston Holidays\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"contentUrl\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"width\":362,\"height\":324,\"caption\":\"Aston Holidays\"},\"image\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Boating Archives - Aston Holidays",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://astonholidays.com/activities/boating/",
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Boating Archives",
+      "og_url": "https://astonholidays.com/activities/boating/",
+      "og_site_name": "Aston Holidays",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://astonholidays.com/activities/boating/",
+            "url": "https://astonholidays.com/activities/boating/",
+            "name": "Boating Archives - Aston Holidays",
+            "isPartOf": {
+              "@id": "https://astonholidays.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://astonholidays.com/activities/boating/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://astonholidays.com/activities/boating/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://astonholidays.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Boating"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://astonholidays.com/#website",
+            "url": "https://astonholidays.com/",
+            "name": "Aston Holidays",
+            "description": "",
+            "publisher": {
+              "@id": "https://astonholidays.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://astonholidays.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://astonholidays.com/#organization",
+            "name": "Aston Holidays",
+            "url": "https://astonholidays.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://astonholidays.com/#/schema/logo/image/",
+              "url": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "contentUrl": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "width": 362,
+              "height": 324,
+              "caption": "Aston Holidays"
+            },
+            "image": {
+              "@id": "https://astonholidays.com/#/schema/logo/image/"
+            }
+          }
+        ]
+      }
+    },
+    "thumbnail": {
+      "width": 410,
+      "height": 330,
+      "file": "2023/12/boating-1.jpg",
+      "filesize": 80977,
+      "sizes": {
+        "medium": {
+          "file": "boating-1-300x241.jpg",
+          "width": 300,
+          "height": 241,
+          "filesize": 24081,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/boating-1-300x241.jpg"
+        },
+        "thumbnail": {
+          "file": "boating-1-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "filesize": 8989,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/boating-1-150x150.jpg"
+        },
+        "trip-thumb-size": {
+          "file": "boating-1-374x226.jpg",
+          "width": 374,
+          "height": 226,
+          "filesize": 29612,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/boating-1-374x226.jpg"
+        },
+        "destination-thumb-trip-size": {
+          "file": "boating-1-410x250.jpg",
+          "width": 410,
+          "height": 250,
+          "filesize": 39888,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/boating-1-410x250.jpg"
+        },
+        "blog-sidebar-size": {
+          "file": "boating-1-100x100.jpg",
+          "width": 100,
+          "height": 100,
+          "filesize": 4731,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/boating-1-100x100.jpg"
+        },
+        "blog-sidebar-size-thumb": {
+          "file": "boating-1-90x80.jpg",
+          "width": 90,
+          "height": 80,
+          "filesize": 3627,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/boating-1-90x80.jpg"
+        },
+        "blog-post-two": {
+          "file": "boating-1-342x252.jpg",
+          "width": 342,
+          "height": 252,
+          "filesize": 28648,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/boating-1-342x252.jpg"
+        },
+        "travolo-destinations-image": {
+          "file": "boating-1-389x330.jpg",
+          "width": 389,
+          "height": 330,
+          "filesize": 42852,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/boating-1-389x330.jpg"
+        },
+        "travolo-related-post-size": {
+          "file": "boating-1-270x314.jpg",
+          "width": 270,
+          "height": 314,
+          "filesize": 25798,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/boating-1-270x314.jpg"
+        },
+        "blog-post-pagination": {
+          "file": "boating-1-80x80.jpg",
+          "width": 80,
+          "height": 80,
+          "filesize": 3139,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/boating-1-80x80.jpg"
+        },
+        "full": {
+          "file": "boating-1.jpg",
+          "width": 410,
+          "height": 330,
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/boating-1.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities/27",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/taxonomies/activities"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/trip?activities=27"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 90,
+    "count": 6,
+    "description": "",
+    "link": "https://astonholidays.com/activities/candle-light-dinner/",
+    "name": "Candle Light Dinner",
+    "slug": "candle-light-dinner",
+    "taxonomy": "activities",
+    "parent": 0,
+    "meta": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.5 (Yoast SEO v27.7) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Candle Light Dinner Archives - Aston Holidays</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://astonholidays.com/activities/candle-light-dinner/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Candle Light Dinner Archives\" />\n<meta property=\"og:url\" content=\"https://astonholidays.com/activities/candle-light-dinner/\" />\n<meta property=\"og:site_name\" content=\"Aston Holidays\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/candle-light-dinner\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/activities\\/candle-light-dinner\\/\",\"name\":\"Candle Light Dinner Archives - Aston Holidays\",\"isPartOf\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/candle-light-dinner\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/candle-light-dinner\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/astonholidays.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Candle Light Dinner\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/astonholidays.com\\/#website\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"name\":\"Aston Holidays\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/astonholidays.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\",\"name\":\"Aston Holidays\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"contentUrl\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"width\":362,\"height\":324,\"caption\":\"Aston Holidays\"},\"image\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Candle Light Dinner Archives - Aston Holidays",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://astonholidays.com/activities/candle-light-dinner/",
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Candle Light Dinner Archives",
+      "og_url": "https://astonholidays.com/activities/candle-light-dinner/",
+      "og_site_name": "Aston Holidays",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://astonholidays.com/activities/candle-light-dinner/",
+            "url": "https://astonholidays.com/activities/candle-light-dinner/",
+            "name": "Candle Light Dinner Archives - Aston Holidays",
+            "isPartOf": {
+              "@id": "https://astonholidays.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://astonholidays.com/activities/candle-light-dinner/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://astonholidays.com/activities/candle-light-dinner/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://astonholidays.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Candle Light Dinner"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://astonholidays.com/#website",
+            "url": "https://astonholidays.com/",
+            "name": "Aston Holidays",
+            "description": "",
+            "publisher": {
+              "@id": "https://astonholidays.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://astonholidays.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://astonholidays.com/#organization",
+            "name": "Aston Holidays",
+            "url": "https://astonholidays.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://astonholidays.com/#/schema/logo/image/",
+              "url": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "contentUrl": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "width": 362,
+              "height": 324,
+              "caption": "Aston Holidays"
+            },
+            "image": {
+              "@id": "https://astonholidays.com/#/schema/logo/image/"
+            }
+          }
+        ]
+      }
+    },
+    "thumbnail": {},
+    "_links": {
+      "self": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities/90",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/taxonomies/activities"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/trip?activities=90"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 87,
+    "count": 1,
+    "description": "",
+    "link": "https://astonholidays.com/activities/church/",
+    "name": "Church",
+    "slug": "church",
+    "taxonomy": "activities",
+    "parent": 0,
+    "meta": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.5 (Yoast SEO v27.7) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Church Archives - Aston Holidays</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://astonholidays.com/activities/church/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Church Archives\" />\n<meta property=\"og:url\" content=\"https://astonholidays.com/activities/church/\" />\n<meta property=\"og:site_name\" content=\"Aston Holidays\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/church\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/activities\\/church\\/\",\"name\":\"Church Archives - Aston Holidays\",\"isPartOf\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/church\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/church\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/astonholidays.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Church\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/astonholidays.com\\/#website\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"name\":\"Aston Holidays\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/astonholidays.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\",\"name\":\"Aston Holidays\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"contentUrl\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"width\":362,\"height\":324,\"caption\":\"Aston Holidays\"},\"image\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Church Archives - Aston Holidays",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://astonholidays.com/activities/church/",
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Church Archives",
+      "og_url": "https://astonholidays.com/activities/church/",
+      "og_site_name": "Aston Holidays",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://astonholidays.com/activities/church/",
+            "url": "https://astonholidays.com/activities/church/",
+            "name": "Church Archives - Aston Holidays",
+            "isPartOf": {
+              "@id": "https://astonholidays.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://astonholidays.com/activities/church/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://astonholidays.com/activities/church/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://astonholidays.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Church"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://astonholidays.com/#website",
+            "url": "https://astonholidays.com/",
+            "name": "Aston Holidays",
+            "description": "",
+            "publisher": {
+              "@id": "https://astonholidays.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://astonholidays.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://astonholidays.com/#organization",
+            "name": "Aston Holidays",
+            "url": "https://astonholidays.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://astonholidays.com/#/schema/logo/image/",
+              "url": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "contentUrl": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "width": 362,
+              "height": 324,
+              "caption": "Aston Holidays"
+            },
+            "image": {
+              "@id": "https://astonholidays.com/#/schema/logo/image/"
+            }
+          }
+        ]
+      }
+    },
+    "thumbnail": {},
+    "_links": {
+      "self": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities/87",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/taxonomies/activities"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/trip?activities=87"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 31,
+    "count": 5,
+    "description": "",
+    "link": "https://astonholidays.com/activities/city-tour/",
+    "name": "City Tour",
+    "slug": "city-tour",
+    "taxonomy": "activities",
+    "parent": 0,
+    "meta": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.5 (Yoast SEO v27.7) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>City Tour Archives - Aston Holidays</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://astonholidays.com/activities/city-tour/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"City Tour Archives\" />\n<meta property=\"og:url\" content=\"https://astonholidays.com/activities/city-tour/\" />\n<meta property=\"og:site_name\" content=\"Aston Holidays\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/city-tour\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/activities\\/city-tour\\/\",\"name\":\"City Tour Archives - Aston Holidays\",\"isPartOf\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/city-tour\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/city-tour\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/astonholidays.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"City Tour\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/astonholidays.com\\/#website\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"name\":\"Aston Holidays\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/astonholidays.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\",\"name\":\"Aston Holidays\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"contentUrl\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"width\":362,\"height\":324,\"caption\":\"Aston Holidays\"},\"image\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "City Tour Archives - Aston Holidays",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://astonholidays.com/activities/city-tour/",
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "City Tour Archives",
+      "og_url": "https://astonholidays.com/activities/city-tour/",
+      "og_site_name": "Aston Holidays",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://astonholidays.com/activities/city-tour/",
+            "url": "https://astonholidays.com/activities/city-tour/",
+            "name": "City Tour Archives - Aston Holidays",
+            "isPartOf": {
+              "@id": "https://astonholidays.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://astonholidays.com/activities/city-tour/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://astonholidays.com/activities/city-tour/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://astonholidays.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "City Tour"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://astonholidays.com/#website",
+            "url": "https://astonholidays.com/",
+            "name": "Aston Holidays",
+            "description": "",
+            "publisher": {
+              "@id": "https://astonholidays.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://astonholidays.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://astonholidays.com/#organization",
+            "name": "Aston Holidays",
+            "url": "https://astonholidays.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://astonholidays.com/#/schema/logo/image/",
+              "url": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "contentUrl": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "width": 362,
+              "height": 324,
+              "caption": "Aston Holidays"
+            },
+            "image": {
+              "@id": "https://astonholidays.com/#/schema/logo/image/"
+            }
+          }
+        ]
+      }
+    },
+    "thumbnail": {
+      "width": 410,
+      "height": 330,
+      "file": "2023/12/City-tour-01-1.jpg",
+      "filesize": 87459,
+      "sizes": {
+        "medium": {
+          "file": "City-tour-01-1-300x241.jpg",
+          "width": 300,
+          "height": 241,
+          "filesize": 27522,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/City-tour-01-1-300x241.jpg"
+        },
+        "thumbnail": {
+          "file": "City-tour-01-1-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "filesize": 10403,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/City-tour-01-1-150x150.jpg"
+        },
+        "trip-thumb-size": {
+          "file": "City-tour-01-1-374x226.jpg",
+          "width": 374,
+          "height": 226,
+          "filesize": 31994,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/City-tour-01-1-374x226.jpg"
+        },
+        "destination-thumb-trip-size": {
+          "file": "City-tour-01-1-410x250.jpg",
+          "width": 410,
+          "height": 250,
+          "filesize": 42173,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/City-tour-01-1-410x250.jpg"
+        },
+        "blog-sidebar-size": {
+          "file": "City-tour-01-1-100x100.jpg",
+          "width": 100,
+          "height": 100,
+          "filesize": 5611,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/City-tour-01-1-100x100.jpg"
+        },
+        "blog-sidebar-size-thumb": {
+          "file": "City-tour-01-1-90x80.jpg",
+          "width": 90,
+          "height": 80,
+          "filesize": 4248,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/City-tour-01-1-90x80.jpg"
+        },
+        "blog-post-two": {
+          "file": "City-tour-01-1-342x252.jpg",
+          "width": 342,
+          "height": 252,
+          "filesize": 31333,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/City-tour-01-1-342x252.jpg"
+        },
+        "travolo-destinations-image": {
+          "file": "City-tour-01-1-389x330.jpg",
+          "width": 389,
+          "height": 330,
+          "filesize": 47227,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/City-tour-01-1-389x330.jpg"
+        },
+        "travolo-related-post-size": {
+          "file": "City-tour-01-1-270x314.jpg",
+          "width": 270,
+          "height": 314,
+          "filesize": 29803,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/City-tour-01-1-270x314.jpg"
+        },
+        "blog-post-pagination": {
+          "file": "City-tour-01-1-80x80.jpg",
+          "width": 80,
+          "height": 80,
+          "filesize": 3697,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/City-tour-01-1-80x80.jpg"
+        },
+        "full": {
+          "file": "City-tour-01-1.jpg",
+          "width": 410,
+          "height": 330,
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/City-tour-01-1.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities/31",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/taxonomies/activities"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/trip?activities=31"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 34,
+    "count": 13,
+    "description": "",
+    "link": "https://astonholidays.com/activities/cycling/",
+    "name": "Cycling",
+    "slug": "cycling",
+    "taxonomy": "activities",
+    "parent": 0,
+    "meta": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.5 (Yoast SEO v27.7) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Cycling Archives - Aston Holidays</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://astonholidays.com/activities/cycling/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Cycling Archives\" />\n<meta property=\"og:url\" content=\"https://astonholidays.com/activities/cycling/\" />\n<meta property=\"og:site_name\" content=\"Aston Holidays\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/cycling\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/activities\\/cycling\\/\",\"name\":\"Cycling Archives - Aston Holidays\",\"isPartOf\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/cycling\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/cycling\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/astonholidays.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Cycling\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/astonholidays.com\\/#website\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"name\":\"Aston Holidays\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/astonholidays.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\",\"name\":\"Aston Holidays\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"contentUrl\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"width\":362,\"height\":324,\"caption\":\"Aston Holidays\"},\"image\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Cycling Archives - Aston Holidays",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://astonholidays.com/activities/cycling/",
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Cycling Archives",
+      "og_url": "https://astonholidays.com/activities/cycling/",
+      "og_site_name": "Aston Holidays",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://astonholidays.com/activities/cycling/",
+            "url": "https://astonholidays.com/activities/cycling/",
+            "name": "Cycling Archives - Aston Holidays",
+            "isPartOf": {
+              "@id": "https://astonholidays.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://astonholidays.com/activities/cycling/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://astonholidays.com/activities/cycling/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://astonholidays.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Cycling"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://astonholidays.com/#website",
+            "url": "https://astonholidays.com/",
+            "name": "Aston Holidays",
+            "description": "",
+            "publisher": {
+              "@id": "https://astonholidays.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://astonholidays.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://astonholidays.com/#organization",
+            "name": "Aston Holidays",
+            "url": "https://astonholidays.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://astonholidays.com/#/schema/logo/image/",
+              "url": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "contentUrl": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "width": 362,
+              "height": 324,
+              "caption": "Aston Holidays"
+            },
+            "image": {
+              "@id": "https://astonholidays.com/#/schema/logo/image/"
+            }
+          }
+        ]
+      }
+    },
+    "thumbnail": {
+      "width": 410,
+      "height": 330,
+      "file": "2023/12/Cycling-1.jpg",
+      "filesize": 79288,
+      "sizes": {
+        "medium": {
+          "file": "Cycling-1-300x241.jpg",
+          "width": 300,
+          "height": 241,
+          "filesize": 22483,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/Cycling-1-300x241.jpg"
+        },
+        "thumbnail": {
+          "file": "Cycling-1-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "filesize": 7968,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/Cycling-1-150x150.jpg"
+        },
+        "trip-thumb-size": {
+          "file": "Cycling-1-374x226.jpg",
+          "width": 374,
+          "height": 226,
+          "filesize": 25994,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/Cycling-1-374x226.jpg"
+        },
+        "destination-thumb-trip-size": {
+          "file": "Cycling-1-410x250.jpg",
+          "width": 410,
+          "height": 250,
+          "filesize": 35283,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/Cycling-1-410x250.jpg"
+        },
+        "blog-sidebar-size": {
+          "file": "Cycling-1-100x100.jpg",
+          "width": 100,
+          "height": 100,
+          "filesize": 4104,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/Cycling-1-100x100.jpg"
+        },
+        "blog-sidebar-size-thumb": {
+          "file": "Cycling-1-90x80.jpg",
+          "width": 90,
+          "height": 80,
+          "filesize": 3089,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/Cycling-1-90x80.jpg"
+        },
+        "blog-post-two": {
+          "file": "Cycling-1-342x252.jpg",
+          "width": 342,
+          "height": 252,
+          "filesize": 26158,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/Cycling-1-342x252.jpg"
+        },
+        "travolo-destinations-image": {
+          "file": "Cycling-1-389x330.jpg",
+          "width": 389,
+          "height": 330,
+          "filesize": 41211,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/Cycling-1-389x330.jpg"
+        },
+        "travolo-related-post-size": {
+          "file": "Cycling-1-270x314.jpg",
+          "width": 270,
+          "height": 314,
+          "filesize": 24720,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/Cycling-1-270x314.jpg"
+        },
+        "blog-post-pagination": {
+          "file": "Cycling-1-80x80.jpg",
+          "width": 80,
+          "height": 80,
+          "filesize": 2743,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/Cycling-1-80x80.jpg"
+        },
+        "full": {
+          "file": "Cycling-1.jpg",
+          "width": 410,
+          "height": 330,
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/Cycling-1.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities/34",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/taxonomies/activities"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/trip?activities=34"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 82,
+    "count": 6,
+    "description": "",
+    "link": "https://astonholidays.com/activities/farm-tour/",
+    "name": "Farm tour",
+    "slug": "farm-tour",
+    "taxonomy": "activities",
+    "parent": 0,
+    "meta": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.5 (Yoast SEO v27.7) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Farm tour Archives - Aston Holidays</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://astonholidays.com/activities/farm-tour/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Farm tour Archives\" />\n<meta property=\"og:url\" content=\"https://astonholidays.com/activities/farm-tour/\" />\n<meta property=\"og:site_name\" content=\"Aston Holidays\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/farm-tour\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/activities\\/farm-tour\\/\",\"name\":\"Farm tour Archives - Aston Holidays\",\"isPartOf\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/farm-tour\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/farm-tour\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/astonholidays.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Farm tour\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/astonholidays.com\\/#website\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"name\":\"Aston Holidays\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/astonholidays.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\",\"name\":\"Aston Holidays\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"contentUrl\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"width\":362,\"height\":324,\"caption\":\"Aston Holidays\"},\"image\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Farm tour Archives - Aston Holidays",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://astonholidays.com/activities/farm-tour/",
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Farm tour Archives",
+      "og_url": "https://astonholidays.com/activities/farm-tour/",
+      "og_site_name": "Aston Holidays",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://astonholidays.com/activities/farm-tour/",
+            "url": "https://astonholidays.com/activities/farm-tour/",
+            "name": "Farm tour Archives - Aston Holidays",
+            "isPartOf": {
+              "@id": "https://astonholidays.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://astonholidays.com/activities/farm-tour/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://astonholidays.com/activities/farm-tour/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://astonholidays.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Farm tour"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://astonholidays.com/#website",
+            "url": "https://astonholidays.com/",
+            "name": "Aston Holidays",
+            "description": "",
+            "publisher": {
+              "@id": "https://astonholidays.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://astonholidays.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://astonholidays.com/#organization",
+            "name": "Aston Holidays",
+            "url": "https://astonholidays.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://astonholidays.com/#/schema/logo/image/",
+              "url": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "contentUrl": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "width": 362,
+              "height": 324,
+              "caption": "Aston Holidays"
+            },
+            "image": {
+              "@id": "https://astonholidays.com/#/schema/logo/image/"
+            }
+          }
+        ]
+      }
+    },
+    "thumbnail": {},
+    "_links": {
+      "self": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities/82",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/taxonomies/activities"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/trip?activities=82"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 81,
+    "count": 2,
+    "description": "",
+    "link": "https://astonholidays.com/activities/harvesting/",
+    "name": "Harvesting",
+    "slug": "harvesting",
+    "taxonomy": "activities",
+    "parent": 0,
+    "meta": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.5 (Yoast SEO v27.7) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Harvesting Archives - Aston Holidays</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://astonholidays.com/activities/harvesting/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Harvesting Archives\" />\n<meta property=\"og:url\" content=\"https://astonholidays.com/activities/harvesting/\" />\n<meta property=\"og:site_name\" content=\"Aston Holidays\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/harvesting\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/activities\\/harvesting\\/\",\"name\":\"Harvesting Archives - Aston Holidays\",\"isPartOf\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/harvesting\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/harvesting\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/astonholidays.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Harvesting\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/astonholidays.com\\/#website\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"name\":\"Aston Holidays\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/astonholidays.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\",\"name\":\"Aston Holidays\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"contentUrl\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"width\":362,\"height\":324,\"caption\":\"Aston Holidays\"},\"image\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Harvesting Archives - Aston Holidays",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://astonholidays.com/activities/harvesting/",
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Harvesting Archives",
+      "og_url": "https://astonholidays.com/activities/harvesting/",
+      "og_site_name": "Aston Holidays",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://astonholidays.com/activities/harvesting/",
+            "url": "https://astonholidays.com/activities/harvesting/",
+            "name": "Harvesting Archives - Aston Holidays",
+            "isPartOf": {
+              "@id": "https://astonholidays.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://astonholidays.com/activities/harvesting/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://astonholidays.com/activities/harvesting/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://astonholidays.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Harvesting"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://astonholidays.com/#website",
+            "url": "https://astonholidays.com/",
+            "name": "Aston Holidays",
+            "description": "",
+            "publisher": {
+              "@id": "https://astonholidays.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://astonholidays.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://astonholidays.com/#organization",
+            "name": "Aston Holidays",
+            "url": "https://astonholidays.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://astonholidays.com/#/schema/logo/image/",
+              "url": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "contentUrl": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "width": 362,
+              "height": 324,
+              "caption": "Aston Holidays"
+            },
+            "image": {
+              "@id": "https://astonholidays.com/#/schema/logo/image/"
+            }
+          }
+        ]
+      }
+    },
+    "thumbnail": {},
+    "_links": {
+      "self": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities/81",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/taxonomies/activities"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/trip?activities=81"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 40,
+    "count": 7,
+    "description": "",
+    "link": "https://astonholidays.com/activities/hiking/",
+    "name": "Hiking",
+    "slug": "hiking",
+    "taxonomy": "activities",
+    "parent": 0,
+    "meta": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.5 (Yoast SEO v27.7) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Hiking Archives - Aston Holidays</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://astonholidays.com/activities/hiking/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Hiking Archives\" />\n<meta property=\"og:url\" content=\"https://astonholidays.com/activities/hiking/\" />\n<meta property=\"og:site_name\" content=\"Aston Holidays\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/hiking\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/activities\\/hiking\\/\",\"name\":\"Hiking Archives - Aston Holidays\",\"isPartOf\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/hiking\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/hiking\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/astonholidays.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Hiking\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/astonholidays.com\\/#website\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"name\":\"Aston Holidays\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/astonholidays.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\",\"name\":\"Aston Holidays\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"contentUrl\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"width\":362,\"height\":324,\"caption\":\"Aston Holidays\"},\"image\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Hiking Archives - Aston Holidays",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://astonholidays.com/activities/hiking/",
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Hiking Archives",
+      "og_url": "https://astonholidays.com/activities/hiking/",
+      "og_site_name": "Aston Holidays",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://astonholidays.com/activities/hiking/",
+            "url": "https://astonholidays.com/activities/hiking/",
+            "name": "Hiking Archives - Aston Holidays",
+            "isPartOf": {
+              "@id": "https://astonholidays.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://astonholidays.com/activities/hiking/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://astonholidays.com/activities/hiking/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://astonholidays.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Hiking"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://astonholidays.com/#website",
+            "url": "https://astonholidays.com/",
+            "name": "Aston Holidays",
+            "description": "",
+            "publisher": {
+              "@id": "https://astonholidays.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://astonholidays.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://astonholidays.com/#organization",
+            "name": "Aston Holidays",
+            "url": "https://astonholidays.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://astonholidays.com/#/schema/logo/image/",
+              "url": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "contentUrl": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "width": 362,
+              "height": 324,
+              "caption": "Aston Holidays"
+            },
+            "image": {
+              "@id": "https://astonholidays.com/#/schema/logo/image/"
+            }
+          }
+        ]
+      }
+    },
+    "thumbnail": {
+      "width": 410,
+      "height": 330,
+      "file": "2023/12/trekking-1.jpg",
+      "filesize": 79832,
+      "sizes": {
+        "medium": {
+          "file": "trekking-1-300x241.jpg",
+          "width": 300,
+          "height": 241,
+          "filesize": 21088,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/trekking-1-300x241.jpg"
+        },
+        "thumbnail": {
+          "file": "trekking-1-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "filesize": 7870,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/trekking-1-150x150.jpg"
+        },
+        "trip-thumb-size": {
+          "file": "trekking-1-374x226.jpg",
+          "width": 374,
+          "height": 226,
+          "filesize": 24109,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/trekking-1-374x226.jpg"
+        },
+        "destination-thumb-trip-size": {
+          "file": "trekking-1-410x250.jpg",
+          "width": 410,
+          "height": 250,
+          "filesize": 33455,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/trekking-1-410x250.jpg"
+        },
+        "blog-sidebar-size": {
+          "file": "trekking-1-100x100.jpg",
+          "width": 100,
+          "height": 100,
+          "filesize": 4165,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/trekking-1-100x100.jpg"
+        },
+        "blog-sidebar-size-thumb": {
+          "file": "trekking-1-90x80.jpg",
+          "width": 90,
+          "height": 80,
+          "filesize": 3221,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/trekking-1-90x80.jpg"
+        },
+        "blog-post-two": {
+          "file": "trekking-1-342x252.jpg",
+          "width": 342,
+          "height": 252,
+          "filesize": 24194,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/trekking-1-342x252.jpg"
+        },
+        "travolo-destinations-image": {
+          "file": "trekking-1-389x330.jpg",
+          "width": 389,
+          "height": 330,
+          "filesize": 39410,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/trekking-1-389x330.jpg"
+        },
+        "travolo-related-post-size": {
+          "file": "trekking-1-270x314.jpg",
+          "width": 270,
+          "height": 314,
+          "filesize": 23722,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/trekking-1-270x314.jpg"
+        },
+        "blog-post-pagination": {
+          "file": "trekking-1-80x80.jpg",
+          "width": 80,
+          "height": 80,
+          "filesize": 2807,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/trekking-1-80x80.jpg"
+        },
+        "full": {
+          "file": "trekking-1.jpg",
+          "width": 410,
+          "height": 330,
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/trekking-1.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities/40",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/taxonomies/activities"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/trip?activities=40"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 89,
+    "count": 1,
+    "description": "",
+    "link": "https://astonholidays.com/activities/jains/",
+    "name": "Jains",
+    "slug": "jains",
+    "taxonomy": "activities",
+    "parent": 0,
+    "meta": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.5 (Yoast SEO v27.7) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Jains Archives - Aston Holidays</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://astonholidays.com/activities/jains/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Jains Archives\" />\n<meta property=\"og:url\" content=\"https://astonholidays.com/activities/jains/\" />\n<meta property=\"og:site_name\" content=\"Aston Holidays\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/jains\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/activities\\/jains\\/\",\"name\":\"Jains Archives - Aston Holidays\",\"isPartOf\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/jains\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/jains\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/astonholidays.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Jains\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/astonholidays.com\\/#website\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"name\":\"Aston Holidays\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/astonholidays.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\",\"name\":\"Aston Holidays\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"contentUrl\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"width\":362,\"height\":324,\"caption\":\"Aston Holidays\"},\"image\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Jains Archives - Aston Holidays",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://astonholidays.com/activities/jains/",
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Jains Archives",
+      "og_url": "https://astonholidays.com/activities/jains/",
+      "og_site_name": "Aston Holidays",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://astonholidays.com/activities/jains/",
+            "url": "https://astonholidays.com/activities/jains/",
+            "name": "Jains Archives - Aston Holidays",
+            "isPartOf": {
+              "@id": "https://astonholidays.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://astonholidays.com/activities/jains/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://astonholidays.com/activities/jains/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://astonholidays.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Jains"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://astonholidays.com/#website",
+            "url": "https://astonholidays.com/",
+            "name": "Aston Holidays",
+            "description": "",
+            "publisher": {
+              "@id": "https://astonholidays.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://astonholidays.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://astonholidays.com/#organization",
+            "name": "Aston Holidays",
+            "url": "https://astonholidays.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://astonholidays.com/#/schema/logo/image/",
+              "url": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "contentUrl": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "width": 362,
+              "height": 324,
+              "caption": "Aston Holidays"
+            },
+            "image": {
+              "@id": "https://astonholidays.com/#/schema/logo/image/"
+            }
+          }
+        ]
+      }
+    },
+    "thumbnail": {},
+    "_links": {
+      "self": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities/89",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/taxonomies/activities"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/trip?activities=89"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 43,
+    "count": 8,
+    "description": "",
+    "link": "https://astonholidays.com/activities/jungle-safari/",
+    "name": "Jungle Safari",
+    "slug": "jungle-safari",
+    "taxonomy": "activities",
+    "parent": 0,
+    "meta": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.5 (Yoast SEO v27.7) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Jungle Safari Archives - Aston Holidays</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://astonholidays.com/activities/jungle-safari/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Jungle Safari Archives\" />\n<meta property=\"og:url\" content=\"https://astonholidays.com/activities/jungle-safari/\" />\n<meta property=\"og:site_name\" content=\"Aston Holidays\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/jungle-safari\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/activities\\/jungle-safari\\/\",\"name\":\"Jungle Safari Archives - Aston Holidays\",\"isPartOf\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/jungle-safari\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/jungle-safari\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/astonholidays.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Jungle Safari\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/astonholidays.com\\/#website\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"name\":\"Aston Holidays\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/astonholidays.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\",\"name\":\"Aston Holidays\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"contentUrl\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"width\":362,\"height\":324,\"caption\":\"Aston Holidays\"},\"image\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Jungle Safari Archives - Aston Holidays",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://astonholidays.com/activities/jungle-safari/",
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Jungle Safari Archives",
+      "og_url": "https://astonholidays.com/activities/jungle-safari/",
+      "og_site_name": "Aston Holidays",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://astonholidays.com/activities/jungle-safari/",
+            "url": "https://astonholidays.com/activities/jungle-safari/",
+            "name": "Jungle Safari Archives - Aston Holidays",
+            "isPartOf": {
+              "@id": "https://astonholidays.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://astonholidays.com/activities/jungle-safari/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://astonholidays.com/activities/jungle-safari/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://astonholidays.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Jungle Safari"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://astonholidays.com/#website",
+            "url": "https://astonholidays.com/",
+            "name": "Aston Holidays",
+            "description": "",
+            "publisher": {
+              "@id": "https://astonholidays.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://astonholidays.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://astonholidays.com/#organization",
+            "name": "Aston Holidays",
+            "url": "https://astonholidays.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://astonholidays.com/#/schema/logo/image/",
+              "url": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "contentUrl": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "width": 362,
+              "height": 324,
+              "caption": "Aston Holidays"
+            },
+            "image": {
+              "@id": "https://astonholidays.com/#/schema/logo/image/"
+            }
+          }
+        ]
+      }
+    },
+    "thumbnail": {
+      "width": 410,
+      "height": 330,
+      "file": "2023/12/safari-1.jpg",
+      "filesize": 90008,
+      "sizes": {
+        "medium": {
+          "file": "safari-1-300x241.jpg",
+          "width": 300,
+          "height": 241,
+          "filesize": 29150,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/safari-1-300x241.jpg"
+        },
+        "thumbnail": {
+          "file": "safari-1-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "filesize": 10040,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/safari-1-150x150.jpg"
+        },
+        "trip-thumb-size": {
+          "file": "safari-1-374x226.jpg",
+          "width": 374,
+          "height": 226,
+          "filesize": 31493,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/safari-1-374x226.jpg"
+        },
+        "destination-thumb-trip-size": {
+          "file": "safari-1-410x250.jpg",
+          "width": 410,
+          "height": 250,
+          "filesize": 40588,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/safari-1-410x250.jpg"
+        },
+        "blog-sidebar-size": {
+          "file": "safari-1-100x100.jpg",
+          "width": 100,
+          "height": 100,
+          "filesize": 5030,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/safari-1-100x100.jpg"
+        },
+        "blog-sidebar-size-thumb": {
+          "file": "safari-1-90x80.jpg",
+          "width": 90,
+          "height": 80,
+          "filesize": 3770,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/safari-1-90x80.jpg"
+        },
+        "blog-post-two": {
+          "file": "safari-1-342x252.jpg",
+          "width": 342,
+          "height": 252,
+          "filesize": 33294,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/safari-1-342x252.jpg"
+        },
+        "travolo-destinations-image": {
+          "file": "safari-1-389x330.jpg",
+          "width": 389,
+          "height": 330,
+          "filesize": 53043,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/safari-1-389x330.jpg"
+        },
+        "travolo-related-post-size": {
+          "file": "safari-1-270x314.jpg",
+          "width": 270,
+          "height": 314,
+          "filesize": 31137,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/safari-1-270x314.jpg"
+        },
+        "blog-post-pagination": {
+          "file": "safari-1-80x80.jpg",
+          "width": 80,
+          "height": 80,
+          "filesize": 3271,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/safari-1-80x80.jpg"
+        },
+        "full": {
+          "file": "safari-1.jpg",
+          "width": 410,
+          "height": 330,
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/safari-1.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities/43",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/taxonomies/activities"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/trip?activities=43"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 88,
+    "count": 1,
+    "description": "",
+    "link": "https://astonholidays.com/activities/masjid/",
+    "name": "Masjid",
+    "slug": "masjid",
+    "taxonomy": "activities",
+    "parent": 0,
+    "meta": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.5 (Yoast SEO v27.7) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Masjid Archives - Aston Holidays</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://astonholidays.com/activities/masjid/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Masjid Archives\" />\n<meta property=\"og:url\" content=\"https://astonholidays.com/activities/masjid/\" />\n<meta property=\"og:site_name\" content=\"Aston Holidays\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/masjid\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/activities\\/masjid\\/\",\"name\":\"Masjid Archives - Aston Holidays\",\"isPartOf\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/masjid\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/masjid\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/astonholidays.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Masjid\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/astonholidays.com\\/#website\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"name\":\"Aston Holidays\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/astonholidays.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\",\"name\":\"Aston Holidays\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"contentUrl\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"width\":362,\"height\":324,\"caption\":\"Aston Holidays\"},\"image\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Masjid Archives - Aston Holidays",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://astonholidays.com/activities/masjid/",
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Masjid Archives",
+      "og_url": "https://astonholidays.com/activities/masjid/",
+      "og_site_name": "Aston Holidays",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://astonholidays.com/activities/masjid/",
+            "url": "https://astonholidays.com/activities/masjid/",
+            "name": "Masjid Archives - Aston Holidays",
+            "isPartOf": {
+              "@id": "https://astonholidays.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://astonholidays.com/activities/masjid/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://astonholidays.com/activities/masjid/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://astonholidays.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Masjid"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://astonholidays.com/#website",
+            "url": "https://astonholidays.com/",
+            "name": "Aston Holidays",
+            "description": "",
+            "publisher": {
+              "@id": "https://astonholidays.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://astonholidays.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://astonholidays.com/#organization",
+            "name": "Aston Holidays",
+            "url": "https://astonholidays.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://astonholidays.com/#/schema/logo/image/",
+              "url": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "contentUrl": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "width": 362,
+              "height": 324,
+              "caption": "Aston Holidays"
+            },
+            "image": {
+              "@id": "https://astonholidays.com/#/schema/logo/image/"
+            }
+          }
+        ]
+      }
+    },
+    "thumbnail": {},
+    "_links": {
+      "self": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities/88",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/taxonomies/activities"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/trip?activities=88"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 80,
+    "count": 2,
+    "description": "",
+    "link": "https://astonholidays.com/activities/muniyaras/",
+    "name": "Muniyaras",
+    "slug": "muniyaras",
+    "taxonomy": "activities",
+    "parent": 0,
+    "meta": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.5 (Yoast SEO v27.7) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Muniyaras Archives - Aston Holidays</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://astonholidays.com/activities/muniyaras/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Muniyaras Archives\" />\n<meta property=\"og:url\" content=\"https://astonholidays.com/activities/muniyaras/\" />\n<meta property=\"og:site_name\" content=\"Aston Holidays\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/muniyaras\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/activities\\/muniyaras\\/\",\"name\":\"Muniyaras Archives - Aston Holidays\",\"isPartOf\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/muniyaras\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/muniyaras\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/astonholidays.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Muniyaras\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/astonholidays.com\\/#website\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"name\":\"Aston Holidays\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/astonholidays.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\",\"name\":\"Aston Holidays\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"contentUrl\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"width\":362,\"height\":324,\"caption\":\"Aston Holidays\"},\"image\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Muniyaras Archives - Aston Holidays",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://astonholidays.com/activities/muniyaras/",
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Muniyaras Archives",
+      "og_url": "https://astonholidays.com/activities/muniyaras/",
+      "og_site_name": "Aston Holidays",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://astonholidays.com/activities/muniyaras/",
+            "url": "https://astonholidays.com/activities/muniyaras/",
+            "name": "Muniyaras Archives - Aston Holidays",
+            "isPartOf": {
+              "@id": "https://astonholidays.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://astonholidays.com/activities/muniyaras/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://astonholidays.com/activities/muniyaras/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://astonholidays.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Muniyaras"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://astonholidays.com/#website",
+            "url": "https://astonholidays.com/",
+            "name": "Aston Holidays",
+            "description": "",
+            "publisher": {
+              "@id": "https://astonholidays.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://astonholidays.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://astonholidays.com/#organization",
+            "name": "Aston Holidays",
+            "url": "https://astonholidays.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://astonholidays.com/#/schema/logo/image/",
+              "url": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "contentUrl": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "width": 362,
+              "height": 324,
+              "caption": "Aston Holidays"
+            },
+            "image": {
+              "@id": "https://astonholidays.com/#/schema/logo/image/"
+            }
+          }
+        ]
+      }
+    },
+    "thumbnail": {},
+    "_links": {
+      "self": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities/80",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/taxonomies/activities"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/trip?activities=80"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 49,
+    "count": 2,
+    "description": "",
+    "link": "https://astonholidays.com/activities/peak-climbing/",
+    "name": "Peak Climbing",
+    "slug": "peak-climbing",
+    "taxonomy": "activities",
+    "parent": 0,
+    "meta": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.5 (Yoast SEO v27.7) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Peak Climbing Archives - Aston Holidays</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://astonholidays.com/activities/peak-climbing/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Peak Climbing Archives\" />\n<meta property=\"og:url\" content=\"https://astonholidays.com/activities/peak-climbing/\" />\n<meta property=\"og:site_name\" content=\"Aston Holidays\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/peak-climbing\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/activities\\/peak-climbing\\/\",\"name\":\"Peak Climbing Archives - Aston Holidays\",\"isPartOf\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/peak-climbing\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/peak-climbing\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/astonholidays.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Peak Climbing\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/astonholidays.com\\/#website\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"name\":\"Aston Holidays\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/astonholidays.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\",\"name\":\"Aston Holidays\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"contentUrl\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"width\":362,\"height\":324,\"caption\":\"Aston Holidays\"},\"image\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Peak Climbing Archives - Aston Holidays",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://astonholidays.com/activities/peak-climbing/",
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Peak Climbing Archives",
+      "og_url": "https://astonholidays.com/activities/peak-climbing/",
+      "og_site_name": "Aston Holidays",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://astonholidays.com/activities/peak-climbing/",
+            "url": "https://astonholidays.com/activities/peak-climbing/",
+            "name": "Peak Climbing Archives - Aston Holidays",
+            "isPartOf": {
+              "@id": "https://astonholidays.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://astonholidays.com/activities/peak-climbing/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://astonholidays.com/activities/peak-climbing/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://astonholidays.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Peak Climbing"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://astonholidays.com/#website",
+            "url": "https://astonholidays.com/",
+            "name": "Aston Holidays",
+            "description": "",
+            "publisher": {
+              "@id": "https://astonholidays.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://astonholidays.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://astonholidays.com/#organization",
+            "name": "Aston Holidays",
+            "url": "https://astonholidays.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://astonholidays.com/#/schema/logo/image/",
+              "url": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "contentUrl": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "width": 362,
+              "height": 324,
+              "caption": "Aston Holidays"
+            },
+            "image": {
+              "@id": "https://astonholidays.com/#/schema/logo/image/"
+            }
+          }
+        ]
+      }
+    },
+    "thumbnail": {
+      "width": 410,
+      "height": 330,
+      "file": "2023/12/climbing-1.jpg",
+      "filesize": 75585,
+      "sizes": {
+        "medium": {
+          "file": "climbing-1-300x241.jpg",
+          "width": 300,
+          "height": 241,
+          "filesize": 23351,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/climbing-1-300x241.jpg"
+        },
+        "thumbnail": {
+          "file": "climbing-1-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "filesize": 8936,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/climbing-1-150x150.jpg"
+        },
+        "trip-thumb-size": {
+          "file": "climbing-1-374x226.jpg",
+          "width": 374,
+          "height": 226,
+          "filesize": 25818,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/climbing-1-374x226.jpg"
+        },
+        "destination-thumb-trip-size": {
+          "file": "climbing-1-410x250.jpg",
+          "width": 410,
+          "height": 250,
+          "filesize": 33881,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/climbing-1-410x250.jpg"
+        },
+        "blog-sidebar-size": {
+          "file": "climbing-1-100x100.jpg",
+          "width": 100,
+          "height": 100,
+          "filesize": 4589,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/climbing-1-100x100.jpg"
+        },
+        "blog-sidebar-size-thumb": {
+          "file": "climbing-1-90x80.jpg",
+          "width": 90,
+          "height": 80,
+          "filesize": 3343,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/climbing-1-90x80.jpg"
+        },
+        "blog-post-two": {
+          "file": "climbing-1-342x252.jpg",
+          "width": 342,
+          "height": 252,
+          "filesize": 26659,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/climbing-1-342x252.jpg"
+        },
+        "travolo-destinations-image": {
+          "file": "climbing-1-389x330.jpg",
+          "width": 389,
+          "height": 330,
+          "filesize": 41694,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/climbing-1-389x330.jpg"
+        },
+        "travolo-related-post-size": {
+          "file": "climbing-1-270x314.jpg",
+          "width": 270,
+          "height": 314,
+          "filesize": 27285,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/climbing-1-270x314.jpg"
+        },
+        "blog-post-pagination": {
+          "file": "climbing-1-80x80.jpg",
+          "width": 80,
+          "height": 80,
+          "filesize": 3025,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/climbing-1-80x80.jpg"
+        },
+        "full": {
+          "file": "climbing-1.jpg",
+          "width": 410,
+          "height": 330,
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/climbing-1.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities/49",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/taxonomies/activities"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/trip?activities=49"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 86,
+    "count": 1,
+    "description": "",
+    "link": "https://astonholidays.com/activities/temples/",
+    "name": "Temples",
+    "slug": "temples",
+    "taxonomy": "activities",
+    "parent": 0,
+    "meta": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.5 (Yoast SEO v27.7) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Temples Archives - Aston Holidays</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://astonholidays.com/activities/temples/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Temples Archives\" />\n<meta property=\"og:url\" content=\"https://astonholidays.com/activities/temples/\" />\n<meta property=\"og:site_name\" content=\"Aston Holidays\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/temples\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/activities\\/temples\\/\",\"name\":\"Temples Archives - Aston Holidays\",\"isPartOf\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/temples\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/temples\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/astonholidays.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Temples\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/astonholidays.com\\/#website\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"name\":\"Aston Holidays\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/astonholidays.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\",\"name\":\"Aston Holidays\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"contentUrl\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"width\":362,\"height\":324,\"caption\":\"Aston Holidays\"},\"image\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Temples Archives - Aston Holidays",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://astonholidays.com/activities/temples/",
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Temples Archives",
+      "og_url": "https://astonholidays.com/activities/temples/",
+      "og_site_name": "Aston Holidays",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://astonholidays.com/activities/temples/",
+            "url": "https://astonholidays.com/activities/temples/",
+            "name": "Temples Archives - Aston Holidays",
+            "isPartOf": {
+              "@id": "https://astonholidays.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://astonholidays.com/activities/temples/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://astonholidays.com/activities/temples/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://astonholidays.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Temples"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://astonholidays.com/#website",
+            "url": "https://astonholidays.com/",
+            "name": "Aston Holidays",
+            "description": "",
+            "publisher": {
+              "@id": "https://astonholidays.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://astonholidays.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://astonholidays.com/#organization",
+            "name": "Aston Holidays",
+            "url": "https://astonholidays.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://astonholidays.com/#/schema/logo/image/",
+              "url": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "contentUrl": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "width": 362,
+              "height": 324,
+              "caption": "Aston Holidays"
+            },
+            "image": {
+              "@id": "https://astonholidays.com/#/schema/logo/image/"
+            }
+          }
+        ]
+      }
+    },
+    "thumbnail": {},
+    "_links": {
+      "self": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities/86",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/taxonomies/activities"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/trip?activities=86"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 56,
+    "count": 8,
+    "description": "",
+    "link": "https://astonholidays.com/activities/trekking/",
+    "name": "Trekking",
+    "slug": "trekking",
+    "taxonomy": "activities",
+    "parent": 0,
+    "meta": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.5 (Yoast SEO v27.7) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Trekking Archives - Aston Holidays</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://astonholidays.com/activities/trekking/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Trekking Archives\" />\n<meta property=\"og:url\" content=\"https://astonholidays.com/activities/trekking/\" />\n<meta property=\"og:site_name\" content=\"Aston Holidays\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/trekking\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/activities\\/trekking\\/\",\"name\":\"Trekking Archives - Aston Holidays\",\"isPartOf\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/trekking\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/trekking\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/astonholidays.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Trekking\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/astonholidays.com\\/#website\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"name\":\"Aston Holidays\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/astonholidays.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\",\"name\":\"Aston Holidays\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"contentUrl\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"width\":362,\"height\":324,\"caption\":\"Aston Holidays\"},\"image\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Trekking Archives - Aston Holidays",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://astonholidays.com/activities/trekking/",
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Trekking Archives",
+      "og_url": "https://astonholidays.com/activities/trekking/",
+      "og_site_name": "Aston Holidays",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://astonholidays.com/activities/trekking/",
+            "url": "https://astonholidays.com/activities/trekking/",
+            "name": "Trekking Archives - Aston Holidays",
+            "isPartOf": {
+              "@id": "https://astonholidays.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://astonholidays.com/activities/trekking/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://astonholidays.com/activities/trekking/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://astonholidays.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Trekking"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://astonholidays.com/#website",
+            "url": "https://astonholidays.com/",
+            "name": "Aston Holidays",
+            "description": "",
+            "publisher": {
+              "@id": "https://astonholidays.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://astonholidays.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://astonholidays.com/#organization",
+            "name": "Aston Holidays",
+            "url": "https://astonholidays.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://astonholidays.com/#/schema/logo/image/",
+              "url": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "contentUrl": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "width": 362,
+              "height": 324,
+              "caption": "Aston Holidays"
+            },
+            "image": {
+              "@id": "https://astonholidays.com/#/schema/logo/image/"
+            }
+          }
+        ]
+      }
+    },
+    "thumbnail": {
+      "width": 410,
+      "height": 330,
+      "file": "2023/12/skiing-1.jpg",
+      "filesize": 34978,
+      "sizes": {
+        "medium": {
+          "file": "skiing-1-300x241.jpg",
+          "width": 300,
+          "height": 241,
+          "filesize": 10792,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/skiing-1-300x241.jpg"
+        },
+        "thumbnail": {
+          "file": "skiing-1-150x150.jpg",
+          "width": 150,
+          "height": 150,
+          "filesize": 4407,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/skiing-1-150x150.jpg"
+        },
+        "trip-thumb-size": {
+          "file": "skiing-1-374x226.jpg",
+          "width": 374,
+          "height": 226,
+          "filesize": 11117,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/skiing-1-374x226.jpg"
+        },
+        "destination-thumb-trip-size": {
+          "file": "skiing-1-410x250.jpg",
+          "width": 410,
+          "height": 250,
+          "filesize": 14063,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/skiing-1-410x250.jpg"
+        },
+        "blog-sidebar-size": {
+          "file": "skiing-1-100x100.jpg",
+          "width": 100,
+          "height": 100,
+          "filesize": 2615,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/skiing-1-100x100.jpg"
+        },
+        "blog-sidebar-size-thumb": {
+          "file": "skiing-1-90x80.jpg",
+          "width": 90,
+          "height": 80,
+          "filesize": 2062,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/skiing-1-90x80.jpg"
+        },
+        "blog-post-two": {
+          "file": "skiing-1-342x252.jpg",
+          "width": 342,
+          "height": 252,
+          "filesize": 11782,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/skiing-1-342x252.jpg"
+        },
+        "travolo-destinations-image": {
+          "file": "skiing-1-389x330.jpg",
+          "width": 389,
+          "height": 330,
+          "filesize": 17179,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/skiing-1-389x330.jpg"
+        },
+        "travolo-related-post-size": {
+          "file": "skiing-1-270x314.jpg",
+          "width": 270,
+          "height": 314,
+          "filesize": 11672,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/skiing-1-270x314.jpg"
+        },
+        "blog-post-pagination": {
+          "file": "skiing-1-80x80.jpg",
+          "width": 80,
+          "height": 80,
+          "filesize": 1842,
+          "mime_type": "image/jpeg",
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/skiing-1-80x80.jpg"
+        },
+        "full": {
+          "file": "skiing-1.jpg",
+          "width": 410,
+          "height": 330,
+          "source_url": "https://astonholidays.com/wp-content/uploads/2023/12/skiing-1.jpg"
+        }
+      },
+      "image_meta": {
+        "aperture": "0",
+        "credit": "",
+        "camera": "",
+        "caption": "",
+        "created_timestamp": "0",
+        "copyright": "",
+        "focal_length": "0",
+        "iso": "0",
+        "shutter_speed": "0",
+        "title": "",
+        "orientation": "0",
+        "keywords": []
+      }
+    },
+    "_links": {
+      "self": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities/56",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/taxonomies/activities"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/trip?activities=56"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  },
+  {
+    "id": 91,
+    "count": 3,
+    "description": "",
+    "link": "https://astonholidays.com/activities/wedding/",
+    "name": "Wedding",
+    "slug": "wedding",
+    "taxonomy": "activities",
+    "parent": 0,
+    "meta": [],
+    "yoast_head": "<!-- This site is optimized with the Yoast SEO Premium plugin v27.5 (Yoast SEO v27.7) - https://yoast.com/product/yoast-seo-premium-wordpress/ -->\n<title>Wedding Archives - Aston Holidays</title>\n<meta name=\"robots\" content=\"index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1\" />\n<link rel=\"canonical\" href=\"https://astonholidays.com/activities/wedding/\" />\n<meta property=\"og:locale\" content=\"en_US\" />\n<meta property=\"og:type\" content=\"article\" />\n<meta property=\"og:title\" content=\"Wedding Archives\" />\n<meta property=\"og:url\" content=\"https://astonholidays.com/activities/wedding/\" />\n<meta property=\"og:site_name\" content=\"Aston Holidays\" />\n<meta name=\"twitter:card\" content=\"summary_large_image\" />\n<script type=\"application/ld+json\" class=\"yoast-schema-graph\">{\"@context\":\"https:\\/\\/schema.org\",\"@graph\":[{\"@type\":\"CollectionPage\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/wedding\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/activities\\/wedding\\/\",\"name\":\"Wedding Archives - Aston Holidays\",\"isPartOf\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#website\"},\"breadcrumb\":{\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/wedding\\/#breadcrumb\"},\"inLanguage\":\"en-US\"},{\"@type\":\"BreadcrumbList\",\"@id\":\"https:\\/\\/astonholidays.com\\/activities\\/wedding\\/#breadcrumb\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"name\":\"Home\",\"item\":\"https:\\/\\/astonholidays.com\\/\"},{\"@type\":\"ListItem\",\"position\":2,\"name\":\"Wedding\"}]},{\"@type\":\"WebSite\",\"@id\":\"https:\\/\\/astonholidays.com\\/#website\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"name\":\"Aston Holidays\",\"description\":\"\",\"publisher\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\"},\"potentialAction\":[{\"@type\":\"SearchAction\",\"target\":{\"@type\":\"EntryPoint\",\"urlTemplate\":\"https:\\/\\/astonholidays.com\\/?s={search_term_string}\"},\"query-input\":{\"@type\":\"PropertyValueSpecification\",\"valueRequired\":true,\"valueName\":\"search_term_string\"}}],\"inLanguage\":\"en-US\"},{\"@type\":\"Organization\",\"@id\":\"https:\\/\\/astonholidays.com\\/#organization\",\"name\":\"Aston Holidays\",\"url\":\"https:\\/\\/astonholidays.com\\/\",\"logo\":{\"@type\":\"ImageObject\",\"inLanguage\":\"en-US\",\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\",\"url\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"contentUrl\":\"https:\\/\\/astonholidays.com\\/wp-content\\/uploads\\/2026\\/05\\/Asset-4.png\",\"width\":362,\"height\":324,\"caption\":\"Aston Holidays\"},\"image\":{\"@id\":\"https:\\/\\/astonholidays.com\\/#\\/schema\\/logo\\/image\\/\"}}]}</script>\n<!-- / Yoast SEO Premium plugin. -->",
+    "yoast_head_json": {
+      "title": "Wedding Archives - Aston Holidays",
+      "robots": {
+        "index": "index",
+        "follow": "follow",
+        "max-snippet": "max-snippet:-1",
+        "max-image-preview": "max-image-preview:large",
+        "max-video-preview": "max-video-preview:-1"
+      },
+      "canonical": "https://astonholidays.com/activities/wedding/",
+      "og_locale": "en_US",
+      "og_type": "article",
+      "og_title": "Wedding Archives",
+      "og_url": "https://astonholidays.com/activities/wedding/",
+      "og_site_name": "Aston Holidays",
+      "twitter_card": "summary_large_image",
+      "schema": {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "CollectionPage",
+            "@id": "https://astonholidays.com/activities/wedding/",
+            "url": "https://astonholidays.com/activities/wedding/",
+            "name": "Wedding Archives - Aston Holidays",
+            "isPartOf": {
+              "@id": "https://astonholidays.com/#website"
+            },
+            "breadcrumb": {
+              "@id": "https://astonholidays.com/activities/wedding/#breadcrumb"
+            },
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "BreadcrumbList",
+            "@id": "https://astonholidays.com/activities/wedding/#breadcrumb",
+            "itemListElement": [
+              {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://astonholidays.com/"
+              },
+              {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Wedding"
+              }
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://astonholidays.com/#website",
+            "url": "https://astonholidays.com/",
+            "name": "Aston Holidays",
+            "description": "",
+            "publisher": {
+              "@id": "https://astonholidays.com/#organization"
+            },
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": {
+                  "@type": "EntryPoint",
+                  "urlTemplate": "https://astonholidays.com/?s={search_term_string}"
+                },
+                "query-input": {
+                  "@type": "PropertyValueSpecification",
+                  "valueRequired": true,
+                  "valueName": "search_term_string"
+                }
+              }
+            ],
+            "inLanguage": "en-US"
+          },
+          {
+            "@type": "Organization",
+            "@id": "https://astonholidays.com/#organization",
+            "name": "Aston Holidays",
+            "url": "https://astonholidays.com/",
+            "logo": {
+              "@type": "ImageObject",
+              "inLanguage": "en-US",
+              "@id": "https://astonholidays.com/#/schema/logo/image/",
+              "url": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "contentUrl": "https://astonholidays.com/wp-content/uploads/2026/05/Asset-4.png",
+              "width": 362,
+              "height": 324,
+              "caption": "Aston Holidays"
+            },
+            "image": {
+              "@id": "https://astonholidays.com/#/schema/logo/image/"
+            }
+          }
+        ]
+      }
+    },
+    "thumbnail": {},
+    "_links": {
+      "self": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities/91",
+          "targetHints": {
+            "allow": [
+              "GET"
+            ]
+          }
+        }
+      ],
+      "collection": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/activities"
+        }
+      ],
+      "about": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/taxonomies/activities"
+        }
+      ],
+      "wp:post_type": [
+        {
+          "href": "https://astonholidays.com/wp-json/wp/v2/trip?activities=91"
+        }
+      ],
+      "curies": [
+        {
+          "name": "wp",
+          "href": "https://api.w.org/{rel}",
+          "templated": true
+        }
+      ]
+    }
+  }
+]
