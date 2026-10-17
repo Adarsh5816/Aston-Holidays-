@@ -414,6 +414,23 @@
   ],
   "leads": [
     {
+      "customerName": "Supabase Verification Guest",
+      "phone": "+919876500000",
+      "source": "WhatsApp",
+      "destination": "Padinjarathara",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "",
+      "ambience": "",
+      "checkIn": "",
+      "checkOut": "",
+      "status": "Brochure Sent",
+      "requestedResortCode": "AH-121",
+      "notes": "WhatsApp Request: Type=[Private Pool Villa], Pref=[Any], Loc=[Padinjarathara], Ambience=[Any], Guests=[0A, 0C, 0R]. Matches=1",
+      "id": "lead-1792238181388",
+      "leadNumber": "WA-9450",
+      "createdAt": "2026-10-17T11:56:21.388Z"
+    },
+    {
       "customerName": "Rahul Sharma",
       "phone": "+919876543210",
       "source": "WhatsApp",
@@ -759,6 +776,18 @@
       "status": "blocked",
       "summary": "Invalid API key or authorization token provided",
       "payloadSummary": "{\"customerName\":\"Test Traveler\",\"customerPhone\":\"+919999900001\",\"accommodationType\":\"Private Pool Villa\",\"roomPreference\":\"2Bedroom\",\"stayPreference\":\"Private Pool Villa\",\"location\":\"Sulthan Bathery\","
+    },
+    {
+      "id": "log-1792238181411-l8eex",
+      "timestamp": "2026-10-17T11:56:21.411Z",
+      "type": "inbound_recommend",
+      "method": "POST",
+      "endpoint": "/api/v1/recommend",
+      "clientIp": "::1",
+      "statusCode": 200,
+      "durationMs": 32,
+      "status": "success",
+      "summary": "Recommendation query matched 1 resorts for Supabase Verification Guest"
     }
   ]
 }

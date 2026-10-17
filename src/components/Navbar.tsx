@@ -41,10 +41,16 @@ export default function Navbar() {
               Contact Us
             </Link>
             <Link
-              href="/admin"
-              className="text-xs bg-stone-100 text-stone-700 hover:bg-stone-200 px-3 py-1.5 rounded-md font-semibold transition"
+              href="/admin/dev"
+              className="text-xs bg-stone-100 text-stone-700 hover:bg-stone-200 px-3 py-1.5 rounded-lg font-bold transition flex items-center gap-1.5"
             >
-              Operations CRM
+              Dev Hub
+            </Link>
+            <Link
+              href="/login"
+              className="text-xs bg-[#2E4F28] text-white hover:bg-[#233D1F] px-3.5 py-1.5 rounded-lg font-bold transition"
+            >
+              Admin / Staff Login
             </Link>
           </nav>
 
@@ -107,11 +113,18 @@ export default function Navbar() {
             Contact
           </Link>
           <Link
-            href="/admin"
+            href="/admin/dev"
             onClick={() => setMobileMenuOpen(false)}
-            className="block px-3 py-2 text-base font-medium text-emerald-800 rounded-md bg-stone-100"
+            className="block px-3 py-2 text-base font-medium text-stone-800 rounded-md bg-stone-50"
           >
-            Operations & Invoicing Portal
+            Developer Hub
+          </Link>
+          <Link
+            href="/login"
+            onClick={() => setMobileMenuOpen(false)}
+            className="block px-3 py-2 text-base font-bold text-emerald-800 rounded-md bg-emerald-50"
+          >
+            Admin / Staff Login
           </Link>
           <div className="pt-2">
             <a
