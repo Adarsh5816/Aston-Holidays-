@@ -1,7 +1,8 @@
 import fs from "fs";
 import path from "path";
-import { Resort, Lead, Invoice, FilterParams, User, SiteSettings, IntegrationConfig, ApiAuditLog } from "./types";
+import { Resort, Lead, Invoice, FilterParams, User, SiteSettings, IntegrationConfig, ApiAuditLog, HolidayPackage, BlogPost, ClientReview } from "./types";
 import { initialResorts } from "@/data/resorts";
+import { initialPackages, initialBlogs, initialReviews } from "@/data/content";
 import { supabase } from "./supabase";
 
 // Row mappers between camelCase TypeScript models and snake_case PostgreSQL columns
@@ -66,6 +67,9 @@ interface DataStoreSchema {
   settings: SiteSettings;
   integration: IntegrationConfig;
   auditLogs: ApiAuditLog[];
+  packages: HolidayPackage[];
+  blogs: BlogPost[];
+  reviews: ClientReview[];
 }
 
 const STORE_PATH = path.join(process.cwd(), "data_store.json");
@@ -217,7 +221,10 @@ function readData(): DataStoreSchema {
         users: parsed.users || defaultUsers,
         settings: parsed.settings || defaultSettings,
         integration: { ...defaultIntegration, ...(parsed.integration || {}) },
-        auditLogs: parsed.auditLogs || []
+        auditLogs: parsed.auditLogs || [],
+        packages: parsed.packages || initialPackages,
+        blogs: parsed.blogs || initialBlogs,
+        reviews: parsed.reviews || initialReviews
       };
     }
   } catch (err) {
@@ -230,7 +237,10 @@ function readData(): DataStoreSchema {
     users: defaultUsers,
     settings: defaultSettings,
     integration: defaultIntegration,
-    auditLogs: []
+    auditLogs: [],
+    packages: initialPackages,
+    blogs: initialBlogs,
+    reviews: initialReviews
   };
   saveData(defaultData);
   return defaultData;
@@ -631,5 +641,102 @@ export const Store = {
       destinationUrl: voucherUrl,
       googleMapsUrl: mapsLink
     };
+  },
+
+  // Holiday Packages
+  getPackages(category?: string): HolidayPackage[] {
+    const data = readData();
+    if (!category) return data.packages;
+    return data.packages.filter(p => p.category.toLowerCase() === category.toLowerCase());
+  },
+
+  getPackageById(id: string): HolidayPackage | undefined {
+    return readData().packages.find(p => p.id === id);
+  },
+
+  savePackage(pkg: HolidayPackage): HolidayPackage {
+    const data = readData();
+    const idx = data.packages.findIndex(p => p.id === pkg.id);
+    if (idx >= 0) {
+      data.packages[idx] = pkg;
+    } else {
+      if (!pkg.id) pkg.id = `pkg-${Date.now()}`;
+      data.packages.unshift(pkg);
+    }
+    saveData(data);
+    return pkg;
+  },
+
+  deletePackage(id: string): boolean {
+    const data = readData();
+    const prevLen = data.packages.length;
+    data.packages = data.packages.filter(p => p.id !== id);
+    if (data.packages.length !== prevLen) {
+      saveData(data);
+      return true;
+    }
+    return false;
+  },
+
+  // Blogs & News
+  getBlogs(): BlogPost[] {
+    return readData().blogs;
+  },
+
+  getBlogBySlug(slug: string): BlogPost | undefined {
+    return readData().blogs.find(b => b.slug === slug || b.id === slug);
+  },
+
+  saveBlog(blog: BlogPost): BlogPost {
+    const data = readData();
+    const idx = data.blogs.findIndex(b => b.id === blog.id || b.slug === blog.slug);
+    if (idx >= 0) {
+      data.blogs[idx] = blog;
+    } else {
+      if (!blog.id) blog.id = `blog-${Date.now()}`;
+      data.blogs.unshift(blog);
+    }
+    saveData(data);
+    return blog;
+  },
+
+  deleteBlog(id: string): boolean {
+    const data = readData();
+    const prevLen = data.blogs.length;
+    data.blogs = data.blogs.filter(b => b.id !== id && b.slug !== id);
+    if (data.blogs.length !== prevLen) {
+      saveData(data);
+      return true;
+    }
+    return false;
+  },
+
+  // Client Reviews
+  getReviews(): ClientReview[] {
+    return readData().reviews;
+  },
+
+  saveReview(review: ClientReview): ClientReview {
+    const data = readData();
+    const idx = data.reviews.findIndex(r => r.id === review.id);
+    if (idx >= 0) {
+      data.reviews[idx] = review;
+    } else {
+      if (!review.id) review.id = `rev-${Date.now()}`;
+      data.reviews.unshift(review);
+    }
+    saveData(data);
+    return review;
+  },
+
+  deleteReview(id: string): boolean {
+    const data = readData();
+    const prevLen = data.reviews.length;
+    data.reviews = data.reviews.filter(r => r.id !== id);
+    if (data.reviews.length !== prevLen) {
+      saveData(data);
+      return true;
+    }
+    return false;
   }
 };

@@ -13,6 +13,7 @@ interface BrochureDocumentProps {
 }
 
 export default function BrochureDocument({ resort, autoPrint = false }: BrochureDocumentProps) {
+  const publicTitle = `${resort.code} • ${resort.bedrooms}BHK ${resort.accommodationType}`;
   const [qrDataUrl, setQrDataUrl] = useState<string>("");
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
@@ -21,7 +22,7 @@ export default function BrochureDocument({ resort, autoPrint = false }: Brochure
   // Generate QR Code for WhatsApp / Resort link
   useEffect(() => {
     const currentUrl = typeof window !== "undefined" ? window.location.href.split("?")[0] : "";
-    const waUrl = `https://wa.me/919744900414?text=Hi%20Aston%20Holidays,%20inquiring%20about%20${resort.code}%20(${resort.name})`;
+    const waUrl = `https://wa.me/919744900414?text=Hi%20Aston%20Holidays,%20inquiring%20about%20${encodeURIComponent(publicTitle)}`;
     QRCode.toDataURL(waUrl, { width: 120, margin: 1 })
       .then(url => setQrDataUrl(url))
       .catch(err => console.error(err));
@@ -31,7 +32,7 @@ export default function BrochureDocument({ resort, autoPrint = false }: Brochure
         window.print();
       }, 800);
     }
-  }, [resort, autoPrint]);
+  }, [resort, autoPrint, publicTitle]);
 
   // Use only actual resort photos; do not inject default images
   const photos = resort.photos || [];
@@ -48,7 +49,7 @@ export default function BrochureDocument({ resort, autoPrint = false }: Brochure
     }
   };
 
-  const whatsAppBookingUrl = `https://wa.me/919744900414?text=Hi%20Aston%20Holidays,%20I%20am%20viewing%20the%20brochure%20for%20*${resort.code}%20-%20${encodeURIComponent(resort.name)}*%20in%20${encodeURIComponent(resort.destination)}.%20Please%20share%20availability%20and%20rates!`;
+  const whatsAppBookingUrl = `https://wa.me/919744900414?text=Hi%20Aston%20Holidays,%20I%20am%20viewing%20the%20brochure%20for%20*${encodeURIComponent(publicTitle)}*%20in%20${encodeURIComponent(resort.destination)}.%20Please%20share%20availability%20and%20rates!`;
 
   return (
     <div className="min-h-screen bg-stone-100 py-6 print:p-0 print:bg-white text-stone-900 font-sans">
@@ -65,7 +66,7 @@ export default function BrochureDocument({ resort, autoPrint = false }: Brochure
             {resort.code}
           </span>
           <span className="text-sm font-semibold text-stone-800 hidden sm:inline">
-            {resort.name} ({resort.destination})
+            {publicTitle} ({resort.destination})
           </span>
         </div>
 
@@ -129,7 +130,7 @@ export default function BrochureDocument({ resort, autoPrint = false }: Brochure
               {resort.code}
             </div>
             <h1 className="text-4xl font-extrabold text-[#262B2F] tracking-tight leading-tight">
-              {resort.name}
+              {publicTitle}
             </h1>
             <p className="text-xl font-medium text-[#4A5568] mt-1.5">
               {resort.destination}

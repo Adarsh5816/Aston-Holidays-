@@ -18,6 +18,10 @@ import {
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ResortCard from "@/components/ResortCard";
+import InteractivePackagesSection from "@/components/InteractivePackagesSection";
+import WhisperingTownsSection from "@/components/WhisperingTownsSection";
+import LiveBlogTickerSection from "@/components/LiveBlogTickerSection";
+import ClientWordsSection from "@/components/ClientWordsSection";
 import { Store } from "@/lib/store";
 import { destinations } from "@/data/destinations";
 
@@ -25,9 +29,12 @@ export default function HomePage() {
   const settings = Store.getSettings();
   const allResorts = Store.getResorts();
   const featuredResorts = allResorts.slice(0, 6);
-  const poolVillas = allResorts.filter((r) => r.accommodationType === "Private Pool Villa").slice(0, 3);
-  const treehouses = allResorts.filter((r) => r.accommodationType === "Tree House" || r.category === "Tree House").slice(0, 3);
   const featuredAh121 = Store.getResortByCode("AH-121") || allResorts[0];
+
+  // Dynamic Content for Live Sections
+  const packages = Store.getPackages();
+  const blogs = Store.getBlogs();
+  const reviews = Store.getReviews();
 
   return (
     <div className="min-h-screen flex flex-col bg-[#FDFBF7] text-stone-900 font-sans selection:bg-emerald-900 selection:text-white">
@@ -87,7 +94,7 @@ export default function HomePage() {
                 href="/resorts"
                 className="inline-flex items-center gap-2 bg-[#2E4F28] hover:bg-[#233D1F] text-white text-sm font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-2xl transition transform hover:-translate-y-0.5 active:translate-y-0"
               >
-                <Compass className="w-4 h-4 text-emerald-300" /> Explore {allResorts.length}+ Wayanad Stays
+                <Compass className="w-4 h-4 text-emerald-300" /> Explore {allResorts.length}+ Verified Stays
               </Link>
 
               <a
@@ -99,30 +106,14 @@ export default function HomePage() {
                 <MessageCircle className="w-4 h-4" /> Instant WhatsApp Recommendations
               </a>
             </div>
-
-            {/* Live Stats Floating Island */}
-            <div className="mt-14 glass-dark rounded-2xl p-4 sm:p-6 border border-white/10 max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
-              <div>
-                <p className="text-2xl sm:text-3xl font-black text-white">{allResorts.length}+</p>
-                <p className="text-[11px] font-semibold text-emerald-300 uppercase tracking-wider mt-0.5">Verified Properties</p>
-              </div>
-              <div>
-                <p className="text-2xl sm:text-3xl font-black text-white">15+</p>
-                <p className="text-[11px] font-semibold text-emerald-300 uppercase tracking-wider mt-0.5">Wayanad Locations</p>
-              </div>
-              <div>
-                <p className="text-2xl sm:text-3xl font-black text-white">100%</p>
-                <p className="text-[11px] font-semibold text-emerald-300 uppercase tracking-wider mt-0.5">Instant PDF Brochures</p>
-              </div>
-              <div>
-                <p className="text-2xl sm:text-3xl font-black text-white">6,000 Yrs</p>
-                <p className="text-[11px] font-semibold text-emerald-300 uppercase tracking-wider mt-0.5">Edakkal Heritage</p>
-              </div>
-            </div>
           </div>
         </section>
 
-        {/* ================= SPOTLIGHT RESORT: BANASURA POOL VILLA ================= */}
+        {/* ================= INTERACTIVE PACKAGES & MARQUEE TICKER ================= */}
+        {/* Aston Holidays Best Holiday Package keep scrolling, Honeymoon, Destination Events, Group Packages */}
+        <InteractivePackagesSection packages={packages} whatsappNumber={settings.whatsappNumber} />
+
+        {/* ================= SPOTLIGHT VERIFIED VILLA (Code-Protected, No Vendor Name) ================= */}
         {featuredAh121 && (
           <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="bg-white rounded-3xl p-6 sm:p-10 border border-stone-200/90 shadow-md card-hover-elevation flex flex-col lg:flex-row items-center gap-10">
@@ -133,7 +124,7 @@ export default function HomePage() {
                     <div className="relative rounded-2xl overflow-hidden shadow">
                       <Image
                         src={featuredAh121.photos[0]}
-                        alt={featuredAh121.name}
+                        alt="Villa view"
                         fill
                         className="object-cover hover:scale-105 transition-transform duration-700"
                       />
@@ -178,9 +169,9 @@ export default function HomePage() {
                       <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-3">
                         <Sparkles className="w-8 h-8 text-amber-300" />
                       </div>
-                      <h4 className="text-xl font-black text-white">{featuredAh121.name}</h4>
+                      <h4 className="text-xl font-black text-white">{featuredAh121.code} • {featuredAh121.bedrooms}BHK</h4>
                       <p className="text-xs text-stone-400 mt-1 max-w-xs mx-auto">
-                        {featuredAh121.accommodationType} • {featuredAh121.bedrooms} BHK
+                        {featuredAh121.accommodationType} • {featuredAh121.destination}
                       </p>
                       <span className="inline-block mt-3 text-[11px] font-semibold text-emerald-300 bg-emerald-950/60 border border-emerald-800/60 px-3 py-1 rounded-full">
                         Photos updating after latest photo shoot
@@ -200,49 +191,50 @@ export default function HomePage() {
                   <Waves className="w-3.5 h-3.5" /> Featured Spotlight Villa
                 </div>
                 <h2 className="text-2xl sm:text-3xl font-black text-stone-900 tracking-tight">
-                  {featuredAh121.name}
+                  {featuredAh121.code} • {featuredAh121.bedrooms}BHK {featuredAh121.accommodationType}
                 </h2>
                 <p className="text-xs text-stone-500 flex items-center gap-1 mt-1 font-medium">
                   <MapPin className="w-3.5 h-3.5 text-emerald-700" />
-                  {featuredAh121.locationDetails}
+                  {featuredAh121.destination}, Wayanad
                 </p>
 
-                <p className="mt-4 text-xs sm:text-sm text-stone-600 leading-relaxed">
+                <p className="mt-4 text-xs sm:text-sm text-stone-600 leading-relaxed font-serif">
                   {featuredAh121.overview}
                 </p>
 
                 {/* Amenities Badges */}
                 <div className="mt-5 flex flex-wrap gap-2">
-                  {featuredAh121.amenities.slice(0, 5).map((amenity, i) => (
+                  {featuredAh121.amenities.slice(0, 4).map((amenity, idx) => (
                     <span
-                      key={i}
-                      className="text-[11px] font-semibold bg-stone-100 text-stone-700 px-3 py-1 rounded-lg"
+                      key={idx}
+                      className="text-xs bg-stone-100 text-stone-700 px-3 py-1 rounded-lg font-medium flex items-center gap-1"
                     >
-                      ✓ {amenity}
+                      <CheckCircle2 className="w-3 h-3 text-emerald-700" />
+                      {amenity}
                     </span>
                   ))}
                 </div>
 
-                {/* Pricing & CTA */}
-                <div className="mt-8 pt-6 border-t border-stone-100 flex flex-wrap items-center justify-between gap-4">
+                {/* Price and Actions */}
+                <div className="mt-8 pt-6 border-t border-stone-100 flex items-center justify-between">
                   <div>
-                    <span className="text-[10px] uppercase font-bold text-stone-400 block">Rate per night</span>
-                    <span className="text-2xl font-black text-stone-900">
+                    <span className="text-xs text-stone-400 block font-medium">Tariff from</span>
+                    <p className="text-2xl font-black text-[#2E4F28]">
                       ₹{featuredAh121.pricePerNight.toLocaleString("en-IN")}
-                    </span>
-                    <span className="text-xs text-stone-500 font-medium ml-1">/ night</span>
+                      <span className="text-xs font-normal text-stone-500"> /night</span>
+                    </p>
                   </div>
 
                   <div className="flex items-center gap-3">
                     <Link
                       href={`/brochure/${featuredAh121.code}`}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-800 bg-stone-100 hover:bg-stone-200 px-4 py-2.5 rounded-xl transition"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-700 bg-stone-100 hover:bg-stone-200 px-4 py-2.5 rounded-xl transition"
                     >
                       <FileText className="w-3.5 h-3.5 text-emerald-800" /> 12-Page Brochure
                     </Link>
 
                     <a
-                      href={`https://wa.me/${settings.whatsappNumber.replace(/[^0-9]/g, "")}?text=Hi,%20I%20am%20interested%20in%20booking%20[${featuredAh121.code}]%20${encodeURIComponent(featuredAh121.name)}`}
+                      href={`https://wa.me/${settings.whatsappNumber.replace(/[^0-9]/g, "")}?text=Hi,%20I%20am%20interested%20in%20booking%20[${featuredAh121.code}]%20${featuredAh121.bedrooms}BHK%20${encodeURIComponent(featuredAh121.accommodationType)}%20in%20${encodeURIComponent(featuredAh121.destination)}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-[#2E4F28] hover:bg-[#233D1F] px-5 py-2.5 rounded-xl transition shadow"
@@ -256,8 +248,17 @@ export default function HomePage() {
           </section>
         )}
 
+        {/* ================= GO & DISCOVER: WHISPERING TOWNS ================= */}
+        <WhisperingTownsSection />
+
+        {/* ================= BLOG & NEWS (LIVE SCROLLING TICKER) ================= */}
+        <LiveBlogTickerSection blogs={blogs} />
+
+        {/* ================= WHAT'S OUR CLIENT'S WORDS ================= */}
+        <ClientWordsSection reviews={reviews} />
+
         {/* ================= ALL VERIFIED RESORTS CATALOG ================= */}
-        <section className="py-16 bg-[#F4F5F7] border-y border-stone-200">
+        <section className="py-20 bg-[#F4F5F7] border-y border-stone-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
               <div>
@@ -265,7 +266,7 @@ export default function HomePage() {
                   Handpicked Stays
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-black text-stone-900 tracking-tight mt-2">
-                  Featured Wayanad Villas &amp; Resorts
+                  Featured Wayanad Stays (Code-Protected)
                 </h2>
                 <p className="text-xs sm:text-sm text-stone-500 mt-1">
                   Private pool villas, romantic treehouses, and plantation stays across Wayanad.
@@ -288,43 +289,6 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-          </div>
-        </section>
-
-        {/* ================= WAYANAD DESTINATIONS GRID ================= */}
-        <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-2xl mx-auto mb-12">
-            <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
-              Explore Wayanad
-            </span>
-            <h2 className="text-3xl font-black text-stone-900 tracking-tight mt-3">
-              Discover Stays by Region
-            </h2>
-            <p className="text-xs sm:text-sm text-stone-500 mt-2">
-              From the misty peaks of Chembra to the calm backwaters of Banasura Sagar Dam.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-            {destinations.slice(0, 10).map((dest) => (
-              <Link
-                key={dest.slug}
-                href={`/resorts?location=${encodeURIComponent(dest.name)}`}
-                className="group relative h-48 rounded-2xl overflow-hidden shadow-sm card-hover-elevation border border-stone-200"
-              >
-                <Image
-                  src={dest.image}
-                  alt={dest.name}
-                  fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-950/30 to-transparent" />
-                <div className="absolute bottom-3 left-3 right-3 text-white">
-                  <p className="text-xs font-bold tracking-tight">{dest.name}</p>
-                  <p className="text-[10px] text-emerald-300 font-medium truncate">{dest.tagline}</p>
-                </div>
-              </Link>
-            ))}
           </div>
         </section>
 

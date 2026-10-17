@@ -317,3 +317,41 @@ export interface IntegrationConfig {
   lastOutboundStatus?: "success" | "failed";
 }
 
+export interface HolidayPackage {
+  id: string;
+  title: string;
+  category: "Honey Moon Package" | "Destination events" | "Group Packages" | "Best Holiday Package";
+  tagline: string;
+  duration: string;
+  price: number;
+  featured: boolean;
+  image: string;
+  inclusions: string[];
+  description: string;
+  applicableResortCodes: string[];
+}
+
+export interface BlogPost {
+  id: string;
+  title: string;
+  slug: string;
+  category: string;
+  excerpt: string;
+  content: string;
+  readTime: string;
+  date: string;
+  image: string;
+  author: string;
+  featured?: boolean;
+}
+
+export interface ClientReview {
+  id: string;
+  name: string;
+  location: string;
+  rating: number;
+  review: string;
+  packageTaken: string;
+  date: string;
+  avatar?: string;
+}

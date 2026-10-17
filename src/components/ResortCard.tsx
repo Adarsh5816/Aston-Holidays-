@@ -9,7 +9,8 @@ interface ResortCardProps {
 }
 
 export default function ResortCard({ resort }: ResortCardProps) {
-  const whatsAppInquiryUrl = `https://wa.me/919744900414?text=Hi%20Aston%20Holidays,%20I%20am%20interested%20in%20reserving%20*${resort.code}%20-%20${encodeURIComponent(resort.name)}*%20in%20${encodeURIComponent(resort.destination)}.%20Please%20share%20availability!`;
+  const publicDisplayName = `${resort.code} • ${resort.bedrooms}BHK ${resort.accommodationType}`;
+  const whatsAppInquiryUrl = `https://wa.me/919744900414?text=Hi%20Aston%20Holidays,%20I%20am%20interested%20in%20reserving%20*${encodeURIComponent(publicDisplayName)}*%20in%20${encodeURIComponent(resort.destination)}.%20Please%20share%20availability!`;
   const hasCoverImage = Boolean(resort.coverImage && resort.coverImage.trim().length > 0);
 
   return (
@@ -67,7 +68,7 @@ export default function ResortCard({ resort }: ResortCardProps) {
       <div className="p-5 flex-1 flex flex-col justify-between">
         <div>
           <h3 className="text-lg font-bold text-stone-900 group-hover:text-emerald-800 transition line-clamp-1">
-            {resort.name}
+            {publicDisplayName}
           </h3>
           <p className="text-xs text-stone-500 mt-1 line-clamp-2 leading-relaxed">
             {resort.overview}
