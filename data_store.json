@@ -23,14 +23,8 @@
       "pricePerNight": 10000,
       "b2bRate": 8000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_1.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_1.jpg",
-        "/brochure-assets/extracted_img_2.jpg",
-        "/brochure-assets/extracted_img_3.jpg",
-        "/brochure-assets/extracted_img_4.jpg",
-        "/brochure-assets/extracted_img_5.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -98,14 +92,8 @@
       "pricePerNight": 4000,
       "b2bRate": 3000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_4.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_4.jpg",
-        "/brochure-assets/extracted_img_5.jpg",
-        "/brochure-assets/extracted_img_6.jpg",
-        "/brochure-assets/extracted_img_7.jpg",
-        "/brochure-assets/extracted_img_8.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Resort Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -174,14 +162,8 @@
       "pricePerNight": 8400,
       "b2bRate": 7000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_7.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_7.jpg",
-        "/brochure-assets/extracted_img_8.jpg",
-        "/brochure-assets/extracted_img_9.jpg",
-        "/brochure-assets/extracted_img_10.jpg",
-        "/brochure-assets/extracted_img_11.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -250,14 +232,8 @@
       "pricePerNight": 5500,
       "b2bRate": 4500,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_10.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_10.jpg",
-        "/brochure-assets/extracted_img_11.jpg",
-        "/brochure-assets/extracted_img_12.jpg",
-        "/brochure-assets/extracted_img_13.jpg",
-        "/brochure-assets/extracted_img_14.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Resort Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -325,14 +301,8 @@
       "pricePerNight": 9000,
       "b2bRate": 8000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_13.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_13.jpg",
-        "/brochure-assets/extracted_img_14.jpg",
-        "/brochure-assets/extracted_img_15.jpg",
-        "/brochure-assets/extracted_img_16.jpg",
-        "/brochure-assets/extracted_img_17.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Resort Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -400,14 +370,8 @@
       "pricePerNight": 12000,
       "b2bRate": 10000,
       "featured": true,
-      "coverImage": "/brochure-assets/extracted_img_16.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_16.jpg",
-        "/brochure-assets/extracted_img_17.jpg",
-        "/brochure-assets/extracted_img_18.jpg",
-        "/brochure-assets/extracted_img_19.jpg",
-        "/brochure-assets/extracted_img_20.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -475,14 +439,8 @@
       "pricePerNight": 4000,
       "b2bRate": 3300,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_19.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_19.jpg",
-        "/brochure-assets/extracted_img_20.jpg",
-        "/brochure-assets/extracted_img_21.jpg",
-        "/brochure-assets/extracted_img_22.jpg",
-        "/brochure-assets/extracted_img_23.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -550,14 +508,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_22.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_22.jpg",
-        "/brochure-assets/extracted_img_23.jpg",
-        "/brochure-assets/extracted_img_24.jpg",
-        "/brochure-assets/extracted_img_25.jpg",
-        "/brochure-assets/extracted_img_26.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Resort Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -626,14 +578,8 @@
       "pricePerNight": 5000,
       "b2bRate": 3000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_25.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_25.jpg",
-        "/brochure-assets/extracted_img_26.jpg",
-        "/brochure-assets/extracted_img_27.jpg",
-        "/brochure-assets/extracted_img_28.jpg",
-        "/brochure-assets/extracted_img_29.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Resort Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -701,14 +647,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6500,
       "featured": true,
-      "coverImage": "/brochure-assets/extracted_img_28.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_28.jpg",
-        "/brochure-assets/extracted_img_29.jpg",
-        "/brochure-assets/extracted_img_1.jpg",
-        "/brochure-assets/extracted_img_2.jpg",
-        "/brochure-assets/extracted_img_3.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Resort Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -776,14 +716,8 @@
       "pricePerNight": 6000,
       "b2bRate": 4000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_2.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_2.jpg",
-        "/brochure-assets/extracted_img_3.jpg",
-        "/brochure-assets/extracted_img_4.jpg",
-        "/brochure-assets/extracted_img_5.jpg",
-        "/brochure-assets/extracted_img_6.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -851,14 +785,8 @@
       "pricePerNight": 16000,
       "b2bRate": 12500,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_5.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_5.jpg",
-        "/brochure-assets/extracted_img_6.jpg",
-        "/brochure-assets/extracted_img_7.jpg",
-        "/brochure-assets/extracted_img_8.jpg",
-        "/brochure-assets/extracted_img_9.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -926,14 +854,8 @@
       "pricePerNight": 18000,
       "b2bRate": 15000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_8.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_8.jpg",
-        "/brochure-assets/extracted_img_9.jpg",
-        "/brochure-assets/extracted_img_10.jpg",
-        "/brochure-assets/extracted_img_11.jpg",
-        "/brochure-assets/extracted_img_12.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -1002,14 +924,8 @@
       "pricePerNight": 12000,
       "b2bRate": 9000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_11.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_11.jpg",
-        "/brochure-assets/extracted_img_12.jpg",
-        "/brochure-assets/extracted_img_13.jpg",
-        "/brochure-assets/extracted_img_14.jpg",
-        "/brochure-assets/extracted_img_15.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -1077,14 +993,8 @@
       "pricePerNight": 7500,
       "b2bRate": 12000,
       "featured": true,
-      "coverImage": "/brochure-assets/extracted_img_14.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_14.jpg",
-        "/brochure-assets/extracted_img_15.jpg",
-        "/brochure-assets/extracted_img_16.jpg",
-        "/brochure-assets/extracted_img_17.jpg",
-        "/brochure-assets/extracted_img_18.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -1152,14 +1062,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_17.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_17.jpg",
-        "/brochure-assets/extracted_img_18.jpg",
-        "/brochure-assets/extracted_img_19.jpg",
-        "/brochure-assets/extracted_img_20.jpg",
-        "/brochure-assets/extracted_img_21.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -1227,14 +1131,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_20.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_20.jpg",
-        "/brochure-assets/extracted_img_21.jpg",
-        "/brochure-assets/extracted_img_22.jpg",
-        "/brochure-assets/extracted_img_23.jpg",
-        "/brochure-assets/extracted_img_24.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Resort Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -1302,14 +1200,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_23.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_23.jpg",
-        "/brochure-assets/extracted_img_24.jpg",
-        "/brochure-assets/extracted_img_25.jpg",
-        "/brochure-assets/extracted_img_26.jpg",
-        "/brochure-assets/extracted_img_27.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -1377,14 +1269,8 @@
       "pricePerNight": 1000,
       "b2bRate": 900,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_26.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_26.jpg",
-        "/brochure-assets/extracted_img_27.jpg",
-        "/brochure-assets/extracted_img_28.jpg",
-        "/brochure-assets/extracted_img_29.jpg",
-        "/brochure-assets/extracted_img_1.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Resort Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -1452,14 +1338,8 @@
       "pricePerNight": 10000,
       "b2bRate": 8000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_29.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_29.jpg",
-        "/brochure-assets/extracted_img_1.jpg",
-        "/brochure-assets/extracted_img_2.jpg",
-        "/brochure-assets/extracted_img_3.jpg",
-        "/brochure-assets/extracted_img_4.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -1528,14 +1408,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_3.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_3.jpg",
-        "/brochure-assets/extracted_img_4.jpg",
-        "/brochure-assets/extracted_img_5.jpg",
-        "/brochure-assets/extracted_img_6.jpg",
-        "/brochure-assets/extracted_img_7.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Resort Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -1604,14 +1478,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_6.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_6.jpg",
-        "/brochure-assets/extracted_img_7.jpg",
-        "/brochure-assets/extracted_img_8.jpg",
-        "/brochure-assets/extracted_img_9.jpg",
-        "/brochure-assets/extracted_img_10.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -1679,14 +1547,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_9.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_9.jpg",
-        "/brochure-assets/extracted_img_10.jpg",
-        "/brochure-assets/extracted_img_11.jpg",
-        "/brochure-assets/extracted_img_12.jpg",
-        "/brochure-assets/extracted_img_13.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Resort Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -1754,14 +1616,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_12.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_12.jpg",
-        "/brochure-assets/extracted_img_13.jpg",
-        "/brochure-assets/extracted_img_14.jpg",
-        "/brochure-assets/extracted_img_15.jpg",
-        "/brochure-assets/extracted_img_16.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Resort Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -1829,14 +1685,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_15.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_15.jpg",
-        "/brochure-assets/extracted_img_16.jpg",
-        "/brochure-assets/extracted_img_17.jpg",
-        "/brochure-assets/extracted_img_18.jpg",
-        "/brochure-assets/extracted_img_19.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Resort Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -1904,14 +1754,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_18.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_18.jpg",
-        "/brochure-assets/extracted_img_19.jpg",
-        "/brochure-assets/extracted_img_20.jpg",
-        "/brochure-assets/extracted_img_21.jpg",
-        "/brochure-assets/extracted_img_22.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Resort Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -1980,14 +1824,8 @@
       "pricePerNight": 7500,
       "b2bRate": 4000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_21.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_21.jpg",
-        "/brochure-assets/extracted_img_22.jpg",
-        "/brochure-assets/extracted_img_23.jpg",
-        "/brochure-assets/extracted_img_24.jpg",
-        "/brochure-assets/extracted_img_25.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -2056,14 +1894,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_24.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_24.jpg",
-        "/brochure-assets/extracted_img_25.jpg",
-        "/brochure-assets/extracted_img_26.jpg",
-        "/brochure-assets/extracted_img_27.jpg",
-        "/brochure-assets/extracted_img_28.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -2132,14 +1964,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_27.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_27.jpg",
-        "/brochure-assets/extracted_img_28.jpg",
-        "/brochure-assets/extracted_img_29.jpg",
-        "/brochure-assets/extracted_img_1.jpg",
-        "/brochure-assets/extracted_img_2.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Resort Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -2207,14 +2033,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_1.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_1.jpg",
-        "/brochure-assets/extracted_img_2.jpg",
-        "/brochure-assets/extracted_img_3.jpg",
-        "/brochure-assets/extracted_img_4.jpg",
-        "/brochure-assets/extracted_img_5.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -2282,14 +2102,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_4.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_4.jpg",
-        "/brochure-assets/extracted_img_5.jpg",
-        "/brochure-assets/extracted_img_6.jpg",
-        "/brochure-assets/extracted_img_7.jpg",
-        "/brochure-assets/extracted_img_8.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -2357,14 +2171,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_7.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_7.jpg",
-        "/brochure-assets/extracted_img_8.jpg",
-        "/brochure-assets/extracted_img_9.jpg",
-        "/brochure-assets/extracted_img_10.jpg",
-        "/brochure-assets/extracted_img_11.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Resort Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -2432,14 +2240,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_10.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_10.jpg",
-        "/brochure-assets/extracted_img_11.jpg",
-        "/brochure-assets/extracted_img_12.jpg",
-        "/brochure-assets/extracted_img_13.jpg",
-        "/brochure-assets/extracted_img_14.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -2508,14 +2310,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_13.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_13.jpg",
-        "/brochure-assets/extracted_img_14.jpg",
-        "/brochure-assets/extracted_img_15.jpg",
-        "/brochure-assets/extracted_img_16.jpg",
-        "/brochure-assets/extracted_img_17.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Resort Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -2584,14 +2380,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_16.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_16.jpg",
-        "/brochure-assets/extracted_img_17.jpg",
-        "/brochure-assets/extracted_img_18.jpg",
-        "/brochure-assets/extracted_img_19.jpg",
-        "/brochure-assets/extracted_img_20.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -2659,14 +2449,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_19.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_19.jpg",
-        "/brochure-assets/extracted_img_20.jpg",
-        "/brochure-assets/extracted_img_21.jpg",
-        "/brochure-assets/extracted_img_22.jpg",
-        "/brochure-assets/extracted_img_23.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Resort Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -2734,14 +2518,8 @@
       "pricePerNight": 7500,
       "b2bRate": 6000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_22.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_22.jpg",
-        "/brochure-assets/extracted_img_23.jpg",
-        "/brochure-assets/extracted_img_24.jpg",
-        "/brochure-assets/extracted_img_25.jpg",
-        "/brochure-assets/extracted_img_26.jpg"
-      ],
+      "coverImage": "",
+      "photos": [],
       "amenities": [
         "Resort Swimming Pool",
         "Scenic Mountain / Plantation View",

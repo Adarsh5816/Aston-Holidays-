@@ -33,31 +33,8 @@ export default function BrochureDocument({ resort, autoPrint = false }: Brochure
     }
   }, [resort, autoPrint]);
 
-  // Clean fallback photos if less than 18
-  const photos = resort.photos.length >= 18
-    ? resort.photos
-    : [
-        ...resort.photos,
-        "/brochure-assets/extracted_img_2.jpg",
-        "/brochure-assets/extracted_img_3.jpg",
-        "/brochure-assets/extracted_img_4.jpg",
-        "/brochure-assets/extracted_img_5.jpg",
-        "/brochure-assets/extracted_img_6.jpg",
-        "/brochure-assets/extracted_img_7.jpg",
-        "/brochure-assets/extracted_img_8.jpg",
-        "/brochure-assets/extracted_img_9.jpg",
-        "/brochure-assets/extracted_img_10.jpg",
-        "/brochure-assets/extracted_img_11.jpg",
-        "/brochure-assets/extracted_img_12.jpg",
-        "/brochure-assets/extracted_img_13.jpg",
-        "/brochure-assets/extracted_img_14.jpg",
-        "/brochure-assets/extracted_img_15.jpg",
-        "/brochure-assets/extracted_img_16.jpg",
-        "/brochure-assets/extracted_img_17.jpg",
-        "/brochure-assets/extracted_img_18.jpg",
-        "/brochure-assets/extracted_img_19.jpg",
-        "/brochure-assets/extracted_img_20.jpg"
-      ];
+  // Use only actual resort photos; do not inject default images
+  const photos = resort.photos || [];
 
   const handlePrint = () => {
     window.print();
@@ -161,86 +138,119 @@ export default function BrochureDocument({ resort, autoPrint = false }: Brochure
           </div>
         </div>
 
-        {/* ================= PHOTO PAGES (PAGES 2 - 10) ================= */}
-        {/* We arrange photos across 9 photo pages adhering to Aston Holidays design */}
-        {Array.from({ length: 9 }).map((_, pageIdx) => {
-          const photoStart = pageIdx * 2;
-          const pTop = photos[(photoStart) % photos.length];
-          const pBottomLeft = photos[(photoStart + 1) % photos.length];
-          const pBottomRight = photos[(photoStart + 2) % photos.length];
+        {/* ================= PHOTO PAGES (PAGES 2+) ================= */}
+        {photos.length > 0 ? (
+          Array.from({ length: Math.ceil(photos.length / 3) }).map((_, pageIdx) => {
+            const photoStart = pageIdx * 3;
+            const pTop = photos[photoStart];
+            const pBottomLeft = photos[photoStart + 1] || photos[photoStart];
+            const pBottomRight = photos[photoStart + 2] || photos[photoStart + 1] || photos[photoStart];
 
-          return (
-            <div
-              key={`page-${pageIdx + 2}`}
-              className="brochure-page relative bg-white shadow-xl print:shadow-none w-[794px] h-[1123px] print:w-full print:h-[100vh] mx-auto overflow-hidden flex flex-col justify-between page-break"
-            >
-              {/* Left Subtle Sidebar Accent */}
-              <div className="absolute left-0 top-0 bottom-0 w-8 bg-[#EBECEE] print:bg-[#EBECEE]" />
+            return (
+              <div
+                key={`page-${pageIdx + 2}`}
+                className="brochure-page relative bg-white shadow-xl print:shadow-none w-[794px] h-[1123px] print:w-full print:h-[100vh] mx-auto overflow-hidden flex flex-col justify-between page-break"
+              >
+                {/* Left Subtle Sidebar Accent */}
+                <div className="absolute left-0 top-0 bottom-0 w-8 bg-[#EBECEE] print:bg-[#EBECEE]" />
 
-              {/* Main Content Area */}
-              <div className="pl-14 pr-8 pt-8 pb-6 flex-1 flex flex-col justify-between">
-                {/* Header: Logo Top Right */}
-                <div className="flex justify-end mb-4">
-                  <div className="relative w-28 h-10">
-                    <Image
-                      src="/brand/logo.png"
-                      alt="Aston Holidays"
-                      fill
-                      className="object-contain object-right"
-                    />
-                  </div>
-                </div>
-
-                {/* Photo Grid Layout */}
-                <div className="flex-1 flex flex-col gap-4 mb-4">
-                  {/* Top Large Hero Image */}
-                  <div className="relative w-full h-[520px] rounded-sm overflow-hidden bg-stone-100">
-                    <Image
-                      src={pTop}
-                      alt={`${resort.name} view`}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 794px) 100vw, 794px"
-                    />
-                  </div>
-
-                  {/* Bottom Dual Images */}
-                  <div className="grid grid-cols-2 gap-4 h-[380px]">
-                    <div className="relative w-full h-full rounded-sm overflow-hidden bg-stone-100">
+                {/* Main Content Area */}
+                <div className="pl-14 pr-8 pt-8 pb-6 flex-1 flex flex-col justify-between">
+                  {/* Header: Logo Top Right */}
+                  <div className="flex justify-end mb-4">
+                    <div className="relative w-28 h-10">
                       <Image
-                        src={pBottomLeft}
-                        alt={`${resort.name} detail`}
+                        src="/brand/logo.png"
+                        alt="Aston Holidays"
                         fill
-                        className="object-cover"
-                        sizes="(max-width: 400px) 100vw, 400px"
-                      />
-                    </div>
-                    <div className="relative w-full h-full rounded-sm overflow-hidden bg-stone-100">
-                      <Image
-                        src={pBottomRight}
-                        alt={`${resort.name} interior`}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 400px) 100vw, 400px"
+                        className="object-contain object-right"
                       />
                     </div>
                   </div>
-                </div>
 
-                {/* Footer Bar */}
-                <div className="pt-2 border-t border-stone-200 flex items-center justify-between text-xs text-stone-700 font-medium">
-                  <div className="flex items-center gap-1.5">
-                    <Phone className="w-3.5 h-3.5 text-emerald-600" />
-                    <span>+91 9744 900 414</span>
+                  {/* Photo Grid Layout */}
+                  <div className="flex-1 flex flex-col gap-4 mb-4">
+                    {/* Top Large Hero Image */}
+                    <div className="relative w-full h-[520px] rounded-sm overflow-hidden bg-stone-100">
+                      <Image
+                        src={pTop}
+                        alt={`${resort.name} view`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 794px) 100vw, 794px"
+                      />
+                    </div>
+
+                    {/* Bottom Dual Images */}
+                    <div className="grid grid-cols-2 gap-4 h-[380px]">
+                      <div className="relative w-full h-full rounded-sm overflow-hidden bg-stone-100">
+                        <Image
+                          src={pBottomLeft}
+                          alt={`${resort.name} detail`}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 400px) 100vw, 400px"
+                        />
+                      </div>
+                      <div className="relative w-full h-full rounded-sm overflow-hidden bg-stone-100">
+                        <Image
+                          src={pBottomRight}
+                          alt={`${resort.name} interior`}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 400px) 100vw, 400px"
+                        />
+                      </div>
+                    </div>
                   </div>
-                  <div className="tracking-wide">
-                    astonholidays.com
+
+                  {/* Footer Bar */}
+                  <div className="pt-2 border-t border-stone-200 flex items-center justify-between text-xs text-stone-700 font-medium">
+                    <div className="flex items-center gap-1.5">
+                      <Phone className="w-3.5 h-3.5 text-emerald-600" />
+                      <span>+91 9744 900 414</span>
+                    </div>
+                    <div className="tracking-wide">
+                      astonholidays.com
+                    </div>
                   </div>
                 </div>
               </div>
+            );
+          })
+        ) : (
+          /* When photos are not yet uploaded, show elegant portfolio page */
+          <div className="brochure-page relative bg-white shadow-xl print:shadow-none w-[794px] h-[1123px] print:w-full print:h-[100vh] mx-auto overflow-hidden flex flex-col justify-between p-12 print:p-10 page-break">
+            <div className="flex items-start justify-between">
+              <div className="relative w-36 h-14">
+                <Image src="/brand/logo.png" alt="Aston Holidays" fill className="object-contain object-left" priority />
+              </div>
+              <div className="text-right">
+                <span className="font-mono text-xs bg-stone-900 text-white px-2.5 py-1 rounded font-bold">{resort.code}</span>
+                <p className="text-xs text-stone-500 mt-1">Verified Portfolio</p>
+              </div>
             </div>
-          );
-        })}
+
+            <div className="my-auto py-10 text-center max-w-xl mx-auto">
+              <div className="w-20 h-20 rounded-3xl bg-stone-50 border border-stone-200 flex items-center justify-center mx-auto mb-6 shadow-sm">
+                <span className="text-3xl">🌿</span>
+              </div>
+              <h2 className="text-2xl font-black text-stone-900 tracking-tight">{resort.name}</h2>
+              <p className="text-sm font-semibold text-emerald-800 mt-1">{resort.destination}, Wayanad</p>
+              <p className="text-xs text-stone-600 mt-4 leading-relaxed font-serif text-justify bg-stone-50 p-6 rounded-2xl border border-stone-200/80">
+                {resort.overview || "An exclusive luxury retreat in Wayanad offering pristine nature views, authentic hospitality, and complete privacy."}
+              </p>
+              <div className="mt-6 inline-block bg-emerald-50 border border-emerald-200 text-emerald-900 text-xs font-semibold px-4 py-2 rounded-xl">
+                📷 High-Definition Photography will appear here upon photo shoot upload
+              </div>
+            </div>
+
+            <div className="pt-4 border-t border-stone-200 flex items-center justify-between text-xs text-stone-600 font-medium">
+              <div>astonholidays.com</div>
+              <div>Direct Desk: +91 9744 900 414</div>
+            </div>
+          </div>
+        )}
 
         {/* ================= PAGE 11: AMENITIES & ATTRACTIONS ================= */}
         <div className="brochure-page relative bg-white shadow-xl print:shadow-none w-[794px] h-[1123px] print:w-full print:h-[100vh] mx-auto overflow-hidden flex flex-row page-break">

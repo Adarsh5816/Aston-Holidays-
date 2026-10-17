@@ -31,8 +31,8 @@ export default function ResortManagerPage() {
   const [maxGuests, setMaxGuests] = useState(8);
   const [pricePerNight, setPricePerNight] = useState(12000);
   const [b2bRate, setB2bRate] = useState(9000);
-  const [coverImage, setCoverImage] = useState("/brochure-assets/extracted_img_2.jpg");
-  const [photosStr, setPhotosStr] = useState("/brochure-assets/extracted_img_2.jpg, /brochure-assets/extracted_img_3.jpg, /brochure-assets/extracted_img_7.jpg");
+  const [coverImage, setCoverImage] = useState("");
+  const [photosStr, setPhotosStr] = useState("");
   const [amenitiesStr, setAmenitiesStr] = useState("Infinity Swimming Pool, Kids Play area, Camp Fire (Chargeable), High Speed Wifi");
   const [specialitiesStr, setSpecialitiesStr] = useState("Banasura hill view, Hilltop sunset view");
   const [checkInTime, setCheckInTime] = useState("01:00 PM");
@@ -78,8 +78,8 @@ export default function ResortManagerPage() {
     setMaxGuests(8);
     setPricePerNight(12000);
     setB2bRate(9000);
-    setCoverImage("/brochure-assets/extracted_img_2.jpg");
-    setPhotosStr("/brochure-assets/extracted_img_2.jpg, /brochure-assets/extracted_img_3.jpg, /brochure-assets/extracted_img_7.jpg");
+    setCoverImage("");
+    setPhotosStr("");
     setAmenitiesStr("Infinity Swimming Pool, Mountain View Balcony, High Speed Wifi, Campfire Area");
     setSpecialitiesStr("Valley view, Peaceful privacy");
     setCheckInTime("01:00 PM");
@@ -180,8 +180,8 @@ export default function ResortManagerPage() {
       pricePerNight: Number(pricePerNight),
       b2bRate: Number(b2bRate),
       featured: editingResort ? editingResort.featured : true,
-      coverImage: coverImage.trim() || photoList[0] || "/brochure-assets/extracted_img_2.jpg",
-      photos: photoList.length > 0 ? photoList : ["/brochure-assets/extracted_img_2.jpg"],
+      coverImage: coverImage.trim() || photoList[0] || "",
+      photos: photoList,
       amenities: amenityList,
       specialities: specialityList,
       nearbyAttractions: nearbyAttractions.filter(a => a.name.trim().length > 0),

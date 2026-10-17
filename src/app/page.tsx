@@ -126,41 +126,72 @@ export default function HomePage() {
         {featuredAh121 && (
           <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="bg-white rounded-3xl p-6 sm:p-10 border border-stone-200/90 shadow-md card-hover-elevation flex flex-col lg:flex-row items-center gap-10">
-              {/* Left Photo Grid */}
-              <div className="w-full lg:w-1/2 grid grid-cols-2 gap-3 h-80 sm:h-96">
-                <div className="relative rounded-2xl overflow-hidden shadow">
-                  <Image
-                    src={featuredAh121.photos[0] || "/brochure-assets/extracted_img_2.jpg"}
-                    alt={featuredAh121.name}
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute top-3 left-3 bg-[#1A2218]/90 text-white text-xs font-mono font-bold px-2.5 py-1 rounded-md backdrop-blur">
-                    {featuredAh121.code}
-                  </div>
-                </div>
+              {/* Left Photo Grid or Nature Preview */}
+              <div className="w-full lg:w-1/2">
+                {featuredAh121.photos && featuredAh121.photos.length >= 3 ? (
+                  <div className="grid grid-cols-2 gap-3 h-80 sm:h-96">
+                    <div className="relative rounded-2xl overflow-hidden shadow">
+                      <Image
+                        src={featuredAh121.photos[0]}
+                        alt={featuredAh121.name}
+                        fill
+                        className="object-cover hover:scale-105 transition-transform duration-700"
+                      />
+                      <div className="absolute top-3 left-3 bg-[#1A2218]/90 text-white text-xs font-mono font-bold px-2.5 py-1 rounded-md backdrop-blur">
+                        {featuredAh121.code}
+                      </div>
+                    </div>
 
-                <div className="grid grid-rows-2 gap-3">
-                  <div className="relative rounded-2xl overflow-hidden shadow">
-                    <Image
-                      src={featuredAh121.photos[1] || "/brochure-assets/extracted_img_3.jpg"}
-                      alt="Interior"
-                      fill
-                      className="object-cover hover:scale-105 transition-transform duration-700"
-                    />
-                  </div>
-                  <div className="relative rounded-2xl overflow-hidden shadow">
-                    <Image
-                      src={featuredAh121.photos[2] || "/brochure-assets/extracted_img_4.jpg"}
-                      alt="Bedroom"
-                      fill
-                      className="object-cover hover:scale-105 transition-transform duration-700"
-                    />
-                    <div className="absolute inset-0 bg-[#1A2218]/40 flex items-center justify-center text-white text-xs font-bold">
-                      +{featuredAh121.photos.length} High-Res Photos
+                    <div className="grid grid-rows-2 gap-3">
+                      <div className="relative rounded-2xl overflow-hidden shadow">
+                        <Image
+                          src={featuredAh121.photos[1]}
+                          alt="Interior"
+                          fill
+                          className="object-cover hover:scale-105 transition-transform duration-700"
+                        />
+                      </div>
+                      <div className="relative rounded-2xl overflow-hidden shadow">
+                        <Image
+                          src={featuredAh121.photos[2]}
+                          alt="Bedroom"
+                          fill
+                          className="object-cover hover:scale-105 transition-transform duration-700"
+                        />
+                        <div className="absolute inset-0 bg-[#1A2218]/40 flex items-center justify-center text-white text-xs font-bold">
+                          +{featuredAh121.photos.length} High-Res Photos
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                ) : (
+                  <div className="h-80 sm:h-96 rounded-3xl bg-gradient-to-br from-[#121A11] via-[#1E2E1D] to-[#0E150D] p-8 flex flex-col justify-between text-white border border-emerald-900/40 shadow-inner relative overflow-hidden">
+                    <div className="flex items-center justify-between">
+                      <span className="bg-white/10 backdrop-blur px-3 py-1 rounded-lg font-mono text-xs font-bold text-emerald-300">
+                        {featuredAh121.code}
+                      </span>
+                      <span className="text-xs text-stone-300 font-medium">
+                        {featuredAh121.destination}, Wayanad
+                      </span>
+                    </div>
+                    <div className="my-auto text-center py-6">
+                      <div className="w-16 h-16 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mx-auto mb-3">
+                        <Sparkles className="w-8 h-8 text-amber-300" />
+                      </div>
+                      <h4 className="text-xl font-black text-white">{featuredAh121.name}</h4>
+                      <p className="text-xs text-stone-400 mt-1 max-w-xs mx-auto">
+                        {featuredAh121.accommodationType} • {featuredAh121.bedrooms} BHK
+                      </p>
+                      <span className="inline-block mt-3 text-[11px] font-semibold text-emerald-300 bg-emerald-950/60 border border-emerald-800/60 px-3 py-1 rounded-full">
+                        Photos updating after latest photo shoot
+                      </span>
+                    </div>
+                    <div className="text-xs text-stone-400 flex items-center justify-between border-t border-white/10 pt-3">
+                      <span>Aston Verified Luxury</span>
+                      <span className="text-emerald-400 font-bold">₹{featuredAh121.pricePerNight.toLocaleString("en-IN")}/night</span>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Right Details */}

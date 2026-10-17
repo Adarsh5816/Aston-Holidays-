@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Users, Bed, Sparkles, FileText, MessageCircle } from "lucide-react";
+import { MapPin, Users, Bed, Sparkles, FileText, MessageCircle, Camera } from "lucide-react";
 import { Resort } from "@/lib/types";
 
 interface ResortCardProps {
@@ -10,18 +10,33 @@ interface ResortCardProps {
 
 export default function ResortCard({ resort }: ResortCardProps) {
   const whatsAppInquiryUrl = `https://wa.me/919744900414?text=Hi%20Aston%20Holidays,%20I%20am%20interested%20in%20reserving%20*${resort.code}%20-%20${encodeURIComponent(resort.name)}*%20in%20${encodeURIComponent(resort.destination)}.%20Please%20share%20availability!`;
+  const hasCoverImage = Boolean(resort.coverImage && resort.coverImage.trim().length > 0);
 
   return (
     <div className="group bg-white rounded-2xl overflow-hidden border border-stone-200/90 hover:border-emerald-700/40 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col">
       {/* Cover Image Container */}
       <div className="relative w-full h-64 overflow-hidden bg-stone-100">
-        <Image
-          src={resort.coverImage}
-          alt={resort.name}
-          fill
-          className="object-cover group-hover:scale-105 transition-transform duration-500"
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
+        {hasCoverImage ? (
+          <Image
+            src={resort.coverImage}
+            alt={resort.name}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="w-full h-full flex flex-col items-center justify-center p-6 text-center bg-gradient-to-br from-[#121A11] via-[#1B271A] to-[#0E150D] relative">
+            <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-2">
+              <Camera className="w-6 h-6 text-emerald-400/80" />
+            </div>
+            <span className="text-[11px] font-bold tracking-wider uppercase text-emerald-300">
+              Photos Updating Soon
+            </span>
+            <span className="text-[10px] text-stone-400 mt-0.5">
+              Verified Aston Holidays Property
+            </span>
+          </div>
+        )}
 
         {/* Top Floating Badges */}
         <div className="absolute top-3 left-3 flex items-center gap-2 z-10">
@@ -42,8 +57,8 @@ export default function ResortCard({ resort }: ResortCardProps) {
         )}
 
         {/* Subtle Bottom Gradient */}
-        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/60 to-transparent" />
-        <div className="absolute bottom-2.5 left-3 text-white text-xs font-medium flex items-center gap-1">
+        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+        <div className="absolute bottom-2.5 left-3 text-white text-xs font-medium flex items-center gap-1 z-10">
           <MapPin className="w-3.5 h-3.5 text-emerald-400" /> {resort.destination}, Wayanad
         </div>
       </div>

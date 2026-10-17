@@ -26,28 +26,8 @@ export const initialResorts: Resort[] = [
     pricePerNight: 14500,
     b2bRate: 11000,
     featured: true,
-    coverImage: "/brochure-assets/extracted_img_2.jpg",
-    photos: [
-      "/brochure-assets/extracted_img_2.jpg",
-      "/brochure-assets/extracted_img_3.jpg",
-      "/brochure-assets/extracted_img_4.jpg",
-      "/brochure-assets/extracted_img_5.jpg",
-      "/brochure-assets/extracted_img_6.jpg",
-      "/brochure-assets/extracted_img_7.jpg",
-      "/brochure-assets/extracted_img_8.jpg",
-      "/brochure-assets/extracted_img_9.jpg",
-      "/brochure-assets/extracted_img_10.jpg",
-      "/brochure-assets/extracted_img_11.jpg",
-      "/brochure-assets/extracted_img_12.jpg",
-      "/brochure-assets/extracted_img_13.jpg",
-      "/brochure-assets/extracted_img_14.jpg",
-      "/brochure-assets/extracted_img_15.jpg",
-      "/brochure-assets/extracted_img_16.jpg",
-      "/brochure-assets/extracted_img_17.jpg",
-      "/brochure-assets/extracted_img_18.jpg",
-      "/brochure-assets/extracted_img_19.jpg",
-      "/brochure-assets/extracted_img_20.jpg"
-    ],
+    coverImage: "",
+    photos: [],
     amenities: [
       "Infinity Swimming Pool",
       "Kids Play area",
@@ -114,13 +94,8 @@ export const initialResorts: Resort[] = [
     pricePerNight: 9500,
     b2bRate: 7500,
     featured: true,
-    coverImage: "/brochure-assets/extracted_img_29.jpg",
-    photos: [
-      "/brochure-assets/extracted_img_29.jpg",
-      "/brochure-assets/extracted_img_5.jpg",
-      "/brochure-assets/extracted_img_9.jpg",
-      "/brochure-assets/extracted_img_16.jpg"
-    ],
+    coverImage: "",
+    photos: [],
     amenities: [
       "Elevated Forest Deck",
       "Jacuzzi overlooking valley",
@@ -177,13 +152,8 @@ export const initialResorts: Resort[] = [
     pricePerNight: 11000,
     b2bRate: 8500,
     featured: true,
-    coverImage: "/brochure-assets/extracted_img_7.jpg",
-    photos: [
-      "/brochure-assets/extracted_img_7.jpg",
-      "/brochure-assets/extracted_img_8.jpg",
-      "/brochure-assets/extracted_img_10.jpg",
-      "/brochure-assets/extracted_img_24.jpg"
-    ],
+    coverImage: "",
+    photos: [],
     amenities: [
       "Private Heated Swimming Pool",
       "Chembra Mountain View Balcony",
@@ -240,13 +210,8 @@ export const initialResorts: Resort[] = [
     pricePerNight: 16500,
     b2bRate: 13000,
     featured: false,
-    coverImage: "/brochure-assets/extracted_img_13.jpg",
-    photos: [
-      "/brochure-assets/extracted_img_13.jpg",
-      "/brochure-assets/extracted_img_20.jpg",
-      "/brochure-assets/extracted_img_1.jpg",
-      "/brochure-assets/extracted_img_29.jpg"
-    ],
+    coverImage: "",
+    photos: [],
     amenities: [
       "Heritage Architecture with Modern Comforts",
       "Infinity Pool with Rock View",
@@ -302,12 +267,8 @@ export const initialResorts: Resort[] = [
     pricePerNight: 4500,
     b2bRate: 3500,
     featured: false,
-    coverImage: "/brochure-assets/extracted_img_16.jpg",
-    photos: [
-      "/brochure-assets/extracted_img_16.jpg",
-      "/brochure-assets/extracted_img_17.jpg",
-      "/brochure-assets/extracted_img_18.jpg"
-    ],
+    coverImage: "",
+    photos: [],
     amenities: [
       "Shared Swimming Pool",
       "Garden Dining Area",
