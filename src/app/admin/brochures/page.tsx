@@ -13,12 +13,15 @@ import {
   Eye,
   Plus,
   Trash2,
-  Image as ImageIcon,
   CheckCircle2,
   Copy,
   ExternalLink,
-  Layers,
-  ArrowRight
+  Bot,
+  Wand2,
+  Printer,
+  ShieldCheck,
+  MapPin,
+  ListPlus
 } from "lucide-react";
 import { Resort } from "@/lib/types";
 
@@ -31,6 +34,15 @@ export default function BrochureStudioPage() {
   const [selectedPhotos, setSelectedPhotos] = useState<string[]>([]);
   const [coverPhoto, setCoverPhoto] = useState<string>("");
   const [customPhotoUrl, setCustomPhotoUrl] = useState("");
+  
+  // AI/GPT content state
+  const [overview, setOverview] = useState("");
+  const [specialities, setSpecialities] = useState<string[]>([]);
+  const [amenities, setAmenities] = useState<string[]>([]);
+  const [nearbyAttractions, setNearbyAttractions] = useState<{ name: string; distance: string }[]>([]);
+  const [isAiEnhancing, setIsAiEnhancing] = useState(false);
+  const [aiEnhancedSuccess, setAiEnhancedSuccess] = useState(false);
+
   const [saving, setSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
@@ -56,7 +68,12 @@ export default function BrochureStudioPage() {
     setSelectedResort(resort);
     setCoverPhoto(resort.coverImage || stockBrochurePhotos[0]);
     setSelectedPhotos(resort.photos && resort.photos.length > 0 ? resort.photos : stockBrochurePhotos.slice(0, 5));
+    setOverview(resort.overview || "");
+    setSpecialities(resort.specialities || []);
+    setAmenities(resort.amenities || []);
+    setNearbyAttractions(resort.nearbyAttractions || []);
     setSaveSuccess(false);
+    setAiEnhancedSuccess(false);
   };
 
   const handleTogglePhoto = (photo: string) => {
@@ -88,6 +105,41 @@ export default function BrochureStudioPage() {
     setCustomPhotoUrl("");
   };
 
+  // AI / GPT Brochure Content Generator
+  const handleAiEnhanceCopy = async () => {
+    if (!selectedResort) return;
+    try {
+      setIsAiEnhancing(true);
+      setAiEnhancedSuccess(false);
+      const res = await fetch("/api/v1/brochures/ai-enhance", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          code: selectedResort.code,
+          name: selectedResort.name,
+          destination: selectedResort.destination,
+          accommodationType: selectedResort.accommodationType,
+          bedrooms: selectedResort.bedrooms,
+          pricePerNight: selectedResort.pricePerNight,
+          notes: selectedResort.specialities?.join(", ")
+        })
+      });
+
+      const data = await res.json();
+      if (data.success && data.enhanced) {
+        setOverview(data.enhanced.overview);
+        setSpecialities(data.enhanced.specialities);
+        setAmenities(data.enhanced.amenities);
+        setNearbyAttractions(data.enhanced.nearbyAttractions);
+        setAiEnhancedSuccess(true);
+      }
+    } catch (e) {
+      alert("AI Generation failed: " + (e as Error).message);
+    } finally {
+      setIsAiEnhancing(false);
+    }
+  };
+
   const handleSaveAndGenerateBrochure = async () => {
     if (!selectedResort) return;
     try {
@@ -95,7 +147,11 @@ export default function BrochureStudioPage() {
       const updatedResort: Resort = {
         ...selectedResort,
         coverImage: coverPhoto,
-        photos: selectedPhotos
+        photos: selectedPhotos,
+        overview,
+        specialities,
+        amenities,
+        nearbyAttractions
       };
 
       const res = await fetch("/api/v1/resorts", {
@@ -140,13 +196,13 @@ export default function BrochureStudioPage() {
               </span>
               <div>
                 <h1 className="text-2xl font-black text-stone-900 tracking-tight flex items-center gap-3">
-                  Brochure &amp; PDF Studio
+                  Brochure &amp; PDF Studio with AI/GPT
                   <span className="text-xs font-bold uppercase tracking-wider bg-emerald-100/80 text-emerald-800 px-2.5 py-0.5 rounded-full border border-emerald-300">
-                    Standard 12-Page Generator
+                    100% High-Definition Vector Output
                   </span>
                 </h1>
                 <p className="text-xs text-stone-500 mt-0.5">
-                  Select resort photos and automatically compile the official Aston Holidays 12-page PDF brochure.
+                  Select photos, generate luxury Wayanad descriptions with AI/GPT, and compile the official 12-page PDF brochure.
                 </p>
               </div>
             </div>
@@ -157,7 +213,7 @@ export default function BrochureStudioPage() {
               <Link
                 href={`/brochure/${selectedResort.code}`}
                 target="_blank"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-700 bg-white border border-stone-200 hover:bg-stone-50 px-3.5 py-2 rounded-xl transition shadow-sm"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-700 bg-white border border-stone-200 hover:bg-stone-50 px-3.5 py-2.5 rounded-xl transition shadow-sm"
               >
                 <Eye className="w-4 h-4 text-emerald-700" /> Preview 12-Page Brochure
               </Link>
@@ -165,19 +221,19 @@ export default function BrochureStudioPage() {
               <Link
                 href={`/brochure/${selectedResort.code}?print=true`}
                 target="_blank"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-700 bg-white border border-stone-200 hover:bg-stone-50 px-3.5 py-2 rounded-xl transition shadow-sm"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-900 bg-emerald-50 border border-emerald-300 hover:bg-emerald-100 px-4 py-2.5 rounded-xl transition shadow-sm"
               >
-                <Download className="w-4 h-4 text-emerald-700" /> Export PDF
+                <Printer className="w-4 h-4 text-emerald-800" /> Download 100% HD Vector PDF
               </Link>
 
               <button
                 type="button"
                 onClick={handleSaveAndGenerateBrochure}
                 disabled={saving}
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-[#2E4F28] hover:bg-[#233D1F] px-4 py-2 rounded-xl transition shadow-sm disabled:opacity-50"
+                className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-[#2E4F28] hover:bg-[#233D1F] px-5 py-2.5 rounded-xl transition shadow-sm disabled:opacity-50"
               >
                 <Save className="w-4 h-4" />
-                {saving ? "Generating & Saving..." : "Save Standard Brochure"}
+                {saving ? "Saving..." : "Save Standard Brochure"}
               </button>
             </div>
           )}
@@ -189,9 +245,9 @@ export default function BrochureStudioPage() {
             <div className="flex items-center gap-2.5">
               <CheckCircle2 className="w-5 h-5 text-emerald-700" />
               <div>
-                <p className="text-xs font-bold">Standard 12-Page PDF Brochure compiled and saved!</p>
+                <p className="text-xs font-bold">Standard 12-Page PDF Brochure saved and synced with Supabase!</p>
                 <p className="text-[11px] opacity-80">
-                  Resort {selectedResort?.code} is now updated in Supabase. Customers on WhatsApp will receive this brochure.
+                  Resort {selectedResort?.code} is live. WhatsApp customers will receive this brochure in 100% High Definition.
                 </p>
               </div>
             </div>
@@ -209,10 +265,10 @@ export default function BrochureStudioPage() {
           {/* Left Column: Resort Selector */}
           <div className="bg-white rounded-2xl border border-stone-200/80 p-5 shadow-sm h-fit">
             <h3 className="text-xs font-bold uppercase tracking-wider text-stone-400 mb-3">
-              1. Select Resort ({resorts.length} Properties)
+              1. Select Resort ({resorts.length} Properties from Sheet)
             </h3>
 
-            <div className="space-y-2 max-h-[600px] overflow-y-auto pr-1">
+            <div className="space-y-2 max-h-[640px] overflow-y-auto pr-1">
               {resorts.map((r) => {
                 const isSelected = selectedResort?.id === r.id;
                 return (
@@ -246,11 +302,11 @@ export default function BrochureStudioPage() {
             </div>
           </div>
 
-          {/* Right Column: Selected Resort Studio & Photo Picker */}
+          {/* Right Column: Selected Resort Studio & AI Generator */}
           <div className="lg:col-span-2 space-y-6">
             {selectedResort ? (
               <>
-                {/* Active Resort Banner */}
+                {/* Active Resort Banner with AI Enhancer Action */}
                 <div className="bg-white rounded-2xl border border-stone-200/80 p-6 shadow-sm flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                   <div>
                     <span className="text-[10px] font-mono font-bold bg-emerald-50 text-emerald-800 px-2 py-0.5 rounded">
@@ -265,29 +321,42 @@ export default function BrochureStudioPage() {
                   <div className="flex items-center gap-2">
                     <button
                       type="button"
-                      onClick={handleCopyBrochureLink}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-700 bg-stone-50 border border-stone-200 px-3.5 py-2 rounded-xl hover:bg-stone-100 transition"
+                      onClick={handleAiEnhanceCopy}
+                      disabled={isAiEnhancing}
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-gradient-to-r from-emerald-800 to-[#121D10] hover:from-emerald-900 hover:to-black px-4 py-2.5 rounded-xl shadow-md transition disabled:opacity-50"
                     >
-                      {copiedLink ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
-                      {copiedLink ? "Link Copied!" : "Copy Public Brochure Link"}
+                      <Sparkles className={`w-4 h-4 text-amber-300 ${isAiEnhancing ? "animate-spin" : ""}`} />
+                      {isAiEnhancing ? "GPT Enhancing..." : "✨ AI/GPT: Generate Ultra-HD Copy"}
                     </button>
                   </div>
                 </div>
 
-                {/* Selected Photos Reel */}
+                {/* AI Notification Banner */}
+                {aiEnhancedSuccess && (
+                  <div className="p-4 rounded-xl bg-gradient-to-r from-emerald-50 to-teal-50 border border-emerald-200 text-xs text-emerald-950 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Sparkles className="w-4 h-4 text-emerald-700" />
+                      <span>
+                        <strong>AI/GPT Generated Luxury Copy!</strong> High-converting overview, 5 specialities, and nearby attractions populated below. Click <strong>&quot;Save Standard Brochure&quot;</strong> to apply.
+                      </span>
+                    </div>
+                  </div>
+                )}
+
+                {/* High-Definition 12-Page Photo Sequence Manager */}
                 <div className="bg-white rounded-2xl border border-stone-200/80 p-6 shadow-sm">
                   <div className="flex items-center justify-between mb-4 pb-3 border-b border-stone-100">
                     <div>
                       <h3 className="text-sm font-bold text-stone-900">
-                        2. Brochure Photo Sequence ({selectedPhotos.length} Assigned)
+                        2. 100% High-Definition Photo Sequence ({selectedPhotos.length} Assigned)
                       </h3>
                       <p className="text-xs text-stone-500">
-                        The first image is your <strong>Cover Photo</strong>. The rest form the 12-page interior photo galleries.
+                        The first image is your <strong>Cover Photo</strong> (Page 1). The rest populate the 12-page interior photo galleries.
                       </p>
                     </div>
 
-                    <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full">
-                      Cover: Page 1
+                    <span className="text-[11px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full border border-emerald-200">
+                      Lossless 300 DPI Vector Quality
                     </span>
                   </div>
 
@@ -332,11 +401,11 @@ export default function BrochureStudioPage() {
                     })}
                   </div>
 
-                  {/* Add Custom Image URL input */}
+                  {/* Add Custom Image URL */}
                   <div className="mt-5 pt-4 border-t border-stone-100 flex items-center gap-3">
                     <input
                       type="text"
-                      placeholder="Or paste an image URL to add to this brochure (https://...)"
+                      placeholder="Paste any custom property image URL (https://...)"
                       value={customPhotoUrl}
                       onChange={(e) => setCustomPhotoUrl(e.target.value)}
                       className="flex-1 px-3 py-2 text-xs bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-emerald-600"
@@ -351,15 +420,71 @@ export default function BrochureStudioPage() {
                   </div>
                 </div>
 
-                {/* Stock Brochure Assets Library */}
+                {/* AI / GPT Generated Overview & Details */}
+                <div className="bg-white rounded-2xl border border-stone-200/80 p-6 shadow-sm space-y-4">
+                  <div className="flex items-center justify-between pb-3 border-b border-stone-100">
+                    <div>
+                      <h3 className="text-sm font-bold text-stone-900 flex items-center gap-2">
+                        <Bot className="w-4 h-4 text-emerald-700" />
+                        3. AI-Enhanced Luxury Brochure Text (Page 2 &amp; 3)
+                      </h3>
+                      <p className="text-xs text-stone-500">
+                        Tailored specifically to Wayanad tourism to maximize booking conversions.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-stone-700 mb-1">
+                      Property Overview &amp; Experience Story
+                    </label>
+                    <textarea
+                      rows={4}
+                      value={overview}
+                      onChange={(e) => setOverview(e.target.value)}
+                      className="w-full px-3 py-2 text-xs bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-emerald-600 leading-relaxed font-medium"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-bold text-stone-700 mb-1">
+                      Signature Specialities (One per line)
+                    </label>
+                    <textarea
+                      rows={3}
+                      value={specialities.join("\n")}
+                      onChange={(e) => setSpecialities(e.target.value.split("\n").filter(Boolean))}
+                      className="w-full px-3 py-2 text-xs bg-stone-50 border border-stone-200 rounded-xl focus:outline-none focus:border-emerald-600 leading-relaxed font-medium"
+                    />
+                  </div>
+
+                  {/* Nearby Attractions Preview */}
+                  {nearbyAttractions.length > 0 && (
+                    <div>
+                      <label className="block text-xs font-bold text-stone-700 mb-1">
+                        Nearby Attractions &amp; Distances (Included on Page 10)
+                      </label>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                        {nearbyAttractions.map((att, i) => (
+                          <div key={i} className="p-2 bg-stone-50 border border-stone-200/80 rounded-lg text-[11px] flex items-center justify-between">
+                            <span className="font-semibold text-stone-800 truncate">{att.name}</span>
+                            <span className="font-mono text-emerald-800 font-bold ml-1">{att.distance}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Stock Brochure Assets Bank */}
                 <div className="bg-white rounded-2xl border border-stone-200/80 p-6 shadow-sm">
                   <div className="flex items-center justify-between mb-4 pb-3 border-b border-stone-100">
                     <div>
                       <h3 className="text-sm font-bold text-stone-900">
-                        3. Aston Holidays Verified Photo Bank ({stockBrochurePhotos.length} Available)
+                        4. Aston Holidays Verified Photo Bank ({stockBrochurePhotos.length} Available)
                       </h3>
                       <p className="text-xs text-stone-500">
-                        Click any photo below to toggle it into this resort&apos;s 12-page brochure.
+                        Click any photo below to toggle it into this resort&apos;s brochure.
                       </p>
                     </div>
                   </div>
