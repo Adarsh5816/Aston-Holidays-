@@ -326,7 +326,7 @@ export default function BrochureStudioPage() {
                       className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-gradient-to-r from-emerald-800 to-[#121D10] hover:from-emerald-900 hover:to-black px-4 py-2.5 rounded-xl shadow-md transition disabled:opacity-50"
                     >
                       <Sparkles className={`w-4 h-4 text-amber-300 ${isAiEnhancing ? "animate-spin" : ""}`} />
-                      {isAiEnhancing ? "GPT Enhancing..." : "✨ AI/GPT: Generate Ultra-HD Copy"}
+                      {isAiEnhancing ? "Gemini Enhancing..." : "✨ Google Gemini: Generate Ultra-HD Copy"}
                     </button>
                   </div>
                 </div>
