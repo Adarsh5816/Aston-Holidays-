@@ -1,213 +1,18 @@
 {
   "resorts": [
     {
-      "id": "resort-ah-121",
-      "code": "AH-121",
-      "name": "3BHK-Private Pool Villa",
-      "slug": "3bhk-private-pool-villa-padinjarathara",
-      "destination": "Padinjarathara",
-      "locationDetails": "Near Banasura Dam, Padinjarathara, Wayanad, Kerala - 673575",
-      "googleMapsUrl": "https://maps.google.com/?q=Banasura+Sagar+Dam+Padinjarathara+Wayanad",
+      "id": "resort-ah-111",
+      "code": "AH-111",
+      "name": "2BHK - Le Eden",
+      "slug": "ah-111-le-eden-moolankavu",
+      "destination": "Moolankavu",
+      "locationDetails": "Moolankavu, Moolankavu, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Le%20Eden%20Moolankavu%20Wayanad",
       "accommodationType": "Private Pool Villa",
       "stayPreference": "Independent Private Cottage/Villa",
       "ambience": [
         "Mountain / Valley View",
-        "Lake / Dam Waterfront",
-        "Secluded & Peaceful",
-        "Adventure & Hilltop"
-      ],
-      "category": "Pool Villa",
-      "bedrooms": 3,
-      "bathrooms": 3,
-      "maxAdults": 8,
-      "maxChildren": 4,
-      "maxGuests": 12,
-      "pricePerNight": 14500,
-      "b2bRate": 11000,
-      "featured": true,
-      "coverImage": "/brochure-assets/extracted_img_2.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_2.jpg",
-        "/brochure-assets/extracted_img_3.jpg",
-        "/brochure-assets/extracted_img_4.jpg",
-        "/brochure-assets/extracted_img_5.jpg",
-        "/brochure-assets/extracted_img_6.jpg",
-        "/brochure-assets/extracted_img_7.jpg",
-        "/brochure-assets/extracted_img_8.jpg",
-        "/brochure-assets/extracted_img_9.jpg",
-        "/brochure-assets/extracted_img_10.jpg",
-        "/brochure-assets/extracted_img_11.jpg",
-        "/brochure-assets/extracted_img_12.jpg",
-        "/brochure-assets/extracted_img_13.jpg",
-        "/brochure-assets/extracted_img_14.jpg",
-        "/brochure-assets/extracted_img_15.jpg",
-        "/brochure-assets/extracted_img_16.jpg",
-        "/brochure-assets/extracted_img_17.jpg",
-        "/brochure-assets/extracted_img_18.jpg",
-        "/brochure-assets/extracted_img_19.jpg",
-        "/brochure-assets/extracted_img_20.jpg"
-      ],
-      "amenities": [
-        "Infinity Swimming Pool",
-        "Kids Play area",
-        "Indoor & Out door game",
-        "Candle Light Dinner (Chargeble)",
-        "Camp Fire (Chargeble)",
-        "Flower Bed(Chargeble)",
-        "High Speed Wifi"
-      ],
-      "specialities": [
-        "Banasura hill view",
-        "Panormaic sunrise/sunset views",
-        "Hilltop"
-      ],
-      "nearbyAttractions": [
-        {
-          "name": "Banasura Sagar Dam",
-          "distance": "≈03 km"
-        },
-        {
-          "name": "Karlad Lake",
-          "distance": "≈05 km"
-        },
-        {
-          "name": "Meenmutty Waterfalls",
-          "distance": "≈06 km"
-        },
-        {
-          "name": "Banasura Hills",
-          "distance": "≈08 km"
-        },
-        {
-          "name": "Kurumbalakotta Hills",
-          "distance": "≈12 km"
-        },
-        {
-          "name": "Makkiyad Waterfalls",
-          "distance": "≈15 km"
-        },
-        {
-          "name": "Pookode Lake",
-          "distance": "≈23 km"
-        },
-        {
-          "name": "Edakkal Caves",
-          "distance": "≈25 km"
-        },
-        {
-          "name": "Fun Fantasy Amusement Park",
-          "distance": "≈09 km"
-        },
-        {
-          "name": "Bansuara Spices Gardenv",
-          "distance": "≈04 km"
-        }
-      ],
-      "checkInTime": "01:00 PM",
-      "checkOutTime": "11:00 AM",
-      "overview": "Nestled atop the scenic hills of Padinjarathara with panoramic views of the Banasura reservoir and mountains, this luxurious 3-bedroom private pool villa offers total seclusion, a private infinity pool overlooking the valley, modern teak woodwork, and open balconies.",
-      "inclusions": [
-        "Exclusive access to entire 3BHK villa & private infinity pool",
-        "Welcome drink on arrival",
-        "Complimentary high-speed WiFi",
-        "Daily housekeeping",
-        "Access to indoor and outdoor recreational games"
-      ],
-      "exclusions": [
-        "Campfire with music (Chargeable on request)",
-        "Chef-prepared BBQ and candle light dinners",
-        "Airport / railway station transfers"
-      ]
-    },
-    {
-      "id": "resort-ah-105",
-      "code": "AH-105",
-      "name": "Luxury Canopy Treehouse Villa",
-      "slug": "luxury-canopy-treehouse-villa-vythiri",
-      "destination": "Vythiri",
-      "locationDetails": "Old Vythiri, Wayanad, Kerala - 673576",
-      "googleMapsUrl": "https://maps.google.com/?q=Pookode+Lake+Vythiri+Wayanad",
-      "accommodationType": "Tree House",
-      "stayPreference": "Individual Room/Suite",
-      "ambience": [
-        "Rainforest & Stream",
-        "Romantic / Honeymoon",
         "Secluded & Peaceful"
-      ],
-      "category": "Tree House",
-      "bedrooms": 1,
-      "bathrooms": 1,
-      "maxAdults": 2,
-      "maxChildren": 1,
-      "maxGuests": 3,
-      "pricePerNight": 9500,
-      "b2bRate": 7500,
-      "featured": true,
-      "coverImage": "/brochure-assets/extracted_img_29.jpg",
-      "photos": [
-        "/brochure-assets/extracted_img_29.jpg",
-        "/brochure-assets/extracted_img_5.jpg",
-        "/brochure-assets/extracted_img_9.jpg",
-        "/brochure-assets/extracted_img_16.jpg"
-      ],
-      "amenities": [
-        "Elevated Forest Deck",
-        "Jacuzzi overlooking valley",
-        "Authentic Kerala Breakfast",
-        "Tea Plantation Walk",
-        "High Speed Wifi",
-        "Camp Fire Area"
-      ],
-      "specialities": [
-        "60-ft above ground canopy view",
-        "Lush rainforest mist & streams",
-        "100% Eco-crafted architecture"
-      ],
-      "nearbyAttractions": [
-        {
-          "name": "Pookode Lake",
-          "distance": "≈03 km"
-        },
-        {
-          "name": "Lakkidi View Point",
-          "distance": "≈05 km"
-        },
-        {
-          "name": "Chain Tree",
-          "distance": "≈04 km"
-        },
-        {
-          "name": "En Ooru Tribal Village",
-          "distance": "≈07 km"
-        }
-      ],
-      "checkInTime": "01:00 PM",
-      "checkOutTime": "11:00 AM",
-      "overview": "Suspended amidst towering rainforest trees and emerald tea gardens in Vythiri, this luxury glass treehouse offers an unforgettable romantic stay with mist-kissed balconies and private jacuzzi.",
-      "inclusions": [
-        "Traditional Kerala breakfast",
-        "Guided tea estate plantation stroll",
-        "Welcome fruit basket"
-      ],
-      "exclusions": [
-        "Barbecue dinner",
-        "Adventure ziplining"
-      ]
-    },
-    {
-      "id": "resort-ah-108",
-      "code": "AH-108",
-      "name": "Cloud Valley 2BHK Private Pool Haven",
-      "slug": "cloud-valley-2bhk-pool-haven-meppadi",
-      "destination": "Meppadi",
-      "locationDetails": "Near Chembra Peak Base, Meppadi, Wayanad - 673577",
-      "googleMapsUrl": "https://maps.google.com/?q=Chembra+Peak+Meppadi+Wayanad",
-      "accommodationType": "Private Pool Villa",
-      "stayPreference": "Group / Bachelor Friendly",
-      "ambience": [
-        "Mountain / Valley View",
-        "Adventure & Hilltop",
-        "Tea / Coffee Plantation"
       ],
       "category": "Pool Villa",
       "bedrooms": 2,
@@ -215,200 +20,2770 @@
       "maxAdults": 6,
       "maxChildren": 2,
       "maxGuests": 8,
-      "pricePerNight": 11000,
-      "b2bRate": 8500,
-      "featured": true,
+      "pricePerNight": 10000,
+      "b2bRate": 8000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_1.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_1.jpg",
+        "/brochure-assets/extracted_img_2.jpg",
+        "/brochure-assets/extracted_img_3.jpg",
+        "/brochure-assets/extracted_img_4.jpg",
+        "/brochure-assets/extracted_img_5.jpg"
+      ],
+      "amenities": [
+        "Private Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Moolankavu serene nature backdrop",
+        "2BHK Private Pool Villa(5k-10K)"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Moolankavu, Le Eden offers Private Pool Villa living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-111a",
+      "code": "AH-111A",
+      "name": "2BHK - Le Eden-1",
+      "slug": "ah-111a-le-eden-1-moolankavu",
+      "destination": "Moolankavu",
+      "locationDetails": "Moolankavu, Moolankavu, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Le%20Eden-1%20Moolankavu%20Wayanad",
+      "accommodationType": "Budget Stay",
+      "stayPreference": "Individual Room/Suite",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 4000,
+      "b2bRate": 3000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_4.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_4.jpg",
+        "/brochure-assets/extracted_img_5.jpg",
+        "/brochure-assets/extracted_img_6.jpg",
+        "/brochure-assets/extracted_img_7.jpg",
+        "/brochure-assets/extracted_img_8.jpg"
+      ],
+      "amenities": [
+        "Resort Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Moolankavu serene nature backdrop",
+        "Cottages (3K-5K)"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Moolankavu, Le Eden-1 offers Budget Stay living with Individual Room/Suite. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-112",
+      "code": "AH-112",
+      "name": "2BHK - Theyila",
+      "slug": "ah-112-theyila-thaloor",
+      "destination": "Thaloor",
+      "locationDetails": "Thaloor, Thaloor, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Theyila%20Thaloor%20Wayanad",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Tea / Coffee Plantation",
+        "Secluded & Peaceful"
+      ],
+      "category": "Pool Villa",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 8400,
+      "b2bRate": 7000,
+      "featured": false,
       "coverImage": "/brochure-assets/extracted_img_7.jpg",
       "photos": [
         "/brochure-assets/extracted_img_7.jpg",
         "/brochure-assets/extracted_img_8.jpg",
+        "/brochure-assets/extracted_img_9.jpg",
         "/brochure-assets/extracted_img_10.jpg",
-        "/brochure-assets/extracted_img_24.jpg"
+        "/brochure-assets/extracted_img_11.jpg"
       ],
       "amenities": [
-        "Private Heated Swimming Pool",
-        "Chembra Mountain View Balcony",
-        "BBQ Grill facility",
-        "Spacious Living Room",
-        "Fully Equipped Kitchenette",
-        "Free Parking"
+        "Private Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
       ],
       "specialities": [
-        "Direct front view of Chembra Peak",
-        "Misty mornings with waterfall sound",
-        "Family & bachelor friendly"
+        "Thaloor serene nature backdrop",
+        "2 Private pool villa,plantaion view, single room"
       ],
       "nearbyAttractions": [
         {
-          "name": "Chembra Peak Trekking",
-          "distance": "≈04 km"
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
         },
         {
-          "name": "Soochipara Waterfalls",
-          "distance": "≈09 km"
-        },
-        {
-          "name": "Kanthanpara Waterfalls",
-          "distance": "≈07 km"
-        },
-        {
-          "name": "900 Kandi Glass Bridge",
+          "name": "Karlad Lake Adventure Park",
           "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
         }
       ],
-      "checkInTime": "02:00 PM",
+      "checkInTime": "01:00 PM",
       "checkOutTime": "11:00 AM",
-      "overview": "Perched near the base of Chembra Peak in Meppadi, this contemporary 2-bedroom pool villa blends luxury privacy with awe-inspiring nature views.",
+      "overview": "Nestled in the lush hills of Thaloor, Theyila offers Private Pool Villa living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
       "inclusions": [
-        "Full private villa & pool access",
-        "Morning tea & South Indian breakfast",
-        "Bluetooth party speaker"
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
       ],
       "exclusions": [
-        "Chembra forest permit fees",
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-112a",
+      "code": "AH-112A",
+      "name": "2BHK - Theyila-1",
+      "slug": "ah-112a-theyila-1-thaloor",
+      "destination": "Thaloor",
+      "locationDetails": "Thaloor, Thaloor, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Theyila-1%20Thaloor%20Wayanad",
+      "accommodationType": "Plantation Resort",
+      "stayPreference": "Individual Room/Suite",
+      "ambience": [
+        "Mountain / Valley View",
+        "Tea / Coffee Plantation",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 5500,
+      "b2bRate": 4500,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_10.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_10.jpg",
+        "/brochure-assets/extracted_img_11.jpg",
+        "/brochure-assets/extracted_img_12.jpg",
+        "/brochure-assets/extracted_img_13.jpg",
+        "/brochure-assets/extracted_img_14.jpg"
+      ],
+      "amenities": [
+        "Resort Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Thaloor serene nature backdrop",
+        "4 cottage,plantaion view"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Thaloor, Theyila-1 offers Plantation Resort living with Individual Room/Suite. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-113",
+      "code": "AH-113",
+      "name": "2BHK - Chembarathi",
+      "slug": "ah-113-chembarathi-vaduvanchal",
+      "destination": "Vaduvanchal",
+      "locationDetails": "Vaduvanchal, Vaduvanchal, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Chembarathi%20Vaduvanchal%20Wayanad",
+      "accommodationType": "Luxury Resort",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 9000,
+      "b2bRate": 8000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_13.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_13.jpg",
+        "/brochure-assets/extracted_img_14.jpg",
+        "/brochure-assets/extracted_img_15.jpg",
+        "/brochure-assets/extracted_img_16.jpg",
+        "/brochure-assets/extracted_img_17.jpg"
+      ],
+      "amenities": [
+        "Resort Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Vaduvanchal serene nature backdrop",
+        "https://docs.google.com/document/d/1fbruyntKw0pCMHoD4DrkuRRwB2qJiaej/edit?usp=drive_link&ouid=106788672505323387498&rtpof=true&sd=true"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Vaduvanchal, Chembarathi offers Luxury Resort living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-114",
+      "code": "AH-114",
+      "name": "2BHK - Cortyard",
+      "slug": "ah-114-cortyard-sulthan-bathery",
+      "destination": "Sulthan Bathery",
+      "locationDetails": "Kolgappara,Sby, Sulthan Bathery, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Cortyard%20Sulthan%20Bathery%20Wayanad",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Pool Villa",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 12000,
+      "b2bRate": 10000,
+      "featured": true,
+      "coverImage": "/brochure-assets/extracted_img_16.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_16.jpg",
+        "/brochure-assets/extracted_img_17.jpg",
+        "/brochure-assets/extracted_img_18.jpg",
+        "/brochure-assets/extracted_img_19.jpg",
+        "/brochure-assets/extracted_img_20.jpg"
+      ],
+      "amenities": [
+        "Private Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Sulthan Bathery serene nature backdrop",
+        "weekend rate add 1000 in each cat"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Sulthan Bathery, Cortyard offers Private Pool Villa living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-114a",
+      "code": "AH-114A",
+      "name": "2BHK - Crescent",
+      "slug": "ah-114a-crescent-sulthan-bathery",
+      "destination": "Sulthan Bathery",
+      "locationDetails": "Kolgappara,Sby, Sulthan Bathery, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Crescent%20Sulthan%20Bathery%20Wayanad",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Family Gathering",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Pool Villa",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 4000,
+      "b2bRate": 3300,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_19.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_19.jpg",
+        "/brochure-assets/extracted_img_20.jpg",
+        "/brochure-assets/extracted_img_21.jpg",
+        "/brochure-assets/extracted_img_22.jpg",
+        "/brochure-assets/extracted_img_23.jpg"
+      ],
+      "amenities": [
+        "Private Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Sulthan Bathery serene nature backdrop",
+        "Cottages (3K-5K),single 2bedroom dormetry"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Sulthan Bathery, Crescent offers Private Pool Villa living with Family Gathering. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-114b",
+      "code": "AH-114B",
+      "name": "2BHK - Crescent-Tree House",
+      "slug": "ah-114b-crescent-tree-house-sulthan-bathery",
+      "destination": "Sulthan Bathery",
+      "locationDetails": "Kolgappara,Sby, Sulthan Bathery, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Crescent-Tree%20House%20Sulthan%20Bathery%20Wayanad",
+      "accommodationType": "Tree House",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Tree House",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_22.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_22.jpg",
+        "/brochure-assets/extracted_img_23.jpg",
+        "/brochure-assets/extracted_img_24.jpg",
+        "/brochure-assets/extracted_img_25.jpg",
+        "/brochure-assets/extracted_img_26.jpg"
+      ],
+      "amenities": [
+        "Resort Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Sulthan Bathery serene nature backdrop",
+        "Tree House ( 10k-15k)"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Sulthan Bathery, Crescent-Tree House offers Tree House living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
         "Extra bed charges"
       ]
     },
     {
       "id": "resort-ah-115",
       "code": "AH-115",
-      "name": "Edakkal Heritage Rock Bungalow",
-      "slug": "edakkal-heritage-rock-bungalow-sulthan-bathery",
-      "destination": "Sulthan Bathery",
-      "locationDetails": "Ambalavayal Road, Sulthan Bathery, Wayanad - 673592",
-      "googleMapsUrl": "https://maps.google.com/?q=Edakkal+Caves+Sulthan+Bathery+Wayanad",
-      "accommodationType": "Heritage Bungalow",
-      "stayPreference": "Family Gathering",
+      "name": "4BHK - Safari Hills",
+      "slug": "ah-115-safari-hills-vythiri",
+      "destination": "Vythiri",
+      "locationDetails": "Vythiri, Vythiri, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Safari%20Hills%20Vythiri%20Wayanad",
+      "accommodationType": "Luxury Resort",
+      "stayPreference": "Group / Bachelor Friendly",
       "ambience": [
-        "Tea / Coffee Plantation",
-        "Secluded & Peaceful",
-        "Mountain / Valley View"
+        "Mountain / Valley View",
+        "Rainforest & Stream",
+        "Secluded & Peaceful"
       ],
-      "category": "Plantation Stay",
+      "category": "Luxury Resort",
       "bedrooms": 4,
       "bathrooms": 4,
       "maxAdults": 12,
       "maxChildren": 4,
       "maxGuests": 16,
-      "pricePerNight": 16500,
-      "b2bRate": 13000,
+      "pricePerNight": 5000,
+      "b2bRate": 3000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_13.jpg",
+      "coverImage": "/brochure-assets/extracted_img_25.jpg",
       "photos": [
-        "/brochure-assets/extracted_img_13.jpg",
-        "/brochure-assets/extracted_img_20.jpg",
-        "/brochure-assets/extracted_img_1.jpg",
+        "/brochure-assets/extracted_img_25.jpg",
+        "/brochure-assets/extracted_img_26.jpg",
+        "/brochure-assets/extracted_img_27.jpg",
+        "/brochure-assets/extracted_img_28.jpg",
         "/brochure-assets/extracted_img_29.jpg"
       ],
       "amenities": [
-        "Heritage Architecture with Modern Comforts",
-        "Infinity Pool with Rock View",
-        "Campfire with Live Acoustic Music",
-        "Coffee & Pepper Farm Tour",
-        "Ayurvedic Spa On-Demand",
-        "Children's Play Turf"
+        "Resort Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
       ],
       "specialities": [
-        "Historical footprint stone motifs",
-        "Near prehistoric Edakkal rock caves",
-        "Authentic Wayanadan cuisine"
+        "Vythiri serene nature backdrop",
+        "Group Packages(3k-5k), Private Pool (5k to 7K)"
       ],
       "nearbyAttractions": [
         {
-          "name": "Edakkal Caves",
-          "distance": "≈04 km"
-        },
-        {
-          "name": "Wayanad Heritage Museum",
-          "distance": "≈03 km"
-        },
-        {
-          "name": "Sulthan Bathery Jain Temple",
+          "name": "Banasura Sagar Dam",
           "distance": "≈08 km"
         },
         {
-          "name": "Muthanga Wildlife Sanctuary",
-          "distance": "≈14 km"
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
         }
       ],
       "checkInTime": "01:00 PM",
       "checkOutTime": "11:00 AM",
-      "overview": "A colonial-style coffee estate sanctuary inspired by the ancient heritage footprints of Wayanad, offering sprawling lawn verandas, organic dining, and an infinity pool facing the historic Ambukuthi hills.",
+      "overview": "Nestled in the lush hills of Vythiri, Safari Hills offers Luxury Resort living with Group / Bachelor Friendly. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
       "inclusions": [
-        "All-day estate coffee service",
-        "Heritage museum guide voucher",
-        "Breakfast spread"
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
       ],
       "exclusions": [
-        "Spa therapies",
-        "Wildlife jeep safari"
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-116",
+      "code": "AH-116",
+      "name": "2BHK - Willow",
+      "slug": "ah-116-willow-ambalavayal",
+      "destination": "Ambalavayal",
+      "locationDetails": "Amblavayal, Ambalavayal, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Willow%20Ambalavayal%20Wayanad",
+      "accommodationType": "Luxury Resort",
+      "stayPreference": "Family Gathering",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 7500,
+      "b2bRate": 6500,
+      "featured": true,
+      "coverImage": "/brochure-assets/extracted_img_28.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_28.jpg",
+        "/brochure-assets/extracted_img_29.jpg",
+        "/brochure-assets/extracted_img_1.jpg",
+        "/brochure-assets/extracted_img_2.jpg",
+        "/brochure-assets/extracted_img_3.jpg"
+      ],
+      "amenities": [
+        "Resort Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Ambalavayal serene nature backdrop",
+        "Cottages(3k-5K), Family resort (5k-10k)"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Ambalavayal, Willow offers Luxury Resort living with Family Gathering. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-117",
+      "code": "AH-117",
+      "name": "2BHK - Kabani River Side",
+      "slug": "ah-117-kabani-river-side-koyileri",
+      "destination": "Koyileri",
+      "locationDetails": "Koyileri, Koyileri, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Kabani%20River%20Side%20Koyileri%20Wayanad",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Pool Villa",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 6000,
+      "b2bRate": 4000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_2.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_2.jpg",
+        "/brochure-assets/extracted_img_3.jpg",
+        "/brochure-assets/extracted_img_4.jpg",
+        "/brochure-assets/extracted_img_5.jpg",
+        "/brochure-assets/extracted_img_6.jpg"
+      ],
+      "amenities": [
+        "Private Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Koyileri serene nature backdrop",
+        "2BHK Private Pool Villa(5k-10K),Cottages (3K-5K)"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Koyileri, Kabani River Side offers Private Pool Villa living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
       ]
     },
     {
       "id": "resort-ah-118",
       "code": "AH-118",
-      "name": "Misty Haven Budget Friendly Resort",
-      "slug": "misty-haven-budget-friendly-resort-kalpetta",
-      "destination": "Kalpetta",
-      "locationDetails": "Munderi, Kalpetta, Wayanad - 673121",
-      "googleMapsUrl": "https://maps.google.com/?q=Kalpetta+Wayanad",
-      "accommodationType": "Budget Stay",
-      "stayPreference": "Group / Bachelor Friendly",
+      "name": "4BHK - Palm Tree",
+      "slug": "ah-118-palm-tree-sulthan-bathery",
+      "destination": "Sulthan Bathery",
+      "locationDetails": "Sulthan Bathery, Sulthan Bathery, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Palm%20Tree%20Sulthan%20Bathery%20Wayanad",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Independent Private Cottage/Villa",
       "ambience": [
-        "Adventure & Hilltop",
-        "Mountain / Valley View"
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
       ],
-      "category": "Budget Resort",
+      "category": "Pool Villa",
+      "bedrooms": 4,
+      "bathrooms": 4,
+      "maxAdults": 12,
+      "maxChildren": 4,
+      "maxGuests": 16,
+      "pricePerNight": 16000,
+      "b2bRate": 12500,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_5.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_5.jpg",
+        "/brochure-assets/extracted_img_6.jpg",
+        "/brochure-assets/extracted_img_7.jpg",
+        "/brochure-assets/extracted_img_8.jpg",
+        "/brochure-assets/extracted_img_9.jpg"
+      ],
+      "amenities": [
+        "Private Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Sulthan Bathery serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Sulthan Bathery, Palm Tree offers Private Pool Villa living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-119",
+      "code": "AH-119",
+      "name": "2BHK - Aurora",
+      "slug": "ah-119-aurora-koleri",
+      "destination": "Koleri",
+      "locationDetails": "Koleri, Koleri, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Aurora%20Koleri%20Wayanad",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Pool Villa",
       "bedrooms": 2,
       "bathrooms": 2,
-      "maxAdults": 5,
+      "maxAdults": 6,
       "maxChildren": 2,
-      "maxGuests": 7,
-      "pricePerNight": 4500,
-      "b2bRate": 3500,
+      "maxGuests": 8,
+      "pricePerNight": 18000,
+      "b2bRate": 15000,
       "featured": false,
-      "coverImage": "/brochure-assets/extracted_img_16.jpg",
+      "coverImage": "/brochure-assets/extracted_img_8.jpg",
       "photos": [
+        "/brochure-assets/extracted_img_8.jpg",
+        "/brochure-assets/extracted_img_9.jpg",
+        "/brochure-assets/extracted_img_10.jpg",
+        "/brochure-assets/extracted_img_11.jpg",
+        "/brochure-assets/extracted_img_12.jpg"
+      ],
+      "amenities": [
+        "Private Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Koleri serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Koleri, Aurora offers Private Pool Villa living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-120",
+      "code": "AH-120",
+      "name": "3BHK - Cozy Gaza",
+      "slug": "ah-120-cozy-gaza-padinjarathara",
+      "destination": "Padinjarathara",
+      "locationDetails": "Banasura, Padinjarathara, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Cozy%20Gaza%20Padinjarathara%20Wayanad",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Lake / Dam Waterfront",
+        "Secluded & Peaceful"
+      ],
+      "category": "Pool Villa",
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "maxAdults": 9,
+      "maxChildren": 3,
+      "maxGuests": 12,
+      "pricePerNight": 12000,
+      "b2bRate": 9000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_11.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_11.jpg",
+        "/brochure-assets/extracted_img_12.jpg",
+        "/brochure-assets/extracted_img_13.jpg",
+        "/brochure-assets/extracted_img_14.jpg",
+        "/brochure-assets/extracted_img_15.jpg"
+      ],
+      "amenities": [
+        "Private Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Padinjarathara serene nature backdrop",
+        "3BHK Private Pool Villa"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Padinjarathara, Cozy Gaza offers Private Pool Villa living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-121",
+      "code": "AH-121",
+      "name": "3BHK - Camp lights",
+      "slug": "ah-121-camp-lights-wayanad",
+      "destination": "Wayanad",
+      "locationDetails": "Wayanad, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Camp%20lights%20Wayanad%20Wayanad",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Pool Villa",
+      "bedrooms": 3,
+      "bathrooms": 3,
+      "maxAdults": 9,
+      "maxChildren": 3,
+      "maxGuests": 12,
+      "pricePerNight": 7500,
+      "b2bRate": 12000,
+      "featured": true,
+      "coverImage": "/brochure-assets/extracted_img_14.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_14.jpg",
+        "/brochure-assets/extracted_img_15.jpg",
         "/brochure-assets/extracted_img_16.jpg",
         "/brochure-assets/extracted_img_17.jpg",
         "/brochure-assets/extracted_img_18.jpg"
       ],
       "amenities": [
-        "Shared Swimming Pool",
-        "Garden Dining Area",
-        "Free High Speed WiFi",
-        "Hot Water 24/7",
-        "Room Service"
+        "Private Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
       ],
       "specialities": [
-        "Central location to explore North & South Wayanad",
-        "Ideal for friends & budget travelers"
+        "Wayanad serene nature backdrop",
+        "Handpicked private stay for families & groups"
       ],
       "nearbyAttractions": [
         {
-          "name": "Kurumbalakotta Sunrise Peak",
-          "distance": "≈09 km"
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
         },
         {
-          "name": "Karapuzha Dam & Adventure Park",
+          "name": "Karlad Lake Adventure Park",
           "distance": "≈11 km"
         },
         {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
           "name": "Pookode Lake",
-          "distance": "≈13 km"
+          "distance": "≈22 km"
         }
       ],
-      "checkInTime": "12:00 PM",
+      "checkInTime": "01:00 PM",
       "checkOutTime": "11:00 AM",
-      "overview": "Comfortable, clean, and value-packed rooms right in the travel heart of Kalpetta, making daily sightseeing across Wayanad effortless and affordable.",
+      "overview": "Nestled in the lush hills of Wayanad, Camp lights offers Private Pool Villa living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
       "inclusions": [
-        "Comfort stay with clean linens",
-        "Morning breakfast",
-        "Free parking"
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
       ],
       "exclusions": [
-        "Sightseeing vehicle",
-        "Lunch & Dinner"
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-122",
+      "code": "AH-122",
+      "name": "4BHK - Padygram",
+      "slug": "ah-122-padygram-panamaram",
+      "destination": "Panamaram",
+      "locationDetails": "Panamaram, Panamaram, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Padygram%20Panamaram%20Wayanad",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Pool Villa",
+      "bedrooms": 4,
+      "bathrooms": 4,
+      "maxAdults": 12,
+      "maxChildren": 4,
+      "maxGuests": 16,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_17.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_17.jpg",
+        "/brochure-assets/extracted_img_18.jpg",
+        "/brochure-assets/extracted_img_19.jpg",
+        "/brochure-assets/extracted_img_20.jpg",
+        "/brochure-assets/extracted_img_21.jpg"
+      ],
+      "amenities": [
+        "Private Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Panamaram serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Panamaram, Padygram offers Private Pool Villa living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-123",
+      "code": "AH-123",
+      "name": "4BHK - FernTree",
+      "slug": "ah-123-ferntree-mananthavady",
+      "destination": "Mananthavady",
+      "locationDetails": "Manathavady, Mananthavady, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=FernTree%20Mananthavady%20Wayanad",
+      "accommodationType": "Luxury Resort",
+      "stayPreference": "Group / Bachelor Friendly",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 4,
+      "bathrooms": 4,
+      "maxAdults": 12,
+      "maxChildren": 4,
+      "maxGuests": 16,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_20.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_20.jpg",
+        "/brochure-assets/extracted_img_21.jpg",
+        "/brochure-assets/extracted_img_22.jpg",
+        "/brochure-assets/extracted_img_23.jpg",
+        "/brochure-assets/extracted_img_24.jpg"
+      ],
+      "amenities": [
+        "Resort Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Mananthavady serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Mananthavady, FernTree offers Luxury Resort living with Group / Bachelor Friendly. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-124",
+      "code": "AH-124",
+      "name": "2BHK - Prakriti",
+      "slug": "ah-124-prakriti-koleri",
+      "destination": "Koleri",
+      "locationDetails": "Koleri, Koleri, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Prakriti%20Koleri%20Wayanad",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Pool Villa",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_23.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_23.jpg",
+        "/brochure-assets/extracted_img_24.jpg",
+        "/brochure-assets/extracted_img_25.jpg",
+        "/brochure-assets/extracted_img_26.jpg",
+        "/brochure-assets/extracted_img_27.jpg"
+      ],
+      "amenities": [
+        "Private Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Koleri serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Koleri, Prakriti offers Private Pool Villa living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-125",
+      "code": "AH-125",
+      "name": "4BHK - Blooms",
+      "slug": "ah-125-blooms-kenichira",
+      "destination": "Kenichira",
+      "locationDetails": "Kenichira, Kenichira, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Blooms%20Kenichira%20Wayanad",
+      "accommodationType": "Luxury Resort",
+      "stayPreference": "Group / Bachelor Friendly",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 4,
+      "bathrooms": 4,
+      "maxAdults": 12,
+      "maxChildren": 4,
+      "maxGuests": 16,
+      "pricePerNight": 1000,
+      "b2bRate": 900,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_26.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_26.jpg",
+        "/brochure-assets/extracted_img_27.jpg",
+        "/brochure-assets/extracted_img_28.jpg",
+        "/brochure-assets/extracted_img_29.jpg",
+        "/brochure-assets/extracted_img_1.jpg"
+      ],
+      "amenities": [
+        "Resort Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Kenichira serene nature backdrop",
+        "Group resot-4,3,2 BH villas per person rate change will be there in peak days"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Kenichira, Blooms offers Luxury Resort living with Group / Bachelor Friendly. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-126",
+      "code": "AH-126",
+      "name": "2BHK - Itria",
+      "slug": "ah-126-itria-kavum-mandham",
+      "destination": "Kavum Mandham",
+      "locationDetails": "Kavum Mandham, Kavum Mandham, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Itria%20Kavum%20Mandham%20Wayanad",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Pool Villa",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 10000,
+      "b2bRate": 8000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_29.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_29.jpg",
+        "/brochure-assets/extracted_img_1.jpg",
+        "/brochure-assets/extracted_img_2.jpg",
+        "/brochure-assets/extracted_img_3.jpg",
+        "/brochure-assets/extracted_img_4.jpg"
+      ],
+      "amenities": [
+        "Private Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Kavum Mandham serene nature backdrop",
+        "2 bhks villa, budget friendly, no big ambience"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Kavum Mandham, Itria offers Private Pool Villa living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-129",
+      "code": "AH-129",
+      "name": "2BHK - Lake View",
+      "slug": "ah-129-lake-view-karapuzha",
+      "destination": "Karapuzha",
+      "locationDetails": "Karappuzha, Karapuzha, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Lake%20View%20Karapuzha%20Wayanad",
+      "accommodationType": "Luxury Resort",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Lake / Dam Waterfront",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_3.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_3.jpg",
+        "/brochure-assets/extracted_img_4.jpg",
+        "/brochure-assets/extracted_img_5.jpg",
+        "/brochure-assets/extracted_img_6.jpg",
+        "/brochure-assets/extracted_img_7.jpg"
+      ],
+      "amenities": [
+        "Resort Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Karapuzha serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Karapuzha, Lake View offers Luxury Resort living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-130",
+      "code": "AH-130",
+      "name": "2BHK - Cataliya",
+      "slug": "ah-130-cataliya-meppadi",
+      "destination": "Meppadi",
+      "locationDetails": "Meppadi, Meppadi, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Cataliya%20Meppadi%20Wayanad",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Rainforest & Stream",
+        "Secluded & Peaceful"
+      ],
+      "category": "Pool Villa",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_6.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_6.jpg",
+        "/brochure-assets/extracted_img_7.jpg",
+        "/brochure-assets/extracted_img_8.jpg",
+        "/brochure-assets/extracted_img_9.jpg",
+        "/brochure-assets/extracted_img_10.jpg"
+      ],
+      "amenities": [
+        "Private Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Meppadi serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Meppadi, Cataliya offers Private Pool Villa living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-131",
+      "code": "AH-131",
+      "name": "4BHK - Coffe Gram",
+      "slug": "ah-131-coffe-gram-kaniyambetta",
+      "destination": "Kaniyambetta",
+      "locationDetails": "Kaniyambetta, Kaniyambetta, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Coffe%20Gram%20Kaniyambetta%20Wayanad",
+      "accommodationType": "Luxury Resort",
+      "stayPreference": "Group / Bachelor Friendly",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 4,
+      "bathrooms": 4,
+      "maxAdults": 12,
+      "maxChildren": 4,
+      "maxGuests": 16,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_9.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_9.jpg",
+        "/brochure-assets/extracted_img_10.jpg",
+        "/brochure-assets/extracted_img_11.jpg",
+        "/brochure-assets/extracted_img_12.jpg",
+        "/brochure-assets/extracted_img_13.jpg"
+      ],
+      "amenities": [
+        "Resort Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Kaniyambetta serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Kaniyambetta, Coffe Gram offers Luxury Resort living with Group / Bachelor Friendly. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-132",
+      "code": "AH-132",
+      "name": "2BHK - Sopanam Heritage Resort",
+      "slug": "ah-132-sopanam-heritage-resort-panamaram",
+      "destination": "Panamaram",
+      "locationDetails": "Panamaram, Panamaram, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Sopanam%20Heritage%20Resort%20Panamaram%20Wayanad",
+      "accommodationType": "Heritage Bungalow",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_12.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_12.jpg",
+        "/brochure-assets/extracted_img_13.jpg",
+        "/brochure-assets/extracted_img_14.jpg",
+        "/brochure-assets/extracted_img_15.jpg",
+        "/brochure-assets/extracted_img_16.jpg"
+      ],
+      "amenities": [
+        "Resort Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Panamaram serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Panamaram, Sopanam Heritage Resort offers Heritage Bungalow living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-133",
+      "code": "AH-133",
+      "name": "2BHK - Woods",
+      "slug": "ah-133-woods-chethalayam",
+      "destination": "Chethalayam",
+      "locationDetails": "Chethalayam, Chethalayam, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Woods%20Chethalayam%20Wayanad",
+      "accommodationType": "Luxury Resort",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_15.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_15.jpg",
+        "/brochure-assets/extracted_img_16.jpg",
+        "/brochure-assets/extracted_img_17.jpg",
+        "/brochure-assets/extracted_img_18.jpg",
+        "/brochure-assets/extracted_img_19.jpg"
+      ],
+      "amenities": [
+        "Resort Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Chethalayam serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Chethalayam, Woods offers Luxury Resort living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-134",
+      "code": "AH-134",
+      "name": "2BHK - Coffe Acres",
+      "slug": "ah-134-coffe-acres-pinangode",
+      "destination": "Pinangode",
+      "locationDetails": "Pinangode, Pinangode, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Coffe%20Acres%20Pinangode%20Wayanad",
+      "accommodationType": "Luxury Resort",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_18.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_18.jpg",
+        "/brochure-assets/extracted_img_19.jpg",
+        "/brochure-assets/extracted_img_20.jpg",
+        "/brochure-assets/extracted_img_21.jpg",
+        "/brochure-assets/extracted_img_22.jpg"
+      ],
+      "amenities": [
+        "Resort Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Pinangode serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Pinangode, Coffe Acres offers Luxury Resort living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-135",
+      "code": "AH-135",
+      "name": "5BHK - Fortune Banasura",
+      "slug": "ah-135-fortune-banasura-padinjarathara",
+      "destination": "Padinjarathara",
+      "locationDetails": "Padinjarathara, Padinjarathara, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Fortune%20Banasura%20Padinjarathara%20Wayanad",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Individual Room/Suite",
+      "ambience": [
+        "Mountain / Valley View",
+        "Lake / Dam Waterfront",
+        "Secluded & Peaceful"
+      ],
+      "category": "Pool Villa",
+      "bedrooms": 5,
+      "bathrooms": 5,
+      "maxAdults": 15,
+      "maxChildren": 5,
+      "maxGuests": 20,
+      "pricePerNight": 7500,
+      "b2bRate": 4000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_21.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_21.jpg",
+        "/brochure-assets/extracted_img_22.jpg",
+        "/brochure-assets/extracted_img_23.jpg",
+        "/brochure-assets/extracted_img_24.jpg",
+        "/brochure-assets/extracted_img_25.jpg"
+      ],
+      "amenities": [
+        "Private Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Padinjarathara serene nature backdrop",
+        "5 cottages, ac non ac rooms, pool"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Padinjarathara, Fortune Banasura offers Private Pool Villa living with Individual Room/Suite. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-136",
+      "code": "AH-136",
+      "name": "7BHK - Lake Paradise",
+      "slug": "ah-136-lake-paradise-padinjarathara",
+      "destination": "Padinjarathara",
+      "locationDetails": "Padinjarathara, Padinjarathara, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Lake%20Paradise%20Padinjarathara%20Wayanad",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Group / Bachelor Friendly",
+      "ambience": [
+        "Mountain / Valley View",
+        "Lake / Dam Waterfront",
+        "Secluded & Peaceful"
+      ],
+      "category": "Pool Villa",
+      "bedrooms": 7,
+      "bathrooms": 7,
+      "maxAdults": 21,
+      "maxChildren": 7,
+      "maxGuests": 28,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_24.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_24.jpg",
+        "/brochure-assets/extracted_img_25.jpg",
+        "/brochure-assets/extracted_img_26.jpg",
+        "/brochure-assets/extracted_img_27.jpg",
+        "/brochure-assets/extracted_img_28.jpg"
+      ],
+      "amenities": [
+        "Private Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Padinjarathara serene nature backdrop",
+        "7 rooms, hotel type resort"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Padinjarathara, Lake Paradise offers Private Pool Villa living with Group / Bachelor Friendly. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-137",
+      "code": "AH-137",
+      "name": "2BHK - Alaya",
+      "slug": "ah-137-alaya-padinjarathara",
+      "destination": "Padinjarathara",
+      "locationDetails": "Padinjarathara, Padinjarathara, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Alaya%20Padinjarathara%20Wayanad",
+      "accommodationType": "Luxury Resort",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Lake / Dam Waterfront",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_27.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_27.jpg",
+        "/brochure-assets/extracted_img_28.jpg",
+        "/brochure-assets/extracted_img_29.jpg",
+        "/brochure-assets/extracted_img_1.jpg",
+        "/brochure-assets/extracted_img_2.jpg"
+      ],
+      "amenities": [
+        "Resort Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Padinjarathara serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Padinjarathara, Alaya offers Luxury Resort living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-138",
+      "code": "AH-138",
+      "name": "8BHK - Beanwoods",
+      "slug": "ah-138-beanwoods-muttil",
+      "destination": "Muttil",
+      "locationDetails": "Muttil, Muttil, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Beanwoods%20Muttil%20Wayanad",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Individual Room/Suite",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Pool Villa",
+      "bedrooms": 8,
+      "bathrooms": 8,
+      "maxAdults": 24,
+      "maxChildren": 8,
+      "maxGuests": 32,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_1.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_1.jpg",
+        "/brochure-assets/extracted_img_2.jpg",
+        "/brochure-assets/extracted_img_3.jpg",
+        "/brochure-assets/extracted_img_4.jpg",
+        "/brochure-assets/extracted_img_5.jpg"
+      ],
+      "amenities": [
+        "Private Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Muttil serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Muttil, Beanwoods offers Private Pool Villa living with Individual Room/Suite. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-139",
+      "code": "AH-139",
+      "name": "6BHK - Misty Lunge resort",
+      "slug": "ah-139-misty-lunge-resort-banasuar",
+      "destination": "Banasuar",
+      "locationDetails": "Banasuar, Banasuar, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Misty%20Lunge%20resort%20Banasuar%20Wayanad",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Pool Villa",
+      "bedrooms": 6,
+      "bathrooms": 6,
+      "maxAdults": 18,
+      "maxChildren": 6,
+      "maxGuests": 24,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_4.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_4.jpg",
+        "/brochure-assets/extracted_img_5.jpg",
+        "/brochure-assets/extracted_img_6.jpg",
+        "/brochure-assets/extracted_img_7.jpg",
+        "/brochure-assets/extracted_img_8.jpg"
+      ],
+      "amenities": [
+        "Private Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Banasuar serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Banasuar, Misty Lunge resort offers Private Pool Villa living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-140",
+      "code": "AH-140",
+      "name": "4BHK - Kedra",
+      "slug": "ah-140-kedra-sulthan-bathery",
+      "destination": "Sulthan Bathery",
+      "locationDetails": "Sulthan Bathery, Sulthan Bathery, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Kedra%20Sulthan%20Bathery%20Wayanad",
+      "accommodationType": "Luxury Resort",
+      "stayPreference": "Group / Bachelor Friendly",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 4,
+      "bathrooms": 4,
+      "maxAdults": 12,
+      "maxChildren": 4,
+      "maxGuests": 16,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_7.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_7.jpg",
+        "/brochure-assets/extracted_img_8.jpg",
+        "/brochure-assets/extracted_img_9.jpg",
+        "/brochure-assets/extracted_img_10.jpg",
+        "/brochure-assets/extracted_img_11.jpg"
+      ],
+      "amenities": [
+        "Resort Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Sulthan Bathery serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Sulthan Bathery, Kedra offers Luxury Resort living with Group / Bachelor Friendly. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-141",
+      "code": "AH-141",
+      "name": "2BHK - Tudor Hills",
+      "slug": "ah-141-tudor-hills-thrikaipetta",
+      "destination": "Thrikaipetta",
+      "locationDetails": "Thrikaipetta, Thrikaipetta, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Tudor%20Hills%20Thrikaipetta%20Wayanad",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Pool Villa",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_10.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_10.jpg",
+        "/brochure-assets/extracted_img_11.jpg",
+        "/brochure-assets/extracted_img_12.jpg",
+        "/brochure-assets/extracted_img_13.jpg",
+        "/brochure-assets/extracted_img_14.jpg"
+      ],
+      "amenities": [
+        "Private Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Thrikaipetta serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Thrikaipetta, Tudor Hills offers Private Pool Villa living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-142",
+      "code": "AH-142",
+      "name": "4BHK - Adithya Resort",
+      "slug": "ah-142-adithya-resort-vythiri",
+      "destination": "Vythiri",
+      "locationDetails": "Vythiri, Vythiri, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Adithya%20Resort%20Vythiri%20Wayanad",
+      "accommodationType": "Luxury Resort",
+      "stayPreference": "Group / Bachelor Friendly",
+      "ambience": [
+        "Mountain / Valley View",
+        "Rainforest & Stream",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 4,
+      "bathrooms": 4,
+      "maxAdults": 12,
+      "maxChildren": 4,
+      "maxGuests": 16,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_13.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_13.jpg",
+        "/brochure-assets/extracted_img_14.jpg",
+        "/brochure-assets/extracted_img_15.jpg",
+        "/brochure-assets/extracted_img_16.jpg",
+        "/brochure-assets/extracted_img_17.jpg"
+      ],
+      "amenities": [
+        "Resort Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Vythiri serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Vythiri, Adithya Resort offers Luxury Resort living with Group / Bachelor Friendly. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-143",
+      "code": "AH-143",
+      "name": "2BHK - Vynza",
+      "slug": "ah-143-vynza-vythiri",
+      "destination": "Vythiri",
+      "locationDetails": "Vythiri, Vythiri, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Vynza%20Vythiri%20Wayanad",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Rainforest & Stream",
+        "Secluded & Peaceful"
+      ],
+      "category": "Pool Villa",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_16.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_16.jpg",
+        "/brochure-assets/extracted_img_17.jpg",
+        "/brochure-assets/extracted_img_18.jpg",
+        "/brochure-assets/extracted_img_19.jpg",
+        "/brochure-assets/extracted_img_20.jpg"
+      ],
+      "amenities": [
+        "Private Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Vythiri serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Vythiri, Vynza offers Private Pool Villa living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-144",
+      "code": "AH-144",
+      "name": "4BHK - Klov",
+      "slug": "ah-144-klov-wayanad",
+      "destination": "Wayanad",
+      "locationDetails": "Wayanad, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Klov%20Wayanad%20Wayanad",
+      "accommodationType": "Luxury Resort",
+      "stayPreference": "Group / Bachelor Friendly",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 4,
+      "bathrooms": 4,
+      "maxAdults": 12,
+      "maxChildren": 4,
+      "maxGuests": 16,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_19.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_19.jpg",
+        "/brochure-assets/extracted_img_20.jpg",
+        "/brochure-assets/extracted_img_21.jpg",
+        "/brochure-assets/extracted_img_22.jpg",
+        "/brochure-assets/extracted_img_23.jpg"
+      ],
+      "amenities": [
+        "Resort Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Wayanad serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Wayanad, Klov offers Luxury Resort living with Group / Bachelor Friendly. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "resort-ah-145",
+      "code": "AH-145",
+      "name": "4BHK - New Resort",
+      "slug": "ah-145-new-resort-wayanad",
+      "destination": "Wayanad",
+      "locationDetails": "Wayanad, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=New%20Resort%20Wayanad%20Wayanad",
+      "accommodationType": "Luxury Resort",
+      "stayPreference": "Group / Bachelor Friendly",
+      "ambience": [
+        "Mountain / Valley View",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 4,
+      "bathrooms": 4,
+      "maxAdults": 12,
+      "maxChildren": 4,
+      "maxGuests": 16,
+      "pricePerNight": 7500,
+      "b2bRate": 6000,
+      "featured": false,
+      "coverImage": "/brochure-assets/extracted_img_22.jpg",
+      "photos": [
+        "/brochure-assets/extracted_img_22.jpg",
+        "/brochure-assets/extracted_img_23.jpg",
+        "/brochure-assets/extracted_img_24.jpg",
+        "/brochure-assets/extracted_img_25.jpg",
+        "/brochure-assets/extracted_img_26.jpg"
+      ],
+      "amenities": [
+        "Resort Swimming Pool",
+        "Scenic Mountain / Plantation View",
+        "Free High-Speed WiFi",
+        "Children Play Area",
+        "Campfire & Music Setup (Chargeable)",
+        "Daily Housekeeping",
+        "24/7 Hot Water & Power Backup"
+      ],
+      "specialities": [
+        "Wayanad serene nature backdrop",
+        "Handpicked private stay for families & groups"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Banasura Sagar Dam",
+          "distance": "≈08 km"
+        },
+        {
+          "name": "Karlad Lake Adventure Park",
+          "distance": "≈11 km"
+        },
+        {
+          "name": "Edakkal Prehistoric Caves",
+          "distance": "≈18 km"
+        },
+        {
+          "name": "Pookode Lake",
+          "distance": "≈22 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Nestled in the lush hills of Wayanad, New Resort offers Luxury Resort living with Group / Bachelor Friendly. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
+      "inclusions": [
+        "Full private villa / cottage access",
+        "Complimentary high-speed WiFi",
+        "Morning tea & estate stroll"
+      ],
+      "exclusions": [
+        "Forest entry & wildlife safari fees",
+        "Extra bed charges"
       ]
     }
   ],

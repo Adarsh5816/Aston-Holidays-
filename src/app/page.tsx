@@ -1,7 +1,20 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MessageCircle, Compass, Star, ShieldCheck, MapPin, Sparkles, ArrowRight, CheckCircle2 } from "lucide-react";
+import {
+  MessageCircle,
+  Compass,
+  Star,
+  ShieldCheck,
+  MapPin,
+  Sparkles,
+  ArrowRight,
+  CheckCircle2,
+  Waves,
+  Trees,
+  Mountain,
+  FileText
+} from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import ResortCard from "@/components/ResortCard";
@@ -10,40 +23,61 @@ import { destinations } from "@/data/destinations";
 
 export default function HomePage() {
   const settings = Store.getSettings();
-  const featuredResorts = Store.getResorts().slice(0, 4);
-  const featuredAh121 = Store.getResortByCode("AH-121");
+  const allResorts = Store.getResorts();
+  const featuredResorts = allResorts.slice(0, 6);
+  const poolVillas = allResorts.filter((r) => r.accommodationType === "Private Pool Villa").slice(0, 3);
+  const treehouses = allResorts.filter((r) => r.accommodationType === "Tree House" || r.category === "Tree House").slice(0, 3);
+  const featuredAh121 = Store.getResortByCode("AH-121") || allResorts[0];
 
   return (
-    <>
+    <div className="min-h-screen flex flex-col bg-[#FDFBF7] text-stone-900 font-sans selection:bg-emerald-900 selection:text-white">
       <Navbar />
 
       <main className="flex-1">
-        {/* ================= HERO SECTION (Customizable via /admin/customizer) ================= */}
-        <section className="relative min-h-[620px] flex items-center justify-center overflow-hidden bg-[#1A2218]">
-          {/* Background Panorama */}
+        {/* ================= HERO SECTION (With Misty Wayanad Animations) ================= */}
+        <section className="relative min-h-[680px] lg:min-h-[740px] flex items-center justify-center overflow-hidden bg-[#121D10]">
+          {/* Background Panorama with Ken Burns subtle scale */}
           <div className="absolute inset-0 z-0">
             <Image
               src={settings.heroBannerImage || "/brand/wayanad-backcover.jpg"}
-              alt="Wayanad Hills and Lakes"
+              alt="Misty Wayanad Mountains and Lakes"
               fill
-              className="object-cover opacity-35 scale-105"
+              className="object-cover opacity-40 scale-105 transition-transform duration-1000 ease-out"
               priority
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#1A2218] via-[#1A2218]/50 to-transparent" />
+            {/* Dark green gradient vignette */}
+            <div className="absolute inset-0 bg-gradient-to-t from-[#121D10] via-[#121D10]/60 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#121D10]/80 via-transparent to-[#121D10]/80" />
           </div>
 
-          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
-            {/* Top Pill */}
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-emerald-300 text-xs font-semibold px-4 py-1.5 rounded-full mb-6">
+          {/* Animated Wayanad Mountain Mist Layers */}
+          <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+            <div className="absolute -top-1/4 -left-1/4 w-[160%] h-[160%] bg-gradient-to-r from-emerald-950/20 via-white/5 to-emerald-900/20 blur-3xl animate-mist" />
+            <div className="absolute -bottom-1/4 -right-1/4 w-[160%] h-[160%] bg-gradient-to-l from-emerald-950/25 via-emerald-800/10 to-transparent blur-3xl animate-mist-reverse" />
+          </div>
+
+          {/* Historic Edakkal Stone Engraving Watermark (Subtle rotation) */}
+          <div className="absolute top-12 right-12 w-64 h-64 opacity-10 pointer-events-none hidden xl:block animate-rotate-slow">
+            <Image
+              src="/brand/emblem.png"
+              alt="Edakkal Petroglyphs Footprint"
+              fill
+              className="object-contain"
+            />
+          </div>
+
+          <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+            {/* Top Pill with gentle float */}
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 text-emerald-300 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 shadow-sm animate-float">
               <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-              <span>{settings.announcementText || "Historic Footprints of Wayanad & Curated Escapes"}</span>
+              <span>{settings.announcementText || "Historic Footprints of Wayanad • Authentic Stays"}</span>
             </div>
 
-            <h1 className="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight max-w-4xl mx-auto">
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.1] max-w-4xl mx-auto drop-shadow-sm">
               {settings.heroTitle}
             </h1>
 
-            <p className="mt-5 text-base sm:text-lg text-stone-300 max-w-2xl mx-auto font-normal leading-relaxed">
+            <p className="mt-6 text-base sm:text-lg text-emerald-100/90 max-w-2xl mx-auto font-normal leading-relaxed drop-shadow-sm">
               {settings.heroSubtitle}
             </p>
 
@@ -51,281 +85,270 @@ export default function HomePage() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/resorts"
-                className="inline-flex items-center gap-2 bg-[#2E4F28] hover:bg-[#244020] text-white text-sm font-semibold px-7 py-3.5 rounded-full shadow-lg hover:shadow-xl transition"
+                className="inline-flex items-center gap-2 bg-[#2E4F28] hover:bg-[#233D1F] text-white text-sm font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-2xl transition transform hover:-translate-y-0.5 active:translate-y-0"
               >
-                <Compass className="w-4 h-4" /> Browse Stays & Villas
+                <Compass className="w-4 h-4 text-emerald-300" /> Explore {allResorts.length}+ Wayanad Stays
               </Link>
 
               <a
-                href={`https://wa.me/${settings.whatsappNumber.replace(/[^0-9]/g, "")}?text=Hi%20Aston%20Holidays,%20please%20suggest%20the%20best%20pool%20villa%20in%20Wayanad`}
+                href={`https://wa.me/${settings.whatsappNumber.replace(/[^0-9]/g, "")}?text=Hi%20Aston%20Holidays,%20please%20suggest%20the%20best%20private%20pool%20villa%20or%20treehouse%20in%20Wayanad`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-semibold px-7 py-3.5 rounded-full shadow-lg hover:shadow-xl transition"
+                className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold px-8 py-4 rounded-full shadow-lg hover:shadow-2xl transition transform hover:-translate-y-0.5"
               >
-                <MessageCircle className="w-4 h-4" /> Inquire on WhatsApp
+                <MessageCircle className="w-4 h-4" /> Instant WhatsApp Recommendations
               </a>
             </div>
 
-            {/* Trust Badges */}
-            <div className="mt-12 pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs text-stone-300">
-              <div className="flex items-center justify-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" /> 100% Verified Villas
+            {/* Live Stats Floating Island */}
+            <div className="mt-14 glass-dark rounded-2xl p-4 sm:p-6 border border-white/10 max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+              <div>
+                <p className="text-2xl sm:text-3xl font-black text-white">{allResorts.length}+</p>
+                <p className="text-[11px] font-semibold text-emerald-300 uppercase tracking-wider mt-0.5">Verified Properties</p>
               </div>
-              <div className="flex items-center justify-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Instant PDF Brochures
+              <div>
+                <p className="text-2xl sm:text-3xl font-black text-white">15+</p>
+                <p className="text-[11px] font-semibold text-emerald-300 uppercase tracking-wider mt-0.5">Wayanad Locations</p>
               </div>
-              <div className="flex items-center justify-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Local Wayanad Experts
+              <div>
+                <p className="text-2xl sm:text-3xl font-black text-white">100%</p>
+                <p className="text-[11px] font-semibold text-emerald-300 uppercase tracking-wider mt-0.5">Instant PDF Brochures</p>
               </div>
-              <div className="flex items-center justify-center gap-1.5">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Best Price Guarantee
+              <div>
+                <p className="text-2xl sm:text-3xl font-black text-white">6,000 Yrs</p>
+                <p className="text-[11px] font-semibold text-emerald-300 uppercase tracking-wider mt-0.5">Edakkal Heritage</p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* ================= SPOTLIGHT FEATURE: AH-121 ================= */}
+        {/* ================= SPOTLIGHT RESORT: BANASURA POOL VILLA ================= */}
         {featuredAh121 && (
-          <section className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="bg-white rounded-3xl p-6 sm:p-10 border border-stone-200 shadow-md flex flex-col lg:flex-row items-center gap-10">
+          <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="bg-white rounded-3xl p-6 sm:p-10 border border-stone-200/90 shadow-md card-hover-elevation flex flex-col lg:flex-row items-center gap-10">
               {/* Left Photo Grid */}
               <div className="w-full lg:w-1/2 grid grid-cols-2 gap-3 h-80 sm:h-96">
                 <div className="relative rounded-2xl overflow-hidden shadow">
                   <Image
-                    src="/brochure-assets/extracted_img_2.jpg"
-                    alt="AH-121 Infinity Pool"
+                    src={featuredAh121.photos[0] || "/brochure-assets/extracted_img_2.jpg"}
+                    alt={featuredAh121.name}
                     fill
-                    className="object-cover"
+                    className="object-cover hover:scale-105 transition-transform duration-700"
                   />
-                  <div className="absolute top-3 left-3 bg-[#1A2218] text-white text-xs font-mono font-bold px-2.5 py-1 rounded">
-                    AH-121
+                  <div className="absolute top-3 left-3 bg-[#1A2218]/90 text-white text-xs font-mono font-bold px-2.5 py-1 rounded-md backdrop-blur">
+                    {featuredAh121.code}
                   </div>
                 </div>
+
                 <div className="grid grid-rows-2 gap-3">
                   <div className="relative rounded-2xl overflow-hidden shadow">
                     <Image
-                      src="/brochure-assets/extracted_img_3.jpg"
-                      alt="AH-121 Teak Bedroom"
+                      src={featuredAh121.photos[1] || "/brochure-assets/extracted_img_3.jpg"}
+                      alt="Interior"
                       fill
-                      className="object-cover"
+                      className="object-cover hover:scale-105 transition-transform duration-700"
                     />
                   </div>
                   <div className="relative rounded-2xl overflow-hidden shadow">
                     <Image
-                      src="/brochure-assets/extracted_img_7.jpg"
-                      alt="AH-121 Mountain View"
+                      src={featuredAh121.photos[2] || "/brochure-assets/extracted_img_4.jpg"}
+                      alt="Bedroom"
                       fill
-                      className="object-cover"
+                      className="object-cover hover:scale-105 transition-transform duration-700"
                     />
+                    <div className="absolute inset-0 bg-[#1A2218]/40 flex items-center justify-center text-white text-xs font-bold">
+                      +{featuredAh121.photos.length} High-Res Photos
+                    </div>
                   </div>
                 </div>
               </div>
 
-              {/* Right Content */}
-              <div className="w-full lg:w-1/2 space-y-4">
-                <span className="text-xs font-bold uppercase tracking-wider text-[#2E4F28] bg-emerald-50 px-3 py-1 rounded-full">
-                  Featured Property Spotlight
-                </span>
-                <h2 className="text-3xl font-extrabold text-stone-900 tracking-tight">
-                  [AH-121] 3BHK-Private Pool Villa
+              {/* Right Details */}
+              <div className="w-full lg:w-1/2">
+                <div className="inline-flex items-center gap-2 bg-emerald-50 text-emerald-800 text-xs font-bold px-3 py-1 rounded-full mb-3">
+                  <Waves className="w-3.5 h-3.5" /> Featured Spotlight Villa
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-black text-stone-900 tracking-tight">
+                  {featuredAh121.name}
                 </h2>
-                <p className="text-sm text-stone-500 font-medium flex items-center gap-1.5">
-                  <MapPin className="w-4 h-4 text-emerald-700" /> Padinjarathara (Near Banasura Dam), Wayanad
-                </p>
-                <p className="text-sm text-stone-600 leading-relaxed">
-                  Perched on a serene hillock overlooking the Banasura hills and waters. Complete with a private cliffside infinity swimming pool, teak master suites, sunset verandas, and high-speed Wi-Fi.
+                <p className="text-xs text-stone-500 flex items-center gap-1 mt-1 font-medium">
+                  <MapPin className="w-3.5 h-3.5 text-emerald-700" />
+                  {featuredAh121.locationDetails}
                 </p>
 
-                <div className="grid grid-cols-2 gap-3 text-xs text-stone-700 pt-2">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-600" /> Private Infinity Pool
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-600" /> Banasura Hill & Sunset View
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-600" /> Up to 12 Guests Capacity
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-emerald-600" /> Candle Dinner & Campfire
-                  </div>
+                <p className="mt-4 text-xs sm:text-sm text-stone-600 leading-relaxed">
+                  {featuredAh121.overview}
+                </p>
+
+                {/* Amenities Badges */}
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {featuredAh121.amenities.slice(0, 5).map((amenity, i) => (
+                    <span
+                      key={i}
+                      className="text-[11px] font-semibold bg-stone-100 text-stone-700 px-3 py-1 rounded-lg"
+                    >
+                      ✓ {amenity}
+                    </span>
+                  ))}
                 </div>
 
-                <div className="pt-4 flex flex-wrap items-center gap-4">
-                  <Link
-                    href="/brochure/AH-121"
-                    className="inline-flex items-center gap-2 bg-[#1A2218] hover:bg-black text-white text-xs font-bold px-6 py-3 rounded-xl transition shadow"
-                  >
-                    View Official 12-Page Brochure <ArrowRight className="w-4 h-4" />
-                  </Link>
+                {/* Pricing & CTA */}
+                <div className="mt-8 pt-6 border-t border-stone-100 flex flex-wrap items-center justify-between gap-4">
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-stone-400 block">Rate per night</span>
+                    <span className="text-2xl font-black text-stone-900">
+                      ₹{featuredAh121.pricePerNight.toLocaleString("en-IN")}
+                    </span>
+                    <span className="text-xs text-stone-500 font-medium ml-1">/ night</span>
+                  </div>
 
-                  <a
-                    href="https://wa.me/919744900414?text=Hi%20Aston%20Holidays,%20I%20am%20interested%20in%20booking%20AH-121%203BHK%20Pool%20Villa%20in%20Padinjarathara"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold px-5 py-3 rounded-xl transition shadow"
-                  >
-                    <MessageCircle className="w-4 h-4" /> WhatsApp Reservation
-                  </a>
+                  <div className="flex items-center gap-3">
+                    <Link
+                      href={`/brochure/${featuredAh121.code}`}
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-800 bg-stone-100 hover:bg-stone-200 px-4 py-2.5 rounded-xl transition"
+                    >
+                      <FileText className="w-3.5 h-3.5 text-emerald-800" /> 12-Page Brochure
+                    </Link>
+
+                    <a
+                      href={`https://wa.me/${settings.whatsappNumber.replace(/[^0-9]/g, "")}?text=Hi,%20I%20am%20interested%20in%20booking%20[${featuredAh121.code}]%20${encodeURIComponent(featuredAh121.name)}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-[#2E4F28] hover:bg-[#233D1F] px-5 py-2.5 rounded-xl transition shadow"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5" /> Book on WhatsApp
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </section>
         )}
 
-        {/* ================= FEATURED RESORTS COLLECTION ================= */}
-        <section className="py-16 bg-stone-50 border-y border-stone-200">
+        {/* ================= ALL VERIFIED RESORTS CATALOG ================= */}
+        <section className="py-16 bg-[#F4F5F7] border-y border-stone-200">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-10 gap-4">
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-emerald-800">
-                  Aston Holidays Signature Collection
+                <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md">
+                  Handpicked Stays
                 </span>
-                <h2 className="text-3xl font-extrabold text-stone-900 tracking-tight mt-1">
-                  Handpicked Stays & Rainforest Escapes
+                <h2 className="text-2xl sm:text-3xl font-black text-stone-900 tracking-tight mt-2">
+                  Featured Wayanad Villas &amp; Resorts
                 </h2>
                 <p className="text-xs sm:text-sm text-stone-500 mt-1">
-                  Each property comes with verified photos, amenities list, and instant PDF brochures.
+                  Private pool villas, romantic treehouses, and plantation stays across Wayanad.
                 </p>
               </div>
 
               <Link
                 href="/resorts"
-                className="inline-flex items-center gap-1.5 text-xs font-semibold text-emerald-800 hover:text-emerald-950 transition"
+                className="inline-flex items-center gap-1 text-xs font-bold text-emerald-800 hover:text-emerald-950 transition"
               >
-                View all properties ({Store.getResorts().length}) <ArrowRight className="w-4 h-4" />
+                <span>View all {allResorts.length} stays</span>
+                <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {featuredResorts.map((resort) => (
-                <ResortCard key={resort.id} resort={resort} />
+                <div key={resort.id} className="card-hover-elevation">
+                  <ResortCard resort={resort} />
+                </div>
               ))}
-            </div>
-          </div>
-        </section>
-
-        {/* ================= HISTORIC FOOTPRINTS STORY (Customizable) ================= */}
-        <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            {/* Historic Footprint Graphic */}
-            <div className="relative rounded-3xl overflow-hidden bg-white p-6 shadow-xl border border-stone-200">
-              <div className="relative w-full h-[400px] rounded-2xl overflow-hidden bg-stone-50">
-                <Image
-                  src={settings.heritageImage || "/brand/edakkal-footprint.jpg"}
-                  alt="Historic Footprints of Wayanad"
-                  fill
-                  className="object-contain p-4"
-                />
-              </div>
-              <div className="mt-4 text-center">
-                <span className="text-xs font-semibold text-stone-500">
-                  Inspired by the prehistoric rock petroglyphs at Edakkal Caves, Wayanad
-                </span>
-              </div>
-            </div>
-
-            {/* Story Content */}
-            <div className="space-y-6">
-              <span className="text-xs font-bold uppercase tracking-widest text-emerald-800 bg-emerald-100/60 px-3 py-1 rounded-full">
-                The Heritage of Wayanad
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-stone-900 tracking-tight leading-snug">
-                {settings.heritageStoryTitle}
-              </h2>
-              <p className="text-sm text-stone-600 leading-relaxed whitespace-pre-wrap">
-                {settings.heritageStoryText}
-              </p>
-
-              <div className="pt-2 flex items-center gap-4">
-                <div className="p-3 bg-stone-100 rounded-xl text-center min-w-[100px]">
-                  <p className="text-2xl font-black text-stone-900">{Store.getResorts().length}</p>
-                  <p className="text-[11px] font-medium text-stone-500">Curated Stays</p>
-                </div>
-                <div className="p-3 bg-stone-100 rounded-xl text-center min-w-[100px]">
-                  <p className="text-2xl font-black text-stone-900">10</p>
-                  <p className="text-[11px] font-medium text-stone-500">Destinations</p>
-                </div>
-                <div className="p-3 bg-stone-100 rounded-xl text-center min-w-[100px]">
-                  <p className="text-2xl font-black text-stone-900">100%</p>
-                  <p className="text-[11px] font-medium text-stone-500">WhatsApp Verified</p>
-                </div>
-              </div>
             </div>
           </div>
         </section>
 
         {/* ================= WAYANAD DESTINATIONS GRID ================= */}
-        <section className="py-16 bg-white border-t border-stone-200">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-2xl mx-auto mb-12">
-              <span className="text-xs font-bold uppercase tracking-wider text-emerald-800">
-                Explore Destinations
-              </span>
-              <h2 className="text-3xl font-extrabold text-stone-900 tracking-tight mt-1">
-                Discover the Diverse Landscapes of Wayanad
-              </h2>
-              <p className="text-xs sm:text-sm text-stone-500 mt-2">
-                From high-altitude mist ghats to serene lake reservoirs and wildlife sanctuaries.
-              </p>
-            </div>
+        <section className="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-2xl mx-auto mb-12">
+            <span className="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200">
+              Explore Wayanad
+            </span>
+            <h2 className="text-3xl font-black text-stone-900 tracking-tight mt-3">
+              Discover Stays by Region
+            </h2>
+            <p className="text-xs sm:text-sm text-stone-500 mt-2">
+              From the misty peaks of Chembra to the calm backwaters of Banasura Sagar Dam.
+            </p>
+          </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {destinations.slice(0, 6).map((dest) => (
-                <Link
-                  key={dest.slug}
-                  href={`/resorts?destination=${encodeURIComponent(dest.name)}`}
-                  className="group relative h-64 rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
-                >
-                  <Image
-                    src={dest.image}
-                    alt={dest.name}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-                  <div className="absolute bottom-4 left-4 right-4 text-white">
-                    <span className="text-[10px] font-semibold uppercase tracking-wider text-emerald-300">
-                      {dest.resortCount} Stays Available
-                    </span>
-                    <h3 className="text-xl font-bold mt-0.5">{dest.name}</h3>
-                    <p className="text-xs text-stone-300 line-clamp-1 mt-0.5 font-light">
-                      {dest.tagline}
-                    </p>
-                  </div>
-                </Link>
-              ))}
-            </div>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            {destinations.slice(0, 10).map((dest) => (
+              <Link
+                key={dest.slug}
+                href={`/resorts?location=${encodeURIComponent(dest.name)}`}
+                className="group relative h-48 rounded-2xl overflow-hidden shadow-sm card-hover-elevation border border-stone-200"
+              >
+                <Image
+                  src={dest.image}
+                  alt={dest.name}
+                  fill
+                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-950/90 via-stone-950/30 to-transparent" />
+                <div className="absolute bottom-3 left-3 right-3 text-white">
+                  <p className="text-xs font-bold tracking-tight">{dest.name}</p>
+                  <p className="text-[10px] text-emerald-300 font-medium truncate">{dest.tagline}</p>
+                </div>
+              </Link>
+            ))}
           </div>
         </section>
 
-        {/* ================= WHATSAPP CALLOUT BANNER ================= */}
-        <section className="py-16 bg-[#2E4F28] text-white">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-1.5 rounded-full text-xs font-semibold">
-              <MessageCircle className="w-4 h-4 text-emerald-300" /> Fast Response Within Minutes
+        {/* ================= HERITAGE & FOOTPRINT STORY ================= */}
+        <section className="py-20 bg-[#121D10] text-white relative overflow-hidden">
+          <div className="absolute -right-20 -bottom-20 w-96 h-96 opacity-10 pointer-events-none">
+            <Image
+              src="/brand/emblem.png"
+              alt="Edakkal Footprint"
+              fill
+              className="object-contain"
+            />
+          </div>
+
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col lg:flex-row items-center gap-12">
+            <div className="w-full lg:w-1/2 relative h-80 sm:h-96 rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+              <Image
+                src={settings.heritageImage || "/brand/edakkal-footprint.jpg"}
+                alt="Ancient Edakkal Caves Petroglyphs"
+                fill
+                className="object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#121D10] via-transparent to-transparent" />
+              <div className="absolute bottom-4 left-4 bg-white/10 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/20 text-xs font-mono">
+                Prehistoric Wayanad Petroglyphs
+              </div>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-              Looking for a Custom Resort Itinerary or Pool Villa?
-            </h2>
-            <p className="text-sm sm:text-base text-emerald-100 max-w-xl mx-auto">
-              Message our travel specialists on WhatsApp. Tell us your dates, group size, and budget, and we’ll send the best options straight to your phone.
-            </p>
-            <div className="pt-2">
-              <a
-                href={`https://wa.me/${settings.whatsappNumber.replace(/[^0-9]/g, "")}?text=Hi%20Aston%20Holidays,%20I%20am%20looking%20for%20resort%20options%20in%20Wayanad`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white text-[#2E4F28] hover:bg-stone-100 text-sm font-bold px-8 py-3.5 rounded-full shadow-lg hover:shadow-xl transition"
-              >
-                <MessageCircle className="w-4 h-4 text-emerald-600" /> Chat with Aston Holidays Desk
-              </a>
+
+            <div className="w-full lg:w-1/2">
+              <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/80 px-3 py-1 rounded-full border border-emerald-800">
+                The Aston Holidays Heritage
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-black text-white tracking-tight mt-3">
+                {settings.heritageStoryTitle}
+              </h2>
+              <p className="mt-4 text-xs sm:text-sm text-stone-300 leading-relaxed font-normal">
+                {settings.heritageStoryText}
+              </p>
+              <div className="mt-6 flex items-center gap-6">
+                <div>
+                  <p className="text-2xl font-black text-emerald-400">6,000+ BCE</p>
+                  <p className="text-[11px] text-stone-400">Neolithic Footprints</p>
+                </div>
+                <div className="h-8 w-px bg-white/20" />
+                <div>
+                  <p className="text-2xl font-black text-emerald-400">100%</p>
+                  <p className="text-[11px] text-stone-400">Authentic Hospitality</p>
+                </div>
+              </div>
             </div>
           </div>
         </section>
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }

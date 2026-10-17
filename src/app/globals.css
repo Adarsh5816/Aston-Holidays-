@@ -9,6 +9,109 @@
   }
 }
 
+/* =========================================================
+   WAYANAD NATURE & HERITAGE ANIMATIONS
+   ========================================================= */
+
+@keyframes driftMist {
+  0% {
+    transform: translateX(-5%) translateY(0px) scale(1);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateX(5%) translateY(-10px) scale(1.05);
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateX(-5%) translateY(0px) scale(1);
+    opacity: 0.35;
+  }
+}
+
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(46, 79, 40, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(46, 79, 40, 0.45);
+  }
+}
+
+@keyframes shimmerWave {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes rotateSlow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-mist {
+  animation: driftMist 18s ease-in-out infinite;
+}
+
+.animate-mist-reverse {
+  animation: driftMist 24s ease-in-out infinite reverse;
+}
+
+.animate-float {
+  animation: floatGentle 5s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: floatGentle 6s ease-in-out infinite 2s;
+}
+
+.animate-pulse-glow {
+  animation: pulseGlow 4s ease-in-out infinite;
+}
+
+.animate-rotate-slow {
+  animation: rotateSlow 60s linear infinite;
+}
+
+/* Frosted Nature Glass */
+.glass-nature {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+.glass-dark {
+  background: rgba(18, 29, 16, 0.75);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Card Hover Elevation */
+.card-hover-elevation {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.card-hover-elevation:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 35px -10px rgba(46, 79, 40, 0.18);
+}
+
 /* Print and PDF generation styles */
 @page {
   size: A4 portrait;
