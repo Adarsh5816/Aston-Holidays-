@@ -2,6 +2,61 @@ import fs from "fs";
 import path from "path";
 import { Resort, Lead, Invoice, FilterParams, User, SiteSettings, IntegrationConfig, ApiAuditLog } from "./types";
 import { initialResorts } from "@/data/resorts";
+import { supabase } from "./supabase";
+
+// Row mappers between camelCase TypeScript models and snake_case PostgreSQL columns
+function resortToDbRow(r: Resort) {
+  return {
+    id: r.id,
+    code: r.code,
+    name: r.name,
+    slug: r.slug,
+    destination: r.destination,
+    location_details: r.locationDetails,
+    google_maps_url: r.googleMapsUrl,
+    accommodation_type: r.accommodationType,
+    stay_preference: r.stayPreference,
+    ambience: r.ambience,
+    category: r.category,
+    bedrooms: r.bedrooms,
+    bathrooms: r.bathrooms,
+    max_adults: r.maxAdults,
+    max_children: r.maxChildren,
+    max_guests: r.maxGuests,
+    price_per_night: r.pricePerNight,
+    b2b_rate: r.b2bRate,
+    featured: r.featured,
+    cover_image: r.coverImage,
+    photos: r.photos,
+    amenities: r.amenities,
+    specialities: r.specialities,
+    nearby_attractions: r.nearbyAttractions,
+    check_in_time: r.checkInTime,
+    check_out_time: r.checkOutTime,
+    overview: r.overview,
+    inclusions: r.inclusions,
+    exclusions: r.exclusions
+  };
+}
+
+async function syncToSupabase(table: string, payload: any, conflictCol: string = "id") {
+  try {
+    if (!supabase) return;
+    const { error } = await supabase.from(table).upsert(payload, { onConflict: conflictCol });
+    if (error) {
+      console.warn(`Supabase sync warning (${table}):`, error.message);
+    }
+  } catch (err: any) {
+    console.warn(`Supabase sync network error (${table}):`, err?.message);
+  }
+}
+
+async function deleteFromSupabase(table: string, id: string) {
+  try {
+    if (!supabase) return;
+    await supabase.from(table).delete().eq("id", id);
+  } catch {}
+}
 
 interface DataStoreSchema {
   resorts: Resort[];
@@ -217,6 +272,22 @@ export const Store = {
     const data = readData();
     data.settings = { ...data.settings, ...newSettings };
     saveData(data);
+    syncToSupabase("site_settings", {
+      id: "global",
+      hero_title: data.settings.heroTitle,
+      hero_subtitle: data.settings.heroSubtitle,
+      hero_banner_image: data.settings.heroBannerImage,
+      announcement_text: data.settings.announcementText,
+      heritage_story_title: data.settings.heritageStoryTitle,
+      heritage_story_text: data.settings.heritageStoryText,
+      heritage_image: data.settings.heritageImage,
+      company_name: data.settings.companyName,
+      office_address: data.settings.officeAddress,
+      phone: data.settings.phone,
+      email: data.settings.email,
+      whatsapp_number: data.settings.whatsappNumber,
+      whatsapp_webhook_url: data.settings.whatsappWebhookUrl
+    });
     return data.settings;
   },
 
@@ -229,6 +300,26 @@ export const Store = {
     const data = readData();
     data.integration = { ...data.integration, ...newConfig };
     saveData(data);
+    syncToSupabase("integration_config", {
+      id: "global",
+      whatsapp_app_base_url: data.integration.whatsappAppBaseUrl,
+      whatsapp_webhook_path: data.integration.whatsappWebhookPath,
+      outbound_api_key: data.integration.outboundApiKey,
+      outbound_secret: data.integration.outboundSecret,
+      inbound_api_key: data.integration.inboundApiKey,
+      inbound_secret: data.integration.inboundSecret,
+      security_mode: data.integration.securityMode,
+      rate_limit_per_minute: data.integration.rateLimitPerMinute,
+      allowed_ips: data.integration.allowedIps,
+      bot_welcome_header: data.integration.botWelcomeHeader,
+      bot_call_to_action: data.integration.botCallToAction,
+      default_min_price: data.integration.defaultMinPrice,
+      default_max_price: data.integration.defaultMaxPrice,
+      last_diagnostic_ping_at: data.integration.lastDiagnosticPingAt,
+      last_diagnostic_latency_ms: data.integration.lastDiagnosticLatencyMs,
+      last_outbound_sync_at: data.integration.lastOutboundSyncAt,
+      last_outbound_status: data.integration.lastOutboundStatus
+    });
     return data.integration;
   },
 
@@ -252,6 +343,19 @@ export const Store = {
       data.auditLogs = data.auditLogs.slice(-100);
     }
     saveData(data);
+    syncToSupabase("audit_logs", {
+      id: newLog.id,
+      timestamp: newLog.timestamp,
+      type: newLog.type,
+      method: newLog.method,
+      endpoint: newLog.endpoint,
+      client_ip: newLog.clientIp,
+      status_code: newLog.statusCode,
+      duration_ms: newLog.durationMs,
+      status: newLog.status,
+      summary: newLog.summary,
+      payload_summary: newLog.payloadSummary
+    });
     return newLog;
   },
 
@@ -358,6 +462,7 @@ export const Store = {
       data.resorts.unshift(resort);
     }
     saveData(data);
+    syncToSupabase("resorts", resortToDbRow(resort), "id");
     return resort;
   },
 
@@ -367,6 +472,7 @@ export const Store = {
     data.resorts = data.resorts.filter(r => r.id !== idOrCode && r.code.toUpperCase() !== idOrCode.toUpperCase());
     if (data.resorts.length !== prevLen) {
       saveData(data);
+      deleteFromSupabase("resorts", idOrCode);
       return true;
     }
     return false;
@@ -387,6 +493,29 @@ export const Store = {
     };
     data.leads.unshift(newLead);
     saveData(data);
+    syncToSupabase("leads", {
+      id: newLead.id,
+      lead_number: newLead.leadNumber,
+      customer_name: newLead.customerName,
+      phone: newLead.phone,
+      email: newLead.email,
+      source: newLead.source,
+      destination: newLead.destination,
+      accommodation_type: newLead.accommodationType,
+      stay_preference: newLead.stayPreference,
+      ambience: newLead.ambience,
+      check_in: newLead.checkIn,
+      check_out: newLead.checkOut,
+      rooms_count: newLead.roomsCount,
+      adults_count: newLead.adultsCount,
+      children_count: newLead.childrenCount,
+      guests_count: newLead.guestsCount,
+      budget: newLead.budget,
+      status: newLead.status,
+      requested_resort_code: newLead.requestedResortCode,
+      notes: newLead.notes,
+      created_at: newLead.createdAt
+    });
     return newLead;
   },
 
@@ -396,6 +525,7 @@ export const Store = {
     if (lead) {
       lead.status = status;
       saveData(data);
+      syncToSupabase("leads", { id: lead.id, status: lead.status });
     }
     return lead;
   },
@@ -419,6 +549,37 @@ export const Store = {
       data.invoices.unshift(invoice);
     }
     saveData(data);
+    syncToSupabase("invoices", {
+      id: invoice.id,
+      invoice_number: invoice.invoiceNumber,
+      type: invoice.type,
+      customer_name: invoice.customerName,
+      customer_phone: invoice.customerPhone,
+      customer_email: invoice.customerEmail,
+      customer_address: invoice.customerAddress,
+      resort_code: invoice.resortCode,
+      resort_name: invoice.resortName,
+      destination: invoice.destination,
+      check_in: invoice.checkIn,
+      check_out: invoice.checkOut,
+      nights: invoice.nights,
+      guests: invoice.guests,
+      items: invoice.items,
+      subtotal: invoice.subtotal,
+      gst_rate: invoice.gstRate,
+      gst_amount: invoice.gstAmount,
+      discount: invoice.discount,
+      total_amount: invoice.totalAmount,
+      advance_paid: invoice.advancePaid,
+      balance_due: invoice.balanceDue,
+      status: invoice.status,
+      issue_date: invoice.issueDate,
+      due_date: invoice.dueDate,
+      bank_details: invoice.bankDetails,
+      notes: invoice.notes,
+      whatsapp_voucher_sent: invoice.whatsappVoucherSent,
+      whatsapp_voucher_sent_at: invoice.whatsappVoucherSentAt
+    });
     return invoice;
   },
 
@@ -428,6 +589,7 @@ export const Store = {
     data.invoices = data.invoices.filter(inv => inv.id !== id && inv.invoiceNumber !== id);
     if (data.invoices.length !== prevLen) {
       saveData(data);
+      deleteFromSupabase("invoices", id);
       return true;
     }
     return false;
