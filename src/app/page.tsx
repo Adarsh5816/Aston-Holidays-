@@ -111,7 +111,9 @@ export default function HomePage() {
 
         {/* ================= INTERACTIVE PACKAGES & MARQUEE TICKER ================= */}
         {/* Aston Holidays Best Holiday Package keep scrolling, Honeymoon, Destination Events, Group Packages */}
-        <InteractivePackagesSection packages={packages} whatsappNumber={settings.whatsappNumber} />
+        <div id="packages">
+          <InteractivePackagesSection packages={packages} whatsappNumber={settings.whatsappNumber} />
+        </div>
 
         {/* ================= SPOTLIGHT VERIFIED VILLA (Code-Protected, No Vendor Name) ================= */}
         {featuredAh121 && (
@@ -249,10 +251,14 @@ export default function HomePage() {
         )}
 
         {/* ================= GO & DISCOVER: WHISPERING TOWNS ================= */}
-        <WhisperingTownsSection />
+        <div id="whispering-towns">
+          <WhisperingTownsSection />
+        </div>
 
         {/* ================= BLOG & NEWS (LIVE SCROLLING TICKER) ================= */}
-        <LiveBlogTickerSection blogs={blogs} />
+        <div id="blogs">
+          <LiveBlogTickerSection blogs={blogs} />
+        </div>
 
         {/* ================= WHAT'S OUR CLIENT'S WORDS ================= */}
         <ClientWordsSection reviews={reviews} />

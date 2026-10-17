@@ -1,211 +1,355 @@
 import { HolidayPackage, BlogPost, ClientReview } from "@/lib/types";
 
 export const initialPackages: HolidayPackage[] = [
-  {
-    id: "pkg-hm-1",
-    title: "Wayanad Mist & Roses Romantic Escape",
-    category: "Honey Moon Package",
-    tagline: "Candlelight Dinners, Heated Plunge Pool & Misty Valley Panoramas",
-    duration: "3 Days / 2 Nights",
-    price: 24999,
-    featured: true,
-    image: "/brochure-assets/extracted_img_2.jpg",
-    inclusions: [
-      "2 Nights in Private Pool Villa with mountain sunrise view",
-      "Romantic Candlelight Dinner by the pool with acoustic playlist",
-      "Floral Bed Decoration & Signature Spiced Honeymoon Cake",
-      "Private Guided Plantation Trail & Sunset at Lakkidi View Point",
-      "Daily Chef Breakfast & Authentic Malabar Gourmet Dinners",
-      "Complimentary High-Definition Photo Voucher"
-    ],
-    description: "Designed exclusively for newlyweds, this secluded haven blends wild rainforest tranquility with tender romantic touches. Unwind in your temperature-controlled private pool while the afternoon clouds roll over the valley canopy.",
-    applicableResortCodes: ["AH-112", "AH-114", "AH-121"]
-  },
-  {
-    id: "pkg-hm-2",
-    title: "Canopy Cloud Rainforest Treehouse Honeymoon",
-    category: "Honey Moon Package",
-    tagline: "Elevated Solitude Amidst Tropical Canopies & Whispering Brooks",
-    duration: "3 Days / 2 Nights",
-    price: 28500,
-    featured: true,
-    image: "/brochure-assets/extracted_img_29.jpg",
-    inclusions: [
-      "Luxury Treehouse stay suspended 40ft in the rainforest canopy",
-      "Private couple Ayurvedic rejuvenation massage (60 mins)",
-      "Evening bonfire setup with artisanal roasted marshmallows",
-      "Exclusive guided dawn trek to secluded forest waterfalls",
-      "Signature high tea with freshly plucked estate cardamom infusions"
-    ],
-    description: "Wake to the chorus of exotic hornbills and early morning mountain mist. An extraordinary elevated perspective of Wayanad's primordial rainforests with premier eco-luxury comforts.",
-    applicableResortCodes: ["AH-105", "AH-118"]
-  },
-  {
-    id: "pkg-de-1",
-    title: "Wayanad Royal Estate Destination Wedding",
-    category: "Destination events",
-    tagline: "A Dreamy Forest-Mountain Ceremony Amidst 15-Acre Private Foliage",
-    duration: "3 Days / 2 Nights",
-    price: 185000,
-    featured: true,
-    image: "/brochure-assets/extracted_img_7.jpg",
-    inclusions: [
-      "Exclusive buyout of entire villa cluster (Accommodates up to 45 guests)",
-      "Traditional Kerala Nadaswaram & Panchavadyam arrival welcome",
-      "Open-air mandap setup overlooking Banasura Sagar mountain lake",
-      "Grand 24-item Royal Malabar Sadhya & evening barbecue banquet",
-      "Fairy light illuminated lawn with acoustic sound setup & campfire"
-    ],
-    description: "Exchange vows framed by emerald mountains and ancient shola forests. Aston Holidays handles bespoke staging, private chef catering, guest transfers, and luxury accommodation.",
-    applicableResortCodes: ["AH-121", "AH-123", "AH-124"]
-  },
-  {
-    id: "pkg-de-2",
-    title: "Executive Corporate Mountain Offsite & Strategy Turf",
-    category: "Destination events",
-    tagline: "Unwind, Strategize & Bond in Secluded Western Ghats Solitude",
-    duration: "2 Days / 1 Night",
-    price: 65000,
-    featured: false,
-    image: "/brochure-assets/extracted_img_13.jpg",
-    inclusions: [
-      "Dedicated multi-bedroom villa estate with conference turf",
-      "High-speed fiber WiFi & 4K projection display setup",
-      "Guided off-road team obstacle trail & river crossing adventure",
-      "Evening campfire with live acoustic music and chef BBQ skewers",
-      "All meals including morning South Indian breakfast & dinner banquet"
-    ],
-    description: "Ditch traditional conference rooms for mist-kissed verandas. Combine focused executive brainstorming with exhilarating outdoor experiences.",
-    applicableResortCodes: ["AH-118", "AH-120", "AH-122"]
-  },
-  {
-    id: "pkg-gp-1",
-    title: "Bachelors & Friends Wayanad Adventure Safari",
-    category: "Group Packages",
-    tagline: "Private Pool Villa, 4x4 Off-Road Trail & Bamboo Rafting",
-    duration: "3 Days / 2 Nights",
-    price: 22000,
-    featured: true,
-    image: "/brochure-assets/extracted_img_16.jpg",
-    inclusions: [
-      "Exclusive access to 3BHK/4BHK Private Pool Villa",
-      "4x4 Open Jeep Safari through rugged forest tracks",
-      "Bamboo rafting excursion across Kuruva Evergreen Island",
-      "Unlimited campfire nights with high-bass Bluetooth speaker",
-      "Barbecue grill & marinated chicken/veg setup by villa caretaker"
-    ],
-    description: "Crafted for friend squads who crave untamed adventures by day and lively private pool parties by night with absolute privacy.",
-    applicableResortCodes: ["AH-116", "AH-121", "AH-126"]
-  },
-  {
-    id: "pkg-gp-2",
-    title: "Grand Family Reunion Multi-Villa Estate",
-    category: "Group Packages",
-    tagline: "Multi-Generation Celebration with Private Lawns & Dedicated Chef",
-    duration: "3 Days / 2 Nights",
-    price: 36000,
-    featured: false,
-    image: "/brochure-assets/extracted_img_10.jpg",
-    inclusions: [
-      "Adjoining private villas accommodating up to 20 family members",
-      "Private swimming pool with dedicated toddler splash area",
-      "Sprawling manicured lawn for cricket, badminton, and games",
-      "Dedicated in-house chef preparing customized home-style meals",
-      "Sightseeing coordination with private comfortable AC traveler cab"
-    ],
-    description: "Bring grandparents, kids, and cousins together in one secure, scenic sanctuary with customized home-style catering and endless laughter.",
-    applicableResortCodes: ["AH-114", "AH-118", "AH-124"]
-  },
+  // 1. Best Holiday Package
   {
     id: "pkg-best-1",
-    title: "Aston Signature Wayanad Circuit Grand Tour",
+    title: "Adventure Wayanad",
     category: "Best Holiday Package",
-    tagline: "All-Inclusive VIP Sightseeing, Private Pool Stay & Chauffeur",
-    duration: "4 Days / 3 Nights",
-    price: 34999,
+    tagline: "High-altitude trails, bamboo rafting & off-road 4x4 safaris",
+    duration: "3 Days / 2 Nights",
+    price: 18999,
     featured: true,
     image: "/brochure-assets/extracted_img_5.jpg",
     inclusions: [
-      "3 Nights in Handpicked Luxury Pool Villa",
-      "Chauffeur-driven private AC vehicle for all 4 days",
-      "VIP entries to Edakkal Caves, Banasura Sagar Dam, and Pookode Lake",
-      "Daily breakfast buffet & curated dinner spread",
-      "Pick-up and drop from Calicut Airport (CCJ) or Railway Station"
+      "2 Nights stay in Verified Code-Protected Villa",
+      "Kuruva Island bamboo rafting expedition",
+      "4x4 Rugged jeep safari through deep forest trails",
+      "Campfire with acoustic sound setup under starry skies",
+      "Daily breakfast & traditional Kerala dinner spread"
     ],
-    description: "The gold standard Wayanad holiday. Experience the historic petroglyphs, mountain lakes, mist viewpoints, and prime luxury stays without worrying about logistics.",
-    applicableResortCodes: ["AH-112", "AH-121"]
+    description: "Find peace in the rhythm of waterfalls, joy in the laughter of local life, and meaning in journeys that linger long after they end. Book now!",
+    applicableResortCodes: ["AH-121", "AH-116"]
   },
   {
     id: "pkg-best-2",
-    title: "Weekend Rainforest Escape & Stream Dipping",
+    title: "Trinity of Sanctuaries",
     category: "Best Holiday Package",
-    tagline: "Quick Recharge for Bangalore, Kochi & Calicut Travelers",
-    duration: "2 Days / 1 Night",
-    price: 13999,
+    tagline: "Wildlife safaris, pristine dam lakes & ancient hill trails",
+    duration: "4 Days / 3 Nights",
+    price: 26500,
     featured: true,
-    image: "/brochure-assets/extracted_img_20.jpg",
+    image: "/brochure-assets/extracted_img_2.jpg",
     inclusions: [
-      "1 Night in Private Hilltop Cottage with forest panorama",
-      "Direct access to private natural mountain freshwater stream",
-      "Night campfire with herbal spiced tea & roasted snacks",
-      "Complimentary Wayanad organic spice gift hamper (Pepper & Cardamom)"
+      "3 Nights in luxury pool villa retreat",
+      "Muthanga Wildlife Sanctuary elephant jeep safari",
+      "Banasura Sagar earthen dam speed-boating",
+      "Edakkal Prehistoric Caves guided exploration",
+      "All transfers in private chauffeur-driven AC cab"
     ],
-    description: "The perfect 48-hour decompression. Leave Friday evening and return Monday morning completely recharged by the Western Ghats rainforest air.",
+    description: "An extraordinary journey connecting Wayanad's three sacred sanctuaries of nature, wildlife, and Neolithic heritage.",
+    applicableResortCodes: ["AH-112", "AH-114"]
+  },
+  {
+    id: "pkg-best-3",
+    title: "Educational Excursion",
+    category: "Best Holiday Package",
+    tagline: "Living tribal heritage, tea processing & historical cave archaeology",
+    duration: "3 Days / 2 Nights",
+    price: 14500,
+    featured: false,
+    image: "/brochure-assets/extracted_img_7.jpg",
+    inclusions: [
+      "En Ooru Tribal Heritage Village guided masterclass",
+      "Century-old tea estate tour with sommelier tasting",
+      "Wayanad Heritage Museum & Jain Temple expedition",
+      "Comfortable group stay with hygienic buffet meals"
+    ],
+    description: "An immersive learning holiday combining environmental geography, tribal culture, and historical archaeology in Wayanad.",
+    applicableResortCodes: ["AH-118", "AH-120"]
+  },
+  {
+    id: "pkg-best-4",
+    title: "Explore Wayanad Circuit",
+    category: "Best Holiday Package",
+    tagline: "Complete iconic landmarks tour from Lakkidi to Kuruva",
+    duration: "4 Days / 3 Nights",
+    price: 29999,
+    featured: true,
+    image: "/brochure-assets/extracted_img_13.jpg",
+    inclusions: [
+      "Lakkidi View Point & Pookode Freshwater Lake",
+      "Chembra Peak & Soochipara Cascading Waterfalls",
+      "Banasura Dam & Karlad Adventure Turf",
+      "Full chauffeur cab and resort breakfast & dinner"
+    ],
+    description: "Experience the ultimate Wayanad vacation covering all major scenic viewpoints, lakes, waterfalls, and tea gardens.",
+    applicableResortCodes: ["AH-112", "AH-121"]
+  },
+
+  // 2. Honey Moon Package
+  {
+    id: "pkg-hm-1",
+    title: "Love Nest in the Heights",
+    category: "Honey Moon Package",
+    tagline: "Private Heated Pool Villa suspended above misty mountain valleys",
+    duration: "3 Days / 2 Nights",
+    price: 27999,
+    featured: true,
+    image: "/brochure-assets/extracted_img_2.jpg",
+    inclusions: [
+      "2 Nights in Secluded Private Pool Villa (100% Privacy)",
+      "Candlelight Dinner poolside with acoustic romantic music",
+      "Floral Bed Decoration & Signature Honeymoon Cake",
+      "Sunset viewpoints tour at Lakkidi & tea garden walk",
+      "Daily Chef Breakfast & Gourmet Malabar Dinners"
+    ],
+    description: "Discover the magic of Wayanad with our best honeymoon package. Explore lush landscapes, vibrant culture, and thrilling adventures for an unforgettable vacation.",
+    applicableResortCodes: ["AH-112", "AH-121"]
+  },
+  {
+    id: "pkg-hm-2",
+    title: "Moonlit Waters Retreat",
+    category: "Honey Moon Package",
+    tagline: "Waterfront tranquility with private veranda overlooking the lake",
+    duration: "3 Days / 2 Nights",
+    price: 24500,
+    featured: true,
+    image: "/brochure-assets/extracted_img_8.jpg",
+    inclusions: [
+      "Waterfront luxury villa with direct lake panoramas",
+      "Private boat cruise across mirror-smooth waters",
+      "Romantic starlit campfire with roasted marshmallows",
+      "Couple Ayurvedic relaxation therapy session",
+      "Complimentary floral welcome drink & gift hamper"
+    ],
+    description: "Spend slow romantic mornings watching the mist rise over serene lake waters, followed by intimate candlelit dinners under the stars.",
+    applicableResortCodes: ["AH-114", "AH-122"]
+  },
+  {
+    id: "pkg-hm-3",
+    title: "Among the Forests",
+    category: "Honey Moon Package",
+    tagline: "Authentic luxury treehouse nestled in primordial rainforest canopies",
+    duration: "3 Days / 2 Nights",
+    price: 29999,
+    featured: true,
+    image: "/brochure-assets/extracted_img_29.jpg",
+    inclusions: [
+      "Elevated luxury treehouse stay with panoramic foliage views",
+      "Private naturalist-guided dawn forest trail",
+      "Candlelight dinner on private treehouse wooden deck",
+      "High-speed WiFi, en-suite modern amenities & heater"
+    ],
+    description: "Immerse yourselves in nature's purest embrace. Wake up to the songs of tropical birds and gentle mountain breezes in complete seclusion.",
+    applicableResortCodes: ["AH-105", "AH-118"]
+  },
+  {
+    id: "pkg-hm-4",
+    title: "Serenity in the Estates",
+    category: "Honey Moon Package",
+    tagline: "Colonial plantation bungalow with private tea trails & fireplace",
+    duration: "4 Days / 3 Nights",
+    price: 32000,
+    featured: false,
+    image: "/brochure-assets/extracted_img_10.jpg",
+    inclusions: [
+      "Heritage plantation estate bungalow stay",
+      "Private tea-tasting sessions with resident sommelier",
+      "Chembra Heart-Shaped Lake romantic excursion",
+      "Private chef candlelit dinners by the fireplace"
+    ],
+    description: "Surround yourselves with endless emerald tea slopes, cool breezes, and timeless colonial hospitality.",
     applicableResortCodes: ["AH-111", "AH-114"]
+  },
+
+  // 3. Destination Events
+  {
+    id: "pkg-de-1",
+    title: "Wedding & Royal Celebrations",
+    category: "Destination events",
+    tagline: "Breathtaking 15-acre estate weddings overlooking Banasura mountain lake",
+    duration: "3 Days / 2 Nights",
+    price: 195000,
+    featured: true,
+    image: "/brochure-assets/extracted_img_7.jpg",
+    inclusions: [
+      "Complete buyout of entire villa property for up to 50 guests",
+      "Open-air mandap setup overlooking mountain lake waters",
+      "Traditional Kerala Panchavadyam & floral entrance decor",
+      "Curated 24-item Royal Malabar Sadhya & barbecue gala",
+      "Dedicated on-site event coordinator & staging setup"
+    ],
+    description: "Celebrate life’s milestones in breathtaking settings—where every destination becomes a stage for unforgettable moments.",
+    applicableResortCodes: ["AH-121", "AH-123"]
+  },
+  {
+    id: "pkg-de-2",
+    title: "Corporate Event & Strategy Retreat",
+    category: "Destination events",
+    tagline: "Focused brainstorming in mountain solitude paired with outdoor obstacle turf",
+    duration: "2 Days / 1 Night",
+    price: 68000,
+    featured: true,
+    image: "/brochure-assets/extracted_img_13.jpg",
+    inclusions: [
+      "Multi-bedroom executive villa clusters with meeting hall",
+      "High-speed fiber WiFi & 4K display conference equipment",
+      "Team obstacle trail & off-road river crossing adventure",
+      "Evening campfire with live acoustic music & barbecue skewers"
+    ],
+    description: "Re-energize your leadership team away from city chaos with productive strategy sessions and thrilling outdoor activities.",
+    applicableResortCodes: ["AH-118", "AH-120"]
+  },
+  {
+    id: "pkg-de-3",
+    title: "Family Gathering & Milestone Celebrations",
+    category: "Destination events",
+    tagline: "Exclusive private lawns, children play turf & customized home-style dining",
+    duration: "3 Days / 2 Nights",
+    price: 48000,
+    featured: false,
+    image: "/brochure-assets/extracted_img_16.jpg",
+    inclusions: [
+      "Sprawling private villa accommodating multi-generation families",
+      "Private swimming pool with dedicated toddler splash area",
+      "Lawn games, badminton turf, and campfire area",
+      "Dedicated in-house chef cooking customized family meals"
+    ],
+    description: "Unite grandparents, children, and cousins in a private paradise with endless laughter and zero disruptions.",
+    applicableResortCodes: ["AH-114", "AH-124"]
+  },
+
+  // 4. Group Packages
+  {
+    id: "pkg-gp-1",
+    title: "Luxury Package",
+    category: "Group Packages",
+    tagline: "Exclusive 4BHK/5BHK Private Pool Villa buyout with chef service",
+    duration: "3 Days / 2 Nights",
+    price: 38000,
+    featured: true,
+    image: "/brochure-assets/extracted_img_16.jpg",
+    inclusions: [
+      "Total privacy with entire luxury villa reserved exclusively for your group",
+      "Private infinity pool with unhindered valley sunset view",
+      "Nightly campfire with high-bass Bluetooth sound system",
+      "Barbecue dinner arranged on the stargazing deck",
+      "Dedicated villa caretaker available 24/7"
+    ],
+    description: "Travel isn’t just about places—it’s about people. Share laughter, stories, and adventures as you explore the world side by side.",
+    applicableResortCodes: ["AH-116", "AH-121"]
+  },
+  {
+    id: "pkg-gp-2",
+    title: "Bachelor Friendly Safari & Camp",
+    category: "Group Packages",
+    tagline: "4x4 Open Jeep trail, bamboo river rafting & midnight campfire",
+    duration: "3 Days / 2 Nights",
+    price: 24000,
+    featured: true,
+    image: "/brochure-assets/extracted_img_14.jpg",
+    inclusions: [
+      "Group-friendly private villa with zero noise restrictions",
+      "Deep forest 4x4 off-road jeep safari trail",
+      "Kuruva Island river bamboo rafting tickets",
+      "Barbecue grill setup with marinated skewers & campfire"
+    ],
+    description: "The ultimate squad trip for friends seeking rugged thrills by day and lively private pool parties by night.",
+    applicableResortCodes: ["AH-118", "AH-126"]
+  },
+  {
+    id: "pkg-gp-3",
+    title: "Classic Package",
+    category: "Group Packages",
+    tagline: "Sightseeing, plantation trails & comfortable group cottages",
+    duration: "3 Days / 2 Nights",
+    price: 21500,
+    featured: false,
+    image: "/brochure-assets/extracted_img_6.jpg",
+    inclusions: [
+      "Spacious group cottage stay surrounded by tea foliage",
+      "Guided plantation walk and viewpoint excursion",
+      "Daily breakfast & authentic Kerala dinner",
+      "Evening campfire with spiced tea and snacks"
+    ],
+    description: "A well-balanced, comfortable group holiday ideal for friend circles and corporate peers.",
+    applicableResortCodes: ["AH-111", "AH-114"]
+  },
+  {
+    id: "pkg-gp-4",
+    title: "Value Package",
+    category: "Group Packages",
+    tagline: "Budget-friendly group stay with pool access & campfire",
+    duration: "2 Days / 1 Night",
+    price: 12999,
+    featured: false,
+    image: "/brochure-assets/extracted_img_18.jpg",
+    inclusions: [
+      "1 Night stay in spacious group villa",
+      "Swimming pool access and lawn games",
+      "Campfire setup with music system",
+      "Traditional South Indian breakfast"
+    ],
+    description: "Maximum fun at an unbeatable per-person price without compromising cleanliness or privacy.",
+    applicableResortCodes: ["AH-111", "AH-116"]
   }
 ];
 
 export const initialBlogs: BlogPost[] = [
   {
     id: "blog-1",
-    title: "Monsoon Mist in Lakkidi: Why Wayanad is South India's Rain Paradise",
-    slug: "monsoon-mist-lakkidi-wayanad-paradise",
-    category: "Seasonal Guide",
-    excerpt: "When the South-West monsoon washes over Lakkidi, Wayanad transforms into a theatrical dream of cascading waterfalls, swirling fog, and emerald slopes.",
-    content: "Lakkidi, often described as the 'Gateway of Wayanad', receives one of the highest rainfalls in all of peninsular India. Driving up the Thamarassery Ghats with its 9 hairpin curves, the air turns cool and thick with pine scent. Here, vacationing in a private pool villa during the monsoon offers an experience unlike anywhere else on earth.",
+    title: "Tourist Places Near by Sulthan Bathery",
+    slug: "tourist-places-near-by-sulthan-bathery",
+    category: "Destination Guide",
+    excerpt: "Discover the prehistoric rock engravings of Edakkal Caves, the 14th-century Jain Temple, and the elephant herds of Muthanga Wildlife Sanctuary.",
+    content: "Sulthan Bathery is the historic heart of Wayanad, named after Tipu Sultan who used the ancient Jain Temple as his battery (ammunition storehouse). Located at an elevation of 930 meters, it is bordered by the wildlife-rich forests of Muthanga. Visiting the Neolithic petroglyphs at Edakkal Caves just 10km away reveals engravings dating back to 6,000 BCE.",
     readTime: "4 min read",
-    date: "October 14, 2026",
-    image: "/brochure-assets/extracted_img_2.jpg",
-    author: "Aston Holidays Editorial Desk",
+    date: "April 25, 2026",
+    image: "/brochure-assets/extracted_img_7.jpg",
+    author: "Aston Holidays",
     featured: true
   },
   {
     id: "blog-2",
-    title: "Decoding the 6,000-Year-Old Rock Petroglyphs of Edakkal Caves",
-    slug: "decoding-ancient-petroglyphs-edakkal-caves",
-    category: "Heritage & History",
-    excerpt: "High atop Ambukuthi Hills lie the Neolithic rock carvings that inspired Aston Holidays' iconic brand footprint.",
-    content: "Dating back to at least 6,000 BCE, Edakkal is not technically a cave, but a cleft formed by a massive boulder stranded between two rock walls. The petroglyphs carved deep into its quartzite stone depict ancient figures, wheeled carts, and animal motifs—the only stone age engravings discovered in South India.",
-    readTime: "6 min read",
-    date: "October 02, 2026",
-    image: "/brochure-assets/extracted_img_7.jpg",
-    author: "Heritage Research Wing",
+    title: "Tourist Places Near by Mananthavady",
+    slug: "tourist-places-near-by-mananthavady",
+    category: "Destination Guide",
+    excerpt: "From the dense evergreen archipelago of Kuruva Island to the sacred waters of Papanasini at Thirunelli Temple and Pazhassi Raja's tomb.",
+    content: "Mananthavady sits on the banks of the Kabini River and serves as the cultural gateway to Northern Wayanad. The 950-acre Kuruva Island with its bamboo rafts, rare orchids, and serene waterways is an absolute must-visit. Higher up into the Brahmagiri foothills lies Thirunelli Maha Vishnu Temple, revered for millennia as the 'Kashi of the South'.",
+    readTime: "5 min read",
+    date: "April 25, 2026",
+    image: "/brochure-assets/extracted_img_29.jpg",
+    author: "Aston Holidays",
     featured: true
   },
   {
     id: "blog-3",
-    title: "The Legend of Chembra Peak: Trekking to the Natural Heart-Shaped Lake",
-    slug: "chembra-peak-heart-shaped-lake-trek",
-    category: "Adventure & Trekking",
-    excerpt: "At 2,100 meters above sea level, Chembra Peak harbors a natural lake shaped like a heart that is believed never to dry up.",
-    content: "The trek through the rolling tea estates of Meppadi up into the high montane grasslands (Shola forests) is an unforgettable pilgrimage for nature lovers. When you stand before 'Hridaya Saras' (the Heart Lake), shrouded in clouds, the world feels pristine and untouched.",
-    readTime: "5 min read",
-    date: "September 24, 2026",
-    image: "/brochure-assets/extracted_img_29.jpg",
-    author: "Adventure Guide Desk",
-    featured: false
+    title: "Tourist Places Near by Kalpetta",
+    slug: "tourist-places-near-by-kalpetta",
+    category: "Destination Guide",
+    excerpt: "Explore the bustling headquarters of Wayanad surrounded by verdant coffee hills, Karapuzha Dam, and the ancient Koottamundu Glass Temple.",
+    content: "Kalpetta is the administrative and commercial epicenter of Wayanad. Located conveniently in the center of the district, it gives you quick access to Karapuzha earthen dam, sprawling spice markets, and aromatic coffee processing estates. The Glass Temple dedicated to the Jain Tirthankara Parshvanatha on the slopes of Vellarimala is a hidden architectural marvel.",
+    readTime: "4 min read",
+    date: "April 25, 2026",
+    image: "/brochure-assets/extracted_img_2.jpg",
+    author: "Aston Holidays",
+    featured: true
   },
   {
     id: "blog-4",
-    title: "Flavors of the Ghats: The Culinary Magic of Malabar & Wayanadan Spices",
-    slug: "flavors-of-wayanad-malabar-spices",
-    category: "Food & Culture",
-    excerpt: "From pathiri and spicy chicken stew to earthen pot bamboo biryani and fresh green pepper pickles, taste the authentic heritage of Wayanad.",
-    content: "Wayanad's cuisine is intimately woven with its soil. Organic black pepper, sun-dried cardamom, bird's eye chilies (Kanthari), and freshly pressed coconut milk create a flavor profile that is aromatic, comforting, and unforgettable.",
+    title: "Best 5 Cafes in Mananthavady",
+    slug: "best-5-cafes-in-mananthavady",
+    category: "Food & Cafes",
+    excerpt: "Looking for freshly brewed artisan Wayanadan coffee, wood-fired snacks, and cozy rain-view seats in Mananthavady? Here are the top 5 spots.",
+    content: "Mananthavady's cafe culture has blossomed with vibrant spots catering to travelers heading towards Kuruva and Thirunelli. Experience single-origin Robusta roasts, layered Malabar snacks, iced cardamom espressos, and scenic plantation verandas.",
     readTime: "3 min read",
-    date: "September 18, 2026",
+    date: "April 25, 2026",
     image: "/brochure-assets/extracted_img_16.jpg",
-    author: "Culinary Curator",
+    author: "Aston Holidays",
+    featured: false
+  },
+  {
+    id: "blog-5",
+    title: "Best 5 Cafes in Kalpetta",
+    slug: "best-5-cafes-in-kalpetta",
+    category: "Food & Cafes",
+    excerpt: "Where to find the best specialty brews, artisanal Malabar tea blends, and delicious pastries after a long day of Wayanad sightseeing.",
+    content: "Kalpetta boasts some of the most charming cafes in the Western Ghats. From roasteries serving fresh estate harvests to cozy mountain lounges with high-speed WiFi, explore the 5 best cafe haunts in Kalpetta town.",
+    readTime: "3 min read",
+    date: "April 25, 2026",
+    image: "/brochure-assets/extracted_img_13.jpg",
+    author: "Aston Holidays",
     featured: false
   }
 ];
@@ -213,11 +357,11 @@ export const initialBlogs: BlogPost[] = [
 export const initialReviews: ClientReview[] = [
   {
     id: "rev-1",
-    name: "Ananya & Siddharth",
+    name: "Dr. Ananya & Siddharth",
     location: "Bangalore",
     rating: 5,
-    packageTaken: "Wayanad Mist & Roses Romantic Escape (AH-112)",
-    review: "Our honeymoon stay at AH-112 was absolute bliss! The candlelight dinner arranged right next to our heated pool overlooking the mist was unforgettable. Receiving the HD PDF brochure on WhatsApp within 30 seconds made planning effortless.",
+    packageTaken: "Honey Moon Package • Love Nest in the Heights",
+    review: "Our honeymoon stay in Wayanad with Aston Holidays was absolute perfection! The candlelight dinner arranged right next to our heated pool with misty valley views will stay with us forever. The 12-page WhatsApp brochure made selection seamless.",
     date: "October 2026",
     avatar: "AS"
   },
@@ -226,28 +370,28 @@ export const initialReviews: ClientReview[] = [
     name: "Vikramaditya Rao & Family",
     location: "Hyderabad",
     rating: 5,
-    packageTaken: "Grand Family Reunion Multi-Villa Estate (AH-121)",
-    review: "We booked for a family of 14 people. Having the private pool and entire estate to ourselves gave our children and elders complete privacy and freedom. The caretaker was courteous and the food was 10/10.",
+    packageTaken: "Group Packages • Grand Family Reunion",
+    review: "We reserved the 4BHK private villa for our family gathering of 14 people. Cleanliness was 10/10, the food was delicious, and having the full villa and pool exclusively to ourselves was priceless. Aston Holidays handled every detail flawlessly.",
     date: "September 2026",
     avatar: "VR"
   },
   {
     id: "rev-3",
     name: "Deepak Kurup & Team",
-    location: "Dubai & Kochi",
+    location: "Dubai",
     rating: 5,
-    packageTaken: "Bachelors & Friends Wayanad Adventure Safari",
-    review: "Aston Holidays organized our college reunion. The 4x4 off-road jeep safari and the evening acoustic campfire were legendary. Super transparent rates and prompt coordination.",
+    packageTaken: "Group Packages • Bachelor Friendly Safari",
+    review: "Aston Holidays organized our college reunion. The 4x4 off-road jeep safari and the acoustic campfire setup with music was unforgettable. Highly recommend their group packages!",
     date: "September 2026",
     avatar: "DK"
   },
   {
     id: "rev-4",
-    name: "Dr. Meera Nambiar",
-    location: "Calicut",
+    name: "Meera Nambiar",
+    location: "Kochi",
     rating: 5,
-    packageTaken: "Weekend Rainforest Escape & Stream Dipping",
-    review: "We love that Aston Holidays doesn't charge hidden fees and curates strictly verified stays. Dipping in the private freshwater stream right outside our cottage was restorative. We will definitely be back!",
+    packageTaken: "Best Holiday Package • Trinity of Sanctuaries",
+    review: "The standard PDF brochure sent directly on WhatsApp made it so easy to compare options with transparent rates. Everything was 100% verified with zero hidden fees. Aston Holidays is our go-to for Wayanad!",
     date: "August 2026",
     avatar: "MN"
   }
@@ -255,47 +399,62 @@ export const initialReviews: ClientReview[] = [
 
 export const whisperingTownsData = [
   {
+    name: "Sulthan Bathery",
+    tripsCount: 17,
+    tagline: "Historic Forts & Neolithic Caves",
+    description: "Quiet enclaves of Wayanad, where nature’s rhythm meets ancestral tales, creating unforgettable holiday experiences steeped in heritage and serenity.",
+    keyAttractions: ["Edakkal Prehistoric Caves", "Wayanad Heritage Museum", "Jain Temple", "Muthanga Wildlife Sanctuary"],
+    distanceFromCalicut: "98 km",
+    icon: "🪨"
+  },
+  {
+    name: "Pulpally",
+    tripsCount: 17,
+    tagline: "Mythological Foothills & Ancient Shrines",
+    description: "A tranquil border town rich in agrarian spice plantations, serene forest trails, and ancient folklore.",
+    keyAttractions: ["Sita Devi Temple", "Kuruva Island Access", "Pulpally Forest Trails", "Kabini River Banks"],
+    distanceFromCalicut: "94 km",
+    icon: "🌾"
+  },
+  {
+    name: "Ambalavayal",
+    tripsCount: 17,
+    tagline: "Prehistoric Foothills & Agricultural Gardens",
+    description: "Nestled right below the Ambukuthi Hills, home to the regional agricultural research center and flower nurseries.",
+    keyAttractions: ["Ambukuthi Hills", "Agricultural Research Garden", "Wayanad Heritage Museum", "Phantom Rock"],
+    distanceFromCalicut: "88 km",
+    icon: "🌸"
+  },
+  {
+    name: "Meppadi",
+    tripsCount: 16,
+    tagline: "Rolling Tea Slopes & The Heart Lake",
+    description: "Endless rolling emerald tea plantations leading to Chembra Peak and the cascading thunder of Soochipara Waterfalls.",
+    keyAttractions: ["Chembra Peak Heart Lake", "Soochipara Waterfalls", "Kanthanpara Falls", "900 Kandi Glass Bridge"],
+    distanceFromCalicut: "76 km",
+    icon: "⛰️"
+  },
+  {
     name: "Vythiri",
+    tripsCount: 16,
     tagline: "The Misty Gateway & Rainforest Canopy",
-    description: "Nestled in dense evergreen forests with year-round cool mist, suspension bridges, and famous hill viewpoints.",
+    description: "Dense evergreen rainforests with year-round cool mountain mist, suspension bridges, and famous hill viewpoints.",
     keyAttractions: ["Lakkidi View Point", "Pookode Lake", "En Ooru Tribal Village", "Chain Tree"],
     distanceFromCalicut: "65 km",
     icon: "🌫️"
   },
   {
-    name: "Sulthan Bathery",
-    tagline: "Ancient Petroglyphs & Royal Forts",
-    description: "A historic hub boasting prehistoric rock art at Edakkal Caves, the 14th-century Jain temple, and wildlife elephant safaris.",
-    keyAttractions: ["Edakkal Prehistoric Caves", "Heritage Museum", "Jain Temple", "Muthanga Wildlife Sanctuary"],
-    distanceFromCalicut: "98 km",
-    icon: "🪨"
-  },
-  {
-    name: "Padinjarathara",
-    tagline: "Mirror Lakes & Earth Dam Vistas",
-    description: "Home to Banasura Sagar, India's largest earthen dam, surrounded by dramatic peaks and shimmering blue waters.",
-    keyAttractions: ["Banasura Sagar Dam", "Karlad Lake", "Meenmutty Waterfalls", "Speed Boating Turf"],
-    distanceFromCalicut: "82 km",
-    icon: "🌊"
-  },
-  {
-    name: "Meppadi",
-    tagline: "Rolling Tea Slopes & The Heart Lake",
-    description: "Endless emerald tea plantations leading to Chembra Peak and the cascading thunder of Soochipara Waterfalls.",
-    keyAttractions: ["Chembra Peak Heart Lake", "Soochipara Falls", "Kanthanpara Falls", "900 Kandi Glass Bridge"],
-    distanceFromCalicut: "76 km",
-    icon: "⛰️"
-  },
-  {
     name: "Mananthavady",
+    tripsCount: 17,
     tagline: "Bamboo Rafting & Spiritual Foothills",
     description: "A cultural and natural sanctuary famous for the evergreen Kuruva Island archipelago and the ancient Thirunelli Temple.",
-    keyAttractions: ["Kuruva Evergreen Island", "Thirunelli Maha Vishnu Temple", "Pazhassi Raja Tomb", "Brahmagiri Hills"],
+    keyAttractions: ["Kuruva Evergreen Island", "Thirunelli Maha Vishnu Temple", "Pazhassi Raja Tomb", "Brahmagiri Wildlife"],
     distanceFromCalicut: "95 km",
     icon: "🎋"
   },
   {
     name: "Kalpetta",
+    tripsCount: 10,
     tagline: "Vibrant Foothills & Artisan Coffee Roasts",
     description: "The bustling heart of Wayanad surrounded by fragrant coffee estates, spice emporiums, and panoramic hill perches.",
     keyAttractions: ["Karapuzha Dam", "Koottamundu Glass Temple", "Wayanad Spice Markets", "Coffee Plantation Trails"],
