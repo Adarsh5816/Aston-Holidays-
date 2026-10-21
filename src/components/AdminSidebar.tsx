@@ -46,7 +46,7 @@ export default function AdminSidebar() {
   ];
 
   return (
-    <aside className="w-64 bg-white border-r border-stone-200 flex flex-col justify-between min-h-screen p-5">
+    <aside className="w-64 bg-white border-r border-stone-200 flex flex-col justify-between min-h-screen p-5 print:hidden no-print">
       <div>
         {/* Brand Logo & Backoffice Tag */}
         <div className="pb-5 border-b border-stone-200">

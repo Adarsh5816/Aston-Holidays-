@@ -161,19 +161,78 @@
 /* Print and PDF generation styles */
 @page {
   size: A4 portrait;
-  margin: 0;
+  margin: 10mm;
 }
 
 @media print {
-  body {
+  /* Isolate print surface and force pristine white background */
+  html, body {
+    background: #FFFFFF !important;
     background-color: #FFFFFF !important;
     color: #000000 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    height: auto !important;
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
   }
 
-  .no-print {
+  /* Universal hide for non-printable UI elements */
+  .no-print,
+  .print\:hidden,
+  aside,
+  nav.no-print,
+  header.no-print {
     display: none !important;
+  }
+
+  /* Reset modal overlays and card wrappers so they don't produce dark backdrops or shadows */
+  .voucher-modal-overlay {
+    position: static !important;
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+    width: 100% !important;
+    min-height: auto !important;
+    box-shadow: none !important;
+  }
+
+  .voucher-modal-card {
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    max-height: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+    background: #FFFFFF !important;
+  }
+
+  #printable-voucher-sheet {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    display: block !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: #FFFFFF !important;
+  }
+
+  /* Avoid page breaks inside table rows, cards, or QR code blocks */
+  tr, .avoid-break {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
   }
 
   .page-break {
@@ -181,11 +240,6 @@
     break-after: page !important;
     page-break-inside: avoid !important;
     break-inside: avoid !important;
-    height: 100vh !important;
-    max-height: 100vh !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    overflow: hidden !important;
   }
 }
 

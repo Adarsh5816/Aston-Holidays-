@@ -185,11 +185,11 @@ export default function ItineraryVoucherModal({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 overflow-y-auto">
-      <div className="bg-white rounded-3xl max-w-4xl w-full shadow-2xl border border-stone-200 overflow-hidden my-6 flex flex-col max-h-[92vh]">
+    <div className="voucher-modal-overlay fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-2 sm:p-4 overflow-y-auto print:static print:inset-auto print:z-auto print:bg-white print:p-0 print:m-0 print:overflow-visible print:block print:w-full">
+      <div className="voucher-modal-card bg-white rounded-3xl max-w-4xl w-full shadow-2xl border border-stone-200 overflow-hidden my-6 flex flex-col max-h-[92vh] print:max-w-none print:w-full print:shadow-none print:border-none print:rounded-none print:my-0 print:max-h-none print:overflow-visible print:block print:p-0">
         
         {/* Top Control Bar (Hidden on print) */}
-        <div className="no-print bg-[#1A2518] text-white px-6 py-4 flex flex-wrap items-center justify-between gap-3 border-b border-white/10">
+        <div className="no-print print:hidden bg-[#1A2518] text-white px-6 py-4 flex flex-wrap items-center justify-between gap-3 border-b border-white/10">
           <div className="flex items-center gap-3">
             <span className="font-mono text-xs font-black bg-emerald-700/80 text-emerald-100 px-2.5 py-1 rounded-lg">
               {booking.bookingCode}
@@ -227,7 +227,7 @@ export default function ItineraryVoucherModal({
         </div>
 
         {/* Tab Navigation (Hidden on print) */}
-        <div className="no-print bg-stone-50 border-b border-stone-200 px-6 py-2.5 flex flex-wrap items-center gap-2 text-xs font-bold">
+        <div className="no-print print:hidden bg-stone-50 border-b border-stone-200 px-6 py-2.5 flex flex-wrap items-center gap-2 text-xs font-bold">
           <button
             onClick={() => setActiveTab("itinerary")}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition ${
@@ -283,7 +283,7 @@ export default function ItineraryVoucherModal({
         </div>
 
         {/* MODAL BODY (PRINTABLE) */}
-        <div className="flex-1 overflow-y-auto p-6 sm:p-8 bg-white print:p-0">
+        <div id="printable-voucher-sheet" className="flex-1 overflow-y-auto p-6 sm:p-8 bg-white print:p-0 print:overflow-visible print:block print:w-full">
 
           {/* ================= 1. TOUR & ITINERARY VOUCHER ================= */}
           {activeTab === "itinerary" && (
@@ -451,7 +451,7 @@ export default function ItineraryVoucherModal({
             <div className="space-y-6">
               {/* Room selector tabs if multiple rooms */}
               {booking.rooms.length > 1 && (
-                <div className="flex gap-2 pb-3 border-b border-stone-200">
+                <div className="no-print print:hidden flex gap-2 pb-3 border-b border-stone-200">
                   {booking.rooms.map((r, idx) => (
                     <button
                       key={r.id}
@@ -490,7 +490,7 @@ export default function ItineraryVoucherModal({
                         <div className="text-right">
                           <button
                             onClick={() => sendRoomVoucherWhatsApp(r)}
-                            className="no-print inline-flex items-center gap-1.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-3 py-1.5 rounded-xl transition shadow"
+                            className="no-print print:hidden inline-flex items-center gap-1.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-3 py-1.5 rounded-xl transition shadow"
                           >
                             <MessageCircle className="w-3.5 h-3.5" /> WhatsApp Room Voucher
                           </button>
@@ -584,7 +584,7 @@ export default function ItineraryVoucherModal({
                   <div className="text-right">
                     <button
                       onClick={sendVehicleVoucherWhatsApp}
-                      className="no-print inline-flex items-center gap-1.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-3 py-1.5 rounded-xl transition shadow"
+                      className="no-print print:hidden inline-flex items-center gap-1.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-3 py-1.5 rounded-xl transition shadow"
                     >
                       <MessageCircle className="w-3.5 h-3.5" /> WhatsApp Driver & Guest
                     </button>
@@ -921,7 +921,7 @@ export default function ItineraryVoucherModal({
                   </p>
                 </div>
 
-                <div className="no-print flex items-center gap-2">
+                <div className="no-print print:hidden flex items-center gap-2">
                   {isEditingNotes ? (
                     <button
                       onClick={handleSaveNotes}

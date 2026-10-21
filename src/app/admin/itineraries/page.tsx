@@ -440,11 +440,12 @@ function ItinerariesContent() {
   );
 
   return (
-    <div className="flex min-h-screen bg-[#F5F6F8]">
+    <div className="flex min-h-screen bg-[#F5F6F8] print:bg-white print:min-h-0 print:block">
       <AdminSidebar />
 
-      <main className="flex-1 p-8 overflow-y-auto">
-        {/* Top Header */}
+      <main className="flex-1 p-8 overflow-y-auto print:p-0 print:m-0 print:overflow-visible print:block">
+        <div className={selectedBooking ? "print:hidden" : ""}>
+          {/* Top Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-stone-200 gap-4">
           <div>
             <div className="flex items-center gap-2">
@@ -1489,6 +1490,7 @@ function ItinerariesContent() {
             </div>
           </div>
         )}
+        </div>
 
         {/* ================= VOUCHER & BILL MODAL ================= */}
         {selectedBooking && (
