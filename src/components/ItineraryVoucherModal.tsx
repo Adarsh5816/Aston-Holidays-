@@ -110,10 +110,16 @@ export default function ItineraryVoucherModal({
     }
 
     if (booking.vehicle && booking.vehicle.enabled) {
+      const v = booking.vehicle;
       msg += `🚗 *CAB / TRANSPORT:*\n`;
-      msg += `• ${booking.vehicle.vehicleType} (${booking.vehicle.pickupLocation} to ${booking.vehicle.dropLocation})\n`;
-      if (booking.vehicle.driverName) msg += `• Driver: ${booking.vehicle.driverName} (${booking.vehicle.driverPhone || "N/A"})\n`;
-      if (booking.vehicle.vehicleNumber) msg += `• Vehicle No: ${booking.vehicle.vehicleNumber}\n`;
+      msg += `• ${v.vehicleType} (${v.pickupLocation} to ${v.dropLocation})\n`;
+      if (v.pricingModel === "per_km") {
+        msg += `• Running KM: ${v.totalKmCovered || 0} KM @ ₹${v.ratePerKm || 0}/KM\n`;
+      } else if (v.pricingModel === "package_km_extra") {
+        msg += `• Package Base KM: ${v.baseKmIncluded || 0} KM | Extra KM Covered: ${v.extraKmCovered || 0} KM (@ ₹${v.extraKmRate || 0}/KM)\n`;
+      }
+      if (v.driverName) msg += `• Driver: ${v.driverName} (${v.driverPhone || "N/A"})\n`;
+      if (v.vehicleNumber) msg += `• Vehicle No: ${v.vehicleNumber}\n`;
       msg += `\n`;
     }
 
@@ -161,6 +167,16 @@ export default function ItineraryVoucherModal({
     msg += `*Pickup Location:* ${v.pickupLocation}\n`;
     msg += `*Drop Location:* ${v.dropLocation}\n`;
     msg += `*Total Duration:* ${v.totalDays} Days\n`;
+    if (v.pricingModel === "per_km") {
+      msg += `*Running KM Rate:* ₹${v.ratePerKm || 0}/KM (Total KM Covered: ${v.totalKmCovered || 0} KM)\n`;
+    } else if (v.pricingModel === "package_km_extra") {
+      msg += `*Base KM Included:* ${v.baseKmIncluded || 0} KM\n`;
+      msg += `*Total KM Covered:* ${v.totalKmCovered || 0} KM\n`;
+      msg += `*Extra KM Covered:* ${v.extraKmCovered || 0} KM (@ ₹${v.extraKmRate || 0}/KM = ₹${(v.extraKmAmount || 0).toLocaleString("en-IN")})\n`;
+    }
+    if (v.startKmReading || v.endKmReading) {
+      msg += `*Odometer:* Start: ${v.startKmReading || "---"} KM | End: ${v.endKmReading || "---"} KM\n`;
+    }
     if (v.dutyNotes) msg += `*Duty Notes:* ${v.dutyNotes}\n`;
     msg += `\nAston Holidays Logistics Desk: +91 97449 00414`;
 
@@ -578,7 +594,7 @@ export default function ItineraryVoucherModal({
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-6 text-xs">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 text-xs">
                   <div className="p-4 bg-white rounded-2xl border border-stone-200 space-y-2">
                     <p className="text-[10px] uppercase font-bold text-stone-400">Chauffeur Details</p>
                     <div className="flex justify-between">
@@ -613,6 +629,58 @@ export default function ItineraryVoucherModal({
                       <span>Vehicle Tariff:</span>
                       <span>₹{booking.vehicle.totalAmount.toLocaleString("en-IN")}</span>
                     </div>
+                  </div>
+
+                  <div className="p-4 bg-white rounded-2xl border border-stone-200 space-y-2">
+                    <p className="text-[10px] uppercase font-bold text-stone-400">KM Running & Tariff Model</p>
+                    <div className="flex justify-between items-center">
+                      <span className="text-stone-500">Pricing Mode:</span>
+                      <span className="font-bold text-[10px] px-2 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
+                        {booking.vehicle.pricingModel === "per_km" ? "Running KM Rate" :
+                         booking.vehicle.pricingModel === "package_km_extra" ? "Package KM + Extra" : "Daily Rate"}
+                      </span>
+                    </div>
+
+                    {booking.vehicle.pricingModel === "per_km" && (
+                      <>
+                        <div className="flex justify-between">
+                          <span className="text-stone-500">Total KM Running:</span>
+                          <span className="font-bold text-stone-900">{booking.vehicle.totalKmCovered || 0} KM</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-stone-500">Rate per KM:</span>
+                          <span className="font-semibold text-emerald-800">₹{booking.vehicle.ratePerKm || 0}/KM</span>
+                        </div>
+                      </>
+                    )}
+
+                    {booking.vehicle.pricingModel === "package_km_extra" && (
+                      <>
+                        <div className="flex justify-between">
+                          <span className="text-stone-500">Base KM in Package:</span>
+                          <span className="font-semibold text-stone-800">{booking.vehicle.baseKmIncluded || 0} KM</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-stone-500">Total KM Covered:</span>
+                          <span className="font-bold text-stone-900">{booking.vehicle.totalKmCovered || 0} KM</span>
+                        </div>
+                        <div className="flex justify-between text-amber-800 font-semibold">
+                          <span>Extra KM Covered:</span>
+                          <span>{booking.vehicle.extraKmCovered || 0} KM (@ ₹{booking.vehicle.extraKmRate || 0}/km)</span>
+                        </div>
+                        <div className="flex justify-between text-amber-900 font-bold">
+                          <span>Extra KM Charge:</span>
+                          <span>₹{(booking.vehicle.extraKmAmount || 0).toLocaleString("en-IN")}</span>
+                        </div>
+                      </>
+                    )}
+
+                    {(booking.vehicle.startKmReading || booking.vehicle.endKmReading) && (
+                      <div className="flex justify-between text-[11px] text-stone-500 pt-1 border-t border-stone-100">
+                        <span>Odometer:</span>
+                        <span className="font-mono">{booking.vehicle.startKmReading || "---"} ➔ {booking.vehicle.endKmReading || "---"} KM</span>
+                      </div>
+                    )}
                   </div>
                 </div>
 
@@ -710,15 +778,44 @@ export default function ItineraryVoucherModal({
                       <tr className="hover:bg-stone-50/50">
                         <td className="py-3 px-4">
                           <p className="font-bold text-stone-900">
-                            [Vehicle Booking] {booking.vehicle.vehicleType}
+                            [Vehicle Rental] {booking.vehicle.vehicleType}
                           </p>
                           <p className="text-[10px] text-stone-500">
-                            {booking.vehicle.pickupLocation} to {booking.vehicle.dropLocation} (Chauffeur incl.)
+                            {booking.vehicle.pickupLocation} to {booking.vehicle.dropLocation}
                           </p>
+                          {booking.vehicle.pricingModel === "per_km" && (
+                            <p className="text-[10px] text-emerald-800 font-semibold mt-0.5">
+                              Running KM Billing: {booking.vehicle.totalKmCovered || 0} KM @ ₹{booking.vehicle.ratePerKm || 0}/KM + Driver Batta ₹{(booking.vehicle.driverBatta * (booking.vehicle.totalDays || 1)).toLocaleString("en-IN")}
+                            </p>
+                          )}
+                          {booking.vehicle.pricingModel === "package_km_extra" && (
+                            <p className="text-[10px] text-emerald-800 font-semibold mt-0.5">
+                              Package Base: {booking.vehicle.baseKmIncluded || 0} KM | Extra KM Covered: {booking.vehicle.extraKmCovered || 0} KM @ ₹{booking.vehicle.extraKmRate || 0}/KM (Extra: ₹{(booking.vehicle.extraKmAmount || 0).toLocaleString("en-IN")})
+                            </p>
+                          )}
+                          {booking.vehicle.pricingModel === "daily" && (
+                            <p className="text-[10px] text-stone-600 mt-0.5">
+                              Daily Rate: {booking.vehicle.totalDays} Days @ ₹{booking.vehicle.ratePerDay}/Day + Driver Batta
+                            </p>
+                          )}
                         </td>
-                        <td className="py-3 px-4 text-center">{booking.vehicle.totalDays} Days</td>
-                        <td className="py-3 px-4 text-right">₹{booking.vehicle.ratePerDay.toLocaleString("en-IN")}</td>
-                        <td className="py-3 px-4 text-right font-semibold">₹{booking.vehicle.totalAmount.toLocaleString("en-IN")}</td>
+                        <td className="py-3 px-4 text-center">
+                          {booking.vehicle.pricingModel === "per_km"
+                            ? `${booking.vehicle.totalKmCovered || 0} KM`
+                            : booking.vehicle.pricingModel === "package_km_extra"
+                            ? `${booking.vehicle.totalKmCovered || 0} KM (${booking.vehicle.extraKmCovered || 0} Ext)`
+                            : `${booking.vehicle.totalDays} Days`}
+                        </td>
+                        <td className="py-3 px-4 text-right">
+                          {booking.vehicle.pricingModel === "per_km"
+                            ? `₹${booking.vehicle.ratePerKm || 0}/km`
+                            : booking.vehicle.pricingModel === "package_km_extra"
+                            ? `Base + ₹${booking.vehicle.extraKmRate || 0}/km`
+                            : `₹${booking.vehicle.ratePerDay.toLocaleString("en-IN")}/d`}
+                        </td>
+                        <td className="py-3 px-4 text-right font-semibold">
+                          ₹{booking.vehicle.totalAmount.toLocaleString("en-IN")}
+                        </td>
                       </tr>
                     )}
 

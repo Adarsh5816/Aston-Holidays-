@@ -392,6 +392,7 @@ export interface VehicleBookingItem {
   id: string;
   enabled: boolean;
   vehicleType: "Sedan (Dzire / Etios)" | "SUV (Innova Crysta / Ertiga)" | "Tempo Traveller (12/17 Seater)" | "4x4 Jeep Safari" | "Custom Vehicle";
+  pricingModel?: "daily" | "per_km" | "package_km_extra";
   vehicleNumber?: string;
   driverName?: string;
   driverPhone?: string;
@@ -402,6 +403,18 @@ export interface VehicleBookingItem {
   totalDays: number;
   ratePerDay: number;
   driverBatta: number;
+  
+  // Per-KM Running & Extra KM features
+  startKmReading?: number;
+  endKmReading?: number;
+  totalKmCovered?: number;
+  baseKmIncluded?: number;
+  ratePerKm?: number;
+  extraKmCovered?: number;
+  extraKmRate?: number;
+  extraKmAmount?: number;
+  tollAndParking?: number;
+  
   totalAmount: number;
   dutyNotes?: string;
 }

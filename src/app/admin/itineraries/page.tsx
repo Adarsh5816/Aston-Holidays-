@@ -103,6 +103,7 @@ function ItinerariesContent() {
     id: "veh-1",
     enabled: true,
     vehicleType: "Sedan (Dzire / Etios)",
+    pricingModel: "package_km_extra",
     vehicleNumber: "KL-12-AE-4819",
     driverName: "Suresh Babu",
     driverPhone: "+91 97455 12840",
@@ -113,7 +114,16 @@ function ItinerariesContent() {
     totalDays: 3,
     ratePerDay: 2600,
     driverBatta: 400,
-    totalAmount: 9000,
+    startKmReading: 42100,
+    endKmReading: 42480,
+    totalKmCovered: 380,
+    baseKmIncluded: 300,
+    ratePerKm: 14,
+    extraKmCovered: 80,
+    extraKmRate: 15,
+    extraKmAmount: 1200,
+    tollAndParking: 0,
+    totalAmount: 10200,
     dutyNotes: "Driver will report at Calicut Airport at 09:30 AM with guest name placard."
   });
 
@@ -174,6 +184,61 @@ function ItinerariesContent() {
   const gstAmount = Math.round((taxableAmount * gstRate) / 100);
   const netPayable = taxableAmount + gstAmount;
   const balanceDue = Math.max(0, netPayable - advancePaid);
+
+  // Helper to compute vehicle total across Daily, Per KM, and Package KM + Extra KM
+  const computeVehicleTotal = (v: Partial<VehicleBookingItem>): { totalAmount: number; extraKmCovered: number; extraKmAmount: number } => {
+    const days = v.totalDays || 1;
+    const batta = (v.driverBatta || 0) * days;
+    const toll = v.tollAndParking || 0;
+    const model = v.pricingModel || "daily";
+
+    if (model === "per_km") {
+      const km = v.totalKmCovered || 0;
+      const rateKm = v.ratePerKm || 0;
+      const kmCost = km * rateKm;
+      return {
+        totalAmount: kmCost + batta + toll,
+        extraKmCovered: 0,
+        extraKmAmount: 0
+      };
+    } else if (model === "package_km_extra") {
+      const baseCost = (v.ratePerDay || 0) * days;
+      const totalKm = v.totalKmCovered || 0;
+      const baseKm = v.baseKmIncluded || 0;
+      const extraKm = Math.max(0, totalKm - baseKm);
+      const extraRate = v.extraKmRate || 0;
+      const extraCost = extraKm * extraRate;
+      return {
+        totalAmount: baseCost + extraCost + batta + toll,
+        extraKmCovered: extraKm,
+        extraKmAmount: extraCost
+      };
+    } else {
+      const dailyCost = (v.ratePerDay || 0) * days;
+      return {
+        totalAmount: dailyCost + batta + toll,
+        extraKmCovered: 0,
+        extraKmAmount: 0
+      };
+    }
+  };
+
+  const updateVehicle = (updates: Partial<VehicleBookingItem>) => {
+    const merged = { ...vehicle, ...updates };
+
+    // Auto-calculate totalKmCovered if startKmReading and endKmReading are present
+    if (merged.startKmReading !== undefined && merged.endKmReading !== undefined && merged.endKmReading >= merged.startKmReading) {
+      if (updates.endKmReading !== undefined || updates.startKmReading !== undefined) {
+        merged.totalKmCovered = merged.endKmReading - merged.startKmReading;
+      }
+    }
+
+    const { totalAmount, extraKmCovered, extraKmAmount } = computeVehicleTotal(merged);
+    merged.totalAmount = totalAmount;
+    merged.extraKmCovered = extraKmCovered;
+    merged.extraKmAmount = extraKmAmount;
+    setVehicle(merged);
+  };
 
   // Add room
   const handleAddRoom = () => {
@@ -888,30 +953,83 @@ function ItinerariesContent() {
                   </div>
                 </div>
 
-                {/* 4. VEHICLE BOOKING & CHAUFFEUR */}
+                {/* 4. VEHICLE BOOKING & CHAUFFEUR (DAILY / PER KM / EXTRA KM) */}
                 <div className="space-y-4 pt-4 border-t border-stone-200">
                   <div className="flex items-center justify-between">
-                    <h3 className="text-sm font-bold text-stone-900 uppercase tracking-wider flex items-center gap-2">
-                      <Car className="w-4 h-4 text-emerald-700" /> 4. Vehicle Booking & Chauffeur
-                    </h3>
+                    <div>
+                      <h3 className="text-sm font-bold text-stone-900 uppercase tracking-wider flex items-center gap-2">
+                        <Car className="w-4 h-4 text-emerald-700" /> 4. Vehicle Booking & Chauffeur
+                      </h3>
+                      <p className="text-[11px] text-stone-500">
+                        Supports Fixed Daily Rate, Running KM Rate, and Package Base KM + Extra KM Covered.
+                      </p>
+                    </div>
                     <label className="flex items-center gap-2 cursor-pointer text-xs font-bold text-stone-700">
                       <input
                         type="checkbox"
                         checked={vehicle.enabled}
-                        onChange={(e) => setVehicle({ ...vehicle, enabled: e.target.checked })}
+                        onChange={(e) => updateVehicle({ enabled: e.target.checked })}
                       />
                       Include Vehicle in Package
                     </label>
                   </div>
 
                   {vehicle.enabled && (
-                    <div className="p-4 bg-stone-50 rounded-2xl border border-stone-200 space-y-3">
+                    <div className="p-4 bg-stone-50 rounded-2xl border border-stone-200 space-y-4">
+                      {/* Pricing Model Selector */}
+                      <div>
+                        <label className="block text-stone-700 text-[11px] font-bold mb-1.5">
+                          Vehicle Pricing Model *
+                        </label>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+                          <button
+                            type="button"
+                            onClick={() => updateVehicle({ pricingModel: "daily" })}
+                            className={`px-3 py-2 rounded-xl border text-xs font-bold transition text-left ${
+                              (vehicle.pricingModel || "daily") === "daily"
+                                ? "bg-[#2E4F28] text-white border-[#2E4F28] shadow-sm"
+                                : "bg-white text-stone-700 border-stone-200 hover:bg-stone-100"
+                            }`}
+                          >
+                            <span className="block font-bold">1. Fixed Daily Rate</span>
+                            <span className="block text-[10px] opacity-80 font-normal">Daily tariff × Total days + Driver batta</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => updateVehicle({ pricingModel: "per_km" })}
+                            className={`px-3 py-2 rounded-xl border text-xs font-bold transition text-left ${
+                              vehicle.pricingModel === "per_km"
+                                ? "bg-[#2E4F28] text-white border-[#2E4F28] shadow-sm"
+                                : "bg-white text-stone-700 border-stone-200 hover:bg-stone-100"
+                            }`}
+                          >
+                            <span className="block font-bold">2. Running KM Rate</span>
+                            <span className="block text-[10px] opacity-80 font-normal">Total KM covered × ₹/KM + Batta/Toll</span>
+                          </button>
+
+                          <button
+                            type="button"
+                            onClick={() => updateVehicle({ pricingModel: "package_km_extra" })}
+                            className={`px-3 py-2 rounded-xl border text-xs font-bold transition text-left ${
+                              vehicle.pricingModel === "package_km_extra"
+                                ? "bg-[#2E4F28] text-white border-[#2E4F28] shadow-sm"
+                                : "bg-white text-stone-700 border-stone-200 hover:bg-stone-100"
+                            }`}
+                          >
+                            <span className="block font-bold">3. Package KM + Extra KM</span>
+                            <span className="block text-[10px] opacity-80 font-normal">Base package KM + Extra KM charges</span>
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Basic Vehicle Details */}
                       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         <div>
                           <label className="block text-stone-700 text-[11px] mb-1">Vehicle Type</label>
                           <select
                             value={vehicle.vehicleType}
-                            onChange={(e: any) => setVehicle({ ...vehicle, vehicleType: e.target.value })}
+                            onChange={(e: any) => updateVehicle({ vehicleType: e.target.value })}
                             className="w-full px-3 py-2 rounded-xl border border-stone-200 bg-white"
                           >
                             <option value="Sedan (Dzire / Etios)">Sedan (Dzire / Etios)</option>
@@ -926,7 +1044,7 @@ function ItinerariesContent() {
                           <input
                             type="text"
                             value={vehicle.pickupLocation}
-                            onChange={(e) => setVehicle({ ...vehicle, pickupLocation: e.target.value })}
+                            onChange={(e) => updateVehicle({ pickupLocation: e.target.value })}
                             placeholder="e.g. Calicut Airport / Railway Station"
                             className="w-full px-3 py-2 rounded-xl border border-stone-200 bg-white"
                           />
@@ -936,38 +1054,140 @@ function ItinerariesContent() {
                           <input
                             type="text"
                             value={vehicle.dropLocation}
-                            onChange={(e) => setVehicle({ ...vehicle, dropLocation: e.target.value })}
+                            onChange={(e) => updateVehicle({ dropLocation: e.target.value })}
                             placeholder="e.g. Calicut Railway Station"
                             className="w-full px-3 py-2 rounded-xl border border-stone-200 bg-white"
                           />
                         </div>
                       </div>
 
+                      {/* Dynamic Pricing Model Inputs */}
+                      {vehicle.pricingModel === "per_km" && (
+                        <div className="p-3 bg-white rounded-xl border border-stone-200 space-y-3">
+                          <p className="text-[11px] font-bold text-emerald-900 uppercase tracking-wider">
+                            Per-KM Running Rate Calculations
+                          </p>
+                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <div>
+                              <label className="block text-stone-700 text-[11px] mb-1">Start Odometer (KM)</label>
+                              <input
+                                type="number"
+                                value={vehicle.startKmReading || ""}
+                                onChange={(e) => updateVehicle({ startKmReading: Number(e.target.value) })}
+                                placeholder="e.g. 42000"
+                                className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-stone-50"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-stone-700 text-[11px] mb-1">End Odometer (KM)</label>
+                              <input
+                                type="number"
+                                value={vehicle.endKmReading || ""}
+                                onChange={(e) => updateVehicle({ endKmReading: Number(e.target.value) })}
+                                placeholder="e.g. 42350"
+                                className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-stone-50"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-stone-700 text-[11px] mb-1 font-bold text-emerald-800">
+                                Total KM Covered *
+                              </label>
+                              <input
+                                type="number"
+                                value={vehicle.totalKmCovered || 0}
+                                onChange={(e) => updateVehicle({ totalKmCovered: Number(e.target.value) })}
+                                className="w-full px-2.5 py-1.5 rounded-xl border border-emerald-300 bg-white font-bold text-stone-900"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-stone-700 text-[11px] mb-1 font-bold text-emerald-800">
+                                Rate / KM (₹) *
+                              </label>
+                              <input
+                                type="number"
+                                value={vehicle.ratePerKm || 14}
+                                onChange={(e) => updateVehicle({ ratePerKm: Number(e.target.value) })}
+                                placeholder="e.g. 14"
+                                className="w-full px-2.5 py-1.5 rounded-xl border border-emerald-300 bg-white font-bold text-stone-900"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {vehicle.pricingModel === "package_km_extra" && (
+                        <div className="p-3 bg-white rounded-xl border border-stone-200 space-y-3">
+                          <p className="text-[11px] font-bold text-emerald-900 uppercase tracking-wider">
+                            Package Base KM &amp; Extra KM Calculations
+                          </p>
+                          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                            <div>
+                              <label className="block text-stone-700 text-[11px] mb-1">Base KM in Package</label>
+                              <input
+                                type="number"
+                                value={vehicle.baseKmIncluded || 300}
+                                onChange={(e) => updateVehicle({ baseKmIncluded: Number(e.target.value) })}
+                                placeholder="e.g. 300"
+                                className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-white"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-stone-700 text-[11px] mb-1 font-bold text-emerald-800">
+                                Total KM Covered
+                              </label>
+                              <input
+                                type="number"
+                                value={vehicle.totalKmCovered || 0}
+                                onChange={(e) => updateVehicle({ totalKmCovered: Number(e.target.value) })}
+                                placeholder="e.g. 380"
+                                className="w-full px-2.5 py-1.5 rounded-xl border border-emerald-300 bg-white font-bold"
+                              />
+                            </div>
+                            <div>
+                              <label className="block text-stone-700 text-[11px] mb-1">Extra KM Covered</label>
+                              <div className="font-bold text-amber-800 bg-amber-50 px-3 py-1.5 rounded-xl border border-amber-200">
+                                {vehicle.extraKmCovered || 0} Extra KM
+                              </div>
+                            </div>
+                            <div>
+                              <label className="block text-stone-700 text-[11px] mb-1">Extra KM Rate (₹/KM)</label>
+                              <input
+                                type="number"
+                                value={vehicle.extraKmRate || 16}
+                                onChange={(e) => updateVehicle({ extraKmRate: Number(e.target.value) })}
+                                placeholder="e.g. 16"
+                                className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-white"
+                              />
+                            </div>
+                          </div>
+
+                          <div className="flex items-center justify-between text-xs p-2 bg-amber-50/60 rounded-lg border border-amber-200 font-semibold text-amber-950">
+                            <span>Extra KM Charges ({vehicle.extraKmCovered || 0} KM × ₹{vehicle.extraKmRate || 16}/KM):</span>
+                            <span className="font-bold">₹{(vehicle.extraKmAmount || 0).toLocaleString("en-IN")}</span>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Days, Daily Rate, Driver Batta & Tolls */}
                       <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
                         <div>
-                          <label className="block text-stone-700 text-[11px] mb-1">Total Days</label>
+                          <label className="block text-stone-700 text-[11px] mb-1">Total Duty Days</label>
                           <input
                             type="number"
                             min={1}
                             value={vehicle.totalDays}
-                            onChange={(e) => {
-                              const days = Number(e.target.value);
-                              const total = days * vehicle.ratePerDay + (days * vehicle.driverBatta);
-                              setVehicle({ ...vehicle, totalDays: days, totalAmount: total });
-                            }}
+                            onChange={(e) => updateVehicle({ totalDays: Number(e.target.value) })}
                             className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-white"
                           />
                         </div>
                         <div>
-                          <label className="block text-stone-700 text-[11px] mb-1">Rate / Day (₹)</label>
+                          <label className="block text-stone-700 text-[11px] mb-1">
+                            {vehicle.pricingModel === "package_km_extra" ? "Base Daily Rate (₹)" : "Rate / Day (₹)"}
+                          </label>
                           <input
                             type="number"
                             value={vehicle.ratePerDay}
-                            onChange={(e) => {
-                              const rate = Number(e.target.value);
-                              const total = vehicle.totalDays * rate + (vehicle.totalDays * vehicle.driverBatta);
-                              setVehicle({ ...vehicle, ratePerDay: rate, totalAmount: total });
-                            }}
+                            onChange={(e) => updateVehicle({ ratePerDay: Number(e.target.value) })}
                             className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-white"
                           />
                         </div>
@@ -976,28 +1196,66 @@ function ItinerariesContent() {
                           <input
                             type="number"
                             value={vehicle.driverBatta}
-                            onChange={(e) => {
-                              const batta = Number(e.target.value);
-                              const total = vehicle.totalDays * vehicle.ratePerDay + (vehicle.totalDays * batta);
-                              setVehicle({ ...vehicle, driverBatta: batta, totalAmount: total });
-                            }}
+                            onChange={(e) => updateVehicle({ driverBatta: Number(e.target.value) })}
                             className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-white"
                           />
                         </div>
                         <div>
-                          <label className="block text-stone-700 text-[11px] mb-1">Driver Name</label>
+                          <label className="block text-stone-700 text-[11px] mb-1">Toll &amp; Parking (₹)</label>
                           <input
-                            type="text"
-                            value={vehicle.driverName || ""}
-                            onChange={(e) => setVehicle({ ...vehicle, driverName: e.target.value })}
-                            placeholder="e.g. Suresh Babu"
+                            type="number"
+                            value={vehicle.tollAndParking || 0}
+                            onChange={(e) => updateVehicle({ tollAndParking: Number(e.target.value) })}
+                            placeholder="0"
                             className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-white"
                           />
                         </div>
                         <div>
-                          <label className="block text-stone-700 text-[11px] mb-1">Total Vehicle Cost</label>
+                          <label className="block text-stone-700 text-[11px] mb-1 font-bold text-stone-900">Total Vehicle Cost</label>
                           <div className="font-bold text-stone-900 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200 text-center">
                             ₹{vehicle.totalAmount.toLocaleString("en-IN")}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Driver & Plate Details */}
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                        <div>
+                          <label className="block text-stone-700 text-[11px] mb-1">Driver Name &amp; Phone</label>
+                          <div className="grid grid-cols-2 gap-2">
+                            <input
+                              type="text"
+                              value={vehicle.driverName || ""}
+                              onChange={(e) => updateVehicle({ driverName: e.target.value })}
+                              placeholder="Driver Name (e.g. Suresh Babu)"
+                              className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-white"
+                            />
+                            <input
+                              type="text"
+                              value={vehicle.driverPhone || ""}
+                              onChange={(e) => updateVehicle({ driverPhone: e.target.value })}
+                              placeholder="Phone (+91 97455...)"
+                              className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-white"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <label className="block text-stone-700 text-[11px] mb-1">Vehicle Plate Number &amp; Duty Notes</label>
+                          <div className="grid grid-cols-2 gap-2">
+                            <input
+                              type="text"
+                              value={vehicle.vehicleNumber || ""}
+                              onChange={(e) => updateVehicle({ vehicleNumber: e.target.value })}
+                              placeholder="Plate (e.g. KL-12-AE-4819)"
+                              className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-white font-mono"
+                            />
+                            <input
+                              type="text"
+                              value={vehicle.dutyNotes || ""}
+                              onChange={(e) => updateVehicle({ dutyNotes: e.target.value })}
+                              placeholder="Notes (e.g. Airport placard)"
+                              className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-white"
+                            />
                           </div>
                         </div>
                       </div>

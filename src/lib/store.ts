@@ -899,7 +899,11 @@ export const Store = {
       })),
       ...(booking.vehicle && booking.vehicle.enabled ? [{
         id: "veh-1",
-        description: `[Vehicle Booking] ${booking.vehicle.vehicleType} (${booking.vehicle.pickupLocation} to ${booking.vehicle.dropLocation}, ${booking.vehicle.totalDays} Days incl. Chauffeur)`,
+        description: booking.vehicle.pricingModel === "per_km"
+          ? `[Vehicle Rental] ${booking.vehicle.vehicleType} (${booking.vehicle.totalKmCovered || 0} KM Running @ ₹${booking.vehicle.ratePerKm || 0}/KM + Driver Batta ₹${booking.vehicle.driverBatta * (booking.vehicle.totalDays || 1)})`
+          : booking.vehicle.pricingModel === "package_km_extra"
+          ? `[Vehicle Rental] ${booking.vehicle.vehicleType} (Package Base ${booking.vehicle.baseKmIncluded || 0} KM + ${booking.vehicle.extraKmCovered || 0} Extra KM @ ₹${booking.vehicle.extraKmRate || 0}/KM)`
+          : `[Vehicle Booking] ${booking.vehicle.vehicleType} (${booking.vehicle.pickupLocation} to ${booking.vehicle.dropLocation}, ${booking.vehicle.totalDays} Days incl. Chauffeur)`,
         nights: booking.vehicle.totalDays,
         ratePerNight: booking.vehicle.ratePerDay,
         amount: booking.vehicle.totalAmount
