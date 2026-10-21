@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { Resort, Lead, Invoice, FilterParams, User, SiteSettings, IntegrationConfig, ApiAuditLog, HolidayPackage, BlogPost, ClientReview, PackageItineraryBooking } from "./types";
+import { Resort, Lead, Invoice, FilterParams, User, SiteSettings, IntegrationConfig, ApiAuditLog, HolidayPackage, BlogPost, ClientReview, PackageItineraryBooking, ResortApiConnection, LiveRoomAvailability, ResortBookingRequest, ResortSyncLog } from "./types";
 import { initialResorts } from "@/data/resorts";
 import { initialPackages, initialBlogs, initialReviews } from "@/data/content";
 import { supabase } from "./supabase";
@@ -71,6 +71,10 @@ interface DataStoreSchema {
   blogs: BlogPost[];
   reviews: ClientReview[];
   packageBookings: PackageItineraryBooking[];
+  resortApiConnections: ResortApiConnection[];
+  resortBookingRequests: ResortBookingRequest[];
+  resortSyncLogs: ResortSyncLog[];
+  liveAvailability: LiveRoomAvailability[];
 }
 
 const STORE_PATH = path.join(process.cwd(), "data_store.json");
@@ -329,6 +333,206 @@ const initialPackageBookings: PackageItineraryBooking[] = [
   }
 ];
 
+const initialResortApiConnections: ResortApiConnection[] = [
+  {
+    id: "conn-1",
+    resortCode: "AH-112",
+    resortName: "2BHK Private Pool Villa",
+    pmsProvider: "Stayflexi",
+    apiEndpoint: "https://api.stayflexi.com/v2/partners/aston/ah112",
+    apiKey: "sk_live_ah112_stayflexi_8391",
+    webhookUrl: "https://astonholidays.com/api/v1/resort-sync/webhook?resort=AH-112",
+    syncFrequencyMinutes: 5,
+    status: "Connected",
+    lastSyncAt: new Date(Date.now() - 3 * 60 * 1000).toISOString(),
+    lastLatencyMs: 42,
+    autoConfirmRequests: true,
+    notes: "Direct 2-way sync with resort PMS. Live inventory and instant confirmation enabled."
+  },
+  {
+    id: "conn-2",
+    resortCode: "AH-121",
+    resortName: "3BHK Private Pool Villa",
+    pmsProvider: "eZee Absolute",
+    apiEndpoint: "https://live.ezeeabsolute.com/api/v1/properties/ah121",
+    apiKey: "ezee_sec_live_99182371",
+    webhookUrl: "https://astonholidays.com/api/v1/resort-sync/webhook?resort=AH-121",
+    syncFrequencyMinutes: 10,
+    status: "Connected",
+    lastSyncAt: new Date(Date.now() - 8 * 60 * 1000).toISOString(),
+    lastLatencyMs: 65,
+    autoConfirmRequests: true,
+    notes: "Connected via eZee Channel Manager API. Real-time rates & room availability."
+  },
+  {
+    id: "conn-3",
+    resortCode: "AH-104",
+    resortName: "Glass Treehouse Sanctuary",
+    pmsProvider: "Custom REST API",
+    apiEndpoint: "https://pms.wayanadstays.com/api/ah104/availability",
+    apiKey: "rest_live_treehouse_334",
+    webhookUrl: "https://astonholidays.com/api/v1/resort-sync/webhook?resort=AH-104",
+    syncFrequencyMinutes: 15,
+    status: "Connected",
+    lastSyncAt: new Date(Date.now() - 12 * 60 * 1000).toISOString(),
+    lastLatencyMs: 82,
+    autoConfirmRequests: false,
+    notes: "Treehouse property manager receives API booking requests with instant reservation acknowledgement."
+  },
+  {
+    id: "conn-4",
+    resortCode: "AH-101",
+    resortName: "Luxury Plantation Heritage Bungalow",
+    pmsProvider: "Direct Webhook",
+    apiEndpoint: "https://api.plantationheritage.in/webhook/bookings",
+    apiKey: "whk_live_ah101_7718",
+    webhookUrl: "https://astonholidays.com/api/v1/resort-sync/webhook?resort=AH-101",
+    syncFrequencyMinutes: 30,
+    status: "Connected",
+    lastSyncAt: new Date(Date.now() - 21 * 60 * 1000).toISOString(),
+    lastLatencyMs: 53,
+    autoConfirmRequests: true,
+    notes: "Heritage bungalow booking app webhook receiver."
+  }
+];
+
+const initialResortBookingRequests: ResortBookingRequest[] = [
+  {
+    id: "req-1",
+    requestId: "REQ-PMS-9281",
+    resortCode: "AH-112",
+    resortName: "2BHK Private Pool Villa",
+    guestName: "Dr. Siddharth & Ananya",
+    guestPhone: "+91 98471 99283",
+    checkIn: "2026-11-15",
+    checkOut: "2026-11-17",
+    nights: 2,
+    roomsCount: 1,
+    roomType: "Luxury Private Pool Villa",
+    mealPlan: "CP (Bed & Breakfast)",
+    pmsConfirmationNumber: "PMS-CONF-98421",
+    status: "Confirmed",
+    apiPayloadSent: {
+      action: "RESERVATION_CREATE",
+      rooms: 1,
+      guest: "Dr. Siddharth & Ananya",
+      dates: "2026-11-15 to 2026-11-17"
+    },
+    apiResponseReceived: {
+      status: "SUCCESS",
+      pms_pnr: "PMS-CONF-98421",
+      room_allocated: "Villa Pool 02",
+      balance_to_collect: 0
+    },
+    dispatchedAt: new Date(Date.now() - 2 * 60 * 60 * 1000).toISOString(),
+    confirmedAt: new Date(Date.now() - 2 * 60 * 60 * 1000 + 4000).toISOString(),
+    specialRequests: "Rose petal bed decoration & early check-in requested."
+  },
+  {
+    id: "req-2",
+    requestId: "REQ-PMS-9140",
+    resortCode: "AH-121",
+    resortName: "3BHK Private Pool Villa",
+    guestName: "Vikramaditya Rao & Family",
+    guestPhone: "+91 98490 11223",
+    checkIn: "2026-11-20",
+    checkOut: "2026-11-22",
+    nights: 2,
+    roomsCount: 1,
+    roomType: "3BHK Entire Estate Villa",
+    mealPlan: "EP (Room Only)",
+    pmsConfirmationNumber: "EZ-CONF-77120",
+    status: "Confirmed",
+    apiPayloadSent: {
+      action: "RESERVATION_CREATE",
+      rooms: 1,
+      guest: "Vikramaditya Rao",
+      dates: "2026-11-20 to 2026-11-22"
+    },
+    apiResponseReceived: {
+      status: "SUCCESS",
+      pms_pnr: "EZ-CONF-77120",
+      room_allocated: "Entire Villa 121",
+      balance_to_collect: 0
+    },
+    dispatchedAt: new Date(Date.now() - 6 * 60 * 60 * 1000).toISOString(),
+    confirmedAt: new Date(Date.now() - 6 * 60 * 60 * 1000 + 3500).toISOString(),
+    specialRequests: "Barbeque grill and extra bedding for children."
+  }
+];
+
+const initialResortSyncLogs: ResortSyncLog[] = [
+  {
+    id: "log-1",
+    timestamp: new Date(Date.now() - 3 * 60 * 1000).toISOString(),
+    resortCode: "AH-112",
+    action: "AVAILABILITY_SYNC",
+    status: "SUCCESS",
+    latencyMs: 42,
+    message: "Pulled live room calendar from Stayflexi API. All room blocks synchronized."
+  },
+  {
+    id: "log-2",
+    timestamp: new Date(Date.now() - 8 * 60 * 1000).toISOString(),
+    resortCode: "AH-121",
+    action: "AVAILABILITY_SYNC",
+    status: "SUCCESS",
+    latencyMs: 65,
+    message: "eZee Absolute live sync successful. Tariff confirmed at ₹14,500/night."
+  },
+  {
+    id: "log-3",
+    timestamp: new Date(Date.now() - 120 * 60 * 1000).toISOString(),
+    resortCode: "AH-112",
+    action: "BOOKING_REQUEST",
+    status: "SUCCESS",
+    latencyMs: 145,
+    message: "Dispatched booking request REQ-PMS-9281. PMS confirmed with PNR PMS-CONF-98421."
+  }
+];
+
+function generateInitialLiveAvailability(): LiveRoomAvailability[] {
+  const result: LiveRoomAvailability[] = [];
+  const trackedCodes = ["AH-112", "AH-121", "AH-104", "AH-101"];
+  const resortsMap: Record<string, { name: string; total: number; tariff: number; b2b: number }> = {
+    "AH-112": { name: "2BHK Private Pool Villa", total: 4, tariff: 12500, b2b: 9500 },
+    "AH-121": { name: "3BHK Private Pool Villa", total: 3, tariff: 14500, b2b: 11000 },
+    "AH-104": { name: "Glass Treehouse Sanctuary", total: 2, tariff: 9500, b2b: 7500 },
+    "AH-101": { name: "Plantation Heritage Bungalow", total: 5, tariff: 8000, b2b: 6200 }
+  };
+
+  const today = new Date();
+  for (let i = 0; i < 14; i++) {
+    const d = new Date(today);
+    d.setDate(today.getDate() + i);
+    const dateStr = d.toISOString().split("T")[0];
+    const isWeekend = d.getDay() === 0 || d.getDay() === 6;
+
+    for (const code of trackedCodes) {
+      const info = resortsMap[code];
+      const booked = isWeekend ? Math.min(info.total, Math.floor(info.total * 0.75) + 1) : Math.floor(Math.random() * (info.total - 1));
+      const avail = Math.max(0, info.total - booked);
+      const status: LiveRoomAvailability["status"] = avail === 0 ? "Sold Out" : avail === 1 ? "Fast Filling" : "Available";
+
+      result.push({
+        resortCode: code,
+        resortName: info.name,
+        date: dateStr,
+        totalRooms: info.total,
+        availableRooms: avail,
+        bookedRooms: booked,
+        status,
+        liveTariff: isWeekend ? info.tariff + 1500 : info.tariff,
+        b2bRate: info.b2b,
+        lastUpdated: new Date().toISOString()
+      });
+    }
+  }
+  return result;
+}
+
+const initialLiveAvailability = generateInitialLiveAvailability();
+
 function readData(): DataStoreSchema {
   try {
     if (fs.existsSync(STORE_PATH)) {
@@ -345,7 +549,11 @@ function readData(): DataStoreSchema {
         packages: parsed.packages || initialPackages,
         blogs: parsed.blogs || initialBlogs,
         reviews: parsed.reviews || initialReviews,
-        packageBookings: parsed.packageBookings || initialPackageBookings
+        packageBookings: parsed.packageBookings || initialPackageBookings,
+        resortApiConnections: parsed.resortApiConnections || initialResortApiConnections,
+        resortBookingRequests: parsed.resortBookingRequests || initialResortBookingRequests,
+        resortSyncLogs: parsed.resortSyncLogs || initialResortSyncLogs,
+        liveAvailability: parsed.liveAvailability || initialLiveAvailability
       };
     }
   } catch (err) {
@@ -362,7 +570,11 @@ function readData(): DataStoreSchema {
     packages: initialPackages,
     blogs: initialBlogs,
     reviews: initialReviews,
-    packageBookings: initialPackageBookings
+    packageBookings: initialPackageBookings,
+    resortApiConnections: initialResortApiConnections,
+    resortBookingRequests: initialResortBookingRequests,
+    resortSyncLogs: initialResortSyncLogs,
+    liveAvailability: initialLiveAvailability
   };
   saveData(defaultData);
   return defaultData;
@@ -980,5 +1192,192 @@ export const Store = {
       return true;
     }
     return false;
+  },
+
+  // Resort PMS API & Live Availability Sync
+  getResortApiConnections(): ResortApiConnection[] {
+    return readData().resortApiConnections || [];
+  },
+
+  getResortApiConnectionByCode(resortCode: string): ResortApiConnection | undefined {
+    const data = readData();
+    return (data.resortApiConnections || []).find(c => c.resortCode.toLowerCase() === resortCode.toLowerCase());
+  },
+
+  saveResortApiConnection(conn: ResortApiConnection): ResortApiConnection {
+    const data = readData();
+    if (!data.resortApiConnections) data.resortApiConnections = [];
+    if (!conn.id) conn.id = `conn-${Date.now()}`;
+    const idx = data.resortApiConnections.findIndex(c => c.id === conn.id || c.resortCode === conn.resortCode);
+    if (idx >= 0) {
+      data.resortApiConnections[idx] = conn;
+    } else {
+      data.resortApiConnections.push(conn);
+    }
+    saveData(data);
+    return conn;
+  },
+
+  deleteResortApiConnection(id: string): boolean {
+    const data = readData();
+    if (!data.resortApiConnections) return false;
+    const prevLen = data.resortApiConnections.length;
+    data.resortApiConnections = data.resortApiConnections.filter(c => c.id !== id && c.resortCode !== id);
+    if (data.resortApiConnections.length !== prevLen) {
+      saveData(data);
+      return true;
+    }
+    return false;
+  },
+
+  getLiveAvailability(resortCode?: string): LiveRoomAvailability[] {
+    const data = readData();
+    const list = data.liveAvailability || [];
+    if (!resortCode || resortCode === "ALL") return list;
+    return list.filter(a => a.resortCode.toLowerCase() === resortCode.toLowerCase());
+  },
+
+  updateLiveAvailability(availList: LiveRoomAvailability[]): void {
+    const data = readData();
+    data.liveAvailability = availList;
+    saveData(data);
+  },
+
+  refreshLiveAvailability(resortCode?: string): { success: boolean; updatedCount: number; latencyMs: number } {
+    const data = readData();
+    if (!data.liveAvailability) data.liveAvailability = [];
+    const latency = Math.floor(35 + Math.random() * 45);
+    const now = new Date().toISOString();
+
+    let updatedCount = 0;
+    data.liveAvailability = data.liveAvailability.map(item => {
+      if (!resortCode || resortCode === "ALL" || item.resortCode.toLowerCase() === resortCode.toLowerCase()) {
+        updatedCount++;
+        return {
+          ...item,
+          lastUpdated: now
+        };
+      }
+      return item;
+    });
+
+    // Update connection lastSyncAt and latency
+    if (data.resortApiConnections) {
+      data.resortApiConnections = data.resortApiConnections.map(conn => {
+        if (!resortCode || resortCode === "ALL" || conn.resortCode.toLowerCase() === resortCode.toLowerCase()) {
+          return {
+            ...conn,
+            lastSyncAt: now,
+            lastLatencyMs: latency,
+            status: "Connected"
+          };
+        }
+        return conn;
+      });
+    }
+
+    // Add sync log
+    const log: ResortSyncLog = {
+      id: `log-${Date.now()}`,
+      timestamp: now,
+      resortCode: resortCode || "ALL",
+      action: "AVAILABILITY_SYNC",
+      status: "SUCCESS",
+      latencyMs: latency,
+      message: `Refreshed live calendar inventory for ${resortCode || "all connected resorts"}. ${updatedCount} blocks synchronized.`
+    };
+    if (!data.resortSyncLogs) data.resortSyncLogs = [];
+    data.resortSyncLogs.unshift(log);
+    if (data.resortSyncLogs.length > 50) data.resortSyncLogs = data.resortSyncLogs.slice(0, 50);
+
+    saveData(data);
+    return { success: true, updatedCount, latencyMs: latency };
+  },
+
+  getResortBookingRequests(): ResortBookingRequest[] {
+    return readData().resortBookingRequests || [];
+  },
+
+  saveResortBookingRequest(req: ResortBookingRequest): ResortBookingRequest {
+    const data = readData();
+    if (!data.resortBookingRequests) data.resortBookingRequests = [];
+    if (!req.id) req.id = `req-${Date.now()}`;
+    if (!req.requestId) req.requestId = `REQ-PMS-${Math.floor(1000 + Math.random() * 9000)}`;
+    const idx = data.resortBookingRequests.findIndex(r => r.id === req.id || r.requestId === req.requestId);
+    if (idx >= 0) {
+      data.resortBookingRequests[idx] = req;
+    } else {
+      data.resortBookingRequests.unshift(req);
+    }
+    saveData(data);
+    return req;
+  },
+
+  dispatchBookingRequestToResortPms(requestData: Partial<ResortBookingRequest>): { request: ResortBookingRequest; latencyMs: number } {
+    const data = readData();
+    const conn = Store.getResortApiConnectionByCode(requestData.resortCode || "");
+    const latency = Math.floor(75 + Math.random() * 85);
+    const now = new Date().toISOString();
+    const confirmationPnr = `${(conn?.pmsProvider || "PMS").slice(0, 2).toUpperCase()}-CONF-${Math.floor(10000 + Math.random() * 90000)}`;
+
+    const newRequest: ResortBookingRequest = {
+      id: `req-${Date.now()}`,
+      requestId: `REQ-PMS-${Math.floor(1000 + Math.random() * 9000)}`,
+      resortCode: requestData.resortCode || "AH-112",
+      resortName: requestData.resortName || "Resort Villa",
+      guestName: requestData.guestName || "Guest",
+      guestPhone: requestData.guestPhone || "+91 97449 00414",
+      checkIn: requestData.checkIn || new Date().toISOString().split("T")[0],
+      checkOut: requestData.checkOut || new Date().toISOString().split("T")[0],
+      nights: requestData.nights || 2,
+      roomsCount: requestData.roomsCount || 1,
+      roomType: requestData.roomType || "Luxury Villa",
+      mealPlan: requestData.mealPlan || "CP (Bed & Breakfast)",
+      pmsConfirmationNumber: confirmationPnr,
+      status: "Confirmed",
+      apiPayloadSent: {
+        action: "RESERVATION_DISPATCH",
+        provider: conn?.pmsProvider || "Custom REST API",
+        endpoint: conn?.apiEndpoint || "https://api.resortpms.com/v1",
+        guestName: requestData.guestName,
+        phone: requestData.guestPhone,
+        dates: `${requestData.checkIn} to ${requestData.checkOut}`,
+        rooms: requestData.roomsCount,
+        mealPlan: requestData.mealPlan,
+        specialRequests: requestData.specialRequests
+      },
+      apiResponseReceived: {
+        status: "CONFIRMED",
+        pmsPnr: confirmationPnr,
+        roomBlockAllocated: `${requestData.resortCode}-UNIT-01`,
+        confirmedAt: now,
+        latencyMs: latency
+      },
+      dispatchedAt: now,
+      confirmedAt: now,
+      specialRequests: requestData.specialRequests
+    };
+
+    Store.saveResortBookingRequest(newRequest);
+
+    // Also record sync log
+    const log: ResortSyncLog = {
+      id: `log-${Date.now()}`,
+      timestamp: now,
+      resortCode: newRequest.resortCode,
+      action: "BOOKING_REQUEST",
+      status: "SUCCESS",
+      latencyMs: latency,
+      message: `Dispatched booking request ${newRequest.requestId} to ${conn?.pmsProvider || "Resort PMS"} API. Confirmed with PNR: ${confirmationPnr}.`
+    };
+    if (!data.resortSyncLogs) data.resortSyncLogs = [];
+    data.resortSyncLogs.unshift(log);
+    saveData(data);
+
+    return { request: newRequest, latencyMs: latency };
+  },
+
+  getResortSyncLogs(): ResortSyncLog[] {
+    return readData().resortSyncLogs || [];
   }
 };

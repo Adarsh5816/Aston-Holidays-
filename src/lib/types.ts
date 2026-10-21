@@ -472,3 +472,66 @@ export interface PackageItineraryBooking {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface ResortApiConnection {
+  id: string;
+  resortCode: string;
+  resortName: string;
+  pmsProvider: "Custom REST API" | "eZee Absolute" | "Stayflexi" | "Cloudbeds" | "Hotelogix" | "Direct Webhook";
+  apiEndpoint: string;
+  apiKey: string;
+  apiSecret?: string;
+  webhookUrl?: string;
+  syncFrequencyMinutes: number;
+  status: "Connected" | "Syncing" | "Error" | "Disconnected";
+  lastSyncAt?: string;
+  lastLatencyMs?: number;
+  autoConfirmRequests: boolean;
+  notes?: string;
+}
+
+export interface LiveRoomAvailability {
+  resortCode: string;
+  resortName: string;
+  date: string;
+  totalRooms: number;
+  availableRooms: number;
+  bookedRooms: number;
+  status: "Available" | "Fast Filling" | "Sold Out" | "Maintenance";
+  liveTariff: number;
+  b2bRate: number;
+  lastUpdated: string;
+}
+
+export interface ResortBookingRequest {
+  id: string;
+  requestId: string;
+  resortCode: string;
+  resortName: string;
+  guestName: string;
+  guestPhone: string;
+  checkIn: string;
+  checkOut: string;
+  nights: number;
+  roomsCount: number;
+  roomType: string;
+  mealPlan: string;
+  pmsConfirmationNumber?: string;
+  status: "Pending" | "Confirmed" | "Rejected" | "Cancelled";
+  apiPayloadSent?: any;
+  apiResponseReceived?: any;
+  dispatchedAt: string;
+  confirmedAt?: string;
+  specialRequests?: string;
+}
+
+export interface ResortSyncLog {
+  id: string;
+  timestamp: string;
+  resortCode: string;
+  action: "AVAILABILITY_SYNC" | "BOOKING_REQUEST" | "WEBHOOK_INBOUND" | "HEALTH_PING";
+  status: "SUCCESS" | "FAILED" | "TIMEOUT";
+  latencyMs: number;
+  message: string;
+  details?: any;
+}
