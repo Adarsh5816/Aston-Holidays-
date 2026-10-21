@@ -6,6 +6,7 @@ import { Printer, Share2, ArrowLeft, Check, Phone, Mail, Globe, MapPin, MessageC
 import Link from "next/link";
 import QRCode from "qrcode";
 import { Invoice } from "@/lib/types";
+import { printElementIsolated } from "@/lib/printUtils";
 
 interface InvoiceTemplateProps {
   invoice: Invoice;
@@ -28,7 +29,7 @@ export default function InvoiceTemplate({ invoice, onUpdateStatus }: InvoiceTemp
   }, [invoice]);
 
   const handlePrint = () => {
-    window.print();
+    printElementIsolated("printable-standalone-invoice", `Invoice ${invoice.invoiceNumber} - Aston Holidays`);
   };
 
   const handleCopyLink = () => {
@@ -123,7 +124,7 @@ export default function InvoiceTemplate({ invoice, onUpdateStatus }: InvoiceTemp
       </div>
 
       {/* THE PRINTABLE INVOICE SHEET */}
-      <div className="max-w-[800px] mx-auto bg-white shadow-xl print:shadow-none p-10 print:p-8 rounded-xl print:rounded-none border border-stone-200 print:border-none">
+      <div id="printable-standalone-invoice" className="max-w-[800px] mx-auto bg-white shadow-xl print:shadow-none p-10 print:p-8 rounded-xl print:rounded-none border border-stone-200 print:border-none">
         
         {/* Header Strip with Aston Holidays branding */}
         <div className="flex items-start justify-between pb-8 border-b-2 border-stone-900">

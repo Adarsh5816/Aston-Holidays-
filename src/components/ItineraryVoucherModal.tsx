@@ -24,6 +24,7 @@ import {
   Edit3
 } from "lucide-react";
 import { PackageItineraryBooking } from "@/lib/types";
+import { printElementIsolated } from "@/lib/printUtils";
 
 interface ItineraryVoucherModalProps {
   booking: PackageItineraryBooking;
@@ -52,8 +53,26 @@ export default function ItineraryVoucherModal({
   }, [booking]);
 
   const handlePrint = () => {
-    window.print();
+    const docTitle =
+      activeTab === "invoice" ? `Tax Invoice ${booking.bookingCode}` :
+      activeTab === "rooms" ? `Room Stay Voucher ${booking.bookingCode}` :
+      activeTab === "vehicle" ? `Vehicle Duty Slip ${booking.bookingCode}` :
+      activeTab === "notepad" ? `Booking Notes ${booking.bookingCode}` :
+      `Itinerary & Voucher ${booking.bookingCode}`;
+
+    printElementIsolated("printable-voucher-sheet", `${docTitle} - Aston Holidays`);
   };
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "p") {
+        e.preventDefault();
+        handlePrint();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeTab, selectedRoomIdx, qrCodeUrl]);
 
   const handleSaveNotes = async () => {
     const updated = { ...booking, notepadNotes: editableNotes };
