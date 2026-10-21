@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import AdminSidebar from "@/components/AdminSidebar";
 import { HolidayPackage, BlogPost, ClientReview } from "@/lib/types";
 import {
@@ -313,6 +314,29 @@ export default function AdminPackagesPage() {
               </button>
             )}
           </div>
+        </div>
+
+        {/* Banner for Itinerary, Room & Vehicle Voucher Studio */}
+        <div className="mt-6 bg-gradient-to-r from-[#1C2C1A] to-[#2E4F28] rounded-2xl p-4 sm:p-5 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 shadow-sm border border-emerald-900/40">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center shrink-0 border border-white/20">
+              <Compass className="w-5 h-5 text-emerald-300" />
+            </div>
+            <div>
+              <h3 className="text-sm font-bold text-white">
+                Looking to build Day-by-Day Itineraries, Auto-Connect Room Bookings &amp; Vehicle Duty Vouchers?
+              </h3>
+              <p className="text-xs text-stone-300 mt-0.5">
+                Launch the dedicated Itinerary Studio to synchronize rooms from inventory, assign cabs, track other expenses with notepads, and generate individual vouchers.
+              </p>
+            </div>
+          </div>
+          <Link
+            href="/admin/itineraries"
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-[#1C2C1A] bg-white hover:bg-stone-100 px-4 py-2 rounded-xl transition shadow shrink-0"
+          >
+            Open Itinerary Studio &rarr;
+          </Link>
         </div>
 
         {/* Success Alert */}

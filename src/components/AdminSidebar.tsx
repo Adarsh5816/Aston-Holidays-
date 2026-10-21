@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, ReceiptText, Users, Building2, Palette, ExternalLink, LogOut, ShieldCheck, Terminal, HelpCircle, FileText, Sparkles } from "lucide-react";
+import { LayoutDashboard, ReceiptText, Users, Building2, Palette, ExternalLink, LogOut, ShieldCheck, Terminal, HelpCircle, FileText, Sparkles, Compass } from "lucide-react";
 import { User } from "@/lib/types";
 
 export default function AdminSidebar() {
@@ -33,8 +33,9 @@ export default function AdminSidebar() {
 
   const navItems = [
     { label: "Dashboard", href: "/admin", icon: LayoutDashboard },
-    { label: "Brochure & PDF Studio", href: "/admin/brochures", icon: FileText },
+    { label: "Itinerary & Package Builder", href: "/admin/itineraries", icon: Compass },
     { label: "Packages & Live Ticker", href: "/admin/packages", icon: Sparkles },
+    { label: "Brochure & PDF Studio", href: "/admin/brochures", icon: FileText },
     { label: "Invoices & Vouchers", href: "/admin/invoices", icon: ReceiptText },
     { label: "Leads CRM", href: "/admin/leads", icon: Users },
     { label: "Resort Inventory", href: "/admin/resorts", icon: Building2 },

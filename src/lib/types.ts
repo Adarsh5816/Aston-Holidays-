@@ -355,3 +355,107 @@ export interface ClientReview {
   date: string;
   avatar?: string;
 }
+
+export interface ItineraryDay {
+  dayNumber: number;
+  title: string;
+  activities: string;
+  sightseeing: string[];
+  mealsIncluded: {
+    breakfast: boolean;
+    lunch: boolean;
+    dinner: boolean;
+  };
+  stayDestination?: string;
+  stayResortCode?: string;
+}
+
+export interface RoomBookingItem {
+  id: string;
+  resortCode: string;
+  resortName: string;
+  roomType: string;
+  destination: string;
+  checkIn: string;
+  checkOut: string;
+  nights: number;
+  roomsCount: number;
+  adultsCount: number;
+  childrenCount: number;
+  ratePerNight: number;
+  totalAmount: number;
+  mealPlan?: "EP (Room Only)" | "CP (Bed & Breakfast)" | "MAP (Breakfast & Dinner)" | "AP (All Meals)";
+  specialRequests?: string;
+}
+
+export interface VehicleBookingItem {
+  id: string;
+  enabled: boolean;
+  vehicleType: "Sedan (Dzire / Etios)" | "SUV (Innova Crysta / Ertiga)" | "Tempo Traveller (12/17 Seater)" | "4x4 Jeep Safari" | "Custom Vehicle";
+  vehicleNumber?: string;
+  driverName?: string;
+  driverPhone?: string;
+  pickupLocation: string;
+  dropLocation: string;
+  pickupDate: string;
+  dropDate: string;
+  totalDays: number;
+  ratePerDay: number;
+  driverBatta: number;
+  totalAmount: number;
+  dutyNotes?: string;
+}
+
+export interface OtherExpenseItem {
+  id: string;
+  category: "Campfire & Music" | "Candlelight Dinner" | "Ayurvedic Spa & Massage" | "Wildlife Safari & Entry Permits" | "Adventure Park & Glass Bridge" | "Barbeque / Special Chef" | "Other Custom Expense";
+  title: string;
+  rate: number;
+  quantity: number;
+  totalAmount: number;
+  notepadContent: string; // The interactive notepad when other/custom expense is selected
+  showInVoucher: boolean;
+}
+
+export interface PackageItineraryBooking {
+  id: string;
+  bookingCode: string; // e.g. "AST-PKG-8492"
+  packageTitle: string;
+  category: "Honey Moon Package" | "Destination events" | "Group Packages" | "Best Holiday Package" | "Custom Family Tour";
+  duration: string; // e.g. "3 Days / 2 Nights"
+  customerName: string;
+  customerPhone: string;
+  customerEmail?: string;
+  customerAddress?: string;
+  startDate: string;
+  endDate: string;
+  totalGuests: {
+    adults: number;
+    children: number;
+  };
+  itineraryDays: ItineraryDay[];
+  rooms: RoomBookingItem[];
+  vehicle: VehicleBookingItem;
+  otherExpenses: OtherExpenseItem[];
+  notepadNotes: string; // General custom notepad for package / other expenses
+  
+  // Financials
+  roomsSubtotal: number;
+  vehicleSubtotal: number;
+  otherExpensesSubtotal: number;
+  grossTotal: number;
+  discount: number;
+  taxableAmount: number;
+  gstRate: number; // 0, 5, 12, 18
+  gstAmount: number;
+  netPayable: number;
+  advancePaid: number;
+  balanceDue: number;
+  paymentStatus: "Pending" | "Advance Received" | "Fully Paid" | "Cancelled";
+  
+  // Synced invoice reference
+  syncedInvoiceId?: string;
+  
+  createdAt: string;
+  updatedAt: string;
+}

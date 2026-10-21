@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { Resort, Lead, Invoice, FilterParams, User, SiteSettings, IntegrationConfig, ApiAuditLog, HolidayPackage, BlogPost, ClientReview } from "./types";
+import { Resort, Lead, Invoice, FilterParams, User, SiteSettings, IntegrationConfig, ApiAuditLog, HolidayPackage, BlogPost, ClientReview, PackageItineraryBooking } from "./types";
 import { initialResorts } from "@/data/resorts";
 import { initialPackages, initialBlogs, initialReviews } from "@/data/content";
 import { supabase } from "./supabase";
@@ -70,6 +70,7 @@ interface DataStoreSchema {
   packages: HolidayPackage[];
   blogs: BlogPost[];
   reviews: ClientReview[];
+  packageBookings: PackageItineraryBooking[];
 }
 
 const STORE_PATH = path.join(process.cwd(), "data_store.json");
@@ -209,6 +210,125 @@ const initialInvoices: Invoice[] = [
   }
 ];
 
+const initialPackageBookings: PackageItineraryBooking[] = [
+  {
+    id: "pkg-book-1",
+    bookingCode: "AST-PKG-9104",
+    packageTitle: "Romantic Misty Wayanad & Private Pool Escape",
+    category: "Honey Moon Package",
+    duration: "3 Days / 2 Nights",
+    customerName: "Dr. Siddharth & Ananya",
+    customerPhone: "+91 98471 99283",
+    customerEmail: "siddharth.m@gmail.com",
+    customerAddress: "Indiranagar, Bangalore, Karnataka",
+    startDate: "2026-11-15",
+    endDate: "2026-11-17",
+    totalGuests: { adults: 2, children: 0 },
+    itineraryDays: [
+      {
+        dayNumber: 1,
+        title: "Calicut Pickup & Scenic Rainforest Ascent to Wayanad",
+        activities: "Chauffeur pickup from Calicut Railway Station / Airport. Scenic drive through Thamarassery Churam pass with mountain mist viewpoints. Traditional Malabar lunch en-route. Check-in to private pool villa AH-112. Evening leisurely poolside dip and welcome plantation tea.",
+        sightseeing: ["Lakkidi View Point", "Pookode Freshwater Lake", "Thamarassery Ghats"],
+        mealsIncluded: { breakfast: false, lunch: true, dinner: true },
+        stayDestination: "Padinjarathara",
+        stayResortCode: "AH-112"
+      },
+      {
+        dayNumber: 2,
+        title: "Banasura Sagar Dam Boating & Candlelight Dinner by the Pool",
+        activities: "Morning breakfast with estate fresh coffee. Visit Banasura Sagar earthen dam with speed boat excursion. Afternoon visit to Karlad Adventure Lake. Evening exclusive 5-course romantic candlelight dinner setup by the private pool with rose petals and acoustic music.",
+        sightseeing: ["Banasura Sagar Dam", "Karlad Adventure Lake", "Meenmutty Waterfalls"],
+        mealsIncluded: { breakfast: true, lunch: false, dinner: true },
+        stayDestination: "Padinjarathara",
+        stayResortCode: "AH-112"
+      },
+      {
+        dayNumber: 3,
+        title: "Tea Plantation Walk, Spice Shopping & Calicut Drop",
+        activities: "Early morning sunrise walk through tea estate paths. Leisurely breakfast and pool dip. Check-out at 11:00 AM. Visit Wayanad Tea Museum and local spice market at Kalpetta for authentic cardamom & pepper. Comfortable drive back and drop at Calicut.",
+        sightseeing: ["Tea Museum & Factory", "Kalpetta Heritage Spice Market", "Chain Tree"],
+        mealsIncluded: { breakfast: true, lunch: true, dinner: false },
+        stayDestination: "Calicut Drop"
+      }
+    ],
+    rooms: [
+      {
+        id: "room-1",
+        resortCode: "AH-112",
+        resortName: "2BHK Private Pool Villa",
+        roomType: "Luxury Private Pool Villa",
+        destination: "Padinjarathara",
+        checkIn: "2026-11-15",
+        checkOut: "2026-11-17",
+        nights: 2,
+        roomsCount: 1,
+        adultsCount: 2,
+        childrenCount: 0,
+        ratePerNight: 12500,
+        totalAmount: 25000,
+        mealPlan: "CP (Bed & Breakfast)",
+        specialRequests: "Rose petal bed decoration & quiet private villa requested"
+      }
+    ],
+    vehicle: {
+      id: "veh-1",
+      enabled: true,
+      vehicleType: "Sedan (Dzire / Etios)",
+      vehicleNumber: "KL-12-AE-4819",
+      driverName: "Suresh Babu",
+      driverPhone: "+91 97455 12840",
+      pickupLocation: "Calicut Airport (CCJ) / Railway Station",
+      dropLocation: "Calicut Railway Station",
+      pickupDate: "2026-11-15",
+      dropDate: "2026-11-17",
+      totalDays: 3,
+      ratePerDay: 2600,
+      driverBatta: 400,
+      totalAmount: 9000,
+      dutyNotes: "Driver will report at Calicut Airport at 09:30 AM with guest name placard."
+    },
+    otherExpenses: [
+      {
+        id: "exp-1",
+        category: "Candlelight Dinner",
+        title: "Exclusive 5-Course Candlelight Dinner with Rose Petals & Wine",
+        rate: 3500,
+        quantity: 1,
+        totalAmount: 3500,
+        notepadContent: "Client requested pure vegetarian Continental menu, heart-shaped chocolate truffle cake (eggless), and candle lanterns around the pool edge.",
+        showInVoucher: true
+      },
+      {
+        id: "exp-2",
+        category: "Campfire & Music",
+        title: "Private Campfire Setup with Acoustic Bluetooth Speaker",
+        rate: 1500,
+        quantity: 1,
+        totalAmount: 1500,
+        notepadContent: "Campfire firewood logs arrangement at 08:30 PM near villa garden lawn.",
+        showInVoucher: true
+      }
+    ],
+    notepadNotes: "VIP Honeymoon couple. Ensure villa manager provides warm welcome with fresh tender coconut on arrival. Driver Suresh is informed about the 9:30 AM flight arrival.",
+    roomsSubtotal: 25000,
+    vehicleSubtotal: 9000,
+    otherExpensesSubtotal: 5000,
+    grossTotal: 39000,
+    discount: 2000,
+    taxableAmount: 37000,
+    gstRate: 5,
+    gstAmount: 1850,
+    netPayable: 38850,
+    advancePaid: 15000,
+    balanceDue: 23850,
+    paymentStatus: "Advance Received",
+    syncedInvoiceId: "inv-pkg-ast-9104",
+    createdAt: "2026-10-18T10:30:00Z",
+    updatedAt: "2026-10-18T10:30:00Z"
+  }
+];
+
 function readData(): DataStoreSchema {
   try {
     if (fs.existsSync(STORE_PATH)) {
@@ -224,7 +344,8 @@ function readData(): DataStoreSchema {
         auditLogs: parsed.auditLogs || [],
         packages: parsed.packages || initialPackages,
         blogs: parsed.blogs || initialBlogs,
-        reviews: parsed.reviews || initialReviews
+        reviews: parsed.reviews || initialReviews,
+        packageBookings: parsed.packageBookings || initialPackageBookings
       };
     }
   } catch (err) {
@@ -240,7 +361,8 @@ function readData(): DataStoreSchema {
     auditLogs: [],
     packages: initialPackages,
     blogs: initialBlogs,
-    reviews: initialReviews
+    reviews: initialReviews,
+    packageBookings: initialPackageBookings
   };
   saveData(defaultData);
   return defaultData;
@@ -734,6 +856,122 @@ export const Store = {
     const prevLen = data.reviews.length;
     data.reviews = data.reviews.filter(r => r.id !== id);
     if (data.reviews.length !== prevLen) {
+      saveData(data);
+      return true;
+    }
+    return false;
+  },
+
+  // Package & Itinerary Bookings with Automated Room & Invoice Sync
+  getPackageBookings(): PackageItineraryBooking[] {
+    return readData().packageBookings || [];
+  },
+
+  getPackageBookingById(id: string): PackageItineraryBooking | undefined {
+    const data = readData();
+    return (data.packageBookings || []).find(p => p.id === id || p.bookingCode === id);
+  },
+
+  savePackageBooking(booking: PackageItineraryBooking): PackageItineraryBooking {
+    const data = readData();
+    if (!data.packageBookings) data.packageBookings = [];
+    if (!booking.id) booking.id = `pkg-book-${Date.now()}`;
+    if (!booking.bookingCode) {
+      booking.bookingCode = `AST-PKG-${Math.floor(1000 + Math.random() * 9000)}`;
+    }
+    booking.updatedAt = new Date().toISOString();
+    if (!booking.createdAt) booking.createdAt = booking.updatedAt;
+
+    // Automated Sync with Invoices / Bookings System
+    const invoiceId = booking.syncedInvoiceId || `inv-${booking.bookingCode.toLowerCase().replace(/[^a-z0-9]/g, "-")}`;
+    booking.syncedInvoiceId = invoiceId;
+
+    const primaryResortCode = booking.rooms[0]?.resortCode || "AH-PKG";
+    const destination = booking.rooms[0]?.destination || "Wayanad";
+
+    const invoiceItems = [
+      ...booking.rooms.map((r, i) => ({
+        id: `room-${i + 1}`,
+        description: `[Room Stay] ${r.resortCode} - ${r.roomType || r.resortName} (${r.roomsCount} Room${r.roomsCount > 1 ? "s" : ""}, ${r.nights} Nights, ${r.mealPlan || "EP"})`,
+        nights: r.nights,
+        ratePerNight: r.ratePerNight,
+        amount: r.totalAmount
+      })),
+      ...(booking.vehicle && booking.vehicle.enabled ? [{
+        id: "veh-1",
+        description: `[Vehicle Booking] ${booking.vehicle.vehicleType} (${booking.vehicle.pickupLocation} to ${booking.vehicle.dropLocation}, ${booking.vehicle.totalDays} Days incl. Chauffeur)`,
+        nights: booking.vehicle.totalDays,
+        ratePerNight: booking.vehicle.ratePerDay,
+        amount: booking.vehicle.totalAmount
+      }] : []),
+      ...booking.otherExpenses.map((exp, i) => ({
+        id: `exp-${i + 1}`,
+        description: `[Other Expense] ${exp.title} (${exp.category})${exp.notepadContent ? ` [Note: ${exp.notepadContent.slice(0, 35)}...]` : ""}`,
+        nights: 1,
+        ratePerNight: exp.rate,
+        amount: exp.totalAmount
+      }))
+    ];
+
+    const syncedInvoice: Invoice = {
+      id: invoiceId,
+      invoiceNumber: `INV-${booking.bookingCode.replace("AST-PKG-", "PKG-")}`,
+      type: "Tax Invoice",
+      customerName: booking.customerName,
+      customerPhone: booking.customerPhone,
+      customerEmail: booking.customerEmail,
+      customerAddress: booking.customerAddress,
+      resortCode: primaryResortCode,
+      resortName: `${booking.packageTitle} (${booking.rooms.map(r => r.resortCode).join(", ") || primaryResortCode})`,
+      destination: `${destination}, Wayanad`,
+      checkIn: booking.startDate,
+      checkOut: booking.endDate,
+      nights: booking.rooms[0]?.nights || 2,
+      guests: {
+        adults: booking.totalGuests.adults,
+        children: booking.totalGuests.children
+      },
+      items: invoiceItems,
+      subtotal: booking.grossTotal,
+      gstRate: booking.gstRate,
+      gstAmount: booking.gstAmount,
+      discount: booking.discount,
+      totalAmount: booking.netPayable,
+      advancePaid: booking.advancePaid,
+      balanceDue: booking.balanceDue,
+      status: booking.paymentStatus === "Fully Paid" ? "Fully Paid" : booking.paymentStatus === "Advance Received" ? "Advance Received" : "Draft",
+      issueDate: booking.createdAt.split("T")[0],
+      dueDate: booking.startDate,
+      bankDetails: {
+        accountName: "Aston Holidays LLP",
+        bankName: "State Bank of India",
+        accountNumber: "40921008745",
+        ifscCode: "SBIN0008451",
+        upiId: "astonholidays@sbi"
+      },
+      notes: `Package Booking: ${booking.packageTitle}. ${booking.notepadNotes || ""}`,
+      whatsappVoucherSent: false
+    };
+
+    // Save synced invoice
+    Store.saveInvoice(syncedInvoice);
+
+    const idx = data.packageBookings.findIndex(p => p.id === booking.id || p.bookingCode === booking.bookingCode);
+    if (idx >= 0) {
+      data.packageBookings[idx] = booking;
+    } else {
+      data.packageBookings.unshift(booking);
+    }
+    saveData(data);
+    return booking;
+  },
+
+  deletePackageBooking(id: string): boolean {
+    const data = readData();
+    if (!data.packageBookings) return false;
+    const prevLen = data.packageBookings.length;
+    data.packageBookings = data.packageBookings.filter(p => p.id !== id && p.bookingCode !== id);
+    if (data.packageBookings.length !== prevLen) {
       saveData(data);
       return true;
     }
