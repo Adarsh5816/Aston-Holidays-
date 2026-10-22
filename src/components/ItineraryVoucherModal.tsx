@@ -208,37 +208,53 @@ export default function ItineraryVoucherModal({
       <div className="voucher-modal-card bg-white rounded-3xl max-w-4xl w-full shadow-2xl border border-stone-200 overflow-hidden my-6 flex flex-col max-h-[92vh] print:max-w-none print:w-full print:shadow-none print:border-none print:rounded-none print:my-0 print:max-h-none print:overflow-visible print:block print:p-0">
         
         {/* Top Control Bar (Hidden on print) */}
-        <div className="no-print print:hidden bg-[#1A2518] text-white px-6 py-4 flex flex-wrap items-center justify-between gap-3 border-b border-white/10">
-          <div className="flex items-center gap-3">
-            <span className="font-mono text-xs font-black bg-emerald-700/80 text-emerald-100 px-2.5 py-1 rounded-lg">
-              {booking.bookingCode}
-            </span>
-            <div>
-              <h3 className="text-sm font-bold text-white leading-tight">
-                {booking.packageTitle}
-              </h3>
-              <p className="text-[11px] text-stone-300">
-                {booking.customerName} • {booking.duration} • {booking.startDate}
-              </p>
+        <div className="no-print print:hidden bg-[#1A2518] text-white px-4 sm:px-6 py-3 sm:py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-white/10">
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-2.5 min-w-0">
+              <span className="font-mono text-xs font-black bg-emerald-700/80 text-emerald-100 px-2.5 py-1 rounded-lg shrink-0">
+                {booking.bookingCode}
+              </span>
+              <div className="min-w-0">
+                <h3 className="text-xs sm:text-sm font-bold text-white leading-tight truncate">
+                  {booking.packageTitle}
+                </h3>
+                <p className="text-[10px] sm:text-[11px] text-stone-300 truncate">
+                  {booking.customerName} • {booking.duration}
+                </p>
+              </div>
             </div>
-          </div>
 
-          <div className="flex items-center gap-2">
-            <button
-              onClick={sendItineraryWhatsApp}
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-3 py-1.5 rounded-xl transition shadow"
-            >
-              <MessageCircle className="w-3.5 h-3.5" /> WhatsApp Guest
-            </button>
-            <button
-              onClick={handlePrint}
-              className="inline-flex items-center gap-1.5 text-xs font-bold text-stone-900 bg-white hover:bg-stone-100 px-3 py-1.5 rounded-xl transition shadow"
-            >
-              <Printer className="w-3.5 h-3.5" /> Print / PDF
-            </button>
             <button
               onClick={onClose}
-              className="text-stone-300 hover:text-white p-1 rounded-lg transition"
+              className="sm:hidden text-stone-300 hover:text-white p-1 rounded-lg transition shrink-0"
+              aria-label="Close"
+            >
+              <X className="w-5 h-5" />
+            </button>
+          </div>
+
+          <div className="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto">
+            <div className="flex items-center gap-2 flex-1 sm:flex-initial">
+              <button
+                onClick={sendItineraryWhatsApp}
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-3.5 py-2 rounded-xl transition shadow active:scale-95"
+              >
+                <MessageCircle className="w-4 h-4" />
+                <span>WhatsApp Guest</span>
+              </button>
+              <button
+                onClick={handlePrint}
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 text-xs font-bold text-stone-900 bg-white hover:bg-stone-100 px-3.5 py-2 rounded-xl transition shadow active:scale-95"
+              >
+                <Printer className="w-4 h-4 text-emerald-800" />
+                <span>Print / PDF</span>
+              </button>
+            </div>
+
+            <button
+              onClick={onClose}
+              className="hidden sm:inline-flex text-stone-300 hover:text-white p-1.5 rounded-lg transition"
+              aria-label="Close"
             >
               <X className="w-5 h-5" />
             </button>
@@ -246,7 +262,7 @@ export default function ItineraryVoucherModal({
         </div>
 
         {/* Tab Navigation (Hidden on print) */}
-        <div className="no-print print:hidden bg-stone-50 border-b border-stone-200 px-6 py-2.5 flex flex-wrap items-center gap-2 text-xs font-bold">
+        <div className="no-print print:hidden bg-stone-50 border-b border-stone-200 px-4 sm:px-6 py-2.5 flex items-center gap-2 text-xs font-bold overflow-x-auto whitespace-nowrap">
           <button
             onClick={() => setActiveTab("itinerary")}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg transition ${

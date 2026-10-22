@@ -174,6 +174,23 @@ function InvoicesContent() {
     setInvoices(invoices.map(i => i.id === updated.id ? updated : i));
   };
 
+  const handleShareWhatsApp = (inv: Invoice) => {
+    let msg = `🌟 *ASTON HOLIDAYS - INVOICE & CONFIRMATION* 🌟\n\n`;
+    msg += `Dear *${inv.customerName}*,\n`;
+    msg += `Here is your booking invoice for Wayanad!\n\n`;
+    msg += `📄 *Invoice #:* ${inv.invoiceNumber}\n`;
+    msg += `🏨 *Resort:* [${inv.resortCode}] ${inv.resortName}\n`;
+    msg += `📅 *Stay Dates:* ${inv.checkIn} to ${inv.checkOut} (${inv.nights} Nights)\n`;
+    msg += `\n💰 *Total Amount:* ₹${inv.totalAmount.toLocaleString("en-IN")}\n`;
+    msg += `💰 *Advance Paid:* ₹${inv.advancePaid.toLocaleString("en-IN")}\n`;
+    msg += `💰 *Balance Due:* ₹${inv.balanceDue.toLocaleString("en-IN")}\n\n`;
+    msg += `📞 Need any assistance? Call desk: +91 97449 00414\n`;
+    msg += `🌿 *Aston Holidays - Curated Wayanad Escapes*`;
+
+    const cleanPhone = inv.customerPhone.replace(/[^0-9]/g, "");
+    window.open(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`, "_blank");
+  };
+
   // If viewing single invoice template
   if (selectedInvoice) {
     return (
@@ -241,75 +258,184 @@ function InvoicesContent() {
           </span>
         </div>
 
-        {/* Invoices List Table */}
-        <div className="mt-6 bg-white rounded-2xl border border-stone-200 shadow-sm overflow-hidden">
-          <table className="w-full text-left text-xs">
-            <thead className="bg-stone-50 text-stone-500 font-bold uppercase tracking-wider border-b border-stone-200">
-              <tr>
-                <th className="py-3.5 px-4">Invoice #</th>
-                <th className="py-3.5 px-4">Guest Name</th>
-                <th className="py-3.5 px-4">Resort & Dates</th>
-                <th className="py-3.5 px-4 text-right">Total Amount</th>
-                <th className="py-3.5 px-4 text-right">Advance Paid</th>
-                <th className="py-3.5 px-4 text-right">Balance Due</th>
-                <th className="py-3.5 px-4 text-center">Status</th>
-                <th className="py-3.5 px-4 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-stone-100">
-              {filteredInvoices.map((inv) => (
-                <tr key={inv.id} className="hover:bg-stone-50 transition">
-                  <td className="py-4 px-4 font-mono font-bold text-stone-900">
-                    {inv.invoiceNumber}
-                    <span className="block text-[10px] font-normal text-stone-400">{inv.type}</span>
-                  </td>
-                  <td className="py-4 px-4">
-                    <p className="font-bold text-stone-900">{inv.customerName}</p>
-                    <p className="text-[11px] text-stone-500">{inv.customerPhone}</p>
-                  </td>
-                  <td className="py-4 px-4">
-                    <p className="font-semibold text-stone-800">[{inv.resortCode}] {inv.resortName}</p>
-                    <p className="text-[11px] text-stone-500">{inv.checkIn} to {inv.checkOut} ({inv.nights}n)</p>
-                  </td>
-                  <td className="py-4 px-4 text-right font-bold text-stone-900">
-                    ₹{inv.totalAmount.toLocaleString("en-IN")}
-                  </td>
-                  <td className="py-4 px-4 text-right text-emerald-700 font-semibold">
-                    ₹{inv.advancePaid.toLocaleString("en-IN")}
-                  </td>
-                  <td className="py-4 px-4 text-right text-amber-700 font-bold">
-                    ₹{inv.balanceDue.toLocaleString("en-IN")}
-                  </td>
-                  <td className="py-4 px-4 text-center">
-                    <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${
-                      inv.status === "Fully Paid" ? "bg-emerald-100 text-emerald-800" :
-                      inv.status === "Advance Received" ? "bg-amber-100 text-amber-800" :
-                      "bg-stone-100 text-stone-700"
-                    }`}>
-                      {inv.status}
+        {/* ================= MOBILE CARD VIEW (< md) ================= */}
+        <div className="md:hidden space-y-3 mt-5">
+          {filteredInvoices.length === 0 ? (
+            <div className="bg-white rounded-2xl border border-stone-200 p-8 text-center text-xs text-stone-500">
+              No invoices found matching your search.
+            </div>
+          ) : (
+            filteredInvoices.map((inv) => (
+              <div
+                key={inv.id}
+                className="bg-white rounded-2xl border border-stone-200/90 p-4 shadow-sm space-y-3 transition hover:shadow-md"
+              >
+                {/* Header: Invoice # + Status */}
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-xs font-black bg-stone-100 text-stone-900 px-2 py-0.5 rounded-md">
+                      {inv.invoiceNumber}
                     </span>
-                  </td>
-                  <td className="py-4 px-4 text-right">
-                    <div className="flex items-center justify-end gap-2">
-                      <button
-                        onClick={() => setSelectedInvoice(inv)}
-                        className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-800 hover:text-emerald-950 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1.5 rounded-lg transition"
-                      >
-                        <Eye className="w-3.5 h-3.5" /> View / PDF
-                      </button>
-                      <button
-                        onClick={() => handleDelete(inv.id)}
-                        className="text-stone-400 hover:text-red-600 p-1.5 transition"
-                        title="Delete"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </td>
+                    <span className="text-[11px] text-stone-500 font-medium">
+                      {inv.type}
+                    </span>
+                  </div>
+                  <span
+                    className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full ${
+                      inv.status === "Fully Paid"
+                        ? "bg-emerald-100 text-emerald-800"
+                        : inv.status === "Advance Received"
+                        ? "bg-amber-100 text-amber-800"
+                        : "bg-stone-100 text-stone-700"
+                    }`}
+                  >
+                    {inv.status}
+                  </span>
+                </div>
+
+                {/* Guest & Resort Info */}
+                <div>
+                  <h4 className="text-sm font-bold text-stone-900 leading-snug">
+                    {inv.customerName}
+                  </h4>
+                  <p className="text-xs text-stone-500 mt-0.5 font-mono">
+                    {inv.customerPhone}
+                  </p>
+                  <p className="text-xs text-stone-700 font-semibold mt-1 flex items-center gap-1.5">
+                    <span className="text-emerald-800 font-mono">[{inv.resortCode}]</span>
+                    <span>{inv.resortName}</span>
+                  </p>
+                  <p className="text-[11px] text-stone-500">
+                    {inv.checkIn} to {inv.checkOut} ({inv.nights} Nights)
+                  </p>
+                </div>
+
+                {/* Financials Strip */}
+                <div className="bg-stone-50 rounded-xl p-3 grid grid-cols-3 gap-2 text-xs border border-stone-100 text-center">
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-stone-400 block">Total</span>
+                    <span className="font-bold text-stone-900">₹{inv.totalAmount.toLocaleString("en-IN")}</span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-stone-400 block">Advance</span>
+                    <span className="font-bold text-emerald-700">₹{inv.advancePaid.toLocaleString("en-IN")}</span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-stone-400 block">Balance</span>
+                    <span className="font-bold text-amber-700">₹{inv.balanceDue.toLocaleString("en-IN")}</span>
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <div className="pt-2 border-t border-stone-100 flex items-center gap-2">
+                  <button
+                    onClick={() => setSelectedInvoice(inv)}
+                    className="flex-1 inline-flex items-center justify-center gap-1.5 bg-[#2E4F28] hover:bg-[#233D1F] text-white text-xs font-bold py-2.5 px-3 rounded-xl shadow-sm transition active:scale-95"
+                  >
+                    <Eye className="w-4 h-4" />
+                    <span>View / PDF</span>
+                  </button>
+                  <button
+                    onClick={() => handleShareWhatsApp(inv)}
+                    className="inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 px-3.5 rounded-xl shadow-sm transition active:scale-95"
+                    title="Share to WhatsApp"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    <span>WhatsApp</span>
+                  </button>
+                  <button
+                    onClick={() => handleDelete(inv.id)}
+                    className="p-2.5 rounded-xl text-stone-400 hover:text-red-600 hover:bg-red-50 transition"
+                    title="Delete"
+                  >
+                    <Trash2 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+
+        {/* ================= DESKTOP & TABLET TABLE (hidden md:block) ================= */}
+        <div className="hidden md:block mt-6 bg-white rounded-2xl border border-stone-200 shadow-sm overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs whitespace-nowrap">
+              <thead className="bg-stone-50 text-stone-500 font-bold uppercase tracking-wider border-b border-stone-200">
+                <tr>
+                  <th className="py-3.5 px-4">Invoice #</th>
+                  <th className="py-3.5 px-4">Guest Name</th>
+                  <th className="py-3.5 px-4">Resort & Dates</th>
+                  <th className="py-3.5 px-4 text-right">Total Amount</th>
+                  <th className="py-3.5 px-4 text-right">Advance Paid</th>
+                  <th className="py-3.5 px-4 text-right">Balance Due</th>
+                  <th className="py-3.5 px-4 text-center">Status</th>
+                  <th className="py-3.5 px-4 text-right">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-stone-100">
+                {filteredInvoices.map((inv) => (
+                  <tr key={inv.id} className="hover:bg-stone-50 transition">
+                    <td className="py-4 px-4 font-mono font-bold text-stone-900">
+                      {inv.invoiceNumber}
+                      <span className="block text-[10px] font-normal text-stone-400">{inv.type}</span>
+                    </td>
+                    <td className="py-4 px-4">
+                      <p className="font-bold text-stone-900">{inv.customerName}</p>
+                      <p className="text-[11px] text-stone-500">{inv.customerPhone}</p>
+                    </td>
+                    <td className="py-4 px-4">
+                      <p className="font-semibold text-stone-800">[{inv.resortCode}] {inv.resortName}</p>
+                      <p className="text-[11px] text-stone-500">{inv.checkIn} to {inv.checkOut} ({inv.nights}n)</p>
+                    </td>
+                    <td className="py-4 px-4 text-right font-bold text-stone-900">
+                      ₹{inv.totalAmount.toLocaleString("en-IN")}
+                    </td>
+                    <td className="py-4 px-4 text-right text-emerald-700 font-semibold">
+                      ₹{inv.advancePaid.toLocaleString("en-IN")}
+                    </td>
+                    <td className="py-4 px-4 text-right text-amber-700 font-bold">
+                      ₹{inv.balanceDue.toLocaleString("en-IN")}
+                    </td>
+                    <td className="py-4 px-4 text-center">
+                      <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${
+                        inv.status === "Fully Paid" ? "bg-emerald-100 text-emerald-800" :
+                        inv.status === "Advance Received" ? "bg-amber-100 text-amber-800" :
+                        "bg-stone-100 text-stone-700"
+                      }`}>
+                        {inv.status}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-right">
+                      <div className="flex items-center justify-end gap-1.5">
+                        <button
+                          onClick={() => handleShareWhatsApp(inv)}
+                          className="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-2.5 py-1.5 rounded-lg transition shadow-sm active:scale-95"
+                          title="Share to WhatsApp"
+                        >
+                          <MessageCircle className="w-3.5 h-3.5" />
+                          <span>WhatsApp</span>
+                        </button>
+                        <button
+                          onClick={() => setSelectedInvoice(inv)}
+                          className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-800 hover:text-emerald-950 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1.5 rounded-lg transition active:scale-95"
+                        >
+                          <Eye className="w-3.5 h-3.5" />
+                          <span>View / PDF</span>
+                        </button>
+                        <button
+                          onClick={() => handleDelete(inv.id)}
+                          className="text-stone-400 hover:text-red-600 p-1.5 transition rounded-lg hover:bg-red-50"
+                          title="Delete"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         {/* CREATE INVOICE MODAL */}

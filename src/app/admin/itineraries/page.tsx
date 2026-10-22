@@ -23,7 +23,8 @@ import {
   Clock,
   MapPin,
   ChevronRight,
-  FileText
+  FileText,
+  Printer
 } from "lucide-react";
 
 function ItinerariesContent() {
@@ -433,6 +434,30 @@ function ItinerariesContent() {
     if (selectedBooking?.id === id) setSelectedBooking(null);
   };
 
+  const handleDirectWhatsApp = (b: PackageItineraryBooking) => {
+    let msg = `🌟 *ASTON HOLIDAYS - TOUR ITINERARY & VOUCHER* 🌟\n\n`;
+    msg += `Dear *${b.customerName}*,\n`;
+    msg += `Here is your confirmed itinerary & stay package for Wayanad!\n\n`;
+    msg += `🔖 *Booking Code:* ${b.bookingCode}\n`;
+    msg += `📦 *Package:* ${b.packageTitle}\n`;
+    msg += `⏳ *Duration:* ${b.duration} (${b.startDate} to ${b.endDate})\n`;
+    msg += `👥 *Guests:* ${b.totalGuests.adults} Adults, ${b.totalGuests.children} Children\n\n`;
+    if (b.rooms.length > 0) {
+      msg += `🏨 *STAY:* ${b.rooms.map(r => `${r.resortCode} - ${r.roomType || r.resortName} (${r.nights}N)`).join(", ")}\n`;
+    }
+    if (b.vehicle && b.vehicle.enabled) {
+      msg += `🚗 *CAB:* ${b.vehicle.vehicleType} (${b.vehicle.pickupLocation} to ${b.vehicle.dropLocation})\n`;
+    }
+    msg += `\n💰 *Total Package:* ₹${b.netPayable.toLocaleString("en-IN")}\n`;
+    msg += `💰 *Advance Paid:* ₹${b.advancePaid.toLocaleString("en-IN")}\n`;
+    msg += `💰 *Balance Due:* ₹${b.balanceDue.toLocaleString("en-IN")}\n\n`;
+    msg += `📞 Need any assistance? Call desk: +91 97449 00414\n`;
+    msg += `🌿 *Aston Holidays - Curated Wayanad Escapes*`;
+
+    const cleanPhone = b.customerPhone.replace(/[^0-9]/g, "");
+    window.open(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`, "_blank");
+  };
+
   const filtered = bookings.filter(b =>
     b.customerName.toLowerCase().includes(searchQuery.toLowerCase()) ||
     b.bookingCode.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -492,99 +517,243 @@ function ItinerariesContent() {
           </span>
         </div>
 
-        {/* Bookings Table */}
-        <div className="mt-6 bg-white rounded-2xl border border-stone-200 shadow-sm overflow-hidden">
-          <table className="w-full text-left text-xs">
-            <thead className="bg-stone-50 text-stone-500 font-bold uppercase tracking-wider border-b border-stone-200">
-              <tr>
-                <th className="py-3.5 px-4">Booking Code</th>
-                <th className="py-3.5 px-4">Package & Guest</th>
-                <th className="py-3.5 px-4">Rooms & Cab</th>
-                <th className="py-3.5 px-4 text-right">Net Tariff</th>
-                <th className="py-3.5 px-4 text-right">Advance Paid</th>
-                <th className="py-3.5 px-4 text-right">Balance Due</th>
-                <th className="py-3.5 px-4 text-center">Status</th>
-                <th className="py-3.5 px-4 text-right">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-stone-100">
-              {filtered.map((b) => (
-                <tr key={b.id} className="hover:bg-stone-50 transition">
-                  <td className="py-4 px-4 font-mono font-bold text-stone-900">
-                    {b.bookingCode}
-                    <span className="block text-[10px] font-normal text-stone-400">{b.duration}</span>
-                  </td>
-                  <td className="py-4 px-4">
-                    <p className="font-bold text-stone-900">{b.packageTitle}</p>
-                    <p className="text-[11px] text-stone-500">
-                      Guest: <span className="font-medium text-stone-700">{b.customerName}</span> ({b.customerPhone})
-                    </p>
-                  </td>
-                  <td className="py-4 px-4">
-                    <div className="flex items-center gap-1.5 flex-wrap">
-                      {b.rooms.map((r, i) => (
-                        <span key={i} className="text-[10px] font-mono bg-emerald-50 text-emerald-800 px-2 py-0.5 rounded border border-emerald-200">
-                          {r.resortCode} ({r.nights}N)
-                        </span>
-                      ))}
-                      {b.vehicle && b.vehicle.enabled && (
-                        <span className="text-[10px] bg-stone-100 text-stone-700 px-2 py-0.5 rounded">
-                          🚗 {b.vehicle.vehicleType.split(" ")[0]}
-                        </span>
-                      )}
-                      {b.otherExpenses.length > 0 && (
-                        <span className="text-[10px] bg-amber-50 text-amber-800 px-1.5 py-0.5 rounded">
-                          +{b.otherExpenses.length} Extras
-                        </span>
-                      )}
-                    </div>
-                  </td>
-                  <td className="py-4 px-4 text-right font-bold text-stone-900">
-                    ₹{b.netPayable.toLocaleString("en-IN")}
-                  </td>
-                  <td className="py-4 px-4 text-right text-emerald-700 font-semibold">
-                    ₹{b.advancePaid.toLocaleString("en-IN")}
-                  </td>
-                  <td className="py-4 px-4 text-right text-amber-700 font-bold">
-                    ₹{b.balanceDue.toLocaleString("en-IN")}
-                  </td>
-                  <td className="py-4 px-4 text-center">
-                    <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${
-                      b.paymentStatus === "Fully Paid" ? "bg-emerald-100 text-emerald-800" :
-                      b.paymentStatus === "Advance Received" ? "bg-amber-100 text-amber-800" :
-                      "bg-stone-100 text-stone-700"
-                    }`}>
-                      {b.paymentStatus}
+        {/* ================= MOBILE CARD VIEW (< md) ================= */}
+        <div className="md:hidden space-y-3 mt-5">
+          {filtered.length === 0 ? (
+            <div className="bg-white rounded-2xl border border-stone-200 p-8 text-center text-xs text-stone-500">
+              No bookings found matching your search.
+            </div>
+          ) : (
+            filtered.map((b) => (
+              <div
+                key={b.id}
+                className="bg-white rounded-2xl border border-stone-200/90 p-4 shadow-sm space-y-3 transition hover:shadow-md"
+              >
+                {/* Header: Code + Duration + Status */}
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <span className="font-mono text-xs font-black bg-stone-100 text-stone-900 px-2 py-0.5 rounded-md">
+                      {b.bookingCode}
                     </span>
-                  </td>
-                  <td className="py-4 px-4 text-right">
-                    <div className="flex items-center justify-end gap-2">
-                      <button
-                        onClick={() => setSelectedBooking(b)}
-                        className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-800 hover:text-emerald-950 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1.5 rounded-lg transition"
-                      >
-                        <Eye className="w-3.5 h-3.5" /> Vouchers & Bill
-                      </button>
-                      <button
-                        onClick={() => handleEdit(b)}
-                        className="text-stone-400 hover:text-stone-700 p-1.5 transition"
-                        title="Edit"
-                      >
-                        <Edit3 className="w-3.5 h-3.5" />
-                      </button>
-                      <button
-                        onClick={() => handleDelete(b.id)}
-                        className="text-stone-400 hover:text-red-600 p-1.5 transition"
-                        title="Delete"
-                      >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  </td>
+                    <span className="text-[11px] text-stone-500 font-medium">
+                      {b.duration}
+                    </span>
+                  </div>
+                  <span
+                    className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full ${
+                      b.paymentStatus === "Fully Paid"
+                        ? "bg-emerald-100 text-emerald-800"
+                        : b.paymentStatus === "Advance Received"
+                        ? "bg-amber-100 text-amber-800"
+                        : "bg-stone-100 text-stone-700"
+                    }`}
+                  >
+                    {b.paymentStatus}
+                  </span>
+                </div>
+
+                {/* Package Title & Guest Info */}
+                <div>
+                  <h4 className="text-sm font-bold text-stone-900 leading-snug">
+                    {b.packageTitle}
+                  </h4>
+                  <p className="text-xs text-stone-500 mt-1 flex flex-wrap items-center gap-1.5">
+                    <span className="font-semibold text-stone-700">{b.customerName}</span>
+                    <span>•</span>
+                    <span className="font-mono">{b.customerPhone}</span>
+                  </p>
+                </div>
+
+                {/* Rooms, Cab & Extras Chips */}
+                <div className="flex flex-wrap items-center gap-1.5">
+                  {b.rooms.map((r, i) => (
+                    <span
+                      key={i}
+                      className="text-[10px] font-mono bg-emerald-50 text-emerald-800 px-2 py-0.5 rounded border border-emerald-200/60 font-semibold"
+                    >
+                      🏨 {r.resortCode} ({r.nights}N)
+                    </span>
+                  ))}
+                  {b.vehicle && b.vehicle.enabled && (
+                    <span className="text-[10px] bg-stone-100 text-stone-700 px-2 py-0.5 rounded font-medium">
+                      🚗 {b.vehicle.vehicleType.split(" ")[0]}
+                    </span>
+                  )}
+                  {b.otherExpenses.length > 0 && (
+                    <span className="text-[10px] bg-amber-50 text-amber-800 px-1.5 py-0.5 rounded font-medium">
+                      +{b.otherExpenses.length} Extras
+                    </span>
+                  )}
+                </div>
+
+                {/* Pricing Breakdown Grid */}
+                <div className="bg-stone-50 rounded-xl p-3 grid grid-cols-3 gap-2 text-xs border border-stone-100 text-center">
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-stone-400 block">Total</span>
+                    <span className="font-bold text-stone-900">₹{b.netPayable.toLocaleString("en-IN")}</span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-stone-400 block">Advance</span>
+                    <span className="font-bold text-emerald-700">₹{b.advancePaid.toLocaleString("en-IN")}</span>
+                  </div>
+                  <div>
+                    <span className="text-[10px] uppercase font-bold text-stone-400 block">Balance</span>
+                    <span className="font-bold text-amber-700">₹{b.balanceDue.toLocaleString("en-IN")}</span>
+                  </div>
+                </div>
+
+                {/* DIRECT ACTION BUTTONS (MOBILE) */}
+                <div className="pt-2 border-t border-stone-100 flex items-center gap-2">
+                  <button
+                    onClick={() => setSelectedBooking(b)}
+                    className="flex-1 inline-flex items-center justify-center gap-1.5 bg-[#2E4F28] hover:bg-[#233D1F] text-white text-xs font-bold py-2.5 px-3 rounded-xl shadow-sm transition active:scale-95"
+                  >
+                    <Eye className="w-4 h-4" />
+                    <span>Vouchers & Bill</span>
+                  </button>
+
+                  <button
+                    onClick={() => handleDirectWhatsApp(b)}
+                    className="inline-flex items-center justify-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold py-2.5 px-3.5 rounded-xl shadow-sm transition active:scale-95"
+                    title="Share to WhatsApp"
+                  >
+                    <MessageCircle className="w-4 h-4" />
+                    <span>WhatsApp</span>
+                  </button>
+
+                  <button
+                    onClick={() => setSelectedBooking(b)}
+                    className="inline-flex items-center justify-center p-2.5 rounded-xl bg-stone-100 hover:bg-stone-200 text-stone-800 transition active:scale-95"
+                    title="Print as PDF"
+                  >
+                    <Printer className="w-4 h-4 text-emerald-800" />
+                  </button>
+
+                  <button
+                    onClick={() => handleEdit(b)}
+                    className="p-2.5 rounded-xl text-stone-400 hover:text-stone-700 hover:bg-stone-100 transition"
+                    title="Edit"
+                  >
+                    <Edit3 className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+
+        {/* ================= DESKTOP & TABLET TABLE (hidden md:block) ================= */}
+        <div className="hidden md:block mt-6 bg-white rounded-2xl border border-stone-200 shadow-sm overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs whitespace-nowrap">
+              <thead className="bg-stone-50 text-stone-500 font-bold uppercase tracking-wider border-b border-stone-200">
+                <tr>
+                  <th className="py-3.5 px-4">Booking Code</th>
+                  <th className="py-3.5 px-4">Package & Guest</th>
+                  <th className="py-3.5 px-4">Rooms & Cab</th>
+                  <th className="py-3.5 px-4 text-right">Net Tariff</th>
+                  <th className="py-3.5 px-4 text-right">Advance Paid</th>
+                  <th className="py-3.5 px-4 text-right">Balance Due</th>
+                  <th className="py-3.5 px-4 text-center">Status</th>
+                  <th className="py-3.5 px-4 text-right">Actions</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody className="divide-y divide-stone-100">
+                {filtered.map((b) => (
+                  <tr key={b.id} className="hover:bg-stone-50 transition">
+                    <td className="py-4 px-4 font-mono font-bold text-stone-900">
+                      {b.bookingCode}
+                      <span className="block text-[10px] font-normal text-stone-400">{b.duration}</span>
+                    </td>
+                    <td className="py-4 px-4">
+                      <p className="font-bold text-stone-900">{b.packageTitle}</p>
+                      <p className="text-[11px] text-stone-500">
+                        Guest: <span className="font-medium text-stone-700">{b.customerName}</span> ({b.customerPhone})
+                      </p>
+                    </td>
+                    <td className="py-4 px-4">
+                      <div className="flex items-center gap-1.5 flex-wrap max-w-xs">
+                        {b.rooms.map((r, i) => (
+                          <span key={i} className="text-[10px] font-mono bg-emerald-50 text-emerald-800 px-2 py-0.5 rounded border border-emerald-200">
+                            {r.resortCode} ({r.nights}N)
+                          </span>
+                        ))}
+                        {b.vehicle && b.vehicle.enabled && (
+                          <span className="text-[10px] bg-stone-100 text-stone-700 px-2 py-0.5 rounded">
+                            🚗 {b.vehicle.vehicleType.split(" ")[0]}
+                          </span>
+                        )}
+                        {b.otherExpenses.length > 0 && (
+                          <span className="text-[10px] bg-amber-50 text-amber-800 px-1.5 py-0.5 rounded">
+                            +{b.otherExpenses.length} Extras
+                          </span>
+                        )}
+                      </div>
+                    </td>
+                    <td className="py-4 px-4 text-right font-bold text-stone-900">
+                      ₹{b.netPayable.toLocaleString("en-IN")}
+                    </td>
+                    <td className="py-4 px-4 text-right text-emerald-700 font-semibold">
+                      ₹{b.advancePaid.toLocaleString("en-IN")}
+                    </td>
+                    <td className="py-4 px-4 text-right text-amber-700 font-bold">
+                      ₹{b.balanceDue.toLocaleString("en-IN")}
+                    </td>
+                    <td className="py-4 px-4 text-center">
+                      <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full ${
+                        b.paymentStatus === "Fully Paid" ? "bg-emerald-100 text-emerald-800" :
+                        b.paymentStatus === "Advance Received" ? "bg-amber-100 text-amber-800" :
+                        "bg-stone-100 text-stone-700"
+                      }`}>
+                        {b.paymentStatus}
+                      </span>
+                    </td>
+                    <td className="py-4 px-4 text-right">
+                      <div className="flex items-center justify-end gap-1.5">
+                        <button
+                          onClick={() => handleDirectWhatsApp(b)}
+                          className="inline-flex items-center gap-1 text-[11px] font-bold text-white bg-emerald-600 hover:bg-emerald-700 px-2.5 py-1.5 rounded-lg transition shadow-sm active:scale-95"
+                          title="Share to WhatsApp"
+                        >
+                          <MessageCircle className="w-3.5 h-3.5" />
+                          <span>WhatsApp</span>
+                        </button>
+                        <button
+                          onClick={() => setSelectedBooking(b)}
+                          className="inline-flex items-center gap-1 text-[11px] font-bold text-stone-800 hover:text-stone-950 bg-stone-100 hover:bg-stone-200 px-2.5 py-1.5 rounded-lg transition active:scale-95"
+                          title="Print / PDF"
+                        >
+                          <Printer className="w-3.5 h-3.5 text-emerald-800" />
+                          <span>PDF</span>
+                        </button>
+                        <button
+                          onClick={() => setSelectedBooking(b)}
+                          className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-800 hover:text-emerald-950 bg-emerald-50 hover:bg-emerald-100 px-2.5 py-1.5 rounded-lg transition active:scale-95"
+                        >
+                          <Eye className="w-3.5 h-3.5" />
+                          <span>Vouchers</span>
+                        </button>
+                        <button
+                          onClick={() => handleEdit(b)}
+                          className="text-stone-400 hover:text-stone-700 p-1.5 transition rounded-lg hover:bg-stone-100"
+                          title="Edit"
+                        >
+                          <Edit3 className="w-3.5 h-3.5" />
+                        </button>
+                        <button
+                          onClick={() => handleDelete(b.id)}
+                          className="text-stone-400 hover:text-red-600 p-1.5 transition rounded-lg hover:bg-red-50"
+                          title="Delete"
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
 
         {/* ================= BUILDER MODAL ================= */}
