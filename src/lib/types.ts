@@ -164,7 +164,7 @@ export interface InvoiceItem {
 export interface Invoice {
   id: string;
   invoiceNumber: string;
-  type: "Proforma Invoice" | "Tax Invoice" | "Stay Voucher";
+  type: "Booking Invoice" | "Invoice" | "Proforma Invoice" | "Stay Voucher" | "Tax Invoice";
   customerName: string;
   customerPhone: string;
   customerEmail?: string;

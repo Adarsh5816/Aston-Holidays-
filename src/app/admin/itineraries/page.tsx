@@ -28,7 +28,9 @@ import {
   ShieldCheck,
   RotateCcw,
   AlertTriangle,
-  Save
+  Save,
+  Building2,
+  Loader2
 } from "lucide-react";
 
 const DRAFT_STORAGE_KEY = "aston_wip_itinerary_draft_v1";
@@ -43,6 +45,26 @@ function ItinerariesContent() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [recoveredDraft, setRecoveredDraft] = useState<any | null>(null);
   const [lastAutoSavedAt, setLastAutoSavedAt] = useState<string | null>(null);
+
+  // Quick Add Resort to Inventory State (Hand-in-Hand Sync)
+  const [isQuickAddResortOpen, setIsQuickAddResortOpen] = useState(false);
+  const [quickAddTargetRoomIdx, setQuickAddTargetRoomIdx] = useState<number>(-1);
+  const [qaName, setQaName] = useState("");
+  const [qaCode, setQaCode] = useState("");
+  const [qaDestination, setQaDestination] = useState("Vythiri");
+  const [qaCustomDestination, setQaCustomDestination] = useState("");
+  const [qaRoomType, setQaRoomType] = useState("Private Pool Villa");
+  const [qaPricePerNight, setQaPricePerNight] = useState(12500);
+  const [qaB2bRate, setQaB2bRate] = useState(9500);
+  const [qaAccommodationType, setQaAccommodationType] = useState<Resort["accommodationType"]>("Private Pool Villa");
+  const [qaStayPreference, setQaStayPreference] = useState<Resort["stayPreference"]>("Independent Private Cottage/Villa");
+  const [qaLocationDetails, setQaLocationDetails] = useState("Vythiri, Wayanad, Kerala");
+  const [qaGoogleMapsUrl, setQaGoogleMapsUrl] = useState("");
+  const [qaCoverImage, setQaCoverImage] = useState("");
+  const [qaMaxAdults, setQaMaxAdults] = useState(2);
+  const [qaMaxChildren, setQaMaxChildren] = useState(0);
+  const [isSavingResort, setIsSavingResort] = useState(false);
+  const [quickResortCreatedNotice, setQuickResortCreatedNotice] = useState("");
 
   // Form State
   const [packageTitle, setPackageTitle] = useState("Romantic Misty Wayanad & Private Pool Escape");
@@ -157,7 +179,7 @@ function ItinerariesContent() {
 
   // Financials
   const [discount, setDiscount] = useState(0);
-  const [gstRate, setGstRate] = useState(5);
+  const [gstRate, setGstRate] = useState(0);
   const [advancePaid, setAdvancePaid] = useState(10000);
   const [paymentStatus, setPaymentStatus] = useState<PackageItineraryBooking["paymentStatus"]>("Advance Received");
 
@@ -413,6 +435,136 @@ function ItinerariesContent() {
     merged.extraKmCovered = extraKmCovered;
     merged.extraKmAmount = extraKmAmount;
     setVehicle(merged);
+  };
+
+  // Generate next sequential resort code
+  const generateNextResortCode = () => {
+    let highest = 120;
+    resorts.forEach((r) => {
+      const match = r.code.match(/AH-(\d+)/i);
+      if (match) {
+        const num = parseInt(match[1], 10);
+        if (num > highest) highest = num;
+      }
+    });
+    return `AH-${highest + 1}`;
+  };
+
+  // Open Quick Add Resort Modal
+  const openQuickAddResortModal = (roomIdx: number = -1) => {
+    setQuickAddTargetRoomIdx(roomIdx);
+    const nextCode = generateNextResortCode();
+    setQaCode(nextCode);
+    setQaName("");
+    setQaDestination("Vythiri");
+    setQaCustomDestination("");
+    setQaRoomType("Luxury Private Pool Villa");
+    setQaPricePerNight(12500);
+    setQaB2bRate(9500);
+    setQaAccommodationType("Private Pool Villa");
+    setQaStayPreference("Independent Private Cottage/Villa");
+    setQaLocationDetails("Vythiri, Wayanad, Kerala");
+    setQaGoogleMapsUrl("");
+    setQaCoverImage("");
+    setQaMaxAdults(adults || 2);
+    setQaMaxChildren(children || 0);
+    setIsQuickAddResortOpen(true);
+  };
+
+  // Quick Create Resort in Inventory & Auto-assign to Itinerary
+  const handleQuickCreateResort = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!qaName.trim()) return;
+    setIsSavingResort(true);
+
+    const finalCode = qaCode.trim().toUpperCase() || generateNextResortCode();
+    const finalDestination = qaDestination === "Other" && qaCustomDestination.trim()
+      ? qaCustomDestination.trim()
+      : qaDestination.trim();
+    const slug = `${finalCode}-${qaName.trim()}`.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+
+    const newResort: Resort = {
+      id: `res-${Date.now()}`,
+      code: finalCode,
+      name: qaName.trim(),
+      slug,
+      destination: finalDestination,
+      locationDetails: qaLocationDetails.trim() || `${finalDestination}, Wayanad, Kerala`,
+      googleMapsUrl: qaGoogleMapsUrl.trim() || `https://maps.google.com/?q=${encodeURIComponent(qaName.trim() + " " + finalDestination)}`,
+      accommodationType: qaAccommodationType,
+      stayPreference: qaStayPreference,
+      ambience: ["Mountain / Valley View", "Romantic / Honeymoon", "Secluded & Peaceful"],
+      category: qaAccommodationType === "Private Pool Villa" ? "Pool Villa" : qaAccommodationType === "Tree House" ? "Tree House" : "Luxury Resort",
+      bedrooms: 1,
+      bathrooms: 1,
+      maxAdults: Number(qaMaxAdults) || 2,
+      maxChildren: Number(qaMaxChildren) || 1,
+      maxGuests: (Number(qaMaxAdults) || 2) + (Number(qaMaxChildren) || 1),
+      pricePerNight: Number(qaPricePerNight) || 10000,
+      b2bRate: Number(qaB2bRate) || Math.round((Number(qaPricePerNight) || 10000) * 0.75),
+      featured: false,
+      coverImage: qaCoverImage.trim() || "/brand/hero.png",
+      photos: [qaCoverImage.trim() || "/brand/hero.png"],
+      amenities: ["Swimming Pool", "Mountain View", "Wi-Fi", "Room Service", "Power Backup"],
+      specialities: ["Scenic View", "Peaceful Location"],
+      checkInTime: "01:00 PM",
+      checkOutTime: "11:00 AM",
+      overview: `${qaName.trim()} is an exclusive property in ${finalDestination}, offering premium hospitality, pristine nature surroundings, and personalized service.`,
+      inclusions: ["Welcome drink on arrival", "Complimentary breakfast", "Free Wi-Fi access"],
+      exclusions: ["Personal expenses", "Any extra meals not in plan"],
+      nearbyAttractions: []
+    };
+
+    try {
+      await fetch("/api/v1/resorts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newResort)
+      });
+
+      // Update local resorts list
+      const updatedResorts = [...resorts, newResort];
+      setResorts(updatedResorts);
+
+      // Link to room
+      if (quickAddTargetRoomIdx >= 0 && quickAddTargetRoomIdx < rooms.length) {
+        handleUpdateRoom(quickAddTargetRoomIdx, {
+          resortCode: newResort.code,
+          resortName: newResort.name,
+          destination: newResort.destination,
+          roomType: qaRoomType.trim() || newResort.name,
+          ratePerNight: newResort.pricePerNight
+        });
+      } else {
+        // Add new room with this resort
+        const newRoomItem: RoomBookingItem = {
+          id: `room-${Date.now()}`,
+          resortCode: newResort.code,
+          resortName: newResort.name,
+          roomType: qaRoomType.trim() || newResort.name,
+          destination: newResort.destination,
+          checkIn: startDate,
+          checkOut: endDate,
+          nights: 2,
+          roomsCount: 1,
+          adultsCount: adults,
+          childrenCount: children,
+          ratePerNight: newResort.pricePerNight,
+          totalAmount: newResort.pricePerNight * 2,
+          mealPlan: "CP (Bed & Breakfast)",
+          specialRequests: ""
+        };
+        setRooms([...rooms, newRoomItem]);
+      }
+
+      setIsQuickAddResortOpen(false);
+      setQuickResortCreatedNotice(`Resort [${newResort.code}] ${newResort.name} added to inventory and linked to this package!`);
+      setTimeout(() => setQuickResortCreatedNotice(""), 6000);
+    } catch (err) {
+      console.error("Failed to save resort to inventory:", err);
+    } finally {
+      setIsSavingResort(false);
+    }
   };
 
   // Add room
@@ -1013,6 +1165,14 @@ function ItinerariesContent() {
                 </button>
               </div>
 
+              {/* Live Resort Created Banner */}
+              {quickResortCreatedNotice && (
+                <div className="mt-4 p-3.5 bg-emerald-50 border border-emerald-300 text-emerald-950 rounded-2xl flex items-center gap-3 animate-in fade-in slide-in-from-top duration-300 shadow-sm text-xs font-bold">
+                  <CheckCircle2 className="w-5 h-5 text-emerald-700 shrink-0" />
+                  <span>{quickResortCreatedNotice}</span>
+                </div>
+              )}
+
               <form onSubmit={handleSavePackage} className="mt-6 space-y-8 text-xs font-medium">
                 
                 {/* 1. BASIC DETAILS */}
@@ -1235,22 +1395,31 @@ function ItinerariesContent() {
 
                 {/* 3. ROOM BOOKINGS (AUTO-CONNECTED WITH RESORT INVENTORY) */}
                 <div className="space-y-4 pt-4 border-t border-stone-200">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
                     <div>
                       <h3 className="text-sm font-bold text-stone-900 uppercase tracking-wider flex items-center gap-2">
                         <BedDouble className="w-4 h-4 text-emerald-700" /> 3. Room Bookings (Auto-Connected with Inventory)
                       </h3>
                       <p className="text-[11px] text-stone-500">
-                        Select properties directly from inventory; rates and details auto-fill and synchronize.
+                        Select properties directly from inventory, or add any new resort on the fly; changes auto-sync live!
                       </p>
                     </div>
-                    <button
-                      type="button"
-                      onClick={handleAddRoom}
-                      className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-lg transition"
-                    >
-                      <Plus className="w-3.5 h-3.5" /> Add Another Room / Villa
-                    </button>
+                    <div className="flex items-center gap-2">
+                      <button
+                        type="button"
+                        onClick={() => openQuickAddResortModal(-1)}
+                        className="inline-flex items-center gap-1.5 text-[11px] font-bold text-amber-900 bg-amber-50 hover:bg-amber-100 border border-amber-300 px-3 py-1.5 rounded-lg transition shadow-sm active:scale-95"
+                      >
+                        <Building2 className="w-3.5 h-3.5 text-amber-700" /> + Add Resort to Inventory
+                      </button>
+                      <button
+                        type="button"
+                        onClick={handleAddRoom}
+                        className="inline-flex items-center gap-1 text-[11px] font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-lg transition"
+                      >
+                        <Plus className="w-3.5 h-3.5" /> Add Another Room / Villa
+                      </button>
+                    </div>
                   </div>
 
                   <div className="space-y-3">
@@ -1258,12 +1427,32 @@ function ItinerariesContent() {
                       <div key={room.id} className="p-4 bg-stone-50 rounded-2xl border border-stone-200 space-y-3">
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                           <div className="sm:col-span-2">
-                            <label className="block text-stone-700 text-[11px] mb-1">Select Resort / Stay from Inventory *</label>
+                            <div className="flex items-center justify-between mb-1">
+                              <label className="block text-stone-700 text-[11px] font-bold">
+                                Select Resort / Stay from Inventory *
+                              </label>
+                              <button
+                                type="button"
+                                onClick={() => openQuickAddResortModal(idx)}
+                                className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 hover:text-emerald-900 bg-emerald-50 hover:bg-emerald-100 px-2 py-0.5 rounded border border-emerald-200 transition"
+                              >
+                                <Plus className="w-3 h-3" /> Not in inventory? Add Resort
+                              </button>
+                            </div>
                             <select
                               value={room.resortCode}
-                              onChange={(e) => handleUpdateRoom(idx, { resortCode: e.target.value })}
+                              onChange={(e) => {
+                                if (e.target.value === "__ADD_NEW_RESORT__") {
+                                  openQuickAddResortModal(idx);
+                                } else {
+                                  handleUpdateRoom(idx, { resortCode: e.target.value });
+                                }
+                              }}
                               className="w-full px-3 py-2 rounded-xl border border-stone-200 bg-white font-semibold"
                             >
+                              <option value="__ADD_NEW_RESORT__" className="text-emerald-700 font-bold bg-emerald-50">
+                                ➕ + Add New Resort (Not in inventory)...
+                              </option>
                               {resorts.map((r) => (
                                 <option key={r.code} value={r.code}>
                                   [{r.code}] {r.name} • {r.destination} (₹{r.pricePerNight}/night)
@@ -1858,10 +2047,12 @@ function ItinerariesContent() {
                         <span className="font-semibold">₹{otherExpensesSubtotal.toLocaleString("en-IN")}</span>
                       </div>
                     )}
-                    <div className="flex justify-between">
-                      <span className="text-stone-500">GST Tax ({gstRate}%):</span>
-                      <span className="font-semibold">₹{gstAmount.toLocaleString("en-IN")}</span>
-                    </div>
+                    {gstRate > 0 && (
+                      <div className="flex justify-between">
+                        <span className="text-stone-500">GST Tax ({gstRate}%):</span>
+                        <span className="font-semibold">₹{gstAmount.toLocaleString("en-IN")}</span>
+                      </div>
+                    )}
                     <div className="flex justify-between font-black text-sm text-stone-900 pt-2 border-t border-stone-200">
                       <span>Total Package Tariff:</span>
                       <span>₹{netPayable.toLocaleString("en-IN")}</span>
@@ -1887,6 +2078,278 @@ function ItinerariesContent() {
                     className="px-6 py-2.5 bg-[#2E4F28] hover:bg-[#233D1F] text-white font-bold rounded-xl shadow transition"
                   >
                     Save & Auto-Sync with Bookings
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
+
+        {/* ================= QUICK ADD RESORT TO INVENTORY MODAL ================= */}
+        {isQuickAddResortOpen && (
+          <div className="fixed inset-0 z-[60] bg-black/70 backdrop-blur-sm flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+            <div className="bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl border border-stone-200 my-8 max-h-[92vh] overflow-y-auto animate-in fade-in zoom-in-95 duration-200">
+              {/* Header */}
+              <div className="flex items-start justify-between pb-4 border-b border-stone-200">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center justify-center text-emerald-700 shrink-0">
+                    <Building2 className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-base font-bold text-stone-900">
+                      Add New Resort to Inventory
+                    </h3>
+                    <p className="text-xs text-stone-500 mt-0.5">
+                      Instantly registers this resort in your master inventory and auto-links it to this package.
+                    </p>
+                  </div>
+                </div>
+                <button
+                  type="button"
+                  onClick={() => setIsQuickAddResortOpen(false)}
+                  className="text-stone-400 hover:text-stone-700 p-1 rounded-full hover:bg-stone-100 transition"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              {/* Quick Add Form */}
+              <form onSubmit={handleQuickCreateResort} className="mt-5 space-y-4 text-xs font-medium">
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div className="sm:col-span-2">
+                    <label className="block text-stone-700 font-bold mb-1">
+                      Resort / Property Name *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={qaName}
+                      onChange={(e) => setQaName(e.target.value)}
+                      placeholder="e.g. Vythiri Mist Valley Cottage"
+                      className="w-full px-3 py-2 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 font-semibold"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-stone-700 font-bold mb-1">
+                      Inventory Code *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={qaCode}
+                      onChange={(e) => setQaCode(e.target.value.toUpperCase())}
+                      placeholder="e.g. AH-125"
+                      className="w-full px-3 py-2 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 font-mono font-bold uppercase text-emerald-800"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-stone-700 font-bold mb-1">
+                      Destination / Location *
+                    </label>
+                    <select
+                      value={qaDestination}
+                      onChange={(e) => setQaDestination(e.target.value)}
+                      className="w-full px-3 py-2 rounded-xl border border-stone-200 bg-white font-medium"
+                    >
+                      <option value="Padinjarathara">Padinjarathara (Banasura Dam)</option>
+                      <option value="Vythiri">Vythiri (Pookode & Rainforest)</option>
+                      <option value="Sulthan Bathery">Sulthan Bathery</option>
+                      <option value="Meppadi">Meppadi (Chembra & Tea Estates)</option>
+                      <option value="Kalpetta">Kalpetta (Central Hub)</option>
+                      <option value="Mananthavady">Mananthavady (Kuruva Island)</option>
+                      <option value="Thirunelly">Thirunelly / Brahmagiri</option>
+                      <option value="Pozhuthana">Pozhuthana (Bamboo Rafting)</option>
+                      <option value="Other">Other / Custom Location...</option>
+                    </select>
+                    {qaDestination === "Other" && (
+                      <input
+                        type="text"
+                        required
+                        value={qaCustomDestination}
+                        onChange={(e) => setQaCustomDestination(e.target.value)}
+                        placeholder="Enter custom location name..."
+                        className="w-full mt-2 px-3 py-1.5 rounded-xl border border-stone-200"
+                      />
+                    )}
+                  </div>
+
+                  <div>
+                    <label className="block text-stone-700 font-bold mb-1">
+                      Room / Villa Type *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      value={qaRoomType}
+                      onChange={(e) => setQaRoomType(e.target.value)}
+                      placeholder="e.g. Luxury Private Pool Villa, Forest Suite"
+                      className="w-full px-3 py-2 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  <div>
+                    <label className="block text-stone-700 font-bold mb-1">
+                      Price / Night (₹) *
+                    </label>
+                    <input
+                      type="number"
+                      min={0}
+                      required
+                      value={qaPricePerNight}
+                      onChange={(e) => setQaPricePerNight(Number(e.target.value))}
+                      className="w-full px-3 py-2 rounded-xl border border-stone-200 font-bold text-stone-900"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-stone-700 font-bold mb-1">
+                      B2B / Agent Cost Rate (₹)
+                    </label>
+                    <input
+                      type="number"
+                      min={0}
+                      value={qaB2bRate}
+                      onChange={(e) => setQaB2bRate(Number(e.target.value))}
+                      className="w-full px-3 py-2 rounded-xl border border-stone-200 text-stone-600"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-stone-700 font-bold mb-1">
+                      Accommodation Type
+                    </label>
+                    <select
+                      value={qaAccommodationType}
+                      onChange={(e: any) => setQaAccommodationType(e.target.value)}
+                      className="w-full px-3 py-2 rounded-xl border border-stone-200 bg-white"
+                    >
+                      <option value="Private Pool Villa">Private Pool Villa</option>
+                      <option value="Luxury Resort">Luxury Resort</option>
+                      <option value="Tree House">Tree House</option>
+                      <option value="Plantation Resort">Plantation Resort</option>
+                      <option value="Budget Stay">Budget Stay</option>
+                      <option value="Heritage Bungalow">Heritage Bungalow</option>
+                      <option value="Glamping / Tent">Glamping / Tent</option>
+                      <option value="Houseboat">Houseboat</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                  <div>
+                    <label className="block text-stone-700 font-bold mb-1">
+                      Stay Preference
+                    </label>
+                    <select
+                      value={qaStayPreference}
+                      onChange={(e: any) => setQaStayPreference(e.target.value)}
+                      className="w-full px-3 py-2 rounded-xl border border-stone-200 bg-white"
+                    >
+                      <option value="Independent Private Cottage/Villa">Independent Villa/Cottage</option>
+                      <option value="Individual Room/Suite">Individual Room/Suite</option>
+                      <option value="Group / Bachelor Friendly">Group / Bachelor Friendly</option>
+                      <option value="Family Gathering">Family Gathering</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-stone-700 font-bold mb-1">
+                      Max Adults
+                    </label>
+                    <input
+                      type="number"
+                      min={1}
+                      value={qaMaxAdults}
+                      onChange={(e) => setQaMaxAdults(Number(e.target.value))}
+                      className="w-full px-3 py-2 rounded-xl border border-stone-200"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-stone-700 font-bold mb-1">
+                      Max Children
+                    </label>
+                    <input
+                      type="number"
+                      min={0}
+                      value={qaMaxChildren}
+                      onChange={(e) => setQaMaxChildren(Number(e.target.value))}
+                      className="w-full px-3 py-2 rounded-xl border border-stone-200"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-stone-700 font-bold mb-1">
+                      Location Address / Landmark
+                    </label>
+                    <input
+                      type="text"
+                      value={qaLocationDetails}
+                      onChange={(e) => setQaLocationDetails(e.target.value)}
+                      placeholder="e.g. Near Pookode Lake, Vythiri, Wayanad"
+                      className="w-full px-3 py-2 rounded-xl border border-stone-200"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-stone-700 font-bold mb-1">
+                      Google Maps URL (Optional)
+                    </label>
+                    <input
+                      type="url"
+                      value={qaGoogleMapsUrl}
+                      onChange={(e) => setQaGoogleMapsUrl(e.target.value)}
+                      placeholder="https://maps.google.com/?q=..."
+                      className="w-full px-3 py-2 rounded-xl border border-stone-200"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-stone-700 font-bold mb-1">
+                    Cover Photo URL (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    value={qaCoverImage}
+                    onChange={(e) => setQaCoverImage(e.target.value)}
+                    placeholder="Leave blank to use default scenic image"
+                    className="w-full px-3 py-2 rounded-xl border border-stone-200"
+                  />
+                </div>
+
+                <div className="p-3 bg-emerald-50 rounded-xl border border-emerald-200 flex items-center gap-2.5 text-emerald-900">
+                  <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" />
+                  <span className="text-[11px] leading-relaxed">
+                    <strong>Hand-in-Hand Sync:</strong> Saving this form will create <strong>[{qaCode || "AH-..."}] {qaName || "New Resort"}</strong> in your live Master Inventory permanently and immediately apply it to your current itinerary room allocation without losing your progress.
+                  </span>
+                </div>
+
+                {/* Actions */}
+                <div className="pt-3 border-t border-stone-200 flex items-center justify-end gap-2.5">
+                  <button
+                    type="button"
+                    onClick={() => setIsQuickAddResortOpen(false)}
+                    className="px-4 py-2 text-stone-600 font-semibold hover:bg-stone-100 rounded-xl transition"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={isSavingResort}
+                    className="inline-flex items-center gap-1.5 px-5 py-2.5 bg-[#2E4F28] hover:bg-[#233D1F] disabled:opacity-75 text-white font-bold rounded-xl shadow transition active:scale-95"
+                  >
+                    {isSavingResort ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" /> Saving to Inventory...
+                      </>
+                    ) : (
+                      <>
+                        <Save className="w-4 h-4" /> Save to Inventory &amp; Apply to Package
+                      </>
+                    )}
                   </button>
                 </div>
               </form>
