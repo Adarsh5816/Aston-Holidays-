@@ -440,10 +440,10 @@ function ItinerariesContent() {
   );
 
   return (
-    <div className="flex min-h-screen bg-[#F5F6F8] print:bg-white print:min-h-0 print:block">
+    <div className="flex flex-col lg:flex-row min-h-screen bg-[#F5F6F8] print:bg-white print:min-h-0 print:block">
       <AdminSidebar />
 
-      <main className="flex-1 p-8 overflow-y-auto print:p-0 print:m-0 print:overflow-visible print:block">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto w-full print:p-0 print:m-0 print:overflow-visible print:block">
         <div className={selectedBooking ? "print:hidden" : ""}>
           {/* Top Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-stone-200 gap-4">

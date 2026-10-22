@@ -19,10 +19,10 @@ import {
 
 export default function IntegrationHelpPage() {
   return (
-    <div className="flex min-h-screen bg-[#F7F8FA]">
+    <div className="flex flex-col lg:flex-row min-h-screen bg-[#F7F8FA]">
       <AdminSidebar />
 
-      <main className="flex-1 p-8 overflow-y-auto max-w-5xl">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto max-w-5xl w-full">
         {/* Header */}
         <div className="pb-6 border-b border-stone-200">
           <div className="flex items-center gap-2.5">

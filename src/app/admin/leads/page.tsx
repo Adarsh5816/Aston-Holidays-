@@ -43,10 +43,10 @@ export default function LeadsPage() {
   );
 
   return (
-    <div className="flex min-h-screen bg-[#F5F6F8]">
+    <div className="flex flex-col lg:flex-row min-h-screen bg-[#F5F6F8]">
       <AdminSidebar />
 
-      <main className="flex-1 p-8 overflow-y-auto">
+      <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto w-full">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-stone-200 gap-4">
           <div>
             <h1 className="text-2xl font-black text-stone-900 tracking-tight">
