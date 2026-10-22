@@ -36,6 +36,16 @@ import {
 const DRAFT_STORAGE_KEY = "aston_wip_itinerary_draft_v1";
 const LOCAL_BOOKINGS_BACKUP_KEY = "aston_persistent_package_bookings_v1";
 
+// Calculate exact nights between checkIn and checkOut (e.g. 22nd to 23rd Oct = 1 Night stay)
+const calculateNightsBetween = (startStr: string, endStr: string): number => {
+  if (!startStr || !endStr) return 1;
+  const d1 = new Date(startStr);
+  const d2 = new Date(endStr);
+  const diffTime = d2.getTime() - d1.getTime();
+  const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+  return diffDays > 0 ? diffDays : 1;
+};
+
 function ItinerariesContent() {
   const [bookings, setBookings] = useState<PackageItineraryBooking[]>([]);
   const [resorts, setResorts] = useState<Resort[]>([]);
@@ -537,6 +547,7 @@ function ItinerariesContent() {
         });
       } else {
         // Add new room with this resort
+        const initialNights = calculateNightsBetween(startDate, endDate);
         const newRoomItem: RoomBookingItem = {
           id: `room-${Date.now()}`,
           resortCode: newResort.code,
@@ -545,12 +556,12 @@ function ItinerariesContent() {
           destination: newResort.destination,
           checkIn: startDate,
           checkOut: endDate,
-          nights: 2,
+          nights: initialNights,
           roomsCount: 1,
           adultsCount: adults,
           childrenCount: children,
           ratePerNight: newResort.pricePerNight,
-          totalAmount: newResort.pricePerNight * 2,
+          totalAmount: newResort.pricePerNight * initialNights,
           mealPlan: "CP (Bed & Breakfast)",
           specialRequests: ""
         };
@@ -570,6 +581,7 @@ function ItinerariesContent() {
   // Add room
   const handleAddRoom = () => {
     const defaultResort = resorts[0] || { code: "AH-121", name: "3BHK Villa", destination: "Padinjarathara", pricePerNight: 14500 };
+    const initialNights = calculateNightsBetween(startDate, endDate);
     const newRoom: RoomBookingItem = {
       id: `room-${Date.now()}`,
       resortCode: defaultResort.code,
@@ -578,12 +590,12 @@ function ItinerariesContent() {
       destination: defaultResort.destination,
       checkIn: startDate,
       checkOut: endDate,
-      nights: 2,
+      nights: initialNights,
       roomsCount: 1,
       adultsCount: adults,
       childrenCount: children,
       ratePerNight: defaultResort.pricePerNight,
-      totalAmount: defaultResort.pricePerNight * 2,
+      totalAmount: defaultResort.pricePerNight * initialNights,
       mealPlan: "CP (Bed & Breakfast)",
       specialRequests: ""
     };
@@ -603,6 +615,13 @@ function ItinerariesContent() {
         current.ratePerNight = found.pricePerNight;
       }
     }
+
+    // Auto-calculate nights if checkIn or checkOut changed
+    if (updates.checkIn !== undefined || updates.checkOut !== undefined) {
+      const s = updates.checkIn !== undefined ? updates.checkIn : current.checkIn;
+      const e = updates.checkOut !== undefined ? updates.checkOut : current.checkOut;
+      current.nights = calculateNightsBetween(s, e);
+    }
     
     current.totalAmount = (current.ratePerNight || 0) * (current.nights || 1) * (current.roomsCount || 1);
     updated[idx] = current;
@@ -611,6 +630,48 @@ function ItinerariesContent() {
 
   const handleRemoveRoom = (idx: number) => {
     setRooms(rooms.filter((_, i) => i !== idx));
+  };
+
+  const handleStartDateChange = (newStart: string) => {
+    setStartDate(newStart);
+    if (newStart && endDate) {
+      const calculatedNights = calculateNightsBetween(newStart, endDate);
+      const calculatedDays = calculatedNights + 1;
+      setDuration(`${calculatedDays} Days / ${calculatedNights} Night${calculatedNights > 1 ? "s" : ""}`);
+      setRooms(prev => prev.map(r => {
+        if (r.checkIn === startDate || prev.length === 1) {
+          const n = calculateNightsBetween(newStart, r.checkOut || endDate);
+          return {
+            ...r,
+            checkIn: newStart,
+            nights: n,
+            totalAmount: (r.ratePerNight || 0) * n * (r.roomsCount || 1)
+          };
+        }
+        return r;
+      }));
+    }
+  };
+
+  const handleEndDateChange = (newEnd: string) => {
+    setEndDate(newEnd);
+    if (startDate && newEnd) {
+      const calculatedNights = calculateNightsBetween(startDate, newEnd);
+      const calculatedDays = calculatedNights + 1;
+      setDuration(`${calculatedDays} Days / ${calculatedNights} Night${calculatedNights > 1 ? "s" : ""}`);
+      setRooms(prev => prev.map(r => {
+        if (r.checkOut === endDate || prev.length === 1) {
+          const n = calculateNightsBetween(r.checkIn || startDate, newEnd);
+          return {
+            ...r,
+            checkOut: newEnd,
+            nights: n,
+            totalAmount: (r.ratePerNight || 0) * n * (r.roomsCount || 1)
+          };
+        }
+        return r;
+      }));
+    }
   };
 
   // Add Day to Itinerary
@@ -1225,7 +1286,7 @@ function ItinerariesContent() {
                       <input
                         type="date"
                         value={startDate}
-                        onChange={(e) => setStartDate(e.target.value)}
+                        onChange={(e) => handleStartDateChange(e.target.value)}
                         className="w-full px-3 py-2 rounded-xl border border-stone-200"
                       />
                     </div>
@@ -1234,7 +1295,7 @@ function ItinerariesContent() {
                       <input
                         type="date"
                         value={endDate}
-                        onChange={(e) => setEndDate(e.target.value)}
+                        onChange={(e) => handleEndDateChange(e.target.value)}
                         className="w-full px-3 py-2 rounded-xl border border-stone-200"
                       />
                     </div>
@@ -1476,7 +1537,7 @@ function ItinerariesContent() {
                           </div>
                         </div>
 
-                        <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
+                        <div className="grid grid-cols-2 sm:grid-cols-6 gap-3">
                           <div>
                             <label className="block text-stone-700 text-[11px] mb-1">Check-In</label>
                             <input
@@ -1493,6 +1554,18 @@ function ItinerariesContent() {
                               value={room.checkOut}
                               onChange={(e) => handleUpdateRoom(idx, { checkOut: e.target.value })}
                               className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-white"
+                            />
+                          </div>
+                          <div>
+                            <label className="block text-stone-700 text-[11px] mb-1 font-bold text-emerald-800">
+                              Nights (Stay)
+                            </label>
+                            <input
+                              type="number"
+                              min={1}
+                              value={room.nights || 1}
+                              onChange={(e) => handleUpdateRoom(idx, { nights: Math.max(1, Number(e.target.value)) })}
+                              className="w-full px-2.5 py-1.5 rounded-xl border border-emerald-300 bg-white font-bold text-stone-900"
                             />
                           </div>
                           <div>
@@ -1665,8 +1738,8 @@ function ItinerariesContent() {
                               <label className="block text-stone-700 text-[11px] mb-1">Start Odometer (KM)</label>
                               <input
                                 type="number"
-                                value={vehicle.startKmReading || ""}
-                                onChange={(e) => updateVehicle({ startKmReading: Number(e.target.value) })}
+                                value={vehicle.startKmReading !== undefined ? vehicle.startKmReading : ""}
+                                onChange={(e) => updateVehicle({ startKmReading: e.target.value === "" ? 0 : Number(e.target.value) })}
                                 placeholder="e.g. 42000"
                                 className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-stone-50"
                               />
@@ -1675,8 +1748,8 @@ function ItinerariesContent() {
                               <label className="block text-stone-700 text-[11px] mb-1">End Odometer (KM)</label>
                               <input
                                 type="number"
-                                value={vehicle.endKmReading || ""}
-                                onChange={(e) => updateVehicle({ endKmReading: Number(e.target.value) })}
+                                value={vehicle.endKmReading !== undefined ? vehicle.endKmReading : ""}
+                                onChange={(e) => updateVehicle({ endKmReading: e.target.value === "" ? 0 : Number(e.target.value) })}
                                 placeholder="e.g. 42350"
                                 className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-stone-50"
                               />
@@ -1687,8 +1760,8 @@ function ItinerariesContent() {
                               </label>
                               <input
                                 type="number"
-                                value={vehicle.totalKmCovered || 0}
-                                onChange={(e) => updateVehicle({ totalKmCovered: Number(e.target.value) })}
+                                value={vehicle.totalKmCovered !== undefined ? vehicle.totalKmCovered : ""}
+                                onChange={(e) => updateVehicle({ totalKmCovered: e.target.value === "" ? 0 : Number(e.target.value) })}
                                 className="w-full px-2.5 py-1.5 rounded-xl border border-emerald-300 bg-white font-bold text-stone-900"
                               />
                             </div>
@@ -1698,8 +1771,8 @@ function ItinerariesContent() {
                               </label>
                               <input
                                 type="number"
-                                value={vehicle.ratePerKm || 14}
-                                onChange={(e) => updateVehicle({ ratePerKm: Number(e.target.value) })}
+                                value={vehicle.ratePerKm !== undefined ? vehicle.ratePerKm : ""}
+                                onChange={(e) => updateVehicle({ ratePerKm: e.target.value === "" ? 0 : Number(e.target.value) })}
                                 placeholder="e.g. 14"
                                 className="w-full px-2.5 py-1.5 rounded-xl border border-emerald-300 bg-white font-bold text-stone-900"
                               />
@@ -1718,8 +1791,8 @@ function ItinerariesContent() {
                               <label className="block text-stone-700 text-[11px] mb-1">Base KM in Package</label>
                               <input
                                 type="number"
-                                value={vehicle.baseKmIncluded || 300}
-                                onChange={(e) => updateVehicle({ baseKmIncluded: Number(e.target.value) })}
+                                value={vehicle.baseKmIncluded !== undefined ? vehicle.baseKmIncluded : ""}
+                                onChange={(e) => updateVehicle({ baseKmIncluded: e.target.value === "" ? 0 : Number(e.target.value) })}
                                 placeholder="e.g. 300"
                                 className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-white"
                               />
@@ -1730,8 +1803,8 @@ function ItinerariesContent() {
                               </label>
                               <input
                                 type="number"
-                                value={vehicle.totalKmCovered || 0}
-                                onChange={(e) => updateVehicle({ totalKmCovered: Number(e.target.value) })}
+                                value={vehicle.totalKmCovered !== undefined ? vehicle.totalKmCovered : ""}
+                                onChange={(e) => updateVehicle({ totalKmCovered: e.target.value === "" ? 0 : Number(e.target.value) })}
                                 placeholder="e.g. 380"
                                 className="w-full px-2.5 py-1.5 rounded-xl border border-emerald-300 bg-white font-bold"
                               />
@@ -1746,8 +1819,8 @@ function ItinerariesContent() {
                               <label className="block text-stone-700 text-[11px] mb-1">Extra KM Rate (₹/KM)</label>
                               <input
                                 type="number"
-                                value={vehicle.extraKmRate || 16}
-                                onChange={(e) => updateVehicle({ extraKmRate: Number(e.target.value) })}
+                                value={vehicle.extraKmRate !== undefined ? vehicle.extraKmRate : ""}
+                                onChange={(e) => updateVehicle({ extraKmRate: e.target.value === "" ? 0 : Number(e.target.value) })}
                                 placeholder="e.g. 16"
                                 className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-white"
                               />
@@ -1755,7 +1828,7 @@ function ItinerariesContent() {
                           </div>
 
                           <div className="flex items-center justify-between text-xs p-2 bg-amber-50/60 rounded-lg border border-amber-200 font-semibold text-amber-950">
-                            <span>Extra KM Charges ({vehicle.extraKmCovered || 0} KM × ₹{vehicle.extraKmRate || 16}/KM):</span>
+                            <span>Extra KM Charges ({vehicle.extraKmCovered || 0} KM × ₹{vehicle.extraKmRate || 0}/KM):</span>
                             <span className="font-bold">₹{(vehicle.extraKmAmount || 0).toLocaleString("en-IN")}</span>
                           </div>
                         </div>
@@ -1768,8 +1841,8 @@ function ItinerariesContent() {
                           <input
                             type="number"
                             min={1}
-                            value={vehicle.totalDays}
-                            onChange={(e) => updateVehicle({ totalDays: Number(e.target.value) })}
+                            value={vehicle.totalDays !== undefined ? vehicle.totalDays : ""}
+                            onChange={(e) => updateVehicle({ totalDays: e.target.value === "" ? 1 : Number(e.target.value) })}
                             className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-white"
                           />
                         </div>
@@ -1779,8 +1852,8 @@ function ItinerariesContent() {
                           </label>
                           <input
                             type="number"
-                            value={vehicle.ratePerDay}
-                            onChange={(e) => updateVehicle({ ratePerDay: Number(e.target.value) })}
+                            value={vehicle.ratePerDay !== undefined ? vehicle.ratePerDay : ""}
+                            onChange={(e) => updateVehicle({ ratePerDay: e.target.value === "" ? 0 : Number(e.target.value) })}
                             className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-white"
                           />
                         </div>
@@ -1788,8 +1861,8 @@ function ItinerariesContent() {
                           <label className="block text-stone-700 text-[11px] mb-1">Driver Batta (₹/day)</label>
                           <input
                             type="number"
-                            value={vehicle.driverBatta}
-                            onChange={(e) => updateVehicle({ driverBatta: Number(e.target.value) })}
+                            value={vehicle.driverBatta !== undefined ? vehicle.driverBatta : ""}
+                            onChange={(e) => updateVehicle({ driverBatta: e.target.value === "" ? 0 : Number(e.target.value) })}
                             className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-white"
                           />
                         </div>
@@ -1797,8 +1870,8 @@ function ItinerariesContent() {
                           <label className="block text-stone-700 text-[11px] mb-1">Toll &amp; Parking (₹)</label>
                           <input
                             type="number"
-                            value={vehicle.tollAndParking || 0}
-                            onChange={(e) => updateVehicle({ tollAndParking: Number(e.target.value) })}
+                            value={vehicle.tollAndParking !== undefined ? vehicle.tollAndParking : ""}
+                            onChange={(e) => updateVehicle({ tollAndParking: e.target.value === "" ? 0 : Number(e.target.value) })}
                             placeholder="0"
                             className="w-full px-2.5 py-1.5 rounded-xl border border-stone-200 bg-white"
                           />
@@ -1806,7 +1879,7 @@ function ItinerariesContent() {
                         <div>
                           <label className="block text-stone-700 text-[11px] mb-1 font-bold text-stone-900">Total Vehicle Cost</label>
                           <div className="font-bold text-stone-900 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200 text-center">
-                            ₹{vehicle.totalAmount.toLocaleString("en-IN")}
+                            ₹{(vehicle.totalAmount || 0).toLocaleString("en-IN")}
                           </div>
                         </div>
                       </div>

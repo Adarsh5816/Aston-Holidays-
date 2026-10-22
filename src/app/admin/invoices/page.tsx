@@ -52,6 +52,30 @@ function InvoicesContent() {
   const [advancePaid, setAdvancePaid] = useState(5000);
   const [status, setStatus] = useState<Invoice["status"]>("Advance Received");
 
+  // Calculate exact nights between checkIn and checkOut (e.g. 22nd to 23rd Oct = 1 Night stay)
+  const calculateNightsBetween = (startStr: string, endStr: string): number => {
+    if (!startStr || !endStr) return 1;
+    const d1 = new Date(startStr);
+    const d2 = new Date(endStr);
+    const diffTime = d2.getTime() - d1.getTime();
+    const diffDays = Math.round(diffTime / (1000 * 60 * 60 * 24));
+    return diffDays > 0 ? diffDays : 1;
+  };
+
+  const handleCheckInChange = (newIn: string) => {
+    setCheckIn(newIn);
+    if (newIn && checkOut) {
+      setNights(calculateNightsBetween(newIn, checkOut));
+    }
+  };
+
+  const handleCheckOutChange = (newOut: string) => {
+    setCheckOut(newOut);
+    if (checkIn && newOut) {
+      setNights(calculateNightsBetween(checkIn, newOut));
+    }
+  };
+
   // Check for recovered draft on mount
   useEffect(() => {
     try {
@@ -856,7 +880,7 @@ function InvoicesContent() {
                     <input
                       type="date"
                       value={checkIn}
-                      onChange={(e) => setCheckIn(e.target.value)}
+                      onChange={(e) => handleCheckInChange(e.target.value)}
                       className="w-full px-3 py-2 rounded-xl border border-stone-200"
                     />
                   </div>
@@ -865,7 +889,7 @@ function InvoicesContent() {
                     <input
                       type="date"
                       value={checkOut}
-                      onChange={(e) => setCheckOut(e.target.value)}
+                      onChange={(e) => handleCheckOutChange(e.target.value)}
                       className="w-full px-3 py-2 rounded-xl border border-stone-200"
                     />
                   </div>
