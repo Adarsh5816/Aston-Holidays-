@@ -202,7 +202,7 @@ const initialInvoices: Invoice[] = [
     issueDate: "2026-10-15",
     dueDate: "2026-11-05",
     bankDetails: {
-      accountName: "Aston Holidays LLP",
+      accountName: "Aston Holidays",
       bankName: "State Bank of India",
       accountNumber: "40921008745",
       ifscCode: "SBIN0008451",
@@ -1163,7 +1163,7 @@ export const Store = {
       issueDate: booking.createdAt.split("T")[0],
       dueDate: booking.startDate,
       bankDetails: {
-        accountName: "Aston Holidays LLP",
+        accountName: "Aston Holidays",
         bankName: "State Bank of India",
         accountNumber: "40921008745",
         ifscCode: "SBIN0008451",

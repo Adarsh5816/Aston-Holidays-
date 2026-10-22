@@ -2,10 +2,10 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { Printer, Share2, ArrowLeft, Check, Phone, Mail, Globe, MapPin, MessageCircle, Send, CheckCircle2, Navigation, Compass, Download, Loader2 } from "lucide-react";
+import { Printer, Share2, ArrowLeft, Check, Phone, Mail, Globe, MapPin, MessageCircle, Send, CheckCircle2, Navigation, Compass, Download, Loader2, CreditCard, Building2, QrCode, X } from "lucide-react";
 import Link from "next/link";
 import QRCode from "qrcode";
-import { Invoice } from "@/lib/types";
+import { Invoice, BankDetails } from "@/lib/types";
 import { printElementIsolated, downloadElementAsPdf } from "@/lib/printUtils";
 
 interface InvoiceTemplateProps {
@@ -21,13 +21,64 @@ export default function InvoiceTemplate({ invoice, onUpdateStatus }: InvoiceTemp
   const [isConfirming, setIsConfirming] = useState(false);
   const [isDownloadingPdf, setIsDownloadingPdf] = useState(false);
 
+  // Bank Details State with Dual-Vault Persistence
+  const [bankDetails, setBankDetails] = useState<BankDetails>(() => {
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("aston_default_bank_details");
+        if (saved) return JSON.parse(saved);
+      } catch {}
+    }
+    return invoice.bankDetails || {
+      accountName: "Aston Holidays",
+      bankName: "State Bank of India",
+      accountNumber: "40921008745",
+      ifscCode: "SBIN0008451",
+      upiId: "astonholidays@sbi",
+      qrCodeCustomUrl: ""
+    };
+  });
+  const [isEditingBankDetails, setIsEditingBankDetails] = useState(false);
+  const [bankForm, setBankForm] = useState<BankDetails>(bankDetails);
+
+  // Sync bank details if saved in localStorage
   useEffect(() => {
+    try {
+      const saved = localStorage.getItem("aston_default_bank_details");
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        setBankDetails(parsed);
+        setBankForm(parsed);
+      }
+    } catch {}
+  }, []);
+
+  // Strict Non-GST Calculations: No GST added
+  const netAmount = Math.max(0, invoice.subtotal - (invoice.discount || 0));
+  const cleanBalanceDue = Math.max(0, netAmount - (invoice.advancePaid || 0));
+
+  useEffect(() => {
+    if (bankDetails.qrCodeCustomUrl) {
+      setQrCodeUrl(bankDetails.qrCodeCustomUrl);
+      return;
+    }
     // Generate UPI payment / invoice verification QR
-    const upiString = `upi://pay?pa=astonholidays@sbi&pn=Aston%20Holidays&am=${invoice.balanceDue}&cu=INR&tn=Invoice%20${invoice.invoiceNumber}`;
+    const upiString = `upi://pay?pa=${bankDetails.upiId || "astonholidays@sbi"}&pn=${encodeURIComponent(bankDetails.accountName || "Aston Holidays")}&am=${cleanBalanceDue}&cu=INR&tn=Invoice%20${invoice.invoiceNumber}`;
     QRCode.toDataURL(upiString, { width: 130, margin: 1 })
       .then(url => setQrCodeUrl(url))
       .catch(err => console.error(err));
-  }, [invoice]);
+  }, [invoice.invoiceNumber, cleanBalanceDue, bankDetails]);
+
+  const handleSaveBankDetails = (e: React.FormEvent) => {
+    e.preventDefault();
+    setBankDetails(bankForm);
+    setIsEditingBankDetails(false);
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.setItem("aston_default_bank_details", JSON.stringify(bankForm));
+      } catch {}
+    }
+  };
 
   const handleDownloadPdf = async () => {
     setIsDownloadingPdf(true);
@@ -116,6 +167,17 @@ export default function InvoiceTemplate({ invoice, onUpdateStatus }: InvoiceTemp
             {isConfirming ? "Dispatching..." : "Confirm Booking & Send WhatsApp Voucher"}
           </button>
 
+          {/* Update Payment Details & QR Button */}
+          <button
+            onClick={() => {
+              setBankForm(bankDetails);
+              setIsEditingBankDetails(true);
+            }}
+            className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-900 bg-amber-50 hover:bg-amber-100 border border-amber-300 px-3 py-2 rounded-lg transition shadow-sm"
+          >
+            <CreditCard className="w-3.5 h-3.5 text-amber-700" /> Update Account & QR
+          </button>
+
           <button
             onClick={handleCopyLink}
             className="inline-flex items-center gap-1.5 text-xs font-medium text-stone-700 bg-stone-100 hover:bg-stone-200 px-3 py-2 rounded-lg transition"
@@ -165,13 +227,13 @@ export default function InvoiceTemplate({ invoice, onUpdateStatus }: InvoiceTemp
               />
             </div>
             <p className="text-xs font-bold text-stone-900 tracking-wide">
-              ASTON HOLIDAYS DESTINATION MANAGEMENT
+              ASTON HOLIDAYS
             </p>
             <p className="text-xs text-stone-600 mt-0.5">
               Kolagappara, Beenachi, Sulthan Bathery, Wayanad - 673592, Kerala
             </p>
             <p className="text-xs text-stone-600">
-              GSTIN: 32AABCA1234F1Z5 | Phone: +91 97449 00414
+              Phone: +91 97449 00414 | info@astonholidays.com
             </p>
           </div>
 
@@ -268,9 +330,21 @@ export default function InvoiceTemplate({ invoice, onUpdateStatus }: InvoiceTemp
         <div className="py-6 grid grid-cols-2 gap-8 border-b border-stone-200">
           {/* Payment QR and Bank Details */}
           <div>
-            <h3 className="text-xs font-bold text-stone-900 uppercase tracking-wider mb-2">
-              Payment & Bank Details
-            </h3>
+            <div className="flex items-center justify-between mb-2">
+              <h3 className="text-xs font-bold text-stone-900 uppercase tracking-wider">
+                Payment & Bank Details
+              </h3>
+              <button
+                type="button"
+                onClick={() => {
+                  setBankForm(bankDetails);
+                  setIsEditingBankDetails(true);
+                }}
+                className="no-print text-[11px] font-semibold text-emerald-800 hover:text-emerald-950 underline flex items-center gap-1"
+              >
+                Edit Details
+              </button>
+            </div>
             <div className="flex gap-4 items-center bg-stone-50 p-3 rounded-lg border border-stone-200">
               {qrCodeUrl && (
                 <div className="w-24 h-24 relative flex-shrink-0 bg-white p-1 rounded border border-stone-200">
@@ -278,16 +352,16 @@ export default function InvoiceTemplate({ invoice, onUpdateStatus }: InvoiceTemp
                 </div>
               )}
               <div className="text-[11px] text-stone-700 space-y-0.5">
-                <p><span className="font-semibold">A/C Name:</span> {invoice.bankDetails?.accountName || "Aston Holidays LLP"}</p>
-                <p><span className="font-semibold">Bank:</span> {invoice.bankDetails?.bankName || "State Bank of India"}</p>
-                <p><span className="font-semibold">A/C No:</span> {invoice.bankDetails?.accountNumber || "40921008745"}</p>
-                <p><span className="font-semibold">IFSC:</span> {invoice.bankDetails?.ifscCode || "SBIN0008451"}</p>
-                <p><span className="font-semibold">UPI ID:</span> {invoice.bankDetails?.upiId || "astonholidays@sbi"}</p>
+                <p><span className="font-semibold">A/C Name:</span> {bankDetails.accountName || "Aston Holidays"}</p>
+                <p><span className="font-semibold">Bank:</span> {bankDetails.bankName || "State Bank of India"}</p>
+                <p><span className="font-semibold">A/C No:</span> {bankDetails.accountNumber || "40921008745"}</p>
+                <p><span className="font-semibold">IFSC:</span> {bankDetails.ifscCode || "SBIN0008451"}</p>
+                <p><span className="font-semibold">UPI ID:</span> {bankDetails.upiId || "astonholidays@sbi"}</p>
               </div>
             </div>
           </div>
 
-          {/* Amount Calculation */}
+          {/* Amount Calculation (Strict Non-GST) */}
           <div className="space-y-2 text-xs text-stone-700">
             <div className="flex justify-between">
               <span>Subtotal:</span>
@@ -299,13 +373,9 @@ export default function InvoiceTemplate({ invoice, onUpdateStatus }: InvoiceTemp
                 <span className="font-semibold">- ₹{invoice.discount.toLocaleString("en-IN")}</span>
               </div>
             )}
-            <div className="flex justify-between">
-              <span>GST ({invoice.gstRate}%):</span>
-              <span className="font-semibold">₹{invoice.gstAmount.toLocaleString("en-IN")}</span>
-            </div>
             <div className="flex justify-between text-sm font-bold text-stone-900 pt-2 border-t border-stone-300">
               <span>Total Amount:</span>
-              <span>₹{invoice.totalAmount.toLocaleString("en-IN")}</span>
+              <span>₹{netAmount.toLocaleString("en-IN")}</span>
             </div>
             <div className="flex justify-between text-xs text-emerald-800 bg-emerald-50 p-2 rounded">
               <span>Advance Paid:</span>
@@ -313,7 +383,7 @@ export default function InvoiceTemplate({ invoice, onUpdateStatus }: InvoiceTemp
             </div>
             <div className="flex justify-between text-sm font-extrabold text-[#2E4F28] p-2 bg-stone-100 rounded">
               <span>Balance Due at Check-In:</span>
-              <span>₹{invoice.balanceDue.toLocaleString("en-IN")}</span>
+              <span>₹{cleanBalanceDue.toLocaleString("en-IN")}</span>
             </div>
           </div>
         </div>
@@ -379,6 +449,118 @@ export default function InvoiceTemplate({ invoice, onUpdateStatus }: InvoiceTemp
                 </a>
               </div>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* EDIT BANK & PAYMENT DETAILS MODAL */}
+      {isEditingBankDetails && (
+        <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-stone-200 animate-in fade-in zoom-in-95 duration-200">
+            <div className="flex items-center justify-between pb-3 border-b border-stone-100">
+              <div className="flex items-center gap-2 text-stone-900">
+                <CreditCard className="w-5 h-5 text-emerald-700" />
+                <h3 className="text-base font-bold">Update Payment & Bank Details</h3>
+              </div>
+              <button
+                type="button"
+                onClick={() => setIsEditingBankDetails(false)}
+                className="w-7 h-7 flex items-center justify-center text-stone-400 hover:text-stone-700 rounded-full hover:bg-stone-100 transition"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+
+            <form onSubmit={handleSaveBankDetails} className="mt-4 space-y-3 text-xs">
+              <div>
+                <label className="block text-stone-600 font-bold mb-1">Account Holder Name</label>
+                <input
+                  type="text"
+                  value={bankForm.accountName}
+                  onChange={(e) => setBankForm({ ...bankForm, accountName: e.target.value })}
+                  className="w-full px-3 py-2 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                  placeholder="e.g. Aston Holidays"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-stone-600 font-bold mb-1">Bank Name</label>
+                <input
+                  type="text"
+                  value={bankForm.bankName}
+                  onChange={(e) => setBankForm({ ...bankForm, bankName: e.target.value })}
+                  className="w-full px-3 py-2 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                  placeholder="e.g. State Bank of India"
+                  required
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-2.5">
+                <div>
+                  <label className="block text-stone-600 font-bold mb-1">Account Number</label>
+                  <input
+                    type="text"
+                    value={bankForm.accountNumber}
+                    onChange={(e) => setBankForm({ ...bankForm, accountNumber: e.target.value })}
+                    className="w-full px-3 py-2 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/20 font-mono"
+                    placeholder="e.g. 40921008745"
+                    required
+                  />
+                </div>
+                <div>
+                  <label className="block text-stone-600 font-bold mb-1">IFSC Code</label>
+                  <input
+                    type="text"
+                    value={bankForm.ifscCode}
+                    onChange={(e) => setBankForm({ ...bankForm, ifscCode: e.target.value.toUpperCase() })}
+                    className="w-full px-3 py-2 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/20 font-mono uppercase"
+                    placeholder="e.g. SBIN0008451"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-stone-600 font-bold mb-1">UPI ID (Live Dynamic QR)</label>
+                <input
+                  type="text"
+                  value={bankForm.upiId}
+                  onChange={(e) => setBankForm({ ...bankForm, upiId: e.target.value })}
+                  className="w-full px-3 py-2 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/20 font-mono text-emerald-800"
+                  placeholder="e.g. astonholidays@sbi"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block text-stone-600 font-bold mb-1">Custom QR Code Image URL (Optional)</label>
+                <input
+                  type="text"
+                  value={bankForm.qrCodeCustomUrl || ""}
+                  onChange={(e) => setBankForm({ ...bankForm, qrCodeCustomUrl: e.target.value })}
+                  className="w-full px-3 py-2 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                  placeholder="Leave blank to use live auto-generated UPI QR"
+                />
+                <p className="text-[10px] text-stone-400 mt-1">If empty, dynamic QR for ₹{cleanBalanceDue.toLocaleString("en-IN")} is generated automatically.</p>
+              </div>
+
+              <div className="pt-3 border-t border-stone-200 flex items-center justify-end gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIsEditingBankDetails(false)}
+                  className="px-4 py-2 text-stone-600 font-semibold hover:bg-stone-100 rounded-xl text-xs transition"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-5 py-2 bg-[#2E4F28] hover:bg-[#233D1F] text-white font-bold rounded-xl text-xs shadow-md transition"
+                >
+                  Save & Apply Changes
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}

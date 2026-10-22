@@ -651,10 +651,12 @@ function ItinerariesContent() {
 
   return (
     <div className="flex flex-col lg:flex-row min-h-screen bg-[#F5F6F8] print:bg-white print:min-h-0 print:block">
-      <AdminSidebar />
+      <div className={selectedBooking ? "print:hidden no-print" : ""}>
+        <AdminSidebar />
+      </div>
 
       <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto w-full print:p-0 print:m-0 print:overflow-visible print:block">
-        <div className={selectedBooking ? "print:hidden" : ""}>
+        <div className={`dashboard-background-content ${selectedBooking ? "print:hidden no-print" : ""}`}>
           {/* Unsaved Draft Recovery Banner */}
           {recoveredDraft && !isBuilderOpen && (
             <div className="mb-6 bg-gradient-to-r from-[#1A2E1A] to-[#253923] text-white p-4 sm:p-5 rounded-2xl shadow-xl border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-in fade-in slide-in-from-top duration-300">

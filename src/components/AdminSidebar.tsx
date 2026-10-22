@@ -73,7 +73,7 @@ export default function AdminSidebar() {
   return (
     <>
       {/* ================= MOBILE STICKY TOP BAR (lg:hidden) ================= */}
-      <header className="lg:hidden sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-stone-200 px-4 py-2.5 flex items-center justify-between w-full print:hidden shadow-sm">
+      <header className="admin-sidebar-root lg:hidden sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-stone-200 px-4 py-2.5 flex items-center justify-between w-full print:hidden shadow-sm">
         <div className="flex items-center gap-3">
           <button
             onClick={() => setIsMobileOpen(true)}
@@ -104,7 +104,7 @@ export default function AdminSidebar() {
       {isMobileOpen && (
         <div
           onClick={() => setIsMobileOpen(false)}
-          className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden transition-opacity"
+          className="admin-sidebar-root fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden transition-opacity print:hidden"
           aria-hidden="true"
         />
       )}
@@ -112,7 +112,7 @@ export default function AdminSidebar() {
       {/* ================= SIDEBAR (Drawer on Mobile, Static on Desktop) ================= */}
       <aside
         className={`
-          fixed inset-y-0 left-0 z-50 w-72 bg-white border-r border-stone-200 flex flex-col justify-between p-5 shadow-2xl transition-transform duration-300 ease-in-out print:hidden no-print overflow-y-auto
+          admin-sidebar-root fixed inset-y-0 left-0 z-50 w-72 bg-white border-r border-stone-200 flex flex-col justify-between p-5 shadow-2xl transition-transform duration-300 ease-in-out print:hidden no-print overflow-y-auto
           ${isMobileOpen ? "translate-x-0" : "-translate-x-full"}
           lg:static lg:w-64 lg:min-h-screen lg:translate-x-0 lg:shadow-none lg:overflow-y-visible
         `}

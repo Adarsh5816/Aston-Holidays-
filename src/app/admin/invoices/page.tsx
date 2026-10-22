@@ -36,7 +36,7 @@ function InvoicesContent() {
   const [nightRate, setNightRate] = useState(14500);
   const [extraItemDesc, setExtraItemDesc] = useState("Campfire & Music Setup");
   const [extraItemRate, setExtraItemRate] = useState(1500);
-  const [gstRate, setGstRate] = useState(12);
+  const [gstRate, setGstRate] = useState(0);
   const [discount, setDiscount] = useState(0);
   const [advancePaid, setAdvancePaid] = useState(5000);
   const [status, setStatus] = useState<Invoice["status"]>("Advance Received");
@@ -284,13 +284,21 @@ function InvoicesContent() {
       status,
       issueDate: new Date().toISOString().split("T")[0],
       dueDate: checkIn,
-      bankDetails: {
-        accountName: "Aston Holidays LLP",
-        bankName: "State Bank of India",
-        accountNumber: "40921008745",
-        ifscCode: "SBIN0008451",
-        upiId: "astonholidays@sbi"
-      },
+      bankDetails: (() => {
+        if (typeof window !== "undefined") {
+          try {
+            const saved = localStorage.getItem("aston_default_bank_details");
+            if (saved) return JSON.parse(saved);
+          } catch {}
+        }
+        return {
+          accountName: "Aston Holidays",
+          bankName: "State Bank of India",
+          accountNumber: "40921008745",
+          ifscCode: "SBIN0008451",
+          upiId: "astonholidays@sbi"
+        };
+      })(),
       notes: `Advance payment of Rs ${advancePaid.toLocaleString("en-IN")} received. Balance of Rs ${balanceDue.toLocaleString("en-IN")} due on check-in arrival.`
     };
 

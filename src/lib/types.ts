@@ -74,6 +74,15 @@ export interface Resort {
   exclusions: string[];
 }
 
+export interface BankDetails {
+  accountName: string;
+  bankName: string;
+  accountNumber: string;
+  ifscCode: string;
+  upiId: string;
+  qrCodeCustomUrl?: string;
+}
+
 export interface SiteSettings {
   heroTitle: string;
   heroSubtitle: string;
@@ -88,6 +97,7 @@ export interface SiteSettings {
   email: string;
   whatsappNumber: string;
   whatsappWebhookUrl?: string;
+  bankDetails?: BankDetails;
 }
 
 export interface Destination {
@@ -469,6 +479,9 @@ export interface PackageItineraryBooking {
   // Synced invoice reference
   syncedInvoiceId?: string;
   
+  // Custom Payment Details & QR
+  bankDetails?: BankDetails;
+
   createdAt: string;
   updatedAt: string;
 }

@@ -169,7 +169,7 @@
   html, body {
     background: #FFFFFF !important;
     background-color: #FFFFFF !important;
-    color: #000000 !important;
+    color: #111827 !important;
     margin: 0 !important;
     padding: 0 !important;
     overflow: visible !important;
@@ -178,20 +178,27 @@
     print-color-adjust: exact !important;
   }
 
-  /* Universal hide for non-printable UI elements */
-  .no-print,
-  .print\:hidden,
+  /* Universal hide for ALL background navigation, sidebars, headers, and dashboard content */
   aside,
-  nav.no-print,
-  header.no-print {
+  header,
+  nav,
+  footer,
+  .admin-sidebar-root,
+  .dashboard-background-content,
+  .no-print,
+  .print\:hidden {
     display: none !important;
+    visibility: hidden !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
   }
 
   /* Reset modal overlays and card wrappers so they don't produce dark backdrops or shadows */
   .voucher-modal-overlay {
     position: static !important;
-    background: #FFFFFF !important;
-    background-color: #FFFFFF !important;
+    background: transparent !important;
+    background-color: transparent !important;
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     padding: 0 !important;
@@ -201,6 +208,7 @@
     width: 100% !important;
     min-height: auto !important;
     box-shadow: none !important;
+    border: none !important;
   }
 
   .voucher-modal-card {
@@ -217,16 +225,19 @@
     background: #FFFFFF !important;
   }
 
-  #printable-voucher-sheet {
+  #printable-voucher-sheet,
+  #printable-standalone-invoice,
+  #printable-brochure-sheet {
     width: 100% !important;
     max-width: 100% !important;
     margin: 0 !important;
-    padding: 0 !important;
+    padding: 12mm 15mm !important;
     overflow: visible !important;
     display: block !important;
     box-shadow: none !important;
     border: none !important;
     background: #FFFFFF !important;
+    border-radius: 0 !important;
   }
 
   /* Avoid page breaks inside table rows, cards, or QR code blocks */

@@ -23,9 +23,11 @@ import {
   Compass,
   Edit3,
   Download,
-  Loader2
+  Loader2,
+  CreditCard,
+  Check
 } from "lucide-react";
-import { PackageItineraryBooking } from "@/lib/types";
+import { PackageItineraryBooking, BankDetails } from "@/lib/types";
 import { printElementIsolated, downloadElementAsPdf } from "@/lib/printUtils";
 
 interface ItineraryVoucherModalProps {
@@ -33,6 +35,15 @@ interface ItineraryVoucherModalProps {
   onClose: () => void;
   onUpdateBooking?: (updated: PackageItineraryBooking) => void;
 }
+
+const defaultBankDetails: BankDetails = {
+  accountName: "Aston Holidays",
+  bankName: "State Bank of India",
+  accountNumber: "40921008745",
+  ifscCode: "SBIN0008451",
+  upiId: "astonholidays@sbi",
+  qrCodeCustomUrl: ""
+};
 
 export default function ItineraryVoucherModal({
   booking,
@@ -47,18 +58,66 @@ export default function ItineraryVoucherModal({
   const [copied, setCopied] = useState(false);
   const [isDownloadingPdf, setIsDownloadingPdf] = useState(false);
 
+  // Bank & UPI payment details state (persisted per booking and in local storage)
+  const [bankDetails, setBankDetails] = useState<BankDetails>(() => {
+    if (booking.bankDetails && booking.bankDetails.accountName) return booking.bankDetails;
+    if (typeof window !== "undefined") {
+      try {
+        const saved = localStorage.getItem("aston_default_bank_details");
+        if (saved) return JSON.parse(saved);
+      } catch {}
+    }
+    return defaultBankDetails;
+  });
+
+  const [isEditingBankDetails, setIsEditingBankDetails] = useState(false);
+  const [bankForm, setBankForm] = useState<BankDetails>(bankDetails);
+
+  useEffect(() => {
+    if (booking.bankDetails && booking.bankDetails.accountName) {
+      setBankDetails(booking.bankDetails);
+      setBankForm(booking.bankDetails);
+    }
+  }, [booking.bankDetails]);
+
+  const balanceAmount = Math.max(0, (booking.grossTotal - (booking.discount || 0)) - (booking.advancePaid || 0));
+
   useEffect(() => {
     // Generate UPI QR code for balance due
-    const upiString = `upi://pay?pa=astonholidays@sbi&pn=Aston%20Holidays&am=${booking.balanceDue}&cu=INR&tn=Booking%20${booking.bookingCode}`;
+    const upiString = `upi://pay?pa=${bankDetails.upiId || "astonholidays@sbi"}&pn=${encodeURIComponent(bankDetails.accountName || "Aston Holidays")}&am=${balanceAmount}&cu=INR&tn=Booking%20${booking.bookingCode}`;
     QRCode.toDataURL(upiString, { width: 140, margin: 1 })
       .then(url => setQrCodeUrl(url))
       .catch(err => console.error(err));
-  }, [booking]);
+  }, [booking.bookingCode, balanceAmount, bankDetails]);
+
+  const handleSaveBankDetails = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setBankDetails(bankForm);
+    setIsEditingBankDetails(false);
+    if (typeof window !== "undefined") {
+      try {
+        localStorage.setItem("aston_default_bank_details", JSON.stringify(bankForm));
+      } catch {}
+    }
+    const updated = { ...booking, bankDetails: bankForm };
+    if (onUpdateBooking) {
+      onUpdateBooking(updated);
+    }
+    try {
+      await fetch("/api/v1/itineraries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updated)
+      });
+    } catch (e) {
+      console.warn("Could not sync updated bank details to server", e);
+    }
+  };
 
   const handleDownloadPdf = async () => {
     setIsDownloadingPdf(true);
     const docTitle =
-      activeTab === "invoice" ? `Tax-Invoice-${booking.bookingCode}` :
+      activeTab === "invoice" ? `Booking-Invoice-${booking.bookingCode}` :
       activeTab === "rooms" ? `Room-Voucher-${booking.bookingCode}` :
       activeTab === "vehicle" ? `Vehicle-Duty-Slip-${booking.bookingCode}` :
       activeTab === "notepad" ? `Booking-Notes-${booking.bookingCode}` :
@@ -73,7 +132,7 @@ export default function ItineraryVoucherModal({
 
   const handlePrint = () => {
     const docTitle =
-      activeTab === "invoice" ? `Tax Invoice ${booking.bookingCode}` :
+      activeTab === "invoice" ? `Booking Invoice ${booking.bookingCode}` :
       activeTab === "rooms" ? `Room Stay Voucher ${booking.bookingCode}` :
       activeTab === "vehicle" ? `Vehicle Duty Slip ${booking.bookingCode}` :
       activeTab === "notepad" ? `Booking Notes ${booking.bookingCode}` :
@@ -340,7 +399,7 @@ export default function ItineraryVoucherModal({
                 : "text-stone-600 hover:bg-stone-200"
             }`}
           >
-            <Receipt className="w-3.5 h-3.5" /> Itemized Bill & Tax Invoice
+            <Receipt className="w-3.5 h-3.5" /> Itemized Bill & Invoice
           </button>
           <button
             onClick={() => setActiveTab("notepad")}
@@ -766,7 +825,7 @@ export default function ItineraryVoucherModal({
             </div>
           )}
 
-          {/* ================= 4. ITEMIZED BILL & TAX INVOICE ================= */}
+          {/* ================= 4. ITEMIZED BILL & BOOKING INVOICE ================= */}
           {activeTab === "invoice" && (
             <div className="space-y-6">
               {/* Header */}
@@ -781,19 +840,19 @@ export default function ItineraryVoucherModal({
                     />
                   </div>
                   <p className="text-xs font-bold text-stone-900 tracking-wide uppercase">
-                    Aston Holidays LLP
+                    Aston Holidays
                   </p>
                   <p className="text-[11px] text-stone-500">
-                    Kolagappara, Beenachi, Sulthan Bathery, Wayanad - 673592
+                    Kolagappara, Beenachi, Sulthan Bathery, Wayanad - 673592, Kerala
                   </p>
                   <p className="text-[11px] text-stone-500">
-                    GSTIN: 32AABCA1234F1Z5 • +91 97449 00414
+                    Phone: +91 97449 00414 • info@astonholidays.com
                   </p>
                 </div>
 
                 <div className="text-right">
                   <span className="inline-block bg-[#2E4F28] text-white text-[11px] font-bold uppercase tracking-wider px-3 py-1 rounded">
-                    Tax Invoice / Bill
+                    Booking Invoice & Voucher
                   </span>
                   <h2 className="text-xl font-black font-mono text-stone-900 mt-2">
                     INV-{booking.bookingCode.replace("AST-PKG-", "PKG-")}
@@ -914,28 +973,47 @@ export default function ItineraryVoucherModal({
 
               {/* Financial Calculation & Bank / UPI details */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-2">
-                {/* Bank / UPI QR */}
-                <div className="p-4 bg-stone-50 rounded-2xl border border-stone-200 text-xs flex gap-4 items-center">
-                  {qrCodeUrl && (
-                    <div className="bg-white p-2 rounded-xl border border-stone-200 shadow-sm shrink-0">
-                      <Image
-                        src={qrCodeUrl}
-                        alt="Scan UPI to Pay Balance"
-                        width={90}
-                        height={90}
-                        className="object-contain"
-                      />
+                {/* Bank / UPI QR with Edit Payment Details Button */}
+                <div className="p-4 bg-stone-50 rounded-2xl border border-stone-200 text-xs flex flex-col justify-between">
+                  <div className="flex gap-4 items-center">
+                    {qrCodeUrl && (
+                      <div className="bg-white p-2 rounded-xl border border-stone-200 shadow-sm shrink-0">
+                        <Image
+                          src={bankDetails.qrCodeCustomUrl || qrCodeUrl}
+                          alt="Scan UPI to Pay Balance"
+                          width={90}
+                          height={90}
+                          className="object-contain"
+                        />
+                      </div>
+                    )}
+                    <div className="space-y-1 min-w-0">
+                      <p className="font-bold text-stone-900">Scan UPI / Bank Transfer</p>
+                      <p className="text-[11px] text-stone-600 truncate"><span className="font-semibold text-stone-500">Account:</span> {bankDetails.accountName}</p>
+                      <p className="text-[11px] text-stone-600 truncate"><span className="font-semibold text-stone-500">Bank:</span> {bankDetails.bankName}</p>
+                      <p className="text-[11px] text-stone-600 font-mono"><span className="font-semibold text-stone-500">A/C:</span> {bankDetails.accountNumber} • {bankDetails.ifscCode}</p>
+                      <p className="text-[11px] text-emerald-800 font-mono font-bold"><span className="font-semibold text-stone-500">UPI:</span> {bankDetails.upiId}</p>
                     </div>
-                  )}
-                  <div className="space-y-1">
-                    <p className="font-bold text-stone-900">Scan UPI / Bank Transfer</p>
-                    <p className="text-[11px] text-stone-600">Account: Aston Holidays LLP</p>
-                    <p className="text-[11px] text-stone-600 font-mono">A/C: 40921008745 • SBIN0008451</p>
-                    <p className="text-[11px] text-emerald-800 font-mono font-bold">UPI: astonholidays@sbi</p>
+                  </div>
+
+                  {/* Edit Payment Details trigger (hidden on print) */}
+                  <div className="no-print pt-3 mt-3 border-t border-stone-200 flex items-center justify-between">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setBankForm(bankDetails);
+                        setIsEditingBankDetails(true);
+                      }}
+                      className="inline-flex items-center gap-1.5 text-[11px] font-bold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-3 py-1.5 rounded-lg border border-emerald-200 transition active:scale-95"
+                    >
+                      <Edit3 className="w-3 h-3 text-emerald-700" />
+                      <span>Update Account Details & QR</span>
+                    </button>
+                    <span className="text-[10px] text-stone-400">Live QR auto-syncs</span>
                   </div>
                 </div>
 
-                {/* Totals */}
+                {/* Totals - Clean non-GST calculations */}
                 <div className="p-4 bg-stone-50 rounded-2xl border border-stone-200 space-y-2 text-xs">
                   <div className="flex justify-between">
                     <span className="text-stone-500">Rooms Subtotal:</span>
@@ -959,13 +1037,9 @@ export default function ItineraryVoucherModal({
                       <span>-₹{booking.discount.toLocaleString("en-IN")}</span>
                     </div>
                   )}
-                  <div className="flex justify-between">
-                    <span className="text-stone-500">GST ({booking.gstRate}%):</span>
-                    <span className="font-semibold">₹{booking.gstAmount.toLocaleString("en-IN")}</span>
-                  </div>
                   <div className="flex justify-between font-black text-sm text-stone-900 pt-2 border-t border-stone-200">
-                    <span>Net Amount Payable:</span>
-                    <span>₹{booking.netPayable.toLocaleString("en-IN")}</span>
+                    <span>Total Amount Payable:</span>
+                    <span>₹{(booking.grossTotal - (booking.discount || 0)).toLocaleString("en-IN")}</span>
                   </div>
                   <div className="flex justify-between text-emerald-800 font-semibold">
                     <span>Advance Received:</span>
@@ -973,10 +1047,123 @@ export default function ItineraryVoucherModal({
                   </div>
                   <div className="flex justify-between text-amber-800 font-black text-sm pt-1 border-t border-stone-200">
                     <span>Balance Due on Arrival:</span>
-                    <span>₹{booking.balanceDue.toLocaleString("en-IN")}</span>
+                    <span>₹{balanceAmount.toLocaleString("en-IN")}</span>
                   </div>
                 </div>
               </div>
+
+              {/* Payment Details Quick-Editor Modal */}
+              {isEditingBankDetails && (
+                <div className="no-print fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+                  <div className="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-stone-200 animate-in fade-in zoom-in-95 duration-200">
+                    <div className="flex items-center justify-between pb-3 border-b border-stone-200">
+                      <div className="flex items-center gap-2">
+                        <CreditCard className="w-4 h-4 text-emerald-700" />
+                        <h3 className="text-sm font-bold text-stone-900">Update Payment Details & QR</h3>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => setIsEditingBankDetails(false)}
+                        className="text-stone-400 hover:text-stone-700 p-1 rounded-lg"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    <form onSubmit={handleSaveBankDetails} className="space-y-3.5 mt-4 text-xs">
+                      <div>
+                        <label className="block text-stone-600 font-bold mb-1">Account Name</label>
+                        <input
+                          type="text"
+                          value={bankForm.accountName}
+                          onChange={(e) => setBankForm({ ...bankForm, accountName: e.target.value })}
+                          className="w-full px-3 py-2 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                          placeholder="e.g. Aston Holidays"
+                          required
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-stone-600 font-bold mb-1">Bank Name</label>
+                        <input
+                          type="text"
+                          value={bankForm.bankName}
+                          onChange={(e) => setBankForm({ ...bankForm, bankName: e.target.value })}
+                          className="w-full px-3 py-2 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                          placeholder="e.g. State Bank of India"
+                          required
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-2.5">
+                        <div>
+                          <label className="block text-stone-600 font-bold mb-1">Account Number</label>
+                          <input
+                            type="text"
+                            value={bankForm.accountNumber}
+                            onChange={(e) => setBankForm({ ...bankForm, accountNumber: e.target.value })}
+                            className="w-full px-3 py-2 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/20 font-mono"
+                            placeholder="e.g. 40921008745"
+                            required
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-stone-600 font-bold mb-1">IFSC Code</label>
+                          <input
+                            type="text"
+                            value={bankForm.ifscCode}
+                            onChange={(e) => setBankForm({ ...bankForm, ifscCode: e.target.value.toUpperCase() })}
+                            className="w-full px-3 py-2 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/20 font-mono uppercase"
+                            placeholder="e.g. SBIN0008451"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-stone-600 font-bold mb-1">UPI ID (Generates Dynamic QR)</label>
+                        <input
+                          type="text"
+                          value={bankForm.upiId}
+                          onChange={(e) => setBankForm({ ...bankForm, upiId: e.target.value })}
+                          className="w-full px-3 py-2 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/20 font-mono text-emerald-800"
+                          placeholder="e.g. astonholidays@sbi"
+                          required
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-stone-600 font-bold mb-1">Custom QR Code Image URL (Optional)</label>
+                        <input
+                          type="text"
+                          value={bankForm.qrCodeCustomUrl || ""}
+                          onChange={(e) => setBankForm({ ...bankForm, qrCodeCustomUrl: e.target.value })}
+                          className="w-full px-3 py-2 border border-stone-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-700/20"
+                          placeholder="Leave blank to use live auto-generated UPI QR"
+                        />
+                        <p className="text-[10px] text-stone-400 mt-1">If empty, dynamic QR for ₹{balanceAmount.toLocaleString("en-IN")} is generated automatically.</p>
+                      </div>
+
+                      <div className="pt-3 border-t border-stone-200 flex items-center justify-end gap-2">
+                        <button
+                          type="button"
+                          onClick={() => setIsEditingBankDetails(false)}
+                          className="px-3 py-2 text-stone-600 font-semibold hover:bg-stone-100 rounded-xl transition"
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          type="submit"
+                          className="px-4 py-2 bg-[#2E4F28] hover:bg-[#233D1F] text-white font-bold rounded-xl transition shadow active:scale-95 flex items-center gap-1.5"
+                        >
+                          <Check className="w-3.5 h-3.5" />
+                          <span>Save & Apply</span>
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              )}
             </div>
           )}
 
