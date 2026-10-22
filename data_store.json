@@ -2942,5 +2942,1421 @@
       "status": "success",
       "summary": "Recommendation query matched 1 resorts for Supabase Verification Guest"
     }
+  ],
+  "packages": [
+    {
+      "id": "pkg-best-1",
+      "title": "Adventure Wayanad",
+      "category": "Best Holiday Package",
+      "tagline": "High-altitude trails, bamboo rafting & off-road 4x4 safaris",
+      "duration": "3 Days / 2 Nights",
+      "price": 18999,
+      "featured": true,
+      "image": "/brochure-assets/extracted_img_5.jpg",
+      "inclusions": [
+        "2 Nights stay in Verified Code-Protected Villa",
+        "Kuruva Island bamboo rafting expedition",
+        "4x4 Rugged jeep safari through deep forest trails",
+        "Campfire with acoustic sound setup under starry skies",
+        "Daily breakfast & traditional Kerala dinner spread"
+      ],
+      "description": "Find peace in the rhythm of waterfalls, joy in the laughter of local life, and meaning in journeys that linger long after they end. Book now!",
+      "applicableResortCodes": [
+        "AH-121",
+        "AH-116"
+      ]
+    },
+    {
+      "id": "pkg-best-2",
+      "title": "Trinity of Sanctuaries",
+      "category": "Best Holiday Package",
+      "tagline": "Wildlife safaris, pristine dam lakes & ancient hill trails",
+      "duration": "4 Days / 3 Nights",
+      "price": 26500,
+      "featured": true,
+      "image": "/brochure-assets/extracted_img_2.jpg",
+      "inclusions": [
+        "3 Nights in luxury pool villa retreat",
+        "Muthanga Wildlife Sanctuary elephant jeep safari",
+        "Banasura Sagar earthen dam speed-boating",
+        "Edakkal Prehistoric Caves guided exploration",
+        "All transfers in private chauffeur-driven AC cab"
+      ],
+      "description": "An extraordinary journey connecting Wayanad's three sacred sanctuaries of nature, wildlife, and Neolithic heritage.",
+      "applicableResortCodes": [
+        "AH-112",
+        "AH-114"
+      ]
+    },
+    {
+      "id": "pkg-best-3",
+      "title": "Educational Excursion",
+      "category": "Best Holiday Package",
+      "tagline": "Living tribal heritage, tea processing & historical cave archaeology",
+      "duration": "3 Days / 2 Nights",
+      "price": 14500,
+      "featured": false,
+      "image": "/brochure-assets/extracted_img_7.jpg",
+      "inclusions": [
+        "En Ooru Tribal Heritage Village guided masterclass",
+        "Century-old tea estate tour with sommelier tasting",
+        "Wayanad Heritage Museum & Jain Temple expedition",
+        "Comfortable group stay with hygienic buffet meals"
+      ],
+      "description": "An immersive learning holiday combining environmental geography, tribal culture, and historical archaeology in Wayanad.",
+      "applicableResortCodes": [
+        "AH-118",
+        "AH-120"
+      ]
+    },
+    {
+      "id": "pkg-best-4",
+      "title": "Explore Wayanad Circuit",
+      "category": "Best Holiday Package",
+      "tagline": "Complete iconic landmarks tour from Lakkidi to Kuruva",
+      "duration": "4 Days / 3 Nights",
+      "price": 29999,
+      "featured": true,
+      "image": "/brochure-assets/extracted_img_13.jpg",
+      "inclusions": [
+        "Lakkidi View Point & Pookode Freshwater Lake",
+        "Chembra Peak & Soochipara Cascading Waterfalls",
+        "Banasura Dam & Karlad Adventure Turf",
+        "Full chauffeur cab and resort breakfast & dinner"
+      ],
+      "description": "Experience the ultimate Wayanad vacation covering all major scenic viewpoints, lakes, waterfalls, and tea gardens.",
+      "applicableResortCodes": [
+        "AH-112",
+        "AH-121"
+      ]
+    },
+    {
+      "id": "pkg-hm-1",
+      "title": "Love Nest in the Heights",
+      "category": "Honey Moon Package",
+      "tagline": "Private Heated Pool Villa suspended above misty mountain valleys",
+      "duration": "3 Days / 2 Nights",
+      "price": 27999,
+      "featured": true,
+      "image": "/brochure-assets/extracted_img_2.jpg",
+      "inclusions": [
+        "2 Nights in Secluded Private Pool Villa (100% Privacy)",
+        "Candlelight Dinner poolside with acoustic romantic music",
+        "Floral Bed Decoration & Signature Honeymoon Cake",
+        "Sunset viewpoints tour at Lakkidi & tea garden walk",
+        "Daily Chef Breakfast & Gourmet Malabar Dinners"
+      ],
+      "description": "Discover the magic of Wayanad with our best honeymoon package. Explore lush landscapes, vibrant culture, and thrilling adventures for an unforgettable vacation.",
+      "applicableResortCodes": [
+        "AH-112",
+        "AH-121"
+      ]
+    },
+    {
+      "id": "pkg-hm-2",
+      "title": "Moonlit Waters Retreat",
+      "category": "Honey Moon Package",
+      "tagline": "Waterfront tranquility with private veranda overlooking the lake",
+      "duration": "3 Days / 2 Nights",
+      "price": 24500,
+      "featured": true,
+      "image": "/brochure-assets/extracted_img_8.jpg",
+      "inclusions": [
+        "Waterfront luxury villa with direct lake panoramas",
+        "Private boat cruise across mirror-smooth waters",
+        "Romantic starlit campfire with roasted marshmallows",
+        "Couple Ayurvedic relaxation therapy session",
+        "Complimentary floral welcome drink & gift hamper"
+      ],
+      "description": "Spend slow romantic mornings watching the mist rise over serene lake waters, followed by intimate candlelit dinners under the stars.",
+      "applicableResortCodes": [
+        "AH-114",
+        "AH-122"
+      ]
+    },
+    {
+      "id": "pkg-hm-3",
+      "title": "Among the Forests",
+      "category": "Honey Moon Package",
+      "tagline": "Authentic luxury treehouse nestled in primordial rainforest canopies",
+      "duration": "3 Days / 2 Nights",
+      "price": 29999,
+      "featured": true,
+      "image": "/brochure-assets/extracted_img_29.jpg",
+      "inclusions": [
+        "Elevated luxury treehouse stay with panoramic foliage views",
+        "Private naturalist-guided dawn forest trail",
+        "Candlelight dinner on private treehouse wooden deck",
+        "High-speed WiFi, en-suite modern amenities & heater"
+      ],
+      "description": "Immerse yourselves in nature's purest embrace. Wake up to the songs of tropical birds and gentle mountain breezes in complete seclusion.",
+      "applicableResortCodes": [
+        "AH-105",
+        "AH-118"
+      ]
+    },
+    {
+      "id": "pkg-hm-4",
+      "title": "Serenity in the Estates",
+      "category": "Honey Moon Package",
+      "tagline": "Colonial plantation bungalow with private tea trails & fireplace",
+      "duration": "4 Days / 3 Nights",
+      "price": 32000,
+      "featured": false,
+      "image": "/brochure-assets/extracted_img_10.jpg",
+      "inclusions": [
+        "Heritage plantation estate bungalow stay",
+        "Private tea-tasting sessions with resident sommelier",
+        "Chembra Heart-Shaped Lake romantic excursion",
+        "Private chef candlelit dinners by the fireplace"
+      ],
+      "description": "Surround yourselves with endless emerald tea slopes, cool breezes, and timeless colonial hospitality.",
+      "applicableResortCodes": [
+        "AH-111",
+        "AH-114"
+      ]
+    },
+    {
+      "id": "pkg-de-1",
+      "title": "Wedding & Royal Celebrations",
+      "category": "Destination events",
+      "tagline": "Breathtaking 15-acre estate weddings overlooking Banasura mountain lake",
+      "duration": "3 Days / 2 Nights",
+      "price": 195000,
+      "featured": true,
+      "image": "/brochure-assets/extracted_img_7.jpg",
+      "inclusions": [
+        "Complete buyout of entire villa property for up to 50 guests",
+        "Open-air mandap setup overlooking mountain lake waters",
+        "Traditional Kerala Panchavadyam & floral entrance decor",
+        "Curated 24-item Royal Malabar Sadhya & barbecue gala",
+        "Dedicated on-site event coordinator & staging setup"
+      ],
+      "description": "Celebrate life’s milestones in breathtaking settings—where every destination becomes a stage for unforgettable moments.",
+      "applicableResortCodes": [
+        "AH-121",
+        "AH-123"
+      ]
+    },
+    {
+      "id": "pkg-de-2",
+      "title": "Corporate Event & Strategy Retreat",
+      "category": "Destination events",
+      "tagline": "Focused brainstorming in mountain solitude paired with outdoor obstacle turf",
+      "duration": "2 Days / 1 Night",
+      "price": 68000,
+      "featured": true,
+      "image": "/brochure-assets/extracted_img_13.jpg",
+      "inclusions": [
+        "Multi-bedroom executive villa clusters with meeting hall",
+        "High-speed fiber WiFi & 4K display conference equipment",
+        "Team obstacle trail & off-road river crossing adventure",
+        "Evening campfire with live acoustic music & barbecue skewers"
+      ],
+      "description": "Re-energize your leadership team away from city chaos with productive strategy sessions and thrilling outdoor activities.",
+      "applicableResortCodes": [
+        "AH-118",
+        "AH-120"
+      ]
+    },
+    {
+      "id": "pkg-de-3",
+      "title": "Family Gathering & Milestone Celebrations",
+      "category": "Destination events",
+      "tagline": "Exclusive private lawns, children play turf & customized home-style dining",
+      "duration": "3 Days / 2 Nights",
+      "price": 48000,
+      "featured": false,
+      "image": "/brochure-assets/extracted_img_16.jpg",
+      "inclusions": [
+        "Sprawling private villa accommodating multi-generation families",
+        "Private swimming pool with dedicated toddler splash area",
+        "Lawn games, badminton turf, and campfire area",
+        "Dedicated in-house chef cooking customized family meals"
+      ],
+      "description": "Unite grandparents, children, and cousins in a private paradise with endless laughter and zero disruptions.",
+      "applicableResortCodes": [
+        "AH-114",
+        "AH-124"
+      ]
+    },
+    {
+      "id": "pkg-gp-1",
+      "title": "Luxury Package",
+      "category": "Group Packages",
+      "tagline": "Exclusive 4BHK/5BHK Private Pool Villa buyout with chef service",
+      "duration": "3 Days / 2 Nights",
+      "price": 38000,
+      "featured": true,
+      "image": "/brochure-assets/extracted_img_16.jpg",
+      "inclusions": [
+        "Total privacy with entire luxury villa reserved exclusively for your group",
+        "Private infinity pool with unhindered valley sunset view",
+        "Nightly campfire with high-bass Bluetooth sound system",
+        "Barbecue dinner arranged on the stargazing deck",
+        "Dedicated villa caretaker available 24/7"
+      ],
+      "description": "Travel isn’t just about places—it’s about people. Share laughter, stories, and adventures as you explore the world side by side.",
+      "applicableResortCodes": [
+        "AH-116",
+        "AH-121"
+      ]
+    },
+    {
+      "id": "pkg-gp-2",
+      "title": "Bachelor Friendly Safari & Camp",
+      "category": "Group Packages",
+      "tagline": "4x4 Open Jeep trail, bamboo river rafting & midnight campfire",
+      "duration": "3 Days / 2 Nights",
+      "price": 24000,
+      "featured": true,
+      "image": "/brochure-assets/extracted_img_14.jpg",
+      "inclusions": [
+        "Group-friendly private villa with zero noise restrictions",
+        "Deep forest 4x4 off-road jeep safari trail",
+        "Kuruva Island river bamboo rafting tickets",
+        "Barbecue grill setup with marinated skewers & campfire"
+      ],
+      "description": "The ultimate squad trip for friends seeking rugged thrills by day and lively private pool parties by night.",
+      "applicableResortCodes": [
+        "AH-118",
+        "AH-126"
+      ]
+    },
+    {
+      "id": "pkg-gp-3",
+      "title": "Classic Package",
+      "category": "Group Packages",
+      "tagline": "Sightseeing, plantation trails & comfortable group cottages",
+      "duration": "3 Days / 2 Nights",
+      "price": 21500,
+      "featured": false,
+      "image": "/brochure-assets/extracted_img_6.jpg",
+      "inclusions": [
+        "Spacious group cottage stay surrounded by tea foliage",
+        "Guided plantation walk and viewpoint excursion",
+        "Daily breakfast & authentic Kerala dinner",
+        "Evening campfire with spiced tea and snacks"
+      ],
+      "description": "A well-balanced, comfortable group holiday ideal for friend circles and corporate peers.",
+      "applicableResortCodes": [
+        "AH-111",
+        "AH-114"
+      ]
+    },
+    {
+      "id": "pkg-gp-4",
+      "title": "Value Package",
+      "category": "Group Packages",
+      "tagline": "Budget-friendly group stay with pool access & campfire",
+      "duration": "2 Days / 1 Night",
+      "price": 12999,
+      "featured": false,
+      "image": "/brochure-assets/extracted_img_18.jpg",
+      "inclusions": [
+        "1 Night stay in spacious group villa",
+        "Swimming pool access and lawn games",
+        "Campfire setup with music system",
+        "Traditional South Indian breakfast"
+      ],
+      "description": "Maximum fun at an unbeatable per-person price without compromising cleanliness or privacy.",
+      "applicableResortCodes": [
+        "AH-111",
+        "AH-116"
+      ]
+    }
+  ],
+  "blogs": [
+    {
+      "id": "blog-1",
+      "title": "Tourist Places Near by Sulthan Bathery",
+      "slug": "tourist-places-near-by-sulthan-bathery",
+      "category": "Destination Guide",
+      "excerpt": "Discover the prehistoric rock engravings of Edakkal Caves, the 14th-century Jain Temple, and the elephant herds of Muthanga Wildlife Sanctuary.",
+      "content": "Sulthan Bathery is the historic heart of Wayanad, named after Tipu Sultan who used the ancient Jain Temple as his battery (ammunition storehouse). Located at an elevation of 930 meters, it is bordered by the wildlife-rich forests of Muthanga. Visiting the Neolithic petroglyphs at Edakkal Caves just 10km away reveals engravings dating back to 6,000 BCE.",
+      "readTime": "4 min read",
+      "date": "April 25, 2026",
+      "image": "/brochure-assets/extracted_img_7.jpg",
+      "author": "Aston Holidays",
+      "featured": true
+    },
+    {
+      "id": "blog-2",
+      "title": "Tourist Places Near by Mananthavady",
+      "slug": "tourist-places-near-by-mananthavady",
+      "category": "Destination Guide",
+      "excerpt": "From the dense evergreen archipelago of Kuruva Island to the sacred waters of Papanasini at Thirunelli Temple and Pazhassi Raja's tomb.",
+      "content": "Mananthavady sits on the banks of the Kabini River and serves as the cultural gateway to Northern Wayanad. The 950-acre Kuruva Island with its bamboo rafts, rare orchids, and serene waterways is an absolute must-visit. Higher up into the Brahmagiri foothills lies Thirunelli Maha Vishnu Temple, revered for millennia as the 'Kashi of the South'.",
+      "readTime": "5 min read",
+      "date": "April 25, 2026",
+      "image": "/brochure-assets/extracted_img_29.jpg",
+      "author": "Aston Holidays",
+      "featured": true
+    },
+    {
+      "id": "blog-3",
+      "title": "Tourist Places Near by Kalpetta",
+      "slug": "tourist-places-near-by-kalpetta",
+      "category": "Destination Guide",
+      "excerpt": "Explore the bustling headquarters of Wayanad surrounded by verdant coffee hills, Karapuzha Dam, and the ancient Koottamundu Glass Temple.",
+      "content": "Kalpetta is the administrative and commercial epicenter of Wayanad. Located conveniently in the center of the district, it gives you quick access to Karapuzha earthen dam, sprawling spice markets, and aromatic coffee processing estates. The Glass Temple dedicated to the Jain Tirthankara Parshvanatha on the slopes of Vellarimala is a hidden architectural marvel.",
+      "readTime": "4 min read",
+      "date": "April 25, 2026",
+      "image": "/brochure-assets/extracted_img_2.jpg",
+      "author": "Aston Holidays",
+      "featured": true
+    },
+    {
+      "id": "blog-4",
+      "title": "Best 5 Cafes in Mananthavady",
+      "slug": "best-5-cafes-in-mananthavady",
+      "category": "Food & Cafes",
+      "excerpt": "Looking for freshly brewed artisan Wayanadan coffee, wood-fired snacks, and cozy rain-view seats in Mananthavady? Here are the top 5 spots.",
+      "content": "Mananthavady's cafe culture has blossomed with vibrant spots catering to travelers heading towards Kuruva and Thirunelli. Experience single-origin Robusta roasts, layered Malabar snacks, iced cardamom espressos, and scenic plantation verandas.",
+      "readTime": "3 min read",
+      "date": "April 25, 2026",
+      "image": "/brochure-assets/extracted_img_16.jpg",
+      "author": "Aston Holidays",
+      "featured": false
+    },
+    {
+      "id": "blog-5",
+      "title": "Best 5 Cafes in Kalpetta",
+      "slug": "best-5-cafes-in-kalpetta",
+      "category": "Food & Cafes",
+      "excerpt": "Where to find the best specialty brews, artisanal Malabar tea blends, and delicious pastries after a long day of Wayanad sightseeing.",
+      "content": "Kalpetta boasts some of the most charming cafes in the Western Ghats. From roasteries serving fresh estate harvests to cozy mountain lounges with high-speed WiFi, explore the 5 best cafe haunts in Kalpetta town.",
+      "readTime": "3 min read",
+      "date": "April 25, 2026",
+      "image": "/brochure-assets/extracted_img_13.jpg",
+      "author": "Aston Holidays",
+      "featured": false
+    }
+  ],
+  "reviews": [
+    {
+      "id": "rev-1",
+      "name": "Dr. Ananya & Siddharth",
+      "location": "Bangalore",
+      "rating": 5,
+      "packageTaken": "Honey Moon Package • Love Nest in the Heights",
+      "review": "Our honeymoon stay in Wayanad with Aston Holidays was absolute perfection! The candlelight dinner arranged right next to our heated pool with misty valley views will stay with us forever. The 12-page WhatsApp brochure made selection seamless.",
+      "date": "October 2026",
+      "avatar": "AS"
+    },
+    {
+      "id": "rev-2",
+      "name": "Vikramaditya Rao & Family",
+      "location": "Hyderabad",
+      "rating": 5,
+      "packageTaken": "Group Packages • Grand Family Reunion",
+      "review": "We reserved the 4BHK private villa for our family gathering of 14 people. Cleanliness was 10/10, the food was delicious, and having the full villa and pool exclusively to ourselves was priceless. Aston Holidays handled every detail flawlessly.",
+      "date": "September 2026",
+      "avatar": "VR"
+    },
+    {
+      "id": "rev-3",
+      "name": "Deepak Kurup & Team",
+      "location": "Dubai",
+      "rating": 5,
+      "packageTaken": "Group Packages • Bachelor Friendly Safari",
+      "review": "Aston Holidays organized our college reunion. The 4x4 off-road jeep safari and the acoustic campfire setup with music was unforgettable. Highly recommend their group packages!",
+      "date": "September 2026",
+      "avatar": "DK"
+    },
+    {
+      "id": "rev-4",
+      "name": "Meera Nambiar",
+      "location": "Kochi",
+      "rating": 5,
+      "packageTaken": "Best Holiday Package • Trinity of Sanctuaries",
+      "review": "The standard PDF brochure sent directly on WhatsApp made it so easy to compare options with transparent rates. Everything was 100% verified with zero hidden fees. Aston Holidays is our go-to for Wayanad!",
+      "date": "August 2026",
+      "avatar": "MN"
+    }
+  ],
+  "packageBookings": [
+    {
+      "id": "pkg-book-1",
+      "bookingCode": "AST-PKG-9104",
+      "packageTitle": "Romantic Misty Wayanad & Private Pool Escape",
+      "category": "Honey Moon Package",
+      "duration": "3 Days / 2 Nights",
+      "startDate": "2026-11-15",
+      "endDate": "2026-11-17",
+      "customerName": "Dr. Siddharth & Ananya",
+      "customerPhone": "+91 98471 99283",
+      "customerEmail": "siddharth.ananya@gmail.com",
+      "customerAddress": "Jayanagar 4th Block, Bangalore, Karnataka - 560011",
+      "totalGuests": {
+        "adults": 2,
+        "children": 0
+      },
+      "itineraryDays": [
+        {
+          "dayNumber": 1,
+          "title": "Calicut Pickup & Scenic Rainforest Ascent to Wayanad",
+          "activities": "Chauffeur pickup from Calicut Railway Station / Airport. Scenic drive through Thamarassery Churam mountain pass with viewpoints. Check-in to private pool villa. Evening leisurely poolside dip and welcome plantation tea.",
+          "sightseeing": [
+            "Lakkidi View Point",
+            "Pookode Freshwater Lake",
+            "Thamarassery Ghats"
+          ],
+          "mealsIncluded": {
+            "breakfast": false,
+            "lunch": true,
+            "dinner": true
+          },
+          "stayDestination": "Padinjarathara",
+          "stayResortCode": "AH-112"
+        },
+        {
+          "dayNumber": 2,
+          "title": "Banasura Sagar Dam Boating & Candlelight Dinner by the Pool",
+          "activities": "Morning breakfast with estate fresh coffee. Visit Banasura Sagar earthen dam with speed boat excursion. Afternoon visit to Karlad Adventure Lake. Evening exclusive romantic candlelight dinner setup by the pool with rose petals.",
+          "sightseeing": [
+            "Banasura Sagar Dam",
+            "Karlad Adventure Lake",
+            "Meenmutty Waterfalls"
+          ],
+          "mealsIncluded": {
+            "breakfast": true,
+            "lunch": false,
+            "dinner": true
+          },
+          "stayDestination": "Padinjarathara",
+          "stayResortCode": "AH-112"
+        },
+        {
+          "dayNumber": 3,
+          "title": "Tea Plantation Walk, Spice Shopping & Calicut Drop",
+          "activities": "Early morning sunrise walk through tea estate paths. Leisurely breakfast and pool dip. Check-out at 11:00 AM. Visit Wayanad Tea Museum and local spice market at Kalpetta for authentic cardamom & pepper. Comfortable drive back and drop at Calicut.",
+          "sightseeing": [
+            "Tea Museum & Factory",
+            "Kalpetta Heritage Spice Market",
+            "Chain Tree"
+          ],
+          "mealsIncluded": {
+            "breakfast": true,
+            "lunch": true,
+            "dinner": false
+          },
+          "stayDestination": "Calicut Drop"
+        }
+      ],
+      "rooms": [
+        {
+          "id": "room-1",
+          "resortCode": "AH-112",
+          "resortName": "2BHK Private Pool Villa",
+          "roomType": "Luxury Private Pool Villa",
+          "destination": "Padinjarathara",
+          "checkIn": "2026-11-15",
+          "checkOut": "2026-11-17",
+          "nights": 2,
+          "roomsCount": 1,
+          "adultsCount": 2,
+          "childrenCount": 0,
+          "ratePerNight": 12500,
+          "totalAmount": 25000,
+          "mealPlan": "CP (Bed & Breakfast)",
+          "specialRequests": "Rose petal bed decoration"
+        }
+      ],
+      "vehicle": {
+        "id": "veh-1",
+        "enabled": true,
+        "vehicleType": "Sedan (Dzire / Etios)",
+        "pricingModel": "package_km_extra",
+        "vehicleNumber": "KL-12-AE-4819",
+        "driverName": "Suresh Babu",
+        "driverPhone": "+91 97455 12840",
+        "pickupLocation": "Calicut Airport / Railway Station",
+        "dropLocation": "Calicut Railway Station",
+        "pickupDate": "2026-11-15",
+        "dropDate": "2026-11-17",
+        "totalDays": 3,
+        "ratePerDay": 2600,
+        "driverBatta": 400,
+        "startKmReading": 42100,
+        "endKmReading": 42480,
+        "totalKmCovered": 380,
+        "baseKmIncluded": 300,
+        "ratePerKm": 14,
+        "extraKmCovered": 80,
+        "extraKmRate": 15,
+        "extraKmAmount": 1200,
+        "tollAndParking": 0,
+        "totalAmount": 10200,
+        "dutyNotes": "Driver will report at Calicut Airport at 09:30 AM with guest name placard."
+      },
+      "otherExpenses": [
+        {
+          "id": "exp-1",
+          "category": "Candlelight Dinner",
+          "title": "5-Course Romantic Candlelight Dinner by the Pool",
+          "rate": 3500,
+          "quantity": 1,
+          "totalAmount": 3500,
+          "notepadContent": "Client requested pure vegetarian Continental menu, heart-shaped chocolate truffle cake (eggless), and candle lanterns around the pool edge.",
+          "showInVoucher": true
+        },
+        {
+          "id": "exp-2",
+          "category": "Campfire & Music",
+          "title": "Private Campfire Setup with Acoustic Bluetooth Speaker",
+          "rate": 1500,
+          "quantity": 1,
+          "totalAmount": 1500,
+          "notepadContent": "Campfire firewood logs arrangement at 08:30 PM near villa garden lawn.",
+          "showInVoucher": true
+        }
+      ],
+      "notepadNotes": "VIP Honeymoon couple. Ensure villa manager provides warm welcome with fresh tender coconut on arrival. Driver Suresh is informed about the 9:30 AM flight arrival.",
+      "roomsSubtotal": 25000,
+      "vehicleSubtotal": 10200,
+      "otherExpensesSubtotal": 5000,
+      "grossTotal": 40200,
+      "discount": 2000,
+      "taxableAmount": 38200,
+      "gstRate": 5,
+      "gstAmount": 1910,
+      "netPayable": 40110,
+      "advancePaid": 15000,
+      "balanceDue": 25110,
+      "paymentStatus": "Advance Received",
+      "syncedInvoiceId": "inv-pkg-ast-9104",
+      "createdAt": "2026-10-18T10:30:00Z",
+      "updatedAt": "2026-10-18T10:30:00Z"
+    }
+  ],
+  "resortApiConnections": [
+    {
+      "id": "conn-1",
+      "resortCode": "AH-112",
+      "resortName": "2BHK Private Pool Villa",
+      "pmsProvider": "Stayflexi",
+      "apiEndpoint": "https://api.stayflexi.com/v2/partners/aston/ah112",
+      "apiKey": "sk_live_ah112_stayflexi_8391",
+      "webhookUrl": "https://astonholidays.com/api/v1/resort-sync/webhook?resort=AH-112",
+      "syncFrequencyMinutes": 5,
+      "status": "Connected",
+      "lastSyncAt": "2026-10-22T04:58:06.085Z",
+      "lastLatencyMs": 42,
+      "autoConfirmRequests": true,
+      "notes": "Direct 2-way sync with resort PMS. Live inventory and instant confirmation enabled."
+    },
+    {
+      "id": "conn-2",
+      "resortCode": "AH-121",
+      "resortName": "3BHK Private Pool Villa",
+      "pmsProvider": "eZee Absolute",
+      "apiEndpoint": "https://live.ezeeabsolute.com/api/v1/properties/ah121",
+      "apiKey": "ezee_sec_live_99182371",
+      "webhookUrl": "https://astonholidays.com/api/v1/resort-sync/webhook?resort=AH-121",
+      "syncFrequencyMinutes": 10,
+      "status": "Connected",
+      "lastSyncAt": "2026-10-22T04:53:06.086Z",
+      "lastLatencyMs": 65,
+      "autoConfirmRequests": true,
+      "notes": "Connected via eZee Channel Manager API. Real-time rates & room availability."
+    },
+    {
+      "id": "conn-3",
+      "resortCode": "AH-104",
+      "resortName": "Glass Treehouse Sanctuary",
+      "pmsProvider": "Custom REST API",
+      "apiEndpoint": "https://pms.wayanadstays.com/api/ah104/availability",
+      "apiKey": "rest_live_treehouse_334",
+      "webhookUrl": "https://astonholidays.com/api/v1/resort-sync/webhook?resort=AH-104",
+      "syncFrequencyMinutes": 15,
+      "status": "Connected",
+      "lastSyncAt": "2026-10-22T04:49:06.086Z",
+      "lastLatencyMs": 82,
+      "autoConfirmRequests": false,
+      "notes": "Treehouse property manager receives API booking requests with instant reservation acknowledgement."
+    },
+    {
+      "id": "conn-4",
+      "resortCode": "AH-101",
+      "resortName": "Luxury Plantation Heritage Bungalow",
+      "pmsProvider": "Direct Webhook",
+      "apiEndpoint": "https://api.plantationheritage.in/webhook/bookings",
+      "apiKey": "whk_live_ah101_7718",
+      "webhookUrl": "https://astonholidays.com/api/v1/resort-sync/webhook?resort=AH-101",
+      "syncFrequencyMinutes": 30,
+      "status": "Connected",
+      "lastSyncAt": "2026-10-22T04:40:06.086Z",
+      "lastLatencyMs": 53,
+      "autoConfirmRequests": true,
+      "notes": "Heritage bungalow booking app webhook receiver."
+    }
+  ],
+  "resortBookingRequests": [
+    {
+      "id": "req-1",
+      "requestId": "REQ-PMS-9281",
+      "resortCode": "AH-112",
+      "resortName": "2BHK Private Pool Villa",
+      "guestName": "Dr. Siddharth & Ananya",
+      "guestPhone": "+91 98471 99283",
+      "checkIn": "2026-11-15",
+      "checkOut": "2026-11-17",
+      "nights": 2,
+      "roomsCount": 1,
+      "roomType": "Luxury Private Pool Villa",
+      "mealPlan": "CP (Bed & Breakfast)",
+      "pmsConfirmationNumber": "PMS-CONF-98421",
+      "status": "Confirmed",
+      "apiPayloadSent": {
+        "action": "RESERVATION_CREATE",
+        "rooms": 1,
+        "guest": "Dr. Siddharth & Ananya",
+        "dates": "2026-11-15 to 2026-11-17"
+      },
+      "apiResponseReceived": {
+        "status": "SUCCESS",
+        "pms_pnr": "PMS-CONF-98421",
+        "room_allocated": "Villa Pool 02",
+        "balance_to_collect": 0
+      },
+      "dispatchedAt": "2026-10-22T03:01:06.086Z",
+      "confirmedAt": "2026-10-22T03:01:10.086Z",
+      "specialRequests": "Rose petal bed decoration & early check-in requested."
+    },
+    {
+      "id": "req-2",
+      "requestId": "REQ-PMS-9140",
+      "resortCode": "AH-121",
+      "resortName": "3BHK Private Pool Villa",
+      "guestName": "Vikramaditya Rao & Family",
+      "guestPhone": "+91 98490 11223",
+      "checkIn": "2026-11-20",
+      "checkOut": "2026-11-22",
+      "nights": 2,
+      "roomsCount": 1,
+      "roomType": "3BHK Entire Estate Villa",
+      "mealPlan": "EP (Room Only)",
+      "pmsConfirmationNumber": "EZ-CONF-77120",
+      "status": "Confirmed",
+      "apiPayloadSent": {
+        "action": "RESERVATION_CREATE",
+        "rooms": 1,
+        "guest": "Vikramaditya Rao",
+        "dates": "2026-11-20 to 2026-11-22"
+      },
+      "apiResponseReceived": {
+        "status": "SUCCESS",
+        "pms_pnr": "EZ-CONF-77120",
+        "room_allocated": "Entire Villa 121",
+        "balance_to_collect": 0
+      },
+      "dispatchedAt": "2026-10-21T23:01:06.086Z",
+      "confirmedAt": "2026-10-21T23:01:09.586Z",
+      "specialRequests": "Barbeque grill and extra bedding for children."
+    }
+  ],
+  "resortSyncLogs": [
+    {
+      "id": "log-1",
+      "timestamp": "2026-10-22T04:58:06.086Z",
+      "resortCode": "AH-112",
+      "action": "AVAILABILITY_SYNC",
+      "status": "SUCCESS",
+      "latencyMs": 42,
+      "message": "Pulled live room calendar from Stayflexi API. All room blocks synchronized."
+    },
+    {
+      "id": "log-2",
+      "timestamp": "2026-10-22T04:53:06.086Z",
+      "resortCode": "AH-121",
+      "action": "AVAILABILITY_SYNC",
+      "status": "SUCCESS",
+      "latencyMs": 65,
+      "message": "eZee Absolute live sync successful. Tariff confirmed at ₹14,500/night."
+    },
+    {
+      "id": "log-3",
+      "timestamp": "2026-10-22T03:01:06.086Z",
+      "resortCode": "AH-112",
+      "action": "BOOKING_REQUEST",
+      "status": "SUCCESS",
+      "latencyMs": 145,
+      "message": "Dispatched booking request REQ-PMS-9281. PMS confirmed with PNR PMS-CONF-98421."
+    }
+  ],
+  "liveAvailability": [
+    {
+      "resortCode": "AH-112",
+      "resortName": "2BHK Private Pool Villa",
+      "date": "2026-10-22",
+      "totalRooms": 4,
+      "availableRooms": 3,
+      "bookedRooms": 1,
+      "status": "Available",
+      "liveTariff": 12500,
+      "b2bRate": 9500,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-121",
+      "resortName": "3BHK Private Pool Villa",
+      "date": "2026-10-22",
+      "totalRooms": 3,
+      "availableRooms": 3,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 14500,
+      "b2bRate": 11000,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-104",
+      "resortName": "Glass Treehouse Sanctuary",
+      "date": "2026-10-22",
+      "totalRooms": 2,
+      "availableRooms": 2,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 9500,
+      "b2bRate": 7500,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-101",
+      "resortName": "Plantation Heritage Bungalow",
+      "date": "2026-10-22",
+      "totalRooms": 5,
+      "availableRooms": 2,
+      "bookedRooms": 3,
+      "status": "Available",
+      "liveTariff": 8000,
+      "b2bRate": 6200,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-112",
+      "resortName": "2BHK Private Pool Villa",
+      "date": "2026-10-23",
+      "totalRooms": 4,
+      "availableRooms": 4,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 12500,
+      "b2bRate": 9500,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-121",
+      "resortName": "3BHK Private Pool Villa",
+      "date": "2026-10-23",
+      "totalRooms": 3,
+      "availableRooms": 3,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 14500,
+      "b2bRate": 11000,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-104",
+      "resortName": "Glass Treehouse Sanctuary",
+      "date": "2026-10-23",
+      "totalRooms": 2,
+      "availableRooms": 2,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 9500,
+      "b2bRate": 7500,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-101",
+      "resortName": "Plantation Heritage Bungalow",
+      "date": "2026-10-23",
+      "totalRooms": 5,
+      "availableRooms": 2,
+      "bookedRooms": 3,
+      "status": "Available",
+      "liveTariff": 8000,
+      "b2bRate": 6200,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-112",
+      "resortName": "2BHK Private Pool Villa",
+      "date": "2026-10-24",
+      "totalRooms": 4,
+      "availableRooms": 0,
+      "bookedRooms": 4,
+      "status": "Sold Out",
+      "liveTariff": 14000,
+      "b2bRate": 9500,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-121",
+      "resortName": "3BHK Private Pool Villa",
+      "date": "2026-10-24",
+      "totalRooms": 3,
+      "availableRooms": 0,
+      "bookedRooms": 3,
+      "status": "Sold Out",
+      "liveTariff": 16000,
+      "b2bRate": 11000,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-104",
+      "resortName": "Glass Treehouse Sanctuary",
+      "date": "2026-10-24",
+      "totalRooms": 2,
+      "availableRooms": 0,
+      "bookedRooms": 2,
+      "status": "Sold Out",
+      "liveTariff": 11000,
+      "b2bRate": 7500,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-101",
+      "resortName": "Plantation Heritage Bungalow",
+      "date": "2026-10-24",
+      "totalRooms": 5,
+      "availableRooms": 1,
+      "bookedRooms": 4,
+      "status": "Fast Filling",
+      "liveTariff": 9500,
+      "b2bRate": 6200,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-112",
+      "resortName": "2BHK Private Pool Villa",
+      "date": "2026-10-25",
+      "totalRooms": 4,
+      "availableRooms": 0,
+      "bookedRooms": 4,
+      "status": "Sold Out",
+      "liveTariff": 14000,
+      "b2bRate": 9500,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-121",
+      "resortName": "3BHK Private Pool Villa",
+      "date": "2026-10-25",
+      "totalRooms": 3,
+      "availableRooms": 0,
+      "bookedRooms": 3,
+      "status": "Sold Out",
+      "liveTariff": 16000,
+      "b2bRate": 11000,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-104",
+      "resortName": "Glass Treehouse Sanctuary",
+      "date": "2026-10-25",
+      "totalRooms": 2,
+      "availableRooms": 0,
+      "bookedRooms": 2,
+      "status": "Sold Out",
+      "liveTariff": 11000,
+      "b2bRate": 7500,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-101",
+      "resortName": "Plantation Heritage Bungalow",
+      "date": "2026-10-25",
+      "totalRooms": 5,
+      "availableRooms": 1,
+      "bookedRooms": 4,
+      "status": "Fast Filling",
+      "liveTariff": 9500,
+      "b2bRate": 6200,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-112",
+      "resortName": "2BHK Private Pool Villa",
+      "date": "2026-10-26",
+      "totalRooms": 4,
+      "availableRooms": 2,
+      "bookedRooms": 2,
+      "status": "Available",
+      "liveTariff": 12500,
+      "b2bRate": 9500,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-121",
+      "resortName": "3BHK Private Pool Villa",
+      "date": "2026-10-26",
+      "totalRooms": 3,
+      "availableRooms": 3,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 14500,
+      "b2bRate": 11000,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-104",
+      "resortName": "Glass Treehouse Sanctuary",
+      "date": "2026-10-26",
+      "totalRooms": 2,
+      "availableRooms": 2,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 9500,
+      "b2bRate": 7500,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-101",
+      "resortName": "Plantation Heritage Bungalow",
+      "date": "2026-10-26",
+      "totalRooms": 5,
+      "availableRooms": 5,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 8000,
+      "b2bRate": 6200,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-112",
+      "resortName": "2BHK Private Pool Villa",
+      "date": "2026-10-27",
+      "totalRooms": 4,
+      "availableRooms": 3,
+      "bookedRooms": 1,
+      "status": "Available",
+      "liveTariff": 12500,
+      "b2bRate": 9500,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-121",
+      "resortName": "3BHK Private Pool Villa",
+      "date": "2026-10-27",
+      "totalRooms": 3,
+      "availableRooms": 2,
+      "bookedRooms": 1,
+      "status": "Available",
+      "liveTariff": 14500,
+      "b2bRate": 11000,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-104",
+      "resortName": "Glass Treehouse Sanctuary",
+      "date": "2026-10-27",
+      "totalRooms": 2,
+      "availableRooms": 2,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 9500,
+      "b2bRate": 7500,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-101",
+      "resortName": "Plantation Heritage Bungalow",
+      "date": "2026-10-27",
+      "totalRooms": 5,
+      "availableRooms": 2,
+      "bookedRooms": 3,
+      "status": "Available",
+      "liveTariff": 8000,
+      "b2bRate": 6200,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-112",
+      "resortName": "2BHK Private Pool Villa",
+      "date": "2026-10-28",
+      "totalRooms": 4,
+      "availableRooms": 4,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 12500,
+      "b2bRate": 9500,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-121",
+      "resortName": "3BHK Private Pool Villa",
+      "date": "2026-10-28",
+      "totalRooms": 3,
+      "availableRooms": 3,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 14500,
+      "b2bRate": 11000,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-104",
+      "resortName": "Glass Treehouse Sanctuary",
+      "date": "2026-10-28",
+      "totalRooms": 2,
+      "availableRooms": 2,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 9500,
+      "b2bRate": 7500,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-101",
+      "resortName": "Plantation Heritage Bungalow",
+      "date": "2026-10-28",
+      "totalRooms": 5,
+      "availableRooms": 5,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 8000,
+      "b2bRate": 6200,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-112",
+      "resortName": "2BHK Private Pool Villa",
+      "date": "2026-10-29",
+      "totalRooms": 4,
+      "availableRooms": 4,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 12500,
+      "b2bRate": 9500,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-121",
+      "resortName": "3BHK Private Pool Villa",
+      "date": "2026-10-29",
+      "totalRooms": 3,
+      "availableRooms": 2,
+      "bookedRooms": 1,
+      "status": "Available",
+      "liveTariff": 14500,
+      "b2bRate": 11000,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-104",
+      "resortName": "Glass Treehouse Sanctuary",
+      "date": "2026-10-29",
+      "totalRooms": 2,
+      "availableRooms": 2,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 9500,
+      "b2bRate": 7500,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-101",
+      "resortName": "Plantation Heritage Bungalow",
+      "date": "2026-10-29",
+      "totalRooms": 5,
+      "availableRooms": 4,
+      "bookedRooms": 1,
+      "status": "Available",
+      "liveTariff": 8000,
+      "b2bRate": 6200,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-112",
+      "resortName": "2BHK Private Pool Villa",
+      "date": "2026-10-30",
+      "totalRooms": 4,
+      "availableRooms": 2,
+      "bookedRooms": 2,
+      "status": "Available",
+      "liveTariff": 12500,
+      "b2bRate": 9500,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-121",
+      "resortName": "3BHK Private Pool Villa",
+      "date": "2026-10-30",
+      "totalRooms": 3,
+      "availableRooms": 2,
+      "bookedRooms": 1,
+      "status": "Available",
+      "liveTariff": 14500,
+      "b2bRate": 11000,
+      "lastUpdated": "2026-10-22T05:01:06.086Z"
+    },
+    {
+      "resortCode": "AH-104",
+      "resortName": "Glass Treehouse Sanctuary",
+      "date": "2026-10-30",
+      "totalRooms": 2,
+      "availableRooms": 2,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 9500,
+      "b2bRate": 7500,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-101",
+      "resortName": "Plantation Heritage Bungalow",
+      "date": "2026-10-30",
+      "totalRooms": 5,
+      "availableRooms": 5,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 8000,
+      "b2bRate": 6200,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-112",
+      "resortName": "2BHK Private Pool Villa",
+      "date": "2026-10-31",
+      "totalRooms": 4,
+      "availableRooms": 0,
+      "bookedRooms": 4,
+      "status": "Sold Out",
+      "liveTariff": 14000,
+      "b2bRate": 9500,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-121",
+      "resortName": "3BHK Private Pool Villa",
+      "date": "2026-10-31",
+      "totalRooms": 3,
+      "availableRooms": 0,
+      "bookedRooms": 3,
+      "status": "Sold Out",
+      "liveTariff": 16000,
+      "b2bRate": 11000,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-104",
+      "resortName": "Glass Treehouse Sanctuary",
+      "date": "2026-10-31",
+      "totalRooms": 2,
+      "availableRooms": 0,
+      "bookedRooms": 2,
+      "status": "Sold Out",
+      "liveTariff": 11000,
+      "b2bRate": 7500,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-101",
+      "resortName": "Plantation Heritage Bungalow",
+      "date": "2026-10-31",
+      "totalRooms": 5,
+      "availableRooms": 1,
+      "bookedRooms": 4,
+      "status": "Fast Filling",
+      "liveTariff": 9500,
+      "b2bRate": 6200,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-112",
+      "resortName": "2BHK Private Pool Villa",
+      "date": "2026-11-01",
+      "totalRooms": 4,
+      "availableRooms": 0,
+      "bookedRooms": 4,
+      "status": "Sold Out",
+      "liveTariff": 14000,
+      "b2bRate": 9500,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-121",
+      "resortName": "3BHK Private Pool Villa",
+      "date": "2026-11-01",
+      "totalRooms": 3,
+      "availableRooms": 0,
+      "bookedRooms": 3,
+      "status": "Sold Out",
+      "liveTariff": 16000,
+      "b2bRate": 11000,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-104",
+      "resortName": "Glass Treehouse Sanctuary",
+      "date": "2026-11-01",
+      "totalRooms": 2,
+      "availableRooms": 0,
+      "bookedRooms": 2,
+      "status": "Sold Out",
+      "liveTariff": 11000,
+      "b2bRate": 7500,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-101",
+      "resortName": "Plantation Heritage Bungalow",
+      "date": "2026-11-01",
+      "totalRooms": 5,
+      "availableRooms": 1,
+      "bookedRooms": 4,
+      "status": "Fast Filling",
+      "liveTariff": 9500,
+      "b2bRate": 6200,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-112",
+      "resortName": "2BHK Private Pool Villa",
+      "date": "2026-11-02",
+      "totalRooms": 4,
+      "availableRooms": 2,
+      "bookedRooms": 2,
+      "status": "Available",
+      "liveTariff": 12500,
+      "b2bRate": 9500,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-121",
+      "resortName": "3BHK Private Pool Villa",
+      "date": "2026-11-02",
+      "totalRooms": 3,
+      "availableRooms": 3,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 14500,
+      "b2bRate": 11000,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-104",
+      "resortName": "Glass Treehouse Sanctuary",
+      "date": "2026-11-02",
+      "totalRooms": 2,
+      "availableRooms": 2,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 9500,
+      "b2bRate": 7500,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-101",
+      "resortName": "Plantation Heritage Bungalow",
+      "date": "2026-11-02",
+      "totalRooms": 5,
+      "availableRooms": 2,
+      "bookedRooms": 3,
+      "status": "Available",
+      "liveTariff": 8000,
+      "b2bRate": 6200,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-112",
+      "resortName": "2BHK Private Pool Villa",
+      "date": "2026-11-03",
+      "totalRooms": 4,
+      "availableRooms": 2,
+      "bookedRooms": 2,
+      "status": "Available",
+      "liveTariff": 12500,
+      "b2bRate": 9500,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-121",
+      "resortName": "3BHK Private Pool Villa",
+      "date": "2026-11-03",
+      "totalRooms": 3,
+      "availableRooms": 3,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 14500,
+      "b2bRate": 11000,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-104",
+      "resortName": "Glass Treehouse Sanctuary",
+      "date": "2026-11-03",
+      "totalRooms": 2,
+      "availableRooms": 2,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 9500,
+      "b2bRate": 7500,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-101",
+      "resortName": "Plantation Heritage Bungalow",
+      "date": "2026-11-03",
+      "totalRooms": 5,
+      "availableRooms": 5,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 8000,
+      "b2bRate": 6200,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-112",
+      "resortName": "2BHK Private Pool Villa",
+      "date": "2026-11-04",
+      "totalRooms": 4,
+      "availableRooms": 4,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 12500,
+      "b2bRate": 9500,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-121",
+      "resortName": "3BHK Private Pool Villa",
+      "date": "2026-11-04",
+      "totalRooms": 3,
+      "availableRooms": 3,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 14500,
+      "b2bRate": 11000,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-104",
+      "resortName": "Glass Treehouse Sanctuary",
+      "date": "2026-11-04",
+      "totalRooms": 2,
+      "availableRooms": 2,
+      "bookedRooms": 0,
+      "status": "Available",
+      "liveTariff": 9500,
+      "b2bRate": 7500,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    },
+    {
+      "resortCode": "AH-101",
+      "resortName": "Plantation Heritage Bungalow",
+      "date": "2026-11-04",
+      "totalRooms": 5,
+      "availableRooms": 2,
+      "bookedRooms": 3,
+      "status": "Available",
+      "liveTariff": 8000,
+      "b2bRate": 6200,
+      "lastUpdated": "2026-10-22T05:01:06.087Z"
+    }
   ]
 }

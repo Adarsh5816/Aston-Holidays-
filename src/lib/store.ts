@@ -538,7 +538,7 @@ function readData(): DataStoreSchema {
     if (fs.existsSync(STORE_PATH)) {
       const content = fs.readFileSync(STORE_PATH, "utf8");
       const parsed = JSON.parse(content);
-      return {
+      const data: DataStoreSchema = {
         resorts: parsed.resorts || initialResorts,
         leads: parsed.leads || initialLeads,
         invoices: parsed.invoices || initialInvoices,
@@ -555,6 +555,10 @@ function readData(): DataStoreSchema {
         resortSyncLogs: parsed.resortSyncLogs || initialResortSyncLogs,
         liveAvailability: parsed.liveAvailability || initialLiveAvailability
       };
+      if (!parsed.packageBookings || !parsed.packages || !parsed.blogs || !parsed.reviews || !parsed.resortApiConnections) {
+        saveData(data);
+      }
+      return data;
     }
   } catch (err) {
     console.error("Error reading data_store.json:", err);
@@ -1179,6 +1183,20 @@ export const Store = {
       data.packageBookings.unshift(booking);
     }
     saveData(data);
+    syncToSupabase("package_bookings", {
+      id: booking.id,
+      booking_code: booking.bookingCode,
+      package_title: booking.packageTitle,
+      customer_name: booking.customerName,
+      customer_phone: booking.customerPhone,
+      start_date: booking.startDate,
+      end_date: booking.endDate,
+      net_payable: booking.netPayable,
+      advance_paid: booking.advancePaid,
+      balance_due: booking.balanceDue,
+      payment_status: booking.paymentStatus,
+      data: booking
+    }, "id");
     return booking;
   },
 
@@ -1189,6 +1207,7 @@ export const Store = {
     data.packageBookings = data.packageBookings.filter(p => p.id !== id && p.bookingCode !== id);
     if (data.packageBookings.length !== prevLen) {
       saveData(data);
+      deleteFromSupabase("package_bookings", id);
       return true;
     }
     return false;

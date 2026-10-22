@@ -24,8 +24,15 @@ import {
   MapPin,
   ChevronRight,
   FileText,
-  Printer
+  Printer,
+  ShieldCheck,
+  RotateCcw,
+  AlertTriangle,
+  Save
 } from "lucide-react";
+
+const DRAFT_STORAGE_KEY = "aston_wip_itinerary_draft_v1";
+const LOCAL_BOOKINGS_BACKUP_KEY = "aston_persistent_package_bookings_v1";
 
 function ItinerariesContent() {
   const [bookings, setBookings] = useState<PackageItineraryBooking[]>([]);
@@ -34,6 +41,8 @@ function ItinerariesContent() {
   const [selectedBooking, setSelectedBooking] = useState<PackageItineraryBooking | null>(null);
   const [isBuilderOpen, setIsBuilderOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [recoveredDraft, setRecoveredDraft] = useState<any | null>(null);
+  const [lastAutoSavedAt, setLastAutoSavedAt] = useState<string | null>(null);
 
   // Form State
   const [packageTitle, setPackageTitle] = useState("Romantic Misty Wayanad & Private Pool Escape");
@@ -152,23 +161,188 @@ function ItinerariesContent() {
   const [advancePaid, setAdvancePaid] = useState(10000);
   const [paymentStatus, setPaymentStatus] = useState<PackageItineraryBooking["paymentStatus"]>("Advance Received");
 
-  // Load bookings and resorts
+  // Check for recovered draft on mount
+  useEffect(() => {
+    try {
+      const savedDraftStr = localStorage.getItem(DRAFT_STORAGE_KEY);
+      if (savedDraftStr) {
+        const draft = JSON.parse(savedDraftStr);
+        if (draft && (draft.customerName || draft.customerPhone || draft.editingId || draft.packageTitle !== "Romantic Misty Wayanad & Private Pool Escape")) {
+          setRecoveredDraft(draft);
+        }
+      }
+    } catch (e) {
+      console.warn("Could not load itinerary draft:", e);
+    }
+  }, []);
+
+  // Exit guard: warn user if navigating away with builder open
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (isBuilderOpen) {
+        e.preventDefault();
+        e.returnValue = "You have an unsaved itinerary in progress. All changes are auto-saved in your browser, but please confirm if you wish to close.";
+        return e.returnValue;
+      }
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [isBuilderOpen]);
+
+  // Real-time auto-save whenever builder is open
+  useEffect(() => {
+    if (!isBuilderOpen) return;
+    const now = new Date().toISOString();
+    const draftPayload = {
+      editingId,
+      packageTitle,
+      category,
+      duration,
+      startDate,
+      endDate,
+      customerName,
+      customerPhone,
+      customerEmail,
+      customerAddress,
+      adults,
+      children,
+      itineraryDays,
+      rooms,
+      vehicle,
+      otherExpenses,
+      notepadNotes,
+      discount,
+      gstRate,
+      advancePaid,
+      paymentStatus,
+      savedAt: now
+    };
+    try {
+      localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(draftPayload));
+      setLastAutoSavedAt(now);
+    } catch (e) {
+      console.warn("Could not auto-save itinerary draft:", e);
+    }
+  }, [
+    isBuilderOpen,
+    editingId,
+    packageTitle,
+    category,
+    duration,
+    startDate,
+    endDate,
+    customerName,
+    customerPhone,
+    customerEmail,
+    customerAddress,
+    adults,
+    children,
+    itineraryDays,
+    rooms,
+    vehicle,
+    otherExpenses,
+    notepadNotes,
+    discount,
+    gstRate,
+    advancePaid,
+    paymentStatus
+  ]);
+
+  const applyRecoveredDraft = () => {
+    if (!recoveredDraft) return;
+    setEditingId(recoveredDraft.editingId || null);
+    setPackageTitle(recoveredDraft.packageTitle || "Romantic Misty Wayanad & Private Pool Escape");
+    setCategory(recoveredDraft.category || "Honey Moon Package");
+    setDuration(recoveredDraft.duration || "3 Days / 2 Nights");
+    setStartDate(recoveredDraft.startDate || "2026-11-15");
+    setEndDate(recoveredDraft.endDate || "2026-11-17");
+    setCustomerName(recoveredDraft.customerName || "");
+    setCustomerPhone(recoveredDraft.customerPhone || "");
+    setCustomerEmail(recoveredDraft.customerEmail || "");
+    setCustomerAddress(recoveredDraft.customerAddress || "");
+    setAdults(recoveredDraft.adults ?? 2);
+    setChildren(recoveredDraft.children ?? 0);
+    if (recoveredDraft.itineraryDays?.length) setItineraryDays(recoveredDraft.itineraryDays);
+    if (recoveredDraft.rooms?.length) setRooms(recoveredDraft.rooms);
+    if (recoveredDraft.vehicle) setVehicle(recoveredDraft.vehicle);
+    if (recoveredDraft.otherExpenses) setOtherExpenses(recoveredDraft.otherExpenses);
+    if (recoveredDraft.notepadNotes) setNotepadNotes(recoveredDraft.notepadNotes);
+    setDiscount(recoveredDraft.discount ?? 0);
+    setGstRate(recoveredDraft.gstRate ?? 5);
+    setAdvancePaid(recoveredDraft.advancePaid ?? 10000);
+    setPaymentStatus(recoveredDraft.paymentStatus || "Advance Received");
+    setIsBuilderOpen(true);
+    setRecoveredDraft(null);
+  };
+
+  const discardRecoveredDraft = () => {
+    try {
+      localStorage.removeItem(DRAFT_STORAGE_KEY);
+    } catch {}
+    setRecoveredDraft(null);
+  };
+
+  // Load bookings with dual-vault persistence (Server + LocalStorage Backup)
   const loadData = async () => {
     try {
+      // 1. Read local backup
+      let localSaved: PackageItineraryBooking[] = [];
+      try {
+        const localStr = localStorage.getItem(LOCAL_BOOKINGS_BACKUP_KEY);
+        if (localStr) localSaved = JSON.parse(localStr);
+      } catch {}
+
       const [bRes, rRes] = await Promise.all([
         fetch("/api/v1/itineraries"),
         fetch("/api/v1/resorts")
       ]);
+
+      let serverBookings: PackageItineraryBooking[] = [];
       if (bRes.ok) {
-        const bData = await bRes.json();
-        setBookings(bData);
+        serverBookings = await bRes.json();
       }
+
+      // Merge: Any booking saved locally that is missing on server is preserved
+      const mergedMap = new Map<string, PackageItineraryBooking>();
+      serverBookings.forEach(b => mergedMap.set(b.id, b));
+      const missingOnServer: PackageItineraryBooking[] = [];
+      localSaved.forEach(b => {
+        if (!mergedMap.has(b.id)) {
+          mergedMap.set(b.id, b);
+          missingOnServer.push(b);
+        }
+      });
+
+      const mergedList = Array.from(mergedMap.values());
+      setBookings(mergedList);
+
+      try {
+        localStorage.setItem(LOCAL_BOOKINGS_BACKUP_KEY, JSON.stringify(mergedList));
+      } catch {}
+
+      // Auto re-sync missing bookings to backend
+      if (missingOnServer.length > 0) {
+        console.log(`[Zero-Data-Loss] Syncing ${missingOnServer.length} local bookings to server...`);
+        missingOnServer.forEach(b => {
+          fetch("/api/v1/itineraries", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(b)
+          }).catch(err => console.warn("Background sync error:", err));
+        });
+      }
+
       if (rRes.ok) {
         const rData = await rRes.json();
         setResorts(rData);
       }
     } catch (e) {
-      console.error(e);
+      console.error("Error loading itineraries:", e);
+      // Fallback to local storage if network glitch
+      try {
+        const localStr = localStorage.getItem(LOCAL_BOOKINGS_BACKUP_KEY);
+        if (localStr) setBookings(JSON.parse(localStr));
+      } catch {}
     }
   };
 
@@ -388,11 +562,18 @@ function ItinerariesContent() {
 
       if (res.ok) {
         const saved = await res.json();
+        let nextList: PackageItineraryBooking[];
         if (editingId) {
-          setBookings(bookings.map(b => b.id === editingId ? saved : b));
+          nextList = bookings.map(b => b.id === editingId ? saved : b);
         } else {
-          setBookings([saved, ...bookings]);
+          nextList = [saved, ...bookings];
         }
+        setBookings(nextList);
+        try {
+          localStorage.setItem(LOCAL_BOOKINGS_BACKUP_KEY, JSON.stringify(nextList));
+          localStorage.removeItem(DRAFT_STORAGE_KEY);
+        } catch {}
+        setRecoveredDraft(null);
         setIsBuilderOpen(false);
         setEditingId(null);
         setSelectedBooking(saved);
@@ -430,7 +611,11 @@ function ItinerariesContent() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this itinerary & package booking?")) return;
     await fetch(`/api/v1/itineraries?id=${id}`, { method: "DELETE" });
-    setBookings(bookings.filter(b => b.id !== id));
+    const nextList = bookings.filter(b => b.id !== id);
+    setBookings(nextList);
+    try {
+      localStorage.setItem(LOCAL_BOOKINGS_BACKUP_KEY, JSON.stringify(nextList));
+    } catch {}
     if (selectedBooking?.id === id) setSelectedBooking(null);
   };
 
@@ -470,6 +655,47 @@ function ItinerariesContent() {
 
       <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto w-full print:p-0 print:m-0 print:overflow-visible print:block">
         <div className={selectedBooking ? "print:hidden" : ""}>
+          {/* Unsaved Draft Recovery Banner */}
+          {recoveredDraft && !isBuilderOpen && (
+            <div className="mb-6 bg-gradient-to-r from-[#1A2E1A] to-[#253923] text-white p-4 sm:p-5 rounded-2xl shadow-xl border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-in fade-in slide-in-from-top duration-300">
+              <div className="flex items-center gap-3.5">
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center shrink-0">
+                  <ShieldCheck className="w-5 h-5 text-emerald-400" />
+                </div>
+                <div>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] uppercase font-black tracking-wider text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">
+                      Work In Progress Preserved
+                    </span>
+                    <span className="text-xs text-stone-300">
+                      {recoveredDraft.savedAt ? `Auto-saved at ${new Date(recoveredDraft.savedAt).toLocaleTimeString()}` : "Protected from data loss"}
+                    </span>
+                  </div>
+                  <p className="text-sm font-bold text-white mt-1">
+                    Unsaved Itinerary: <span className="text-emerald-300">{recoveredDraft.customerName ? `${recoveredDraft.customerName} • ` : ""}{recoveredDraft.packageTitle}</span>
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
+                <button
+                  type="button"
+                  onClick={discardRecoveredDraft}
+                  className="px-3 py-1.5 text-xs font-semibold text-stone-300 hover:text-white hover:bg-white/10 rounded-lg transition"
+                >
+                  Discard Draft
+                </button>
+                <button
+                  type="button"
+                  onClick={applyRecoveredDraft}
+                  className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-stone-900 bg-emerald-400 hover:bg-emerald-300 rounded-xl transition shadow active:scale-95"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" /> Resume Editing & Save
+                </button>
+              </div>
+            </div>
+          )}
+
           {/* Top Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-stone-200 gap-4">
           <div>
@@ -764,9 +990,15 @@ function ItinerariesContent() {
               {/* Modal Header */}
               <div className="flex items-center justify-between pb-4 border-b border-stone-200">
                 <div>
-                  <h2 className="text-xl font-bold text-stone-900">
-                    {editingId ? "Edit Package & Itinerary" : "Create New Itinerary & Package"}
-                  </h2>
+                  <div className="flex items-center gap-2.5">
+                    <h2 className="text-xl font-bold text-stone-900">
+                      {editingId ? "Edit Package & Itinerary" : "Create New Itinerary & Package"}
+                    </h2>
+                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
+                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                      Auto-Saved Draft
+                    </span>
+                  </div>
                   <p className="text-xs text-stone-500">
                     Auto-connects room bookings, cabs, and other expenses with synchronized invoicing.
                   </p>

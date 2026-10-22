@@ -5,7 +5,10 @@ import { useSearchParams } from "next/navigation";
 import AdminSidebar from "@/components/AdminSidebar";
 import InvoiceTemplate from "@/components/InvoiceTemplate";
 import { Invoice, Resort } from "@/lib/types";
-import { Plus, Search, ReceiptText, Printer, MessageCircle, X, Trash2, Eye } from "lucide-react";
+import { Plus, Search, ReceiptText, Printer, MessageCircle, X, Trash2, Eye, ShieldCheck, RotateCcw } from "lucide-react";
+
+const DRAFT_STORAGE_KEY = "aston_wip_invoice_draft_v1";
+const LOCAL_INVOICES_BACKUP_KEY = "aston_persistent_invoices_v1";
 
 function InvoicesContent() {
   const searchParams = useSearchParams();
@@ -16,6 +19,7 @@ function InvoicesContent() {
   const [selectedInvoice, setSelectedInvoice] = useState<Invoice | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
+  const [recoveredDraft, setRecoveredDraft] = useState<any | null>(null);
 
   // New Invoice Form State
   const [customerName, setCustomerName] = useState("");
@@ -37,26 +41,179 @@ function InvoicesContent() {
   const [advancePaid, setAdvancePaid] = useState(5000);
   const [status, setStatus] = useState<Invoice["status"]>("Advance Received");
 
+  // Check for recovered draft on mount
+  useEffect(() => {
+    try {
+      const savedDraftStr = localStorage.getItem(DRAFT_STORAGE_KEY);
+      if (savedDraftStr) {
+        const draft = JSON.parse(savedDraftStr);
+        if (draft && (draft.customerName || draft.customerPhone)) {
+          setRecoveredDraft(draft);
+        }
+      }
+    } catch (e) {
+      console.warn("Could not load invoice draft:", e);
+    }
+  }, []);
+
+  // Exit guard: warn user if navigating away with invoice modal open
+  useEffect(() => {
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (isModalOpen) {
+        e.preventDefault();
+        e.returnValue = "You have an unsaved invoice in progress. All changes are saved as a local draft, but please confirm if you wish to close.";
+        return e.returnValue;
+      }
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [isModalOpen]);
+
+  // Real-time auto-save whenever invoice modal is open
+  useEffect(() => {
+    if (!isModalOpen) return;
+    const now = new Date().toISOString();
+    const draftPayload = {
+      customerName,
+      customerPhone,
+      customerEmail,
+      customerAddress,
+      type,
+      selectedResortCode,
+      checkIn,
+      checkOut,
+      nights,
+      adults,
+      children,
+      nightRate,
+      extraItemDesc,
+      extraItemRate,
+      gstRate,
+      discount,
+      advancePaid,
+      status,
+      savedAt: now
+    };
+    try {
+      localStorage.setItem(DRAFT_STORAGE_KEY, JSON.stringify(draftPayload));
+    } catch (e) {
+      console.warn("Could not auto-save invoice draft:", e);
+    }
+  }, [
+    isModalOpen,
+    customerName,
+    customerPhone,
+    customerEmail,
+    customerAddress,
+    type,
+    selectedResortCode,
+    checkIn,
+    checkOut,
+    nights,
+    adults,
+    children,
+    nightRate,
+    extraItemDesc,
+    extraItemRate,
+    gstRate,
+    discount,
+    advancePaid,
+    status
+  ]);
+
+  const applyRecoveredDraft = () => {
+    if (!recoveredDraft) return;
+    setCustomerName(recoveredDraft.customerName || "");
+    setCustomerPhone(recoveredDraft.customerPhone || "");
+    setCustomerEmail(recoveredDraft.customerEmail || "");
+    setCustomerAddress(recoveredDraft.customerAddress || "");
+    setType(recoveredDraft.type || "Tax Invoice");
+    setSelectedResortCode(recoveredDraft.selectedResortCode || "AH-121");
+    setCheckIn(recoveredDraft.checkIn || "2026-11-10");
+    setCheckOut(recoveredDraft.checkOut || "2026-11-12");
+    setNights(recoveredDraft.nights ?? 2);
+    setAdults(recoveredDraft.adults ?? 4);
+    setChildren(recoveredDraft.children ?? 1);
+    setNightRate(recoveredDraft.nightRate ?? 14500);
+    setExtraItemDesc(recoveredDraft.extraItemDesc || "Campfire & Music Setup");
+    setExtraItemRate(recoveredDraft.extraItemRate ?? 1500);
+    setGstRate(recoveredDraft.gstRate ?? 12);
+    setDiscount(recoveredDraft.discount ?? 0);
+    setAdvancePaid(recoveredDraft.advancePaid ?? 5000);
+    setStatus(recoveredDraft.status || "Advance Received");
+    setIsModalOpen(true);
+    setRecoveredDraft(null);
+  };
+
+  const discardRecoveredDraft = () => {
+    try {
+      localStorage.removeItem(DRAFT_STORAGE_KEY);
+    } catch {}
+    setRecoveredDraft(null);
+  };
+
   const loadData = async () => {
     try {
+      let localSaved: Invoice[] = [];
+      try {
+        const localStr = localStorage.getItem(LOCAL_INVOICES_BACKUP_KEY);
+        if (localStr) localSaved = JSON.parse(localStr);
+      } catch {}
+
       const [invRes, resRes] = await Promise.all([
         fetch("/api/v1/invoices"),
         fetch("/api/v1/resorts")
       ]);
+
+      let serverInvoices: Invoice[] = [];
       if (invRes.ok) {
-        const invData = await invRes.json();
-        setInvoices(invData);
-        if (activeId) {
-          const found = invData.find((i: Invoice) => i.id === activeId || i.invoiceNumber === activeId);
-          if (found) setSelectedInvoice(found);
-        }
+        serverInvoices = await invRes.json();
       }
+
+      // Merge: Any invoice saved locally that is missing on server is preserved
+      const mergedMap = new Map<string, Invoice>();
+      serverInvoices.forEach(i => mergedMap.set(i.id, i));
+      const missingOnServer: Invoice[] = [];
+      localSaved.forEach(i => {
+        if (!mergedMap.has(i.id)) {
+          mergedMap.set(i.id, i);
+          missingOnServer.push(i);
+        }
+      });
+
+      const mergedList = Array.from(mergedMap.values());
+      setInvoices(mergedList);
+
+      try {
+        localStorage.setItem(LOCAL_INVOICES_BACKUP_KEY, JSON.stringify(mergedList));
+      } catch {}
+
+      if (missingOnServer.length > 0) {
+        console.log(`[Zero-Data-Loss] Syncing ${missingOnServer.length} local invoices to server...`);
+        missingOnServer.forEach(i => {
+          fetch("/api/v1/invoices", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(i)
+          }).catch(err => console.warn("Background sync error:", err));
+        });
+      }
+
+      if (activeId) {
+        const found = mergedList.find((i: Invoice) => i.id === activeId || i.invoiceNumber === activeId);
+        if (found) setSelectedInvoice(found);
+      }
+
       if (resRes.ok) {
         const resData = await resRes.json();
         setResorts(resData);
       }
     } catch (e) {
-      console.error(e);
+      console.error("Error loading invoices:", e);
+      try {
+        const localStr = localStorage.getItem(LOCAL_INVOICES_BACKUP_KEY);
+        if (localStr) setInvoices(JSON.parse(localStr));
+      } catch {}
     }
   };
 
@@ -145,7 +302,13 @@ function InvoicesContent() {
 
     if (res.ok) {
       const created = await res.json();
-      setInvoices([created, ...invoices]);
+      const nextList = [created, ...invoices];
+      setInvoices(nextList);
+      try {
+        localStorage.setItem(LOCAL_INVOICES_BACKUP_KEY, JSON.stringify(nextList));
+        localStorage.removeItem(DRAFT_STORAGE_KEY);
+      } catch {}
+      setRecoveredDraft(null);
       setSelectedInvoice(created);
       setIsModalOpen(false);
     }
@@ -154,7 +317,11 @@ function InvoicesContent() {
   const handleDelete = async (id: string) => {
     if (!confirm("Are you sure you want to delete this invoice?")) return;
     await fetch(`/api/v1/invoices?id=${id}`, { method: "DELETE" });
-    setInvoices(invoices.filter(i => i.id !== id));
+    const nextList = invoices.filter(i => i.id !== id);
+    setInvoices(nextList);
+    try {
+      localStorage.setItem(LOCAL_INVOICES_BACKUP_KEY, JSON.stringify(nextList));
+    } catch {}
     if (selectedInvoice?.id === id) setSelectedInvoice(null);
   };
 
@@ -171,7 +338,11 @@ function InvoicesContent() {
       body: JSON.stringify(updated)
     });
     setSelectedInvoice(updated);
-    setInvoices(invoices.map(i => i.id === updated.id ? updated : i));
+    const nextList = invoices.map(i => i.id === updated.id ? updated : i);
+    setInvoices(nextList);
+    try {
+      localStorage.setItem(LOCAL_INVOICES_BACKUP_KEY, JSON.stringify(nextList));
+    } catch {}
   };
 
   const handleShareWhatsApp = (inv: Invoice) => {
@@ -222,6 +393,47 @@ function InvoicesContent() {
       <AdminSidebar />
 
       <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto w-full">
+        {/* Unsaved Invoice Draft Banner */}
+        {recoveredDraft && !isModalOpen && (
+          <div className="mb-6 bg-gradient-to-r from-[#1A2E1A] to-[#253923] text-white p-4 sm:p-5 rounded-2xl shadow-xl border border-emerald-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4 animate-in fade-in slide-in-from-top duration-300">
+            <div className="flex items-center gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center shrink-0">
+                <ShieldCheck className="w-5 h-5 text-emerald-400" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] uppercase font-black tracking-wider text-emerald-300 bg-emerald-950/80 px-2 py-0.5 rounded border border-emerald-500/30">
+                    Draft Preserved
+                  </span>
+                  <span className="text-xs text-stone-300">
+                    {recoveredDraft.savedAt ? `Auto-saved at ${new Date(recoveredDraft.savedAt).toLocaleTimeString()}` : "Protected from data loss"}
+                  </span>
+                </div>
+                <p className="text-sm font-bold text-white mt-1">
+                  Unsaved Invoice: <span className="text-emerald-300">{recoveredDraft.customerName ? `${recoveredDraft.customerName} • ` : ""}{recoveredDraft.type || "Invoice"} ({recoveredDraft.selectedResortCode})</span>
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
+              <button
+                type="button"
+                onClick={discardRecoveredDraft}
+                className="px-3 py-1.5 text-xs font-semibold text-stone-300 hover:text-white hover:bg-white/10 rounded-lg transition"
+              >
+                Discard Draft
+              </button>
+              <button
+                type="button"
+                onClick={applyRecoveredDraft}
+                className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-stone-900 bg-emerald-400 hover:bg-emerald-300 rounded-xl transition shadow active:scale-95"
+              >
+                <RotateCcw className="w-3.5 h-3.5" /> Resume Editing & Save
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Top Header */}
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between pb-6 border-b border-stone-200 gap-4">
           <div>
@@ -444,7 +656,13 @@ function InvoicesContent() {
             <div className="bg-white rounded-3xl max-w-2xl w-full p-8 shadow-2xl border border-stone-200 my-8">
               <div className="flex items-center justify-between pb-4 border-b border-stone-200">
                 <div>
-                  <h2 className="text-xl font-bold text-stone-900">Create New Invoice / Stay Voucher</h2>
+                  <div className="flex items-center gap-2.5">
+                    <h2 className="text-xl font-bold text-stone-900">Create New Invoice / Stay Voucher</h2>
+                    <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-800 bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded-full">
+                      <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                      Auto-Saved Draft
+                    </span>
+                  </div>
                   <p className="text-xs text-stone-500">Generates proforma, tax invoice, or confirmation voucher</p>
                 </div>
                 <button onClick={() => setIsModalOpen(false)} className="text-stone-400 hover:text-stone-700">
