@@ -2,11 +2,11 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { Printer, Share2, ArrowLeft, Check, Phone, Mail, Globe, MapPin, MessageCircle, Send, CheckCircle2, Navigation, Compass } from "lucide-react";
+import { Printer, Share2, ArrowLeft, Check, Phone, Mail, Globe, MapPin, MessageCircle, Send, CheckCircle2, Navigation, Compass, Download, Loader2 } from "lucide-react";
 import Link from "next/link";
 import QRCode from "qrcode";
 import { Invoice } from "@/lib/types";
-import { printElementIsolated } from "@/lib/printUtils";
+import { printElementIsolated, downloadElementAsPdf } from "@/lib/printUtils";
 
 interface InvoiceTemplateProps {
   invoice: Invoice;
@@ -19,6 +19,7 @@ export default function InvoiceTemplate({ invoice, onUpdateStatus }: InvoiceTemp
   const [confirmModalOpen, setConfirmModalOpen] = useState(false);
   const [dispatchedData, setDispatchedData] = useState<any>(null);
   const [isConfirming, setIsConfirming] = useState(false);
+  const [isDownloadingPdf, setIsDownloadingPdf] = useState(false);
 
   useEffect(() => {
     // Generate UPI payment / invoice verification QR
@@ -27,6 +28,15 @@ export default function InvoiceTemplate({ invoice, onUpdateStatus }: InvoiceTemp
       .then(url => setQrCodeUrl(url))
       .catch(err => console.error(err));
   }, [invoice]);
+
+  const handleDownloadPdf = async () => {
+    setIsDownloadingPdf(true);
+    try {
+      await downloadElementAsPdf("printable-standalone-invoice", `Invoice-${invoice.invoiceNumber}.pdf`);
+    } finally {
+      setIsDownloadingPdf(false);
+    }
+  };
 
   const handlePrint = () => {
     printElementIsolated("printable-standalone-invoice", `Invoice ${invoice.invoiceNumber} - Aston Holidays`);
@@ -95,7 +105,7 @@ export default function InvoiceTemplate({ invoice, onUpdateStatus }: InvoiceTemp
           )}
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           {/* Main Booking Confirmation Trigger */}
           <button
             onClick={handleConfirmAndSendWhatsApp}
@@ -115,10 +125,26 @@ export default function InvoiceTemplate({ invoice, onUpdateStatus }: InvoiceTemp
           </button>
 
           <button
-            onClick={handlePrint}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 px-3.5 py-2 rounded-lg transition shadow-sm"
+            onClick={handleDownloadPdf}
+            disabled={isDownloadingPdf}
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-emerald-700 hover:bg-emerald-800 disabled:opacity-75 px-3.5 py-2 rounded-lg transition shadow-sm active:scale-95"
           >
-            <Printer className="w-3.5 h-3.5" /> Print / Save PDF
+            {isDownloadingPdf ? (
+              <>
+                <Loader2 className="w-3.5 h-3.5 animate-spin" /> Saving PDF...
+              </>
+            ) : (
+              <>
+                <Download className="w-3.5 h-3.5" /> Download PDF
+              </>
+            )}
+          </button>
+
+          <button
+            onClick={handlePrint}
+            className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 px-3.5 py-2 rounded-lg transition shadow-sm"
+          >
+            <Printer className="w-3.5 h-3.5" /> Print
           </button>
         </div>
       </div>

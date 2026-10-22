@@ -2,10 +2,11 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { Phone, Globe, Mail, Download, Share2, MessageCircle, ArrowLeft, Printer, Check } from "lucide-react";
+import { Phone, Globe, Mail, Download, Share2, MessageCircle, ArrowLeft, Printer, Check, Loader2 } from "lucide-react";
 import Link from "next/link";
 import QRCode from "qrcode";
 import { Resort } from "@/lib/types";
+import { printElementIsolated, downloadElementAsPdf } from "@/lib/printUtils";
 
 interface BrochureDocumentProps {
   resort: Resort;
@@ -16,6 +17,7 @@ export default function BrochureDocument({ resort, autoPrint = false }: Brochure
   const publicTitle = `${resort.code} • ${resort.bedrooms}BHK ${resort.accommodationType}`;
   const [qrDataUrl, setQrDataUrl] = useState<string>("");
   const [isGeneratingPdf, setIsGeneratingPdf] = useState(false);
+  const [isDownloadingPdf, setIsDownloadingPdf] = useState(false);
   const [copiedLink, setCopiedLink] = useState(false);
   const brochureRef = useRef<HTMLDivElement>(null);
 
@@ -37,8 +39,17 @@ export default function BrochureDocument({ resort, autoPrint = false }: Brochure
   // Use only actual resort photos; do not inject default images
   const photos = resort.photos || [];
 
+  const handleDownloadPdf = async () => {
+    setIsDownloadingPdf(true);
+    try {
+      await downloadElementAsPdf("printable-brochure-sheet", `${resort.code}-Brochure.pdf`);
+    } finally {
+      setIsDownloadingPdf(false);
+    }
+  };
+
   const handlePrint = () => {
-    window.print();
+    printElementIsolated("printable-brochure-sheet", `${resort.code} Brochure - Aston Holidays`);
   };
 
   const handleCopyLink = () => {
@@ -70,7 +81,7 @@ export default function BrochureDocument({ resort, autoPrint = false }: Brochure
           </span>
         </div>
 
-        <div className="flex items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2">
           <button
             onClick={handleCopyLink}
             className="inline-flex items-center gap-1.5 text-xs font-medium text-stone-700 bg-stone-100 hover:bg-stone-200 px-3 py-2 rounded-lg transition"
@@ -80,10 +91,26 @@ export default function BrochureDocument({ resort, autoPrint = false }: Brochure
           </button>
 
           <button
-            onClick={handlePrint}
-            className="inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 px-3.5 py-2 rounded-lg transition shadow-sm"
+            onClick={handleDownloadPdf}
+            disabled={isDownloadingPdf}
+            className="inline-flex items-center gap-1.5 text-xs font-bold text-white bg-emerald-700 hover:bg-emerald-800 disabled:opacity-75 px-3.5 py-2 rounded-lg transition shadow-sm active:scale-95"
           >
-            <Printer className="w-3.5 h-3.5" /> Print / Save PDF
+            {isDownloadingPdf ? (
+              <>
+                <Loader2 className="w-3.5 h-3.5 animate-spin" /> Saving PDF...
+              </>
+            ) : (
+              <>
+                <Download className="w-3.5 h-3.5" /> Download PDF
+              </>
+            )}
+          </button>
+
+          <button
+            onClick={handlePrint}
+            className="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-white bg-stone-900 hover:bg-stone-800 px-3.5 py-2 rounded-lg transition shadow-sm"
+          >
+            <Printer className="w-3.5 h-3.5" /> Print
           </button>
 
           <a
@@ -98,7 +125,7 @@ export default function BrochureDocument({ resort, autoPrint = false }: Brochure
       </header>
 
       {/* THE 12-PAGE BROCHURE DOCUMENT CONTAINER */}
-      <main ref={brochureRef} className="max-w-[794px] mx-auto print:max-w-none print:w-full space-y-8 print:space-y-0">
+      <main id="printable-brochure-sheet" ref={brochureRef} className="max-w-[794px] mx-auto print:max-w-none print:w-full space-y-8 print:space-y-0">
 
         {/* ================= PAGE 1: COVER PAGE ================= */}
         <div className="brochure-page relative bg-white shadow-xl print:shadow-none w-[794px] h-[1123px] print:w-full print:h-[100vh] mx-auto overflow-hidden flex flex-col justify-between p-12 print:p-10 page-break">

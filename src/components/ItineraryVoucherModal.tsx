@@ -21,10 +21,12 @@ import {
   Sparkles,
   Users,
   Compass,
-  Edit3
+  Edit3,
+  Download,
+  Loader2
 } from "lucide-react";
 import { PackageItineraryBooking } from "@/lib/types";
-import { printElementIsolated } from "@/lib/printUtils";
+import { printElementIsolated, downloadElementAsPdf } from "@/lib/printUtils";
 
 interface ItineraryVoucherModalProps {
   booking: PackageItineraryBooking;
@@ -43,6 +45,7 @@ export default function ItineraryVoucherModal({
   const [isEditingNotes, setIsEditingNotes] = useState(false);
   const [editableNotes, setEditableNotes] = useState(booking.notepadNotes || "");
   const [copied, setCopied] = useState(false);
+  const [isDownloadingPdf, setIsDownloadingPdf] = useState(false);
 
   useEffect(() => {
     // Generate UPI QR code for balance due
@@ -51,6 +54,22 @@ export default function ItineraryVoucherModal({
       .then(url => setQrCodeUrl(url))
       .catch(err => console.error(err));
   }, [booking]);
+
+  const handleDownloadPdf = async () => {
+    setIsDownloadingPdf(true);
+    const docTitle =
+      activeTab === "invoice" ? `Tax-Invoice-${booking.bookingCode}` :
+      activeTab === "rooms" ? `Room-Voucher-${booking.bookingCode}` :
+      activeTab === "vehicle" ? `Vehicle-Duty-Slip-${booking.bookingCode}` :
+      activeTab === "notepad" ? `Booking-Notes-${booking.bookingCode}` :
+      `Itinerary-Voucher-${booking.bookingCode}`;
+
+    try {
+      await downloadElementAsPdf("printable-voucher-sheet", `${docTitle}.pdf`);
+    } finally {
+      setIsDownloadingPdf(false);
+    }
+  };
 
   const handlePrint = () => {
     const docTitle =
@@ -243,11 +262,29 @@ export default function ItineraryVoucherModal({
                 <span>WhatsApp Guest</span>
               </button>
               <button
-                onClick={handlePrint}
-                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 text-xs font-bold text-stone-900 bg-white hover:bg-stone-100 px-3.5 py-2 rounded-xl transition shadow active:scale-95"
+                onClick={handleDownloadPdf}
+                disabled={isDownloadingPdf}
+                className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-1.5 text-xs font-bold text-stone-900 bg-white hover:bg-stone-100 disabled:opacity-75 px-3.5 py-2 rounded-xl transition shadow active:scale-95"
               >
-                <Printer className="w-4 h-4 text-emerald-800" />
-                <span>Print / PDF</span>
+                {isDownloadingPdf ? (
+                  <>
+                    <Loader2 className="w-4 h-4 text-emerald-800 animate-spin" />
+                    <span>Saving PDF...</span>
+                  </>
+                ) : (
+                  <>
+                    <Download className="w-4 h-4 text-emerald-800" />
+                    <span>Download PDF</span>
+                  </>
+                )}
+              </button>
+              <button
+                onClick={handlePrint}
+                className="hidden sm:inline-flex items-center justify-center gap-1.5 text-xs font-bold text-stone-200 hover:text-white bg-white/10 hover:bg-white/20 px-3 py-2 rounded-xl transition active:scale-95"
+                title="Print Dialog"
+              >
+                <Printer className="w-4 h-4" />
+                <span>Print</span>
               </button>
             </div>
 

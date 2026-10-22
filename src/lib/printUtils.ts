@@ -1,16 +1,159 @@
 /**
- * Aston Holidays Isolated Document Printer
- * Creates a standalone, isolated printing context (iframe) to guarantee
- * that dashboard sidebars, navigation bars, and background sheets NEVER
- * bleed into customer-facing invoices, vouchers, and bills.
+ * Aston Holidays Isolated Document Printer & High-Fidelity PDF Engine
+ * Supports:
+ * 1. Direct PDF Download on Mobile (iOS / Android / PWA) via jsPDF + html2canvas
+ * 2. Native Web Share API integration (Save to Files / Share to WhatsApp)
+ * 3. Isolated sandbox printing for desktop browsers without background bleed
  */
 
-export function printElementIsolated(elementId: string, documentTitle?: string): void {
+export async function downloadElementAsPdf(
+  elementId: string,
+  filename: string = "Aston-Holidays-Document.pdf"
+): Promise<boolean> {
+  if (typeof window === "undefined") return false;
+
+  const element = document.getElementById(elementId);
+  if (!element) {
+    console.error(`[downloadElementAsPdf] Element with ID "${elementId}" not found.`);
+    return false;
+  }
+
+  try {
+    // Dynamic client-only import to ensure SSR compatibility
+    const [{ default: html2canvas }, { default: jsPDF }] = await Promise.all([
+      import("html2canvas"),
+      import("jspdf")
+    ]);
+
+    // Ensure all images are loaded
+    const images = Array.from(element.querySelectorAll("img"));
+    await Promise.all(
+      images.map(
+        (img) =>
+          new Promise<void>((resolve) => {
+            if (img.complete) return resolve();
+            img.onload = () => resolve();
+            img.onerror = () => resolve();
+          })
+      )
+    );
+
+    // Render element to high-res canvas (2x scale for crisp retina vector-like text)
+    const canvas = await html2canvas(element, {
+      scale: 2,
+      useCORS: true,
+      allowTaint: true,
+      backgroundColor: "#FFFFFF",
+      logging: false,
+      scrollX: 0,
+      scrollY: 0,
+      windowWidth: 1024, // Renders in standard desktop proportions
+      onclone: (clonedDoc: Document) => {
+        const clonedEl = clonedDoc.getElementById(elementId);
+        if (clonedEl) {
+          clonedEl.style.overflow = "visible";
+          clonedEl.style.height = "auto";
+          clonedEl.style.maxHeight = "none";
+          let parent = clonedEl.parentElement;
+          while (parent && parent !== clonedDoc.body) {
+            parent.style.overflow = "visible";
+            parent.style.maxHeight = "none";
+            parent.style.height = "auto";
+            parent = parent.parentElement;
+          }
+        }
+      },
+    });
+
+    const imgData = canvas.toDataURL("image/jpeg", 0.95);
+    const pdf = new jsPDF({
+      orientation: "portrait",
+      unit: "mm",
+      format: "a4",
+    });
+
+    const pageWidth = 210; // A4 width in mm
+    const pageHeight = 297; // A4 height in mm
+    const imgWidth = pageWidth;
+    const imgHeight = (canvas.height * pageWidth) / canvas.width;
+    let heightLeft = imgHeight;
+    let position = 0;
+
+    pdf.addImage(imgData, "JPEG", 0, position, imgWidth, imgHeight, undefined, "FAST");
+    heightLeft -= pageHeight;
+
+    while (heightLeft > 0) {
+      position = heightLeft - imgHeight;
+      pdf.addPage();
+      pdf.addImage(imgData, "JPEG", 0, position, imgWidth, imgHeight, undefined, "FAST");
+      heightLeft -= pageHeight;
+    }
+
+    const cleanFilename = filename.endsWith(".pdf") ? filename : `${filename}.pdf`;
+    const pdfBlob = pdf.output("blob");
+    const blobUrl = URL.createObjectURL(pdfBlob);
+
+    // Try native Mobile Web Share API first (iOS Safari / Android Chrome)
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile && typeof navigator !== "undefined" && typeof navigator.share === "function") {
+      try {
+        const file = new File([pdfBlob], cleanFilename, { type: "application/pdf" });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            files: [file],
+            title: cleanFilename,
+            text: "Aston Holidays Official Voucher & Bill",
+          });
+          return true;
+        }
+      } catch (shareErr: any) {
+        if (shareErr?.name === "AbortError") {
+          return true;
+        }
+        console.warn("[downloadElementAsPdf] Native share dismissed or unsupported, falling back to direct download", shareErr);
+      }
+    }
+
+    // Direct browser file download / anchor click fallback
+    try {
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = cleanFilename;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      document.body.appendChild(link);
+      link.click();
+      setTimeout(() => {
+        link.remove();
+        URL.revokeObjectURL(blobUrl);
+      }, 5000);
+      return true;
+    } catch (saveErr) {
+      console.warn("[downloadElementAsPdf] Link click fallback failed, using pdf.save:", saveErr);
+      pdf.save(cleanFilename);
+      return true;
+    }
+  } catch (err) {
+    console.error("[downloadElementAsPdf] Failed to generate PDF:", err);
+    return false;
+  }
+}
+
+export async function printElementIsolated(elementId: string, documentTitle?: string): Promise<void> {
   if (typeof window === "undefined") return;
+
+  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+  // On Mobile (iOS Safari / Android PWA), iframe printing is blocked or non-functional.
+  // Seamlessly route to high-fidelity PDF download / Mobile Share!
+  if (isMobile) {
+    const filename = `${documentTitle ? documentTitle.replace(/[^a-zA-Z0-9-_]/g, "-") : "Aston-Document"}.pdf`;
+    await downloadElementAsPdf(elementId, filename);
+    return;
+  }
 
   const targetElement = document.getElementById(elementId);
   if (!targetElement) {
-    console.warn(`[printElementIsolated] Element with ID "${elementId}" not found. Falling back to window.print()`);
     window.print();
     return;
   }
@@ -21,7 +164,7 @@ export function printElementIsolated(elementId: string, documentTitle?: string):
     existingFrame.remove();
   }
 
-  // Create an invisible iframe
+  // Create an invisible iframe for desktop browser printing
   const iframe = document.createElement("iframe");
   iframe.id = "aston-isolated-print-frame";
   iframe.setAttribute("style", "position:fixed;top:-9999px;left:-9999px;width:1px;height:1px;border:0;visibility:hidden;");
@@ -33,10 +176,8 @@ export function printElementIsolated(elementId: string, documentTitle?: string):
     return;
   }
 
-  // Extract all existing CSS link tags and style tags from the current document
   const styleNodes = Array.from(document.querySelectorAll('link[rel="stylesheet"], style'));
   const stylesHtml = styleNodes.map(node => node.outerHTML).join("\n");
-
   const title = documentTitle || "Aston Holidays Official Document";
 
   iframeDoc.open();
@@ -95,16 +236,14 @@ export function printElementIsolated(elementId: string, documentTitle?: string):
   `);
   iframeDoc.close();
 
-  // Function to execute print once images and styling are fully parsed
   const runPrint = () => {
     try {
       iframe.contentWindow?.focus();
       iframe.contentWindow?.print();
     } catch (e) {
-      console.error("[printElementIsolated] Print execution failed, falling back to window.print()", e);
+      console.error("[printElementIsolated] Desktop iframe print fallback:", e);
       window.print();
     } finally {
-      // Clean up after 1 minute so the iframe doesn't linger indefinitely
       setTimeout(() => {
         const frame = document.getElementById("aston-isolated-print-frame");
         if (frame) frame.remove();
@@ -112,7 +251,6 @@ export function printElementIsolated(elementId: string, documentTitle?: string):
     }
   };
 
-  // Ensure all images within the iframe have completed loading before printing
   const images = Array.from(iframeDoc.images || []);
   if (images.length === 0) {
     setTimeout(runPrint, 250);
@@ -120,9 +258,7 @@ export function printElementIsolated(elementId: string, documentTitle?: string):
     let pending = images.length;
     const onImgComplete = () => {
       pending--;
-      if (pending <= 0) {
-        setTimeout(runPrint, 250);
-      }
+      if (pending <= 0) setTimeout(runPrint, 250);
     };
 
     images.forEach(img => {
@@ -137,7 +273,6 @@ export function printElementIsolated(elementId: string, documentTitle?: string):
     if (pending <= 0) {
       setTimeout(runPrint, 250);
     } else {
-      // Fallback timeout in case an image hangs
       setTimeout(runPrint, 1500);
     }
   }
