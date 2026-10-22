@@ -1,0 +1,55 @@
+import type { MetadataRoute } from "next";
+
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    name: "Aston Holidays - Wayanad Resorts & Itineraries",
+    short_name: "Aston Holidays",
+    description: "Curated luxury resorts, private pool villas, glass treehouses, and custom tour packages in Wayanad.",
+    start_url: "/",
+    scope: "/",
+    display: "standalone",
+    orientation: "portrait",
+    background_color: "#FAF8F5",
+    theme_color: "#2E4F28",
+    icons: [
+      {
+        src: "/brand/emblem.png",
+        sizes: "192x192",
+        type: "image/png",
+        purpose: "any"
+      },
+      {
+        src: "/brand/emblem.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "maskable"
+      },
+      {
+        src: "/brand/logo.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any"
+      }
+    ],
+    shortcuts: [
+      {
+        name: "Explore Resorts",
+        short_name: "Resorts",
+        url: "/resorts",
+        description: "Browse all curated Wayanad resorts and pool villas"
+      },
+      {
+        name: "Itinerary & Packages",
+        short_name: "Itineraries",
+        url: "/admin/itineraries",
+        description: "Manage tour itineraries and package builder"
+      },
+      {
+        name: "Resort Live PMS Sync",
+        short_name: "PMS Sync",
+        url: "/admin/resort-sync",
+        description: "Live 14-day resort room inventory and sync"
+      }
+    ]
+  };
+}
