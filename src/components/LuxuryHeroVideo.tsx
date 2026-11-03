@@ -104,22 +104,22 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
   }, [slides.length]);
 
   return (
-    <section className="relative w-full h-[92vh] min-h-[640px] max-h-[960px] flex items-center justify-between overflow-hidden bg-[#070D06] select-none">
+    <section className="relative w-full h-[92vh] min-h-[640px] max-h-[960px] flex items-center justify-between overflow-hidden bg-black select-none">
       
-      {/* ================= BACKGROUND VIDEO & POSTER (HIGHLIGHTED & VIVID) ================= */}
+      {/* ================= RAW, 100% UNMASKED VIDEO & POSTER (ZERO SHADING / ZERO TINT) ================= */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* Underneath Poster Image: Clean backdrop before first frame */}
+        {/* Underneath Poster Image: Clean fallback before first frame */}
         <div className="absolute inset-0 z-0">
           <Image
             src={settings.heroBannerImage || "/brand/wayanad-backcover.jpg"}
-            alt="Misty Wayanad Mountains"
+            alt="Wayanad Natural Landscape"
             fill
             priority
-            className="object-cover opacity-80"
+            className="object-cover"
           />
         </div>
 
-        {/* Video Element: 100% bright, crisp and vibrant without heavy darkening filters */}
+        {/* Video Element: 100% Pure, Untouched High-Definition Video — No overlays, no masks, no dark shading */}
         <video
           ref={videoRef}
           autoPlay
@@ -133,7 +133,7 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
             setVideoLoaded(true);
             setIsPlaying(true);
           }}
-          className={`relative z-10 w-full h-full object-cover transition-opacity duration-1000 ease-out ${
+          className={`relative z-10 w-full h-full object-cover transition-opacity duration-700 ease-out ${
             videoLoaded ? "opacity-100" : "opacity-0"
           }`}
         >
@@ -142,34 +142,35 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
           <source src="/videos/wayanad-hero.mp4.mp4" type="video/mp4" />
           <source src={fallbackCdnVideo} type="video/mp4" />
         </video>
-
-        {/* Elegant Left-Edge Vignette: Gently shades the left third for razor-sharp typography readability, while leaving the center and right 65% of the video totally bright, vivid and clear */}
-        <div className="absolute inset-0 z-20 bg-gradient-to-r from-black/85 via-black/45 via-45% to-transparent pointer-events-none" />
-        
-        {/* Subtle Bottom Fade: Smooth transition into the content section */}
-        <div className="absolute bottom-0 inset-x-0 h-28 z-20 bg-gradient-to-t from-[#070D06] to-transparent pointer-events-none" />
-
-        {/* Subtle Top Fade: Legibility for top navbar */}
-        <div className="absolute top-0 inset-x-0 h-24 z-20 bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
       </div>
 
-      {/* ================= EDITORIAL CONTENT (SIDE-WISE / LEFT-ALIGNED LAYOUT) ================= */}
-      <div className="relative z-30 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-20 flex flex-col justify-center items-start text-left h-full pointer-events-none">
+      {/* ================= EDITORIAL CONTENT (SIDE-WISE / FLOATING TYPOGRAPHY) ================= */}
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-20 flex flex-col justify-center items-start text-left h-full pointer-events-none">
         
         <div className="max-w-xl lg:max-w-2xl pointer-events-auto">
-          {/* Refined Kicker Tagline */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-emerald-300 text-[11px] font-bold tracking-luxury uppercase mb-6 shadow-xl animate-float">
+          {/* Black Tomato Style Floating Pill */}
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/30 text-white text-[11px] font-bold tracking-luxury uppercase mb-6 shadow-2xl">
             <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
             <span>{slides[activeSlide].kicker}</span>
           </div>
 
-          {/* Grand Headline (Didot / Cormorant Garamond feel, Left-aligned) */}
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-editorial font-normal text-white tracking-tight leading-[1.12] drop-shadow-lg transition-all duration-700">
+          {/* Grand Headline: High clarity text-shadow ensures 100% crisp readability over raw bright video without dimming the video */}
+          <h1
+            className="text-3xl sm:text-5xl lg:text-6xl font-editorial font-normal text-white tracking-tight leading-[1.12] transition-all duration-700"
+            style={{
+              textShadow: "0 2px 14px rgba(0,0,0,0.85), 0 6px 32px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.95)"
+            }}
+          >
             {slides[activeSlide].title}
           </h1>
 
-          {/* Editorial Subtitle */}
-          <p className="mt-5 sm:mt-6 text-sm sm:text-base lg:text-lg text-stone-200/90 font-light leading-relaxed drop-shadow-md font-sans-luxury">
+          {/* Editorial Subtitle with Crisp Text Shadow */}
+          <p
+            className="mt-5 sm:mt-6 text-sm sm:text-base lg:text-lg text-stone-100 font-light leading-relaxed font-sans-luxury"
+            style={{
+              textShadow: "0 1px 10px rgba(0,0,0,0.9), 0 3px 20px rgba(0,0,0,0.8)"
+            }}
+          >
             {slides[activeSlide].subtitle}
           </p>
 
@@ -178,7 +179,7 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
             {/* Primary Bespoke Planner Enquiry Button */}
             <button
               onClick={onOpenEnquiry}
-              className="group inline-flex items-center gap-3 bg-[#2E4F28] hover:bg-[#233D1F] text-white text-xs sm:text-sm font-semibold tracking-luxury uppercase px-8 py-4 rounded-full shadow-2xl hover:shadow-emerald-950/60 transition-all transform hover:-translate-y-0.5 active:translate-y-0 border border-emerald-400/40"
+              className="group inline-flex items-center gap-3 bg-[#2E4F28] hover:bg-[#233D1F] text-white text-xs sm:text-sm font-semibold tracking-luxury uppercase px-8 py-4 rounded-full shadow-[0_10px_35px_rgba(0,0,0,0.6)] transition-all transform hover:-translate-y-0.5 active:translate-y-0 border border-emerald-400/50"
             >
               <span>Plan Your Journey</span>
               <ArrowRight className="w-4 h-4 text-emerald-300 group-hover:translate-x-1 transition-transform" />
@@ -189,22 +190,22 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white text-xs sm:text-sm font-semibold tracking-luxury uppercase px-7 py-4 rounded-full transition-all border border-white/25 hover:border-white shadow-lg"
+              className="inline-flex items-center gap-2.5 bg-black/45 hover:bg-black/65 backdrop-blur-md text-white text-xs sm:text-sm font-semibold tracking-luxury uppercase px-7 py-4 rounded-full transition-all border border-white/35 hover:border-white shadow-[0_10px_35px_rgba(0,0,0,0.6)]"
             >
               <MessageCircle className="w-4 h-4 text-emerald-400" />
               <span>WhatsApp Concierge</span>
             </a>
           </div>
 
-          {/* Luxury Travel Assurances (No pushy resort ads) */}
-          <div className="mt-8 flex flex-wrap items-center gap-4 sm:gap-6 text-[11px] text-stone-300 font-light tracking-wider">
-            <span className="flex items-center gap-1.5">
+          {/* Luxury Travel Assurances (Floating Frosted Capsule) */}
+          <div className="mt-8 inline-flex flex-wrap items-center gap-4 sm:gap-6 text-[11px] text-stone-100 font-medium tracking-wider bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-2xl">
+            <span className="flex items-center gap-1.5 text-white">
               <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
               Dedicated Travel Architect
             </span>
-            <span className="text-stone-500">•</span>
+            <span className="text-white/40">•</span>
             <span>Tailor-Made Itineraries</span>
-            <span className="text-stone-500">•</span>
+            <span className="text-white/40">•</span>
             <span>Seamless 24/7 Concierge</span>
           </div>
         </div>
@@ -213,16 +214,16 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
 
       {/* ================= CONTROLS & CAROUSEL INDICATORS ================= */}
       
-      {/* Left Bottom: Subtle Video Sound & Play Controls */}
-      <div className="absolute bottom-6 left-6 z-30 flex items-center gap-2">
+      {/* Left Bottom: Video Sound & Play Controls */}
+      <div className="absolute bottom-6 left-6 z-20 flex items-center gap-2">
         <button
           onClick={toggleSound}
           aria-label={isMuted ? "Unmute audio" : "Mute audio"}
-          className="flex items-center gap-2 bg-black/40 hover:bg-black/70 backdrop-blur-md text-stone-300 hover:text-white px-3 py-1.5 rounded-full border border-white/15 text-xs transition shadow-lg"
+          className="flex items-center gap-2 bg-black/50 hover:bg-black/75 backdrop-blur-md text-stone-200 hover:text-white px-3.5 py-1.5 rounded-full border border-white/25 text-xs transition shadow-2xl"
         >
           {isMuted ? (
             <>
-              <VolumeX className="w-3.5 h-3.5 text-stone-400" />
+              <VolumeX className="w-3.5 h-3.5 text-stone-300" />
               <span className="text-[10px] uppercase font-bold tracking-wider hidden sm:inline">Muted</span>
             </>
           ) : (
@@ -236,25 +237,25 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
         <button
           onClick={togglePlay}
           aria-label={isPlaying ? "Pause video" : "Play video"}
-          className="w-8 h-8 rounded-full bg-black/40 hover:bg-black/70 backdrop-blur-md text-stone-300 hover:text-white flex items-center justify-center border border-white/15 transition shadow-lg"
+          className="w-8 h-8 rounded-full bg-black/50 hover:bg-black/75 backdrop-blur-md text-stone-200 hover:text-white flex items-center justify-center border border-white/25 transition shadow-2xl"
         >
           {isPlaying ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3 ml-0.5" />}
         </button>
       </div>
 
       {/* Right Bottom: Slide Tabs Indicator */}
-      <div className="absolute bottom-6 right-6 z-30 hidden md:flex items-center gap-3">
+      <div className="absolute bottom-6 right-6 z-20 hidden md:flex items-center gap-3">
         {slides.map((s, idx) => (
           <button
             key={s.label}
             onClick={() => setActiveSlide(idx)}
             className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-semibold tracking-wider transition-all duration-300 border ${
               activeSlide === idx
-                ? "bg-white/20 border-white text-white backdrop-blur-md shadow-lg"
-                : "bg-black/30 border-white/10 text-stone-400 hover:text-white hover:border-white/30"
+                ? "bg-white/25 border-white text-white backdrop-blur-md shadow-2xl"
+                : "bg-black/45 border-white/15 text-stone-300 hover:text-white hover:border-white/35 backdrop-blur-sm"
             }`}
           >
-            <span className={`w-1.5 h-1.5 rounded-full ${activeSlide === idx ? "bg-emerald-400" : "bg-stone-500"}`} />
+            <span className={`w-1.5 h-1.5 rounded-full ${activeSlide === idx ? "bg-emerald-400" : "bg-stone-400"}`} />
             <span>0{idx + 1} / {s.label}</span>
           </button>
         ))}
@@ -262,7 +263,7 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
 
       {/* Down Scroll Indicator */}
       <div className="absolute bottom-3 inset-x-0 z-20 flex justify-center pointer-events-none">
-        <div className="animate-bounce text-stone-400/80">
+        <div className="animate-bounce text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
           <ChevronDown className="w-5 h-5" />
         </div>
       </div>
