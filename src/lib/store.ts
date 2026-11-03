@@ -40,6 +40,78 @@ function resortToDbRow(r: Resort) {
   };
 }
 
+function dbRowToResort(row: any): Resort {
+  return {
+    id: row.id || `resort-${(row.code || "").toLowerCase()}`,
+    code: row.code,
+    name: row.name,
+    slug: row.slug || (row.code || "").toLowerCase(),
+    destination: row.destination || "",
+    locationDetails: row.location_details || row.locationDetails || "",
+    googleMapsUrl: row.google_maps_url || row.googleMapsUrl || "",
+    accommodationType: row.accommodation_type || row.accommodationType || "Resort",
+    stayPreference: row.stay_preference || row.stayPreference || "Private Villa",
+    ambience: Array.isArray(row.ambience) ? row.ambience : [],
+    category: row.category || "Standard",
+    bedrooms: Number(row.bedrooms) || 1,
+    bathrooms: Number(row.bathrooms) || 1,
+    maxAdults: Number(row.max_adults) || 2,
+    maxChildren: Number(row.max_children) || 0,
+    maxGuests: Number(row.max_guests) || 2,
+    pricePerNight: Number(row.price_per_night) || 5000,
+    b2bRate: Number(row.b2b_rate) || 4000,
+    featured: Boolean(row.featured),
+    coverImage: row.cover_image || "",
+    photos: Array.isArray(row.photos) ? row.photos : [],
+    amenities: Array.isArray(row.amenities) ? row.amenities : [],
+    specialities: Array.isArray(row.specialities) ? row.specialities : [],
+    nearbyAttractions: Array.isArray(row.nearby_attractions) ? row.nearby_attractions : [],
+    checkInTime: row.check_in_time || "01:00 PM",
+    checkOutTime: row.check_out_time || "11:00 AM",
+    overview: row.overview || "",
+    inclusions: Array.isArray(row.inclusions) ? row.inclusions : [],
+    exclusions: Array.isArray(row.exclusions) ? row.exclusions : []
+  };
+}
+
+function dbRowToInvoice(row: any): Invoice {
+  return {
+    id: row.id,
+    invoiceNumber: row.invoice_number || row.invoiceNumber,
+    type: row.type || "Stay Voucher",
+    customerName: row.customer_name || row.customerName,
+    customerPhone: row.customer_phone || row.customerPhone,
+    customerEmail: row.customer_email || row.customerEmail || undefined,
+    customerAddress: row.customer_address || row.customerAddress || undefined,
+    resortCode: row.resort_code || row.resortCode,
+    resortName: row.resort_name || row.resortName,
+    destination: row.destination,
+    checkIn: row.check_in || row.checkIn,
+    checkOut: row.check_out || row.checkOut,
+    nights: Number(row.nights) || 1,
+    guests: row.guests || { adults: 2, children: 0 },
+    items: Array.isArray(row.items) ? row.items : [],
+    subtotal: Number(row.subtotal) || 0,
+    gstRate: Number(row.gst_rate) || 0,
+    gstAmount: Number(row.gst_amount) || 0,
+    discount: Number(row.discount) || 0,
+    totalAmount: Number(row.total_amount) || 0,
+    advancePaid: Number(row.advance_paid) || 0,
+    balanceDue: Number(row.balance_due) || 0,
+    status: row.status || "Draft",
+    issueDate: row.issue_date || row.issueDate,
+    dueDate: row.due_date || row.dueDate,
+    bankDetails: row.bank_details || row.bankDetails,
+    notes: row.notes,
+    whatsappVoucherSent: Boolean(row.whatsapp_voucher_sent || row.whatsappVoucherSent),
+    whatsappVoucherSentAt: row.whatsapp_voucher_sent_at || row.whatsappVoucherSentAt,
+    isLocked: Boolean(row.is_locked || row.isLocked),
+    lockedReason: row.locked_reason || row.lockedReason,
+    version: row.version || 1,
+    versions: Array.isArray(row.versions) ? row.versions : []
+  };
+}
+
 async function syncToSupabase(table: string, payload: any, conflictCol: string = "id") {
   try {
     if (!supabase) return;
@@ -78,6 +150,7 @@ interface DataStoreSchema {
 }
 
 const STORE_PATH = path.join(process.cwd(), "data_store.json");
+const BACKUP_PATH = path.join(process.cwd(), "data_store.backup.json");
 
 export const defaultIntegration: IntegrationConfig = {
   whatsappAppBaseUrl: "http://localhost:3001",
@@ -535,10 +608,83 @@ function generateInitialLiveAvailability(): LiveRoomAvailability[] {
 
 const initialLiveAvailability = generateInitialLiveAvailability();
 
+let hasHydratedFromSupabase = false;
+
+async function hydrateFromSupabase(): Promise<void> {
+  if (hasHydratedFromSupabase || !supabase) return;
+  try {
+    hasHydratedFromSupabase = true;
+
+    // 1. Dual-vault hydration for Resorts
+    const { data: dbResorts, error: resortErr } = await supabase.from("resorts").select("*");
+    const data = readData();
+    let changed = false;
+
+    if (!resortErr && Array.isArray(dbResorts) && dbResorts.length > 0) {
+      for (const row of dbResorts) {
+        const mapped = dbRowToResort(row);
+        const idx = data.resorts.findIndex(r => r.code.toUpperCase() === mapped.code.toUpperCase() || r.id === mapped.id);
+        if (idx >= 0) {
+          const existing = data.resorts[idx];
+          const hasLocalPhotos = existing.photos && existing.photos.length > 0;
+          const hasDbPhotos = mapped.photos && mapped.photos.length > 0;
+          if (!hasLocalPhotos && hasDbPhotos) {
+            existing.photos = mapped.photos;
+            existing.coverImage = mapped.coverImage || mapped.photos[0];
+            changed = true;
+          }
+        } else {
+          data.resorts.push(mapped);
+          changed = true;
+        }
+      }
+    }
+
+    // 2. Dual-vault hydration for Invoices (e.g. Mr. Venu Posuluri and any live invoices)
+    const { data: dbInvoices, error: invErr } = await supabase.from("invoices").select("*");
+    if (!invErr && Array.isArray(dbInvoices) && dbInvoices.length > 0) {
+      for (const row of dbInvoices) {
+        const mappedInv = dbRowToInvoice(row);
+        const idx = data.invoices.findIndex(i => i.id === mappedInv.id || i.invoiceNumber === mappedInv.invoiceNumber);
+        if (idx < 0) {
+          data.invoices.unshift(mappedInv);
+          changed = true;
+        }
+      }
+    }
+
+    if (changed) {
+      saveData(data);
+    }
+  } catch (err: any) {
+    console.warn("Dual-vault Supabase hydration notice:", err?.message);
+  }
+}
+
+// Automatically trigger hydration in background on startup
+if (typeof window === "undefined") {
+  hydrateFromSupabase().catch(() => {});
+}
+
 function readData(): DataStoreSchema {
+  let content = "";
   try {
     if (fs.existsSync(STORE_PATH)) {
-      const content = fs.readFileSync(STORE_PATH, "utf8");
+      content = fs.readFileSync(STORE_PATH, "utf8");
+    } else if (fs.existsSync(BACKUP_PATH)) {
+      content = fs.readFileSync(BACKUP_PATH, "utf8");
+    }
+  } catch (readErr) {
+    console.error("Error reading STORE_PATH, attempting backup recovery:", readErr);
+    if (fs.existsSync(BACKUP_PATH)) {
+      try {
+        content = fs.readFileSync(BACKUP_PATH, "utf8");
+      } catch {}
+    }
+  }
+
+  if (content) {
+    try {
       const parsed = JSON.parse(content);
       const data: DataStoreSchema = {
         resorts: parsed.resorts || initialResorts,
@@ -557,14 +703,36 @@ function readData(): DataStoreSchema {
         resortSyncLogs: parsed.resortSyncLogs || initialResortSyncLogs,
         liveAvailability: parsed.liveAvailability || initialLiveAvailability
       };
-      if (!parsed.packageBookings || !parsed.packages || !parsed.blogs || !parsed.reviews || !parsed.resortApiConnections) {
-        saveData(data);
-      }
       return data;
+    } catch (parseErr) {
+      console.error("JSON parse warning on data store, attempting backup:", parseErr);
+      if (fs.existsSync(BACKUP_PATH)) {
+        try {
+          const backupContent = fs.readFileSync(BACKUP_PATH, "utf8");
+          const parsedBackup = JSON.parse(backupContent);
+          return {
+            resorts: parsedBackup.resorts || initialResorts,
+            leads: parsedBackup.leads || initialLeads,
+            invoices: parsedBackup.invoices || initialInvoices,
+            users: parsedBackup.users || defaultUsers,
+            settings: { ...defaultSettings, ...(parsedBackup.settings || {}) },
+            integration: { ...defaultIntegration, ...(parsedBackup.integration || {}) },
+            auditLogs: parsedBackup.auditLogs || [],
+            packages: parsedBackup.packages || initialPackages,
+            blogs: parsedBackup.blogs || initialBlogs,
+            reviews: parsedBackup.reviews || initialReviews,
+            packageBookings: parsedBackup.packageBookings || initialPackageBookings,
+            resortApiConnections: parsedBackup.resortApiConnections || initialResortApiConnections,
+            resortBookingRequests: parsedBackup.resortBookingRequests || initialResortBookingRequests,
+            resortSyncLogs: parsedBackup.resortSyncLogs || initialResortSyncLogs,
+            liveAvailability: parsedBackup.liveAvailability || initialLiveAvailability
+          };
+        } catch {}
+      }
     }
-  } catch (err) {
-    console.error("Error reading data_store.json:", err);
   }
+
+  // Brand-new instance fallback: NEVER overwrite existing file with defaults
   const defaultData: DataStoreSchema = {
     resorts: initialResorts,
     leads: initialLeads,
@@ -582,15 +750,33 @@ function readData(): DataStoreSchema {
     resortSyncLogs: initialResortSyncLogs,
     liveAvailability: initialLiveAvailability
   };
-  saveData(defaultData);
+  if (!fs.existsSync(STORE_PATH)) {
+    saveData(defaultData);
+  }
   return defaultData;
 }
 
 function saveData(data: DataStoreSchema): void {
   try {
-    fs.writeFileSync(STORE_PATH, JSON.stringify(data, null, 2), "utf8");
+    // 1. Maintain rolling backup of the last known valid state
+    if (fs.existsSync(STORE_PATH)) {
+      try {
+        fs.copyFileSync(STORE_PATH, BACKUP_PATH);
+      } catch {}
+    }
+
+    // 2. Atomic write to avoid file corruption on sleep / interrupt
+    const tempPath = `${STORE_PATH}.tmp`;
+    fs.writeFileSync(tempPath, JSON.stringify(data, null, 2), "utf8");
+    try {
+      fs.renameSync(tempPath, STORE_PATH);
+    } catch {
+      // Direct write fallback for Windows locks
+      fs.writeFileSync(STORE_PATH, JSON.stringify(data, null, 2), "utf8");
+      try { fs.unlinkSync(tempPath); } catch {}
+    }
   } catch (err) {
-    console.error("Error saving to data_store.json:", err);
+    console.error("Critical error saving to data_store.json:", err);
   }
 }
 
@@ -928,7 +1114,11 @@ export const Store = {
       bank_details: invoice.bankDetails,
       notes: invoice.notes,
       whatsapp_voucher_sent: invoice.whatsappVoucherSent,
-      whatsapp_voucher_sent_at: invoice.whatsappVoucherSentAt
+      whatsapp_voucher_sent_at: invoice.whatsappVoucherSentAt,
+      is_locked: invoice.isLocked,
+      locked_reason: invoice.lockedReason,
+      version: invoice.version || 1,
+      versions: invoice.versions || []
     });
     return invoice;
   },
@@ -1400,5 +1590,15 @@ export const Store = {
 
   getResortSyncLogs(): ResortSyncLog[] {
     return readData().resortSyncLogs || [];
+  },
+
+  async syncWithSupabase(): Promise<{ resortsCount: number; invoicesCount: number }> {
+    hasHydratedFromSupabase = false;
+    await hydrateFromSupabase();
+    const data = readData();
+    return {
+      resortsCount: data.resorts.length,
+      invoicesCount: data.invoices.length
+    };
   }
 };

@@ -2563,6 +2563,464 @@
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
       ]
+    },
+    {
+      "id": "resort-ah-105",
+      "code": "AH-105",
+      "name": "Luxury Canopy Treehouse Villa",
+      "slug": "luxury-canopy-treehouse-villa-vythiri",
+      "destination": "Vythiri",
+      "locationDetails": "Old Vythiri, Wayanad, Kerala - 673576",
+      "googleMapsUrl": "https://maps.google.com/?q=Pookode+Lake+Vythiri+Wayanad",
+      "accommodationType": "Tree House",
+      "stayPreference": "Individual Room/Suite",
+      "ambience": [
+        "Rainforest & Stream",
+        "Romantic / Honeymoon",
+        "Secluded & Peaceful"
+      ],
+      "category": "Tree House",
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "maxAdults": 2,
+      "maxChildren": 1,
+      "maxGuests": 3,
+      "pricePerNight": 9500,
+      "b2bRate": 7500,
+      "featured": true,
+      "coverImage": "",
+      "photos": [],
+      "amenities": [
+        "Elevated Forest Deck",
+        "Jacuzzi overlooking valley",
+        "Authentic Kerala Breakfast",
+        "Tea Plantation Walk",
+        "High Speed Wifi",
+        "Camp Fire Area"
+      ],
+      "specialities": [
+        "60-ft above ground canopy view",
+        "Lush rainforest mist & streams",
+        "100% Eco-crafted architecture"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Pookode Lake",
+          "distance": "≈03 km"
+        },
+        {
+          "name": "Lakkidi View Point",
+          "distance": "≈05 km"
+        },
+        {
+          "name": "Chain Tree",
+          "distance": "≈04 km"
+        },
+        {
+          "name": "En Ooru Tribal Village",
+          "distance": "≈07 km"
+        }
+      ],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Suspended amidst towering rainforest trees and emerald tea gardens in Vythiri, this luxury glass treehouse offers an unforgettable romantic stay with mist-kissed balconies and private jacuzzi.",
+      "inclusions": [
+        "Traditional Kerala breakfast",
+        "Guided tea estate plantation stroll",
+        "Welcome fruit basket"
+      ],
+      "exclusions": [
+        "Barbecue dinner",
+        "Adventure ziplining"
+      ]
+    },
+    {
+      "id": "resort-ah-108",
+      "code": "AH-108",
+      "name": "Cloud Valley 2BHK Private Pool Haven",
+      "slug": "cloud-valley-2bhk-pool-haven-meppadi",
+      "destination": "Meppadi",
+      "locationDetails": "Near Chembra Peak Base, Meppadi, Wayanad - 673577",
+      "googleMapsUrl": "https://maps.google.com/?q=Chembra+Peak+Meppadi+Wayanad",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Group / Bachelor Friendly",
+      "ambience": [
+        "Mountain / Valley View",
+        "Adventure & Hilltop",
+        "Tea / Coffee Plantation"
+      ],
+      "category": "Pool Villa",
+      "bedrooms": 2,
+      "bathrooms": 2,
+      "maxAdults": 6,
+      "maxChildren": 2,
+      "maxGuests": 8,
+      "pricePerNight": 11000,
+      "b2bRate": 8500,
+      "featured": true,
+      "coverImage": "",
+      "photos": [],
+      "amenities": [
+        "Private Heated Swimming Pool",
+        "Chembra Mountain View Balcony",
+        "BBQ Grill facility",
+        "Spacious Living Room",
+        "Fully Equipped Kitchenette",
+        "Free Parking"
+      ],
+      "specialities": [
+        "Direct front view of Chembra Peak",
+        "Misty mornings with waterfall sound",
+        "Family & bachelor friendly"
+      ],
+      "nearbyAttractions": [
+        {
+          "name": "Chembra Peak Trekking",
+          "distance": "≈04 km"
+        },
+        {
+          "name": "Soochipara Waterfalls",
+          "distance": "≈09 km"
+        },
+        {
+          "name": "Kanthanpara Waterfalls",
+          "distance": "≈07 km"
+        },
+        {
+          "name": "900 Kandi Glass Bridge",
+          "distance": "≈11 km"
+        }
+      ],
+      "checkInTime": "02:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Perched near the base of Chembra Peak in Meppadi, this contemporary 2-bedroom pool villa blends luxury privacy with awe-inspiring nature views.",
+      "inclusions": [
+        "Full private villa & pool access",
+        "Morning tea & South Indian breakfast",
+        "Bluetooth party speaker"
+      ],
+      "exclusions": [
+        "Chembra forest permit fees",
+        "Extra bed charges"
+      ]
+    },
+    {
+      "id": "res-1792681693049",
+      "code": "AH-300",
+      "name": "Pepper Route",
+      "slug": "ah-300-pepper-route",
+      "destination": "Fort kochi",
+      "locationDetails": "Fort kochi, Ernakulam, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Pepper%20Route%20Fort%20kochi",
+      "accommodationType": "Budget Stay",
+      "stayPreference": "Group / Bachelor Friendly",
+      "ambience": [
+        "Mountain / Valley View",
+        "Romantic / Honeymoon",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "maxAdults": 10,
+      "maxChildren": 20,
+      "maxGuests": 30,
+      "pricePerNight": 2500,
+      "b2bRate": 2100,
+      "featured": false,
+      "coverImage": "/brand/hero.png",
+      "photos": [
+        "/brand/hero.png"
+      ],
+      "amenities": [
+        "Swimming Pool",
+        "Mountain View",
+        "Wi-Fi",
+        "Room Service",
+        "Power Backup"
+      ],
+      "specialities": [
+        "Scenic View",
+        "Peaceful Location"
+      ],
+      "nearbyAttractions": [],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Pepper Route is an exclusive property in Fort kochi, offering premium hospitality, pristine nature surroundings, and personalized service.",
+      "inclusions": [
+        "Welcome drink on arrival",
+        "Complimentary breakfast",
+        "Free Wi-Fi access"
+      ],
+      "exclusions": [
+        "Personal expenses",
+        "Any extra meals not in plan"
+      ]
+    },
+    {
+      "id": "res-1792681520276",
+      "code": "AH-202",
+      "name": "Maleyam home stay",
+      "slug": "ah-202-maleyam-home-stay",
+      "destination": "Kadalundy",
+      "locationDetails": "Vythiri, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Maleyam%20home%20stay%20Kadalundy",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Romantic / Honeymoon",
+        "Secluded & Peaceful"
+      ],
+      "category": "Pool Villa",
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "maxAdults": 2,
+      "maxChildren": 2,
+      "maxGuests": 4,
+      "pricePerNight": 10000,
+      "b2bRate": 9500,
+      "featured": false,
+      "coverImage": "/brand/hero.png",
+      "photos": [
+        "/brand/hero.png"
+      ],
+      "amenities": [
+        "Swimming Pool",
+        "Mountain View",
+        "Wi-Fi",
+        "Room Service",
+        "Power Backup"
+      ],
+      "specialities": [
+        "Scenic View",
+        "Peaceful Location"
+      ],
+      "nearbyAttractions": [],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Maleyam home stay is an exclusive property in Kadalundy, offering premium hospitality, pristine nature surroundings, and personalized service.",
+      "inclusions": [
+        "Welcome drink on arrival",
+        "Complimentary breakfast",
+        "Free Wi-Fi access"
+      ],
+      "exclusions": [
+        "Personal expenses",
+        "Any extra meals not in plan"
+      ]
+    },
+    {
+      "id": "res-1792681784728",
+      "code": "AH-301",
+      "name": "House Boat",
+      "slug": "ah-301-house-boat",
+      "destination": "Alappuzha",
+      "locationDetails": "Alappuzha, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=House%20Boat%20Alappuzha",
+      "accommodationType": "Houseboat",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Romantic / Honeymoon",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "maxAdults": 4,
+      "maxChildren": 8,
+      "maxGuests": 12,
+      "pricePerNight": 14000,
+      "b2bRate": 1300,
+      "featured": false,
+      "coverImage": "/brand/hero.png",
+      "photos": [
+        "/brand/hero.png"
+      ],
+      "amenities": [
+        "Swimming Pool",
+        "Mountain View",
+        "Wi-Fi",
+        "Room Service",
+        "Power Backup"
+      ],
+      "specialities": [
+        "Scenic View",
+        "Peaceful Location"
+      ],
+      "nearbyAttractions": [],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "House Boat is an exclusive property in Alappuzha, offering premium hospitality, pristine nature surroundings, and personalized service.",
+      "inclusions": [
+        "Welcome drink on arrival",
+        "Complimentary breakfast",
+        "Free Wi-Fi access"
+      ],
+      "exclusions": [
+        "Personal expenses",
+        "Any extra meals not in plan"
+      ]
+    },
+    {
+      "id": "res-1792681889868",
+      "code": "AH-303",
+      "name": "Maleyam Homestay",
+      "slug": "ah-303-maleyam-homestay",
+      "destination": "Kadalundy",
+      "locationDetails": "Kadalundy, Kozhikkode, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Maleyam%20Homestay%20Kadalundy",
+      "accommodationType": "Heritage Bungalow",
+      "stayPreference": "Group / Bachelor Friendly",
+      "ambience": [
+        "Mountain / Valley View",
+        "Romantic / Honeymoon",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "maxAdults": 8,
+      "maxChildren": 16,
+      "maxGuests": 24,
+      "pricePerNight": 4500,
+      "b2bRate": 3500,
+      "featured": false,
+      "coverImage": "/brand/hero.png",
+      "photos": [
+        "/brand/hero.png"
+      ],
+      "amenities": [
+        "Swimming Pool",
+        "Mountain View",
+        "Wi-Fi",
+        "Room Service",
+        "Power Backup"
+      ],
+      "specialities": [
+        "Scenic View",
+        "Peaceful Location"
+      ],
+      "nearbyAttractions": [],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Maleyam Homestay is an exclusive property in Kadalundy, offering premium hospitality, pristine nature surroundings, and personalized service.",
+      "inclusions": [
+        "Welcome drink on arrival",
+        "Complimentary breakfast",
+        "Free Wi-Fi access"
+      ],
+      "exclusions": [
+        "Personal expenses",
+        "Any extra meals not in plan"
+      ]
+    },
+    {
+      "id": "res-1792682032007",
+      "code": "AH-304",
+      "name": "Wayanad Wild Resort",
+      "slug": "ah-304-wayanad-wild-resort",
+      "destination": "Sulthan Bathery",
+      "locationDetails": "Sulthan Bathery, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Wayanad%20Wild%20Resort%20Sulthan%20Bathery",
+      "accommodationType": "Budget Stay",
+      "stayPreference": "Group / Bachelor Friendly",
+      "ambience": [
+        "Mountain / Valley View",
+        "Romantic / Honeymoon",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "maxAdults": 10,
+      "maxChildren": 20,
+      "maxGuests": 30,
+      "pricePerNight": 4000,
+      "b2bRate": 3500,
+      "featured": false,
+      "coverImage": "/brand/hero.png",
+      "photos": [
+        "/brand/hero.png"
+      ],
+      "amenities": [
+        "Swimming Pool",
+        "Mountain View",
+        "Wi-Fi",
+        "Room Service",
+        "Power Backup"
+      ],
+      "specialities": [
+        "Scenic View",
+        "Peaceful Location"
+      ],
+      "nearbyAttractions": [],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Wayanad Wild Resort is an exclusive property in Sulthan Bathery, offering premium hospitality, pristine nature surroundings, and personalized service.",
+      "inclusions": [
+        "Welcome drink on arrival",
+        "Complimentary breakfast",
+        "Free Wi-Fi access"
+      ],
+      "exclusions": [
+        "Personal expenses",
+        "Any extra meals not in plan"
+      ]
+    },
+    {
+      "id": "res-1792682144788",
+      "code": "AH-305",
+      "name": "Vanalaya",
+      "slug": "ah-305-vanalaya",
+      "destination": "Meppadi",
+      "locationDetails": "Meppadi, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Vanalaya%20Meppadi",
+      "accommodationType": "Plantation Resort",
+      "stayPreference": "Group / Bachelor Friendly",
+      "ambience": [
+        "Mountain / Valley View",
+        "Romantic / Honeymoon",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "maxAdults": 40,
+      "maxChildren": 80,
+      "maxGuests": 120,
+      "pricePerNight": 6750,
+      "b2bRate": 5750,
+      "featured": false,
+      "coverImage": "/brand/hero.png",
+      "photos": [
+        "/brand/hero.png"
+      ],
+      "amenities": [
+        "Swimming Pool",
+        "Mountain View",
+        "Wi-Fi",
+        "Room Service",
+        "Power Backup"
+      ],
+      "specialities": [
+        "Scenic View",
+        "Peaceful Location"
+      ],
+      "nearbyAttractions": [],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Vanalaya is an exclusive property in Meppadi, offering premium hospitality, pristine nature surroundings, and personalized service.",
+      "inclusions": [
+        "Welcome drink on arrival",
+        "Complimentary breakfast",
+        "Free Wi-Fi access"
+      ],
+      "exclusions": [
+        "Personal expenses",
+        "Any extra meals not in plan"
+      ]
     }
   ],
   "leads": [
@@ -2724,6 +3182,221 @@
   ],
   "invoices": [
     {
+      "id": "inv-ast-pkg-1490",
+      "invoiceNumber": "INV-PKG-1490",
+      "type": "Tax Invoice",
+      "customerName": "Mr. Venu Posuluri",
+      "customerPhone": "+919703621999",
+      "resortCode": "AH-300",
+      "resortName": "Rhytham if Kerala (AH-300, AH-301, AH-302, AH-303, AH-304, AH-111)",
+      "destination": "Fort kochi, Wayanad",
+      "checkIn": "2026-10-13",
+      "checkOut": "2026-10-21",
+      "nights": 1,
+      "guests": {
+        "adults": 2,
+        "children": 2
+      },
+      "items": [
+        {
+          "id": "room-1",
+          "amount": 2500,
+          "nights": 1,
+          "description": "[Room Stay] AH-300 - Rooms (1 Room, 1 Nights, CP (Bed & Breakfast))",
+          "ratePerNight": 2500
+        },
+        {
+          "id": "room-2",
+          "amount": 14000,
+          "nights": 1,
+          "description": "[Room Stay] AH-301 - House Boat (1 Room, 1 Nights, CP (Bed & Breakfast))",
+          "ratePerNight": 14000
+        },
+        {
+          "id": "room-3",
+          "amount": 4500,
+          "nights": 1,
+          "description": "[Room Stay] AH-302 - Luxury Private Pool Villa (1 Room, 1 Nights, CP (Bed & Breakfast))",
+          "ratePerNight": 4500
+        },
+        {
+          "id": "room-4",
+          "amount": 4000,
+          "nights": 1,
+          "description": "[Room Stay] AH-303 - Luxury Private Pool Villa (1 Room, 1 Nights, CP (Bed & Breakfast))",
+          "ratePerNight": 4000
+        },
+        {
+          "id": "room-5",
+          "amount": 6750,
+          "nights": 1,
+          "description": "[Room Stay] AH-304 - Plantation (1 Room, 1 Nights, CP (Bed & Breakfast))",
+          "ratePerNight": 6750
+        },
+        {
+          "id": "room-6",
+          "amount": 9000,
+          "nights": 1,
+          "description": "[Room Stay] AH-111 - Private Pool Villa (1 Room, 1 Nights, CP (Bed & Breakfast))",
+          "ratePerNight": 9000
+        },
+        {
+          "id": "veh-1",
+          "amount": 43724,
+          "nights": 10,
+          "description": "[Vehicle Rental] Sedan (Dzire / Etios) (Package Base 1200 KM + 318 Extra KM @ ₹18/KM)",
+          "ratePerNight": 3700
+        },
+        {
+          "id": "exp-1",
+          "amount": 2350,
+          "nights": 1,
+          "description": "[Other Expense] Muhthang Wild Life Safai (Wildlife Safari & Entry Permits) [Note: Client requested pure vegetarian Co...]",
+          "ratePerNight": 2350
+        },
+        {
+          "id": "exp-2",
+          "amount": 1500,
+          "nights": 1,
+          "description": "[Other Expense] Purchase (Other Custom Expense) [Note: Banana chips-920 (2 kg)        jack...]",
+          "ratePerNight": 1500
+        },
+        {
+          "id": "exp-3",
+          "amount": 1000,
+          "nights": 1,
+          "description": "[Other Expense] party (Other Custom Expense) [Note: Night partyy @ le eden- wine 1000 F...]",
+          "ratePerNight": 1000
+        },
+        {
+          "id": "exp-4",
+          "amount": 500,
+          "nights": 1,
+          "description": "[Other Expense] Courier (Other Custom Expense) [Note: Courier...]",
+          "ratePerNight": 500
+        }
+      ],
+      "subtotal": 89824,
+      "gstRate": 0,
+      "gstAmount": 0,
+      "discount": 0,
+      "totalAmount": 89824,
+      "advancePaid": 53750,
+      "balanceDue": 36074,
+      "status": "Advance Received",
+      "issueDate": "2026-10-27",
+      "dueDate": "2026-10-13",
+      "bankDetails": {
+        "upiId": "astonholidays@sbi",
+        "bankName": "State Bank of India",
+        "ifscCode": "SBIN0008451",
+        "accountName": "Aston Holidays",
+        "accountNumber": "40921008745"
+      },
+      "notes": "Package Booking: Rhytham if Kerala. ",
+      "whatsappVoucherSent": false,
+      "isLocked": false,
+      "version": 1,
+      "versions": []
+    },
+    {
+      "id": "inv-ast-pkg-1597",
+      "invoiceNumber": "INV-PKG-1597",
+      "type": "Tax Invoice",
+      "customerName": "Mr. Venu Posuluri",
+      "customerPhone": "+91 97036 21999",
+      "resortCode": "AH-300",
+      "resortName": "Beats of kerala  (AH-300, AH-301, AH-303, AH-304, AH-305, AH-111)",
+      "destination": "Fort kochi, Wayanad",
+      "checkIn": "2026-10-13",
+      "checkOut": "2026-10-21",
+      "nights": 1,
+      "guests": {
+        "adults": 2,
+        "children": 2
+      },
+      "items": [
+        {
+          "id": "room-1",
+          "amount": 2500,
+          "nights": 1,
+          "description": "[Room Stay] AH-300 - Rooms (1 Room, 1 Nights, CP (Bed & Breakfast))",
+          "ratePerNight": 2500
+        },
+        {
+          "id": "room-2",
+          "amount": 14000,
+          "nights": 1,
+          "description": "[Room Stay] AH-301 - House Boat (1 Room, 1 Nights, CP (Bed & Breakfast))",
+          "ratePerNight": 14000
+        },
+        {
+          "id": "room-3",
+          "amount": 4500,
+          "nights": 1,
+          "description": "[Room Stay] AH-303 - Villa (1 Room, 1 Nights, CP (Bed & Breakfast))",
+          "ratePerNight": 4500
+        },
+        {
+          "id": "room-4",
+          "amount": 4000,
+          "nights": 1,
+          "description": "[Room Stay] AH-304 - Villa (1 Room, 1 Nights, CP (Bed & Breakfast))",
+          "ratePerNight": 4000
+        },
+        {
+          "id": "room-5",
+          "amount": 6750,
+          "nights": 1,
+          "description": "[Room Stay] AH-305 - Rooms (1 Room, 1 Nights, CP (Bed & Breakfast))",
+          "ratePerNight": 6750
+        },
+        {
+          "id": "room-6",
+          "amount": 9000,
+          "nights": 1,
+          "description": "[Room Stay] AH-111 - Private Pool Villa (1 Room, 1 Nights, CP (Bed & Breakfast))",
+          "ratePerNight": 9000
+        },
+        {
+          "id": "veh-1",
+          "amount": 8724,
+          "nights": 1,
+          "description": "[Vehicle Rental] Sedan (Dzire / Etios) (Package Base 1200 KM + 318 Extra KM @ ₹18/KM)",
+          "ratePerNight": 2600
+        },
+        {
+          "id": "exp-1",
+          "amount": 3500,
+          "nights": 1,
+          "description": "[Other Expense] 5-Course Romantic Candlelight Dinner by the Pool (Candlelight Dinner) [Note: Client requested pure vegetarian Co...]",
+          "ratePerNight": 3500
+        }
+      ],
+      "subtotal": 52974,
+      "gstRate": 5,
+      "gstAmount": 2649,
+      "discount": 0,
+      "totalAmount": 55623,
+      "advancePaid": 10000,
+      "balanceDue": 45623,
+      "status": "Advance Received",
+      "issueDate": "2026-10-22",
+      "dueDate": "2026-10-13",
+      "bankDetails": {
+        "upiId": "astonholidays@sbi",
+        "bankName": "State Bank of India",
+        "ifscCode": "SBIN0008451",
+        "accountName": "Aston Holidays",
+        "accountNumber": "40921008745"
+      },
+      "notes": "Package Booking: Beats of kerala . VIP Honeymoon couple. Ensure villa manager provides warm welcome with fresh tender coconut on arrival.",
+      "whatsappVoucherSent": false,
+      "isLocked": false,
+      "version": 1,
+      "versions": []
+    },
+    {
       "id": "inv-1",
       "invoiceNumber": "AST-2026-0042",
       "type": "Tax Invoice",
@@ -2812,6 +3485,8 @@
     "heroTitle": "Romantic Getaways, Private Pool Villas & Historic Wayanad Escapes",
     "heroSubtitle": "Explore handpicked stays across Padinjarathara, Vythiri, and Meppadi. Get instant 12-page brochures with high-res photos and transparent rates sent directly to your WhatsApp.",
     "heroBannerImage": "/brand/wayanad-backcover.jpg",
+    "heroVideoUrl": "/videos/wayanad-hero.mp4",
+    "heroVideoPoster": "/brand/wayanad-backcover.jpg",
     "announcementText": "Historic Footprints of Wayanad & Curated Escapes",
     "heritageStoryTitle": "Where Ancient Footprints Meet Unmatched Hospitality",
     "heritageStoryText": "Wayanad’s soul is etched into the ancient stone engravings of the Edakkal Caves, dating back over 6,000 years to the Neolithic era. Aston Holidays’ unique brand symbol and document footprint celebrate this rich history.",
@@ -2821,9 +3496,7 @@
     "phone": "+91 97449 00414",
     "email": "info@astonholidays.com",
     "whatsappNumber": "+91 97449 00414",
-    "whatsappWebhookUrl": "http://localhost:3001/api/send-message",
-    "heroVideoUrl": "/videos/wayanad-hero.mp4",
-    "heroVideoPoster": "/brand/wayanad-backcover.jpg"
+    "whatsappWebhookUrl": "http://localhost:3001/api/send-message"
   },
   "integration": {
     "whatsappAppBaseUrl": "http://localhost:3001",

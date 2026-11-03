@@ -30,7 +30,8 @@ import {
   AlertTriangle,
   Save,
   Building2,
-  Loader2
+  Loader2,
+  Lock
 } from "lucide-react";
 
 const DRAFT_STORAGE_KEY = "aston_wip_itinerary_draft_v1";
@@ -53,6 +54,8 @@ function ItinerariesContent() {
   const [selectedBooking, setSelectedBooking] = useState<PackageItineraryBooking | null>(null);
   const [isBuilderOpen, setIsBuilderOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
+  const [editingVersion, setEditingVersion] = useState<number>(1);
+  const [lockedModalBooking, setLockedModalBooking] = useState<PackageItineraryBooking | null>(null);
   const [recoveredDraft, setRecoveredDraft] = useState<any | null>(null);
   const [lastAutoSavedAt, setLastAutoSavedAt] = useState<string | null>(null);
 
@@ -734,9 +737,16 @@ function ItinerariesContent() {
   const handleSavePackage = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    const existing = editingId ? bookings.find((b) => b.id === editingId) : null;
     const payload: Partial<PackageItineraryBooking> = {
+      ...(existing || {}),
       id: editingId || undefined,
-      bookingCode: editingId ? (bookings.find(b => b.id === editingId)?.bookingCode || undefined) : undefined,
+      bookingCode: existing ? existing.bookingCode : undefined,
+      version: editingVersion,
+      versions: existing?.versions || [],
+      isLocked: false,
+      whatsappVoucherSent: existing?.whatsappVoucherSent || false,
+      whatsappVoucherSentAt: existing?.whatsappVoucherSentAt,
       packageTitle,
       category,
       duration,
@@ -777,7 +787,7 @@ function ItinerariesContent() {
         const saved = await res.json();
         let nextList: PackageItineraryBooking[];
         if (editingId) {
-          nextList = bookings.map(b => b.id === editingId ? saved : b);
+          nextList = bookings.map((b) => (b.id === editingId ? saved : b));
         } else {
           nextList = [saved, ...bookings];
         }
@@ -796,8 +806,9 @@ function ItinerariesContent() {
     }
   };
 
-  const handleEdit = (b: PackageItineraryBooking) => {
+  const startEditingBooking = (b: PackageItineraryBooking, versionToUse: number) => {
     setEditingId(b.id);
+    setEditingVersion(versionToUse);
     setPackageTitle(b.packageTitle);
     setCategory(b.category);
     setDuration(b.duration);
@@ -821,10 +832,23 @@ function ItinerariesContent() {
     setIsBuilderOpen(true);
   };
 
+  const handleEdit = (b: PackageItineraryBooking) => {
+    if (b.isLocked) {
+      setLockedModalBooking(b);
+      return;
+    }
+    startEditingBooking(b, b.version || 1);
+  };
+
   const handleDelete = async (id: string) => {
-    if (!confirm("Are you sure you want to delete this itinerary & package booking?")) return;
+    const target = bookings.find((b) => b.id === id);
+    if (target?.isLocked) {
+      if (!confirm("⚠️ ATTENTION: This voucher was already sent to the customer on WhatsApp. Deleting it will permanently remove customer payment records. Are you sure?")) return;
+    } else {
+      if (!confirm("Are you sure you want to delete this itinerary & package booking?")) return;
+    }
     await fetch(`/api/v1/itineraries?id=${id}`, { method: "DELETE" });
-    const nextList = bookings.filter(b => b.id !== id);
+    const nextList = bookings.filter((b) => b.id !== id);
     setBookings(nextList);
     try {
       localStorage.setItem(LOCAL_BOOKINGS_BACKUP_KEY, JSON.stringify(nextList));
@@ -832,27 +856,60 @@ function ItinerariesContent() {
     if (selectedBooking?.id === id) setSelectedBooking(null);
   };
 
-  const handleDirectWhatsApp = (b: PackageItineraryBooking) => {
+  const handleDirectWhatsApp = async (b: PackageItineraryBooking) => {
+    let current = b;
+    if (!b.isLocked) {
+      const v1Snapshot = {
+        versionNumber: b.version || 1,
+        savedAt: new Date().toISOString(),
+        reason: "Shared with customer via WhatsApp (v1 Original)",
+        author: "Staff / Admin",
+        snapshotData: JSON.parse(JSON.stringify(b))
+      };
+      current = {
+        ...b,
+        isLocked: true,
+        lockedReason: "Shared with customer via WhatsApp (v1 Locked)",
+        whatsappVoucherSent: true,
+        whatsappVoucherSentAt: new Date().toISOString(),
+        version: b.version || 1,
+        versions: [...(b.versions || []), v1Snapshot]
+      };
+
+      try {
+        await fetch("/api/v1/itineraries", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(current)
+        });
+        const updatedList = bookings.map((item) => (item.id === current.id ? current : item));
+        setBookings(updatedList);
+        localStorage.setItem(LOCAL_BOOKINGS_BACKUP_KEY, JSON.stringify(updatedList));
+      } catch (e) {
+        console.error("Error locking voucher on WhatsApp dispatch:", e);
+      }
+    }
+
     let msg = `🌟 *ASTON HOLIDAYS - TOUR ITINERARY & VOUCHER* 🌟\n\n`;
-    msg += `Dear *${b.customerName}*,\n`;
+    msg += `Dear *${current.customerName}*,\n`;
     msg += `Here is your confirmed itinerary & stay package for Wayanad!\n\n`;
-    msg += `🔖 *Booking Code:* ${b.bookingCode}\n`;
-    msg += `📦 *Package:* ${b.packageTitle}\n`;
-    msg += `⏳ *Duration:* ${b.duration} (${b.startDate} to ${b.endDate})\n`;
-    msg += `👥 *Guests:* ${b.totalGuests.adults} Adults, ${b.totalGuests.children} Children\n\n`;
-    if (b.rooms.length > 0) {
-      msg += `🏨 *STAY:* ${b.rooms.map(r => `${r.resortCode} - ${r.roomType || r.resortName} (${r.nights}N)`).join(", ")}\n`;
+    msg += `🔖 *Booking Code:* ${current.bookingCode}\n`;
+    msg += `📦 *Package:* ${current.packageTitle}\n`;
+    msg += `⏳ *Duration:* ${current.duration} (${current.startDate} to ${current.endDate})\n`;
+    msg += `👥 *Guests:* ${current.totalGuests.adults} Adults, ${current.totalGuests.children} Children\n\n`;
+    if (current.rooms.length > 0) {
+      msg += `🏨 *STAY:* ${current.rooms.map((r) => `${r.resortCode} - ${r.roomType || r.resortName} (${r.nights}N)`).join(", ")}\n`;
     }
-    if (b.vehicle && b.vehicle.enabled) {
-      msg += `🚗 *CAB:* ${b.vehicle.vehicleType} (${b.vehicle.pickupLocation} to ${b.vehicle.dropLocation})\n`;
+    if (current.vehicle && current.vehicle.enabled) {
+      msg += `🚗 *CAB:* ${current.vehicle.vehicleType} (${current.vehicle.pickupLocation} to ${current.vehicle.dropLocation})\n`;
     }
-    msg += `\n💰 *Total Package:* ₹${b.netPayable.toLocaleString("en-IN")}\n`;
-    msg += `💰 *Advance Paid:* ₹${b.advancePaid.toLocaleString("en-IN")}\n`;
-    msg += `💰 *Balance Due:* ₹${b.balanceDue.toLocaleString("en-IN")}\n\n`;
+    msg += `\n💰 *Total Package:* ₹${current.netPayable.toLocaleString("en-IN")}\n`;
+    msg += `💰 *Advance Paid:* ₹${current.advancePaid.toLocaleString("en-IN")}\n`;
+    msg += `💰 *Balance Due:* ₹${current.balanceDue.toLocaleString("en-IN")}\n\n`;
     msg += `📞 Need any assistance? Call desk: +91 97449 00414\n`;
     msg += `🌿 *Aston Holidays - Curated Wayanad Escapes*`;
 
-    const cleanPhone = b.customerPhone.replace(/[^0-9]/g, "");
+    const cleanPhone = current.customerPhone.replace(/[^0-9]/g, "");
     window.open(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
@@ -972,13 +1029,19 @@ function ItinerariesContent() {
               >
                 {/* Header: Code + Duration + Status */}
                 <div className="flex items-center justify-between gap-2">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <span className="font-mono text-xs font-black bg-stone-100 text-stone-900 px-2 py-0.5 rounded-md">
                       {b.bookingCode}
                     </span>
                     <span className="text-[11px] text-stone-500 font-medium">
                       {b.duration}
                     </span>
+                    {b.isLocked && (
+                      <span className="inline-flex items-center gap-1 text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
+                        <Lock className="w-2.5 h-2.5" />
+                        v{b.version || 1} Locked
+                      </span>
+                    )}
                   </div>
                   <span
                     className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full ${
@@ -1105,6 +1168,12 @@ function ItinerariesContent() {
                     <td className="py-4 px-4 font-mono font-bold text-stone-900">
                       {b.bookingCode}
                       <span className="block text-[10px] font-normal text-stone-400">{b.duration}</span>
+                      {b.isLocked && (
+                        <span className="inline-flex items-center gap-1 mt-1 text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
+                          <Lock className="w-2.5 h-2.5" />
+                          v{b.version || 1} Locked
+                        </span>
+                      )}
                     </td>
                     <td className="py-4 px-4">
                       <p className="font-bold text-stone-900">{b.packageTitle}</p>
@@ -2430,6 +2499,99 @@ function ItinerariesContent() {
           </div>
         )}
         </div>
+
+        {/* ================= LOCKED VOUCHER AMENDMENT MODAL ================= */}
+        {lockedModalBooking && (
+          <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+            <div className="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-stone-200 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
+              <div className="bg-gradient-to-r from-emerald-950 to-stone-900 p-5 text-white flex items-start justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-2xl bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center text-emerald-300 shrink-0">
+                    <Lock className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-base leading-tight">Voucher is Locked (Sent)</h3>
+                    <p className="text-xs text-stone-300 font-mono mt-0.5">{lockedModalBooking.bookingCode} • Version {lockedModalBooking.version || 1}</p>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setLockedModalBooking(null)}
+                  className="text-stone-400 hover:text-white p-1 rounded-lg transition"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <div className="p-6 space-y-4 text-xs text-stone-600">
+                <div className="p-3.5 bg-amber-50 rounded-2xl border border-amber-200 text-amber-900 space-y-1">
+                  <p className="font-bold flex items-center gap-1.5 text-amber-950">
+                    <ShieldCheck className="w-4 h-4 text-amber-700" />
+                    <span>Financial Immutability Guarantee</span>
+                  </p>
+                  <p className="text-[11px] leading-relaxed">
+                    This itinerary voucher was shared with <strong>{lockedModalBooking.customerName}</strong> via WhatsApp. To protect accounting records, <strong>Version 1 cannot be directly overwritten</strong>.
+                  </p>
+                </div>
+
+                <div className="bg-stone-50 rounded-2xl p-4 border border-stone-200/80 space-y-2">
+                  <div className="flex justify-between">
+                    <span className="text-stone-500">Customer:</span>
+                    <span className="font-bold text-stone-900">{lockedModalBooking.customerName}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-stone-500">Total Net Amount:</span>
+                    <span className="font-mono font-bold text-stone-900">₹{lockedModalBooking.netPayable.toLocaleString("en-IN")}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-stone-500">Advance Paid:</span>
+                    <span className="font-mono font-semibold text-emerald-700">₹{lockedModalBooking.advancePaid.toLocaleString("en-IN")}</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-stone-500">Balance Due:</span>
+                    <span className="font-mono font-bold text-amber-700">₹{lockedModalBooking.balanceDue.toLocaleString("en-IN")}</span>
+                  </div>
+                </div>
+
+                <p className="text-[11px] text-stone-500">
+                  You can either view the exact Version 1 copy that was sent to the customer, or create an <strong>Amendment (Version 2)</strong>. Version 1 will remain permanently saved in the audit log.
+                </p>
+
+                <div className="pt-2 flex flex-col gap-2">
+                  <button
+                    onClick={() => {
+                      const b = lockedModalBooking;
+                      setLockedModalBooking(null);
+                      setSelectedBooking(b);
+                    }}
+                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 bg-emerald-800 hover:bg-emerald-900 text-white rounded-xl font-bold shadow transition"
+                  >
+                    <Eye className="w-4 h-4" />
+                    <span>View Sent Version 1 (Customer Copy)</span>
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      const b = lockedModalBooking;
+                      setLockedModalBooking(null);
+                      startEditingBooking(b, (b.version || 1) + 1);
+                    }}
+                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded-xl font-bold transition border border-stone-200"
+                  >
+                    <Edit3 className="w-4 h-4 text-emerald-800" />
+                    <span>Create Revision / Amendment (v{(lockedModalBooking.version || 1) + 1})</span>
+                  </button>
+
+                  <button
+                    onClick={() => setLockedModalBooking(null)}
+                    className="w-full py-2 text-stone-400 hover:text-stone-600 font-semibold transition"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* ================= VOUCHER & BILL MODAL ================= */}
         {selectedBooking && (

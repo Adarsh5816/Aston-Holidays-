@@ -2,7 +2,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { Printer, Share2, ArrowLeft, Check, Phone, Mail, Globe, MapPin, MessageCircle, Send, CheckCircle2, Navigation, Compass, Download, Loader2, CreditCard, Building2, QrCode, X } from "lucide-react";
+import { Printer, Share2, ArrowLeft, Check, Phone, Mail, Globe, MapPin, MessageCircle, Send, CheckCircle2, Navigation, Compass, Download, Loader2, CreditCard, Building2, QrCode, X, Lock } from "lucide-react";
 import Link from "next/link";
 import QRCode from "qrcode";
 import { Invoice, BankDetails } from "@/lib/types";
@@ -238,9 +238,17 @@ export default function InvoiceTemplate({ invoice, onUpdateStatus }: InvoiceTemp
           </div>
 
           <div className="text-right">
-            <span className="inline-block bg-[#2E4F28] text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded">
-              {invoice.type}
-            </span>
+            <div className="flex items-center justify-end gap-1.5 flex-wrap">
+              <span className="inline-block bg-[#2E4F28] text-white text-xs font-bold uppercase tracking-wider px-3 py-1 rounded">
+                {invoice.type}
+              </span>
+              {invoice.isLocked && (
+                <span className="inline-flex items-center gap-1 bg-emerald-50 text-emerald-800 border border-emerald-300 text-[10px] font-bold px-2 py-0.5 rounded">
+                  <Lock className="w-2.5 h-2.5 text-emerald-700" />
+                  v{invoice.version || 1} Locked (Sent)
+                </span>
+              )}
+            </div>
             <h2 className="text-2xl font-bold font-mono text-stone-900 mt-2">
               {invoice.invoiceNumber}
             </h2>

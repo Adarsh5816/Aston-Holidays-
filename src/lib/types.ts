@@ -202,6 +202,18 @@ export interface Invoice {
   notes?: string;
   whatsappVoucherSent?: boolean;
   whatsappVoucherSentAt?: string;
+  isLocked?: boolean;
+  lockedReason?: string;
+  version?: number;
+  versions?: DocumentVersionSnapshot[];
+}
+
+export interface DocumentVersionSnapshot {
+  versionNumber: number;
+  savedAt: string;
+  reason: string;
+  author?: string;
+  snapshotData: any;
 }
 
 // 9-Dimension Request from WhatsApp API App
@@ -483,6 +495,14 @@ export interface PackageItineraryBooking {
   
   // Custom Payment Details & QR
   bankDetails?: BankDetails;
+
+  // Immutability, Versioning & Audit
+  isLocked?: boolean;
+  lockedReason?: string;
+  whatsappVoucherSent?: boolean;
+  whatsappVoucherSentAt?: string;
+  version?: number;
+  versions?: DocumentVersionSnapshot[];
 
   createdAt: string;
   updatedAt: string;

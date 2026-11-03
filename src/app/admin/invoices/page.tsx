@@ -5,7 +5,7 @@ import { useSearchParams } from "next/navigation";
 import AdminSidebar from "@/components/AdminSidebar";
 import InvoiceTemplate from "@/components/InvoiceTemplate";
 import { Invoice, Resort } from "@/lib/types";
-import { Plus, Search, ReceiptText, Printer, MessageCircle, X, Trash2, Eye, ShieldCheck, RotateCcw, Building2, Loader2, CheckCircle2, Save } from "lucide-react";
+import { Plus, Search, ReceiptText, Printer, MessageCircle, X, Trash2, Eye, ShieldCheck, RotateCcw, Building2, Loader2, CheckCircle2, Save, Lock } from "lucide-react";
 
 const DRAFT_STORAGE_KEY = "aston_wip_invoice_draft_v1";
 const LOCAL_INVOICES_BACKUP_KEY = "aston_persistent_invoices_v1";
@@ -471,7 +471,40 @@ function InvoicesContent() {
     } catch {}
   };
 
-  const handleShareWhatsApp = (inv: Invoice) => {
+  const handleShareWhatsApp = async (inv: Invoice) => {
+    let current = inv;
+    if (!inv.isLocked) {
+      const v1Snapshot = {
+        versionNumber: inv.version || 1,
+        savedAt: new Date().toISOString(),
+        reason: "Shared with customer via WhatsApp (v1 Original)",
+        author: "Admin / Staff",
+        snapshotData: JSON.parse(JSON.stringify(inv))
+      };
+      current = {
+        ...inv,
+        isLocked: true,
+        lockedReason: "Sent to customer via WhatsApp (v1 Locked)",
+        whatsappVoucherSent: true,
+        whatsappVoucherSentAt: new Date().toISOString(),
+        version: inv.version || 1,
+        versions: [...(inv.versions || []), v1Snapshot]
+      };
+
+      try {
+        await fetch("/api/v1/invoices", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(current)
+        });
+        const nextList = invoices.map((i) => (i.id === current.id ? current : i));
+        setInvoices(nextList);
+        localStorage.setItem(LOCAL_INVOICES_BACKUP_KEY, JSON.stringify(nextList));
+      } catch (err) {
+        console.error("Error locking invoice on WhatsApp share:", err);
+      }
+    }
+
     let msg = `🌟 *ASTON HOLIDAYS - INVOICE & CONFIRMATION* 🌟\n\n`;
     msg += `Dear *${inv.customerName}*,\n`;
     msg += `Here is your booking invoice for Wayanad!\n\n`;
@@ -610,13 +643,19 @@ function InvoicesContent() {
               >
                 {/* Header: Invoice # + Status */}
                 <div className="flex items-center justify-between gap-2">
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 flex-wrap">
                     <span className="font-mono text-xs font-black bg-stone-100 text-stone-900 px-2 py-0.5 rounded-md">
                       {inv.invoiceNumber}
                     </span>
                     <span className="text-[11px] text-stone-500 font-medium">
                       {inv.type}
                     </span>
+                    {inv.isLocked && (
+                      <span className="inline-flex items-center gap-1 text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
+                        <Lock className="w-2.5 h-2.5" />
+                        v{inv.version || 1} Locked
+                      </span>
+                    )}
                   </div>
                   <span
                     className={`text-[10px] font-bold px-2.5 py-0.5 rounded-full ${
@@ -716,6 +755,12 @@ function InvoicesContent() {
                     <td className="py-4 px-4 font-mono font-bold text-stone-900">
                       {inv.invoiceNumber}
                       <span className="block text-[10px] font-normal text-stone-400">{inv.type}</span>
+                      {inv.isLocked && (
+                        <span className="inline-flex items-center gap-1 mt-1 text-[9px] font-bold px-1.5 py-0.5 rounded bg-emerald-50 text-emerald-800 border border-emerald-200">
+                          <Lock className="w-2.5 h-2.5" />
+                          v{inv.version || 1} Locked
+                        </span>
+                      )}
                     </td>
                     <td className="py-4 px-4">
                       <p className="font-bold text-stone-900">{inv.customerName}</p>

@@ -24,6 +24,19 @@ export async function POST(req: NextRequest) {
     }
     invoice.whatsappVoucherSent = true;
     invoice.whatsappVoucherSentAt = new Date().toISOString();
+    if (!invoice.isLocked) {
+      const v1Snapshot = {
+        versionNumber: invoice.version || 1,
+        savedAt: new Date().toISOString(),
+        reason: "Shared with customer via WhatsApp (v1 Original)",
+        author: "WhatsApp Dispatch",
+        snapshotData: JSON.parse(JSON.stringify(invoice))
+      };
+      invoice.isLocked = true;
+      invoice.lockedReason = "Sent to customer via WhatsApp (v1 Locked)";
+      invoice.version = invoice.version || 1;
+      invoice.versions = [...(invoice.versions || []), v1Snapshot];
+    }
     Store.saveInvoice(invoice);
 
     const host = req.headers.get("host") || "localhost:3000";

@@ -1,11 +1,11 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import AdminSidebar from "@/components/AdminSidebar";
 import { Resort, NearbyAttraction, AccommodationType, StayPreference, AmbienceType } from "@/lib/types";
-import { Building2, Search, Bed, Users, Plus, FileText, Check, X, MapPin, Trash2, Edit3, Navigation, Sparkles, Layers } from "lucide-react";
+import { Building2, Search, Bed, Users, Plus, FileText, Check, X, MapPin, Trash2, Edit3, Navigation, Sparkles, Layers, Upload, Loader2, Star } from "lucide-react";
 
 export default function ResortManagerPage() {
   const [resorts, setResorts] = useState<Resort[]>([]);
@@ -43,6 +43,63 @@ export default function ResortManagerPage() {
     { name: "Karlad Lake", distance: "≈05 km" },
     { name: "Meenmutty Waterfalls", distance: "≈06 km" }
   ]);
+
+  const [isUploadingPhotos, setIsUploadingPhotos] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleUploadPhotos = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files || files.length === 0) return;
+
+    try {
+      setIsUploadingPhotos(true);
+      const formData = new FormData();
+      for (let i = 0; i < files.length; i++) {
+        formData.append("files", files[i]);
+      }
+
+      const res = await fetch("/api/v1/upload", {
+        method: "POST",
+        body: formData
+      });
+
+      if (!res.ok) {
+        throw new Error("Upload failed");
+      }
+
+      const data = await res.json();
+      if (data.urls && data.urls.length > 0) {
+        const currentList = photosStr.split(",").map((s) => s.trim()).filter(Boolean);
+        const combined = [...currentList, ...data.urls];
+        setPhotosStr(combined.join(", "));
+        if (!coverImage) {
+          setCoverImage(data.urls[0]);
+        }
+      }
+    } catch (err: any) {
+      alert("Failed to upload photos: " + err.message);
+    } finally {
+      setIsUploadingPhotos(false);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  };
+
+  const handleRemovePhoto = (photoUrl: string) => {
+    const currentList = photosStr.split(",").map((s) => s.trim()).filter(Boolean);
+    const updated = currentList.filter((p) => p !== photoUrl);
+    setPhotosStr(updated.join(", "));
+    if (coverImage === photoUrl) {
+      setCoverImage(updated.length > 0 ? updated[0] : "");
+    }
+  };
+
+  const handleSetCoverPhoto = (photoUrl: string) => {
+    setCoverImage(photoUrl);
+    const currentList = photosStr.split(",").map((s) => s.trim()).filter(Boolean);
+    if (!currentList.includes(photoUrl)) {
+      setPhotosStr([photoUrl, ...currentList].join(", "));
+    }
+  };
 
   const loadResorts = async () => {
     try {
@@ -546,25 +603,124 @@ export default function ResortManagerPage() {
                   </div>
                 </div>
 
-                {/* Photos */}
-                <div>
-                  <label className="block text-stone-700 mb-1">Cover Image Path / URL</label>
-                  <input
-                    type="text"
-                    value={coverImage}
-                    onChange={(e) => setCoverImage(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-stone-200 font-mono text-[11px]"
-                  />
-                </div>
+                {/* Interactive Resort Photo Studio */}
+                <div className="bg-stone-50 p-4 rounded-2xl border border-stone-200 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-bold text-stone-900 text-xs flex items-center gap-2">
+                        <Upload className="w-4 h-4 text-emerald-700" />
+                        <span>Resort Photos & Media</span>
+                      </h4>
+                      <p className="text-[11px] text-stone-500">
+                        Upload high-resolution property photos. Files are permanently stored on server disk and will never reset.
+                      </p>
+                    </div>
 
-                <div>
-                  <label className="block text-stone-700 mb-1">Photo Gallery (Comma-separated URLs/Paths)</label>
-                  <textarea
-                    rows={2}
-                    value={photosStr}
-                    onChange={(e) => setPhotosStr(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-stone-200 font-mono text-[11px]"
-                  />
+                    <div className="flex items-center gap-2">
+                      <input
+                        ref={fileInputRef}
+                        type="file"
+                        multiple
+                        accept="image/*"
+                        onChange={handleUploadPhotos}
+                        className="hidden"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => fileInputRef.current?.click()}
+                        disabled={isUploadingPhotos}
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-800 hover:bg-emerald-900 text-white rounded-xl text-xs font-bold shadow-sm transition disabled:opacity-50"
+                      >
+                        {isUploadingPhotos ? (
+                          <>
+                            <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                            <span>Uploading...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Upload className="w-3.5 h-3.5" />
+                            <span>Upload Photos</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* Uploaded Photos Thumbnails Preview */}
+                  {photosStr.split(",").map((s) => s.trim()).filter(Boolean).length > 0 && (
+                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
+                      {photosStr
+                        .split(",")
+                        .map((s) => s.trim())
+                        .filter(Boolean)
+                        .map((photoUrl, idx) => {
+                          const isCover = coverImage === photoUrl || (!coverImage && idx === 0);
+                          return (
+                            <div
+                              key={photoUrl + idx}
+                              className={`relative group rounded-xl overflow-hidden border aspect-video bg-stone-900 ${
+                                isCover ? "border-emerald-600 ring-2 ring-emerald-600/30" : "border-stone-200"
+                              }`}
+                            >
+                              <img
+                                src={photoUrl}
+                                alt="Resort Preview"
+                                className="w-full h-full object-cover"
+                              />
+                              {isCover && (
+                                <div className="absolute top-1 left-1 bg-emerald-700 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
+                                  Cover Photo
+                                </div>
+                              )}
+                              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 p-1">
+                                {!isCover && (
+                                  <button
+                                    type="button"
+                                    onClick={() => handleSetCoverPhoto(photoUrl)}
+                                    className="p-1.5 bg-white/90 hover:bg-white text-emerald-800 rounded-lg text-[10px] font-bold shadow transition"
+                                    title="Set as Cover"
+                                  >
+                                    Set Cover
+                                  </button>
+                                )}
+                                <button
+                                  type="button"
+                                  onClick={() => handleRemovePhoto(photoUrl)}
+                                  className="p-1.5 bg-red-600/90 hover:bg-red-600 text-white rounded-lg text-[10px] shadow transition"
+                                  title="Delete photo"
+                                >
+                                  <Trash2 className="w-3 h-3" />
+                                </button>
+                              </div>
+                            </div>
+                          );
+                        })}
+                    </div>
+                  )}
+
+                  {/* Manual Path Overrides (Advanced) */}
+                  <div className="pt-2 border-t border-stone-200/80 space-y-2">
+                    <div>
+                      <label className="block text-[11px] font-bold text-stone-600 mb-1">Cover Image URL / Path</label>
+                      <input
+                        type="text"
+                        value={coverImage}
+                        onChange={(e) => setCoverImage(e.target.value)}
+                        placeholder="/uploads/resorts/photo.jpg or https://..."
+                        className="w-full px-3 py-1.5 rounded-xl border border-stone-200 font-mono text-[11px] bg-white"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-[11px] font-bold text-stone-600 mb-1">All Gallery Photo URLs (Comma-separated)</label>
+                      <textarea
+                        rows={2}
+                        value={photosStr}
+                        onChange={(e) => setPhotosStr(e.target.value)}
+                        placeholder="/uploads/resorts/photo1.jpg, /uploads/resorts/photo2.jpg"
+                        className="w-full px-3 py-1.5 rounded-xl border border-stone-200 font-mono text-[11px] bg-white"
+                      />
+                    </div>
+                  </div>
                 </div>
 
                 {/* Amenities */}

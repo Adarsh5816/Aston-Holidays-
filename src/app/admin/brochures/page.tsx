@@ -82,30 +82,41 @@ export default function BrochureStudioPage() {
     setAiEnhancedSuccess(false);
   };
 
-  // Upload Photos from Computer
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  // Upload Photos to server disk storage
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
 
-    Array.from(files).forEach((file) => {
-      const reader = new FileReader();
-      reader.onload = (uploadEvent) => {
-        const result = uploadEvent.target?.result as string;
-        if (result) {
-          setSelectedPhotos((prev) => {
-            const updated = [...prev, result];
-            if (!coverPhoto && updated.length > 0) {
-              setCoverPhoto(updated[0]);
-            }
-            return updated;
-          });
-        }
-      };
-      reader.readAsDataURL(file);
-    });
+    try {
+      const formData = new FormData();
+      for (let i = 0; i < files.length; i++) {
+        formData.append("files", files[i]);
+      }
 
-    // Reset input so same file can be uploaded again if needed
-    if (fileInputRef.current) fileInputRef.current.value = "";
+      const res = await fetch("/api/v1/upload", {
+        method: "POST",
+        body: formData
+      });
+
+      if (!res.ok) {
+        throw new Error("Upload failed");
+      }
+
+      const data = await res.json();
+      if (data.urls && data.urls.length > 0) {
+        setSelectedPhotos((prev) => {
+          const updated = [...prev, ...data.urls];
+          if (!coverPhoto && updated.length > 0) {
+            setCoverPhoto(updated[0]);
+          }
+          return updated;
+        });
+      }
+    } catch (err: any) {
+      alert("Failed to upload photos: " + err.message);
+    } finally {
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
   };
 
   const handleAddCustomPhoto = () => {
