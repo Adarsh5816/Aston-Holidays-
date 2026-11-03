@@ -32,7 +32,8 @@ export default function ResortManagerPage() {
   const [pricePerNight, setPricePerNight] = useState(12000);
   const [b2bRate, setB2bRate] = useState(9000);
   const [coverImage, setCoverImage] = useState("");
-  const [photosStr, setPhotosStr] = useState("");
+  const [photos, setPhotos] = useState<string[]>([]);
+  const [customPhotoInput, setCustomPhotoInput] = useState("");
   const [amenitiesStr, setAmenitiesStr] = useState("Infinity Swimming Pool, Kids Play area, Camp Fire (Chargeable), High Speed Wifi");
   const [specialitiesStr, setSpecialitiesStr] = useState("Banasura hill view, Hilltop sunset view");
   const [checkInTime, setCheckInTime] = useState("01:00 PM");
@@ -138,9 +139,7 @@ export default function ResortManagerPage() {
       }
 
       if (newUrls.length > 0) {
-        const currentList = photosStr.split(",").map((s) => s.trim()).filter(Boolean);
-        const combined = [...currentList, ...newUrls];
-        setPhotosStr(combined.join(", "));
+        setPhotos((prev) => [...prev, ...newUrls]);
         if (!coverImage) {
           setCoverImage(newUrls[0]);
         }
@@ -156,9 +155,8 @@ export default function ResortManagerPage() {
   };
 
   const handleRemovePhoto = (photoUrl: string) => {
-    const currentList = photosStr.split(",").map((s) => s.trim()).filter(Boolean);
-    const updated = currentList.filter((p) => p !== photoUrl);
-    setPhotosStr(updated.join(", "));
+    const updated = photos.filter((p) => p !== photoUrl);
+    setPhotos(updated);
     if (coverImage === photoUrl) {
       setCoverImage(updated.length > 0 ? updated[0] : "");
     }
@@ -166,9 +164,8 @@ export default function ResortManagerPage() {
 
   const handleSetCoverPhoto = (photoUrl: string) => {
     setCoverImage(photoUrl);
-    const currentList = photosStr.split(",").map((s) => s.trim()).filter(Boolean);
-    if (!currentList.includes(photoUrl)) {
-      setPhotosStr([photoUrl, ...currentList].join(", "));
+    if (!photos.includes(photoUrl)) {
+      setPhotos([photoUrl, ...photos]);
     }
   };
 
@@ -207,7 +204,8 @@ export default function ResortManagerPage() {
     setPricePerNight(12000);
     setB2bRate(9000);
     setCoverImage("");
-    setPhotosStr("");
+    setPhotos([]);
+    setCustomPhotoInput("");
     setAmenitiesStr("Infinity Swimming Pool, Mountain View Balcony, High Speed Wifi, Campfire Area");
     setSpecialitiesStr("Valley view, Peaceful privacy");
     setCheckInTime("01:00 PM");
@@ -238,8 +236,10 @@ export default function ResortManagerPage() {
     setMaxGuests(resort.maxGuests);
     setPricePerNight(resort.pricePerNight);
     setB2bRate(resort.b2bRate);
-    setCoverImage(resort.coverImage);
-    setPhotosStr(resort.photos.join(", "));
+    const resortPhotos = Array.isArray(resort.photos) ? resort.photos.filter(Boolean) : [];
+    setCoverImage(resort.coverImage || resortPhotos[0] || "");
+    setPhotos(resortPhotos);
+    setCustomPhotoInput("");
     setAmenitiesStr(resort.amenities.join(", "));
     setSpecialitiesStr(resort.specialities.join(", "));
     setCheckInTime(resort.checkInTime || "01:00 PM");
@@ -268,10 +268,8 @@ export default function ResortManagerPage() {
   const handleSaveResort = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    const photoList = photosStr
-      .split(",")
-      .map(s => s.trim())
-      .filter(s => s.length > 0);
+    const photoList = photos.filter(Boolean);
+    const finalCover = coverImage.trim() || photoList[0] || "";
 
     const amenityList = amenitiesStr
       .split(",")
@@ -308,7 +306,7 @@ export default function ResortManagerPage() {
       pricePerNight: Number(pricePerNight),
       b2bRate: Number(b2bRate),
       featured: editingResort ? editingResort.featured : true,
-      coverImage: coverImage.trim() || photoList[0] || "",
+      coverImage: finalCover,
       photos: photoList,
       amenities: amenityList,
       specialities: specialityList,
@@ -405,12 +403,19 @@ export default function ResortManagerPage() {
             >
               <div>
                 <div className="relative h-48 bg-stone-100">
-                  <Image
-                    src={resort.coverImage}
-                    alt={resort.name}
-                    fill
-                    className="object-cover"
-                  />
+                  {resort.coverImage ? (
+                    <Image
+                      src={resort.coverImage}
+                      alt={resort.name}
+                      fill
+                      unoptimized={resort.coverImage?.startsWith("data:")}
+                      className="object-cover"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-xs text-stone-400 bg-stone-900 text-stone-300 font-medium">
+                      No cover photo
+                    </div>
+                  )}
                   <div className="absolute top-3 left-3 bg-[#1A2218] text-white text-xs font-mono font-bold px-2.5 py-1 rounded shadow">
                     {resort.code}
                   </div>
@@ -718,54 +723,50 @@ export default function ResortManagerPage() {
                   </div>
 
                   {/* Uploaded Photos Thumbnails Preview */}
-                  {photosStr.split(",").map((s) => s.trim()).filter(Boolean).length > 0 && (
+                  {photos.length > 0 && (
                     <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 pt-2">
-                      {photosStr
-                        .split(",")
-                        .map((s) => s.trim())
-                        .filter(Boolean)
-                        .map((photoUrl, idx) => {
-                          const isCover = coverImage === photoUrl || (!coverImage && idx === 0);
-                          return (
-                            <div
-                              key={photoUrl + idx}
-                              className={`relative group rounded-xl overflow-hidden border aspect-video bg-stone-900 ${
-                                isCover ? "border-emerald-600 ring-2 ring-emerald-600/30" : "border-stone-200"
-                              }`}
-                            >
-                              <img
-                                src={photoUrl}
-                                alt="Resort Preview"
-                                className="w-full h-full object-cover"
-                              />
-                              {isCover && (
-                                <div className="absolute top-1 left-1 bg-emerald-700 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
-                                  Cover Photo
-                                </div>
-                              )}
-                              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 p-1">
-                                {!isCover && (
-                                  <button
-                                    type="button"
-                                    onClick={() => handleSetCoverPhoto(photoUrl)}
-                                    className="p-1.5 bg-white/90 hover:bg-white text-emerald-800 rounded-lg text-[10px] font-bold shadow transition"
-                                    title="Set as Cover"
-                                  >
-                                    Set Cover
-                                  </button>
-                                )}
+                      {photos.map((photoUrl, idx) => {
+                        const isCover = coverImage === photoUrl || (!coverImage && idx === 0);
+                        return (
+                          <div
+                            key={idx}
+                            className={`relative group rounded-xl overflow-hidden border aspect-video bg-stone-900 ${
+                              isCover ? "border-emerald-600 ring-2 ring-emerald-600/30" : "border-stone-200"
+                            }`}
+                          >
+                            <img
+                              src={photoUrl}
+                              alt="Resort Preview"
+                              className="w-full h-full object-cover"
+                            />
+                            {isCover && (
+                              <div className="absolute top-1 left-1 bg-emerald-700 text-white text-[9px] font-bold px-1.5 py-0.5 rounded shadow">
+                                Cover Photo
+                              </div>
+                            )}
+                            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 p-1">
+                              {!isCover && (
                                 <button
                                   type="button"
-                                  onClick={() => handleRemovePhoto(photoUrl)}
-                                  className="p-1.5 bg-red-600/90 hover:bg-red-600 text-white rounded-lg text-[10px] shadow transition"
-                                  title="Delete photo"
+                                  onClick={() => handleSetCoverPhoto(photoUrl)}
+                                  className="p-1.5 bg-white/90 hover:bg-white text-emerald-800 rounded-lg text-[10px] font-bold shadow transition"
+                                  title="Set as Cover"
                                 >
-                                  <Trash2 className="w-3 h-3" />
+                                  Set Cover
                                 </button>
-                              </div>
+                              )}
+                              <button
+                                type="button"
+                                onClick={() => handleRemovePhoto(photoUrl)}
+                                className="p-1.5 bg-red-600/90 hover:bg-red-600 text-white rounded-lg text-[10px] shadow transition"
+                                title="Delete photo"
+                              >
+                                <Trash2 className="w-3 h-3" />
+                              </button>
                             </div>
-                          );
-                        })}
+                          </div>
+                        );
+                      })}
                     </div>
                   )}
 
@@ -782,14 +783,30 @@ export default function ResortManagerPage() {
                       />
                     </div>
                     <div>
-                      <label className="block text-[11px] font-bold text-stone-600 mb-1">All Gallery Photo URLs (Comma-separated)</label>
-                      <textarea
-                        rows={2}
-                        value={photosStr}
-                        onChange={(e) => setPhotosStr(e.target.value)}
-                        placeholder="/uploads/resorts/photo1.jpg, /uploads/resorts/photo2.jpg"
-                        className="w-full px-3 py-1.5 rounded-xl border border-stone-200 font-mono text-[11px] bg-white"
-                      />
+                      <label className="block text-[11px] font-bold text-stone-600 mb-1">Add Photo by Direct Link / URL</label>
+                      <div className="flex gap-2">
+                        <input
+                          type="text"
+                          value={customPhotoInput}
+                          onChange={(e) => setCustomPhotoInput(e.target.value)}
+                          placeholder="https://images.unsplash.com/... or /uploads/..."
+                          className="flex-1 px-3 py-1.5 rounded-xl border border-stone-200 font-mono text-[11px] bg-white"
+                        />
+                        <button
+                          type="button"
+                          onClick={() => {
+                            if (customPhotoInput.trim()) {
+                              const trimmed = customPhotoInput.trim();
+                              setPhotos((prev) => [...prev, trimmed]);
+                              if (!coverImage) setCoverImage(trimmed);
+                              setCustomPhotoInput("");
+                            }
+                          }}
+                          className="px-3 py-1.5 bg-stone-800 hover:bg-stone-900 text-white rounded-xl text-xs font-bold transition"
+                        >
+                          Add Link
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </div>

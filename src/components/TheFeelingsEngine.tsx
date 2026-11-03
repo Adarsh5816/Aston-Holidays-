@@ -176,6 +176,7 @@ export default function TheFeelingsEngine({ resorts, onOpenEnquiry }: TheFeeling
                       src={resort.coverImage || "/brand/wayanad-backcover.jpg"}
                       alt={resort.name}
                       fill
+                      unoptimized={Boolean(resort.coverImage?.startsWith("data:"))}
                       className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/20" />

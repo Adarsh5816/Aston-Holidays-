@@ -2,14 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { Store } from "@/lib/store";
 import { Resort } from "@/lib/types";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req: NextRequest) {
   const url = new URL(req.url);
   const code = url.searchParams.get("code");
-  if (code) {
-    const resort = Store.getResortByCode(code);
-    if (!resort) return NextResponse.json({ error: "Resort not found" }, { status: 404 });
-    return NextResponse.json(resort);
-  }
 
   // 9 Dimensions Query
   const accommodationType = url.searchParams.get("accommodationType") || url.searchParams.get("category") || undefined;
@@ -23,7 +20,8 @@ export async function GET(req: NextRequest) {
   const rooms = url.searchParams.get("rooms") || url.searchParams.get("bedrooms") ? Number(url.searchParams.get("rooms") || url.searchParams.get("bedrooms")) : undefined;
   const query = url.searchParams.get("q") || undefined;
 
-  const resorts = Store.getResorts({
+  // Always fetch live resorts state from Supabase Dual-Vault
+  const resorts = await Store.getResortsLive({
     accommodationType,
     stayPreference,
     location,
@@ -36,6 +34,15 @@ export async function GET(req: NextRequest) {
     query
   });
 
+  if (code) {
+    const cleanCode = code.toUpperCase().trim();
+    const resort = resorts.find(
+      (r) => r.code.toUpperCase() === cleanCode || r.id === code || r.slug === code.toLowerCase()
+    );
+    if (!resort) return NextResponse.json({ error: "Resort not found" }, { status: 404 });
+    return NextResponse.json(resort);
+  }
+
   return NextResponse.json(resorts);
 }
 
@@ -45,7 +52,7 @@ export async function POST(req: NextRequest) {
     if (!body.code || !body.name) {
       return NextResponse.json({ error: "Code and Name are required" }, { status: 400 });
     }
-    const saved = Store.saveResort(body);
+    const saved = await Store.saveResort(body);
     return NextResponse.json(saved, { status: 201 });
   } catch (err: any) {
     return NextResponse.json({ error: err.message }, { status: 500 });

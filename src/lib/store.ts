@@ -40,7 +40,39 @@ function resortToDbRow(r: Resort) {
   };
 }
 
+function normalizePhotos(coverImage: string, photos: any[]): { coverImage: string; photos: string[] } {
+  const rawList = Array.isArray(photos) ? photos.map(String) : [];
+  const fixedList: string[] = [];
+
+  for (let i = 0; i < rawList.length; i++) {
+    const item = (rawList[i] || "").trim();
+    if (!item) continue;
+    // Check if this is a severed data URI (e.g. item 0 is "data:image/jpeg;base64" and item 1 is the base64 string)
+    if (item.startsWith("data:") && !item.includes(",") && i + 1 < rawList.length) {
+      fixedList.push(`${item},${rawList[i + 1].trim()}`);
+      i++; // Skip the next part as it was merged
+    } else if (item.startsWith("/9j/") || item.startsWith("iVBORw") || item.startsWith("UklGR")) {
+      // Raw base64 string missing the prefix
+      fixedList.push(`data:image/jpeg;base64,${item}`);
+    } else {
+      fixedList.push(item);
+    }
+  }
+
+  let finalCover = (coverImage || "").trim();
+  if (finalCover.startsWith("data:") && !finalCover.includes(",") && fixedList.length > 0) {
+    finalCover = fixedList[0];
+  } else if (!finalCover && fixedList.length > 0) {
+    finalCover = fixedList[0];
+  } else if (finalCover.startsWith("/9j/") || finalCover.startsWith("iVBORw") || finalCover.startsWith("UklGR")) {
+    finalCover = `data:image/jpeg;base64,${finalCover}`;
+  }
+
+  return { coverImage: finalCover, photos: fixedList };
+}
+
 function dbRowToResort(row: any): Resort {
+  const { coverImage, photos } = normalizePhotos(row.cover_image || "", row.photos);
   return {
     id: row.id || `resort-${(row.code || "").toLowerCase()}`,
     code: row.code,
@@ -61,8 +93,8 @@ function dbRowToResort(row: any): Resort {
     pricePerNight: Number(row.price_per_night) || 5000,
     b2bRate: Number(row.b2b_rate) || 4000,
     featured: Boolean(row.featured),
-    coverImage: row.cover_image || "",
-    photos: Array.isArray(row.photos) ? row.photos : [],
+    coverImage,
+    photos,
     amenities: Array.isArray(row.amenities) ? row.amenities : [],
     specialities: Array.isArray(row.specialities) ? row.specialities : [],
     nearbyAttractions: Array.isArray(row.nearby_attractions) ? row.nearby_attractions : [],
@@ -898,9 +930,36 @@ export const Store = {
   // Resorts with 9-Dimension Filter Engine
   getResorts(filters?: FilterParams): Resort[] {
     const data = readData();
-    let result = [...data.resorts];
+    return Store.filterResortList(data.resorts, filters);
+  },
 
-    if (!filters) return result;
+  async getResortsLive(filters?: FilterParams): Promise<Resort[]> {
+    let allResorts: Resort[] = [];
+    try {
+      if (supabase) {
+        const { data: dbRows, error } = await supabase.from("resorts").select("*");
+        if (!error && Array.isArray(dbRows) && dbRows.length > 0) {
+          allResorts = dbRows.map(dbRowToResort);
+          // Update local snapshot cache
+          const localData = readData();
+          localData.resorts = allResorts;
+          saveData(localData);
+        }
+      }
+    } catch (err: any) {
+      console.warn("getResortsLive notice:", err?.message);
+    }
+
+    if (allResorts.length === 0) {
+      allResorts = readData().resorts;
+    }
+
+    return Store.filterResortList(allResorts, filters);
+  },
+
+  filterResortList(resorts: Resort[], filters?: FilterParams): Resort[] {
+    if (!filters) return resorts;
+    let result = [...resorts];
 
     // 1. Accommodation Type
     const accType = filters.accommodationType || filters.category;
@@ -962,7 +1021,7 @@ export const Store = {
       result = result.filter(r => r.bedrooms >= roomReq);
     }
 
-    // General Guest capacity (if specified)
+    // General Guest capacity
     if (filters.guests && filters.guests > 0) {
       result = result.filter(r => r.maxGuests >= filters.guests!);
     }
@@ -989,7 +1048,7 @@ export const Store = {
     return data.resorts.find(r => r.code.toUpperCase() === cleanCode || r.id === code || r.slug === code.toLowerCase());
   },
 
-  saveResort(resort: Resort): Resort {
+  async saveResort(resort: Resort): Promise<Resort> {
     const data = readData();
     const existingIndex = data.resorts.findIndex(r => r.id === resort.id || r.code.toUpperCase() === resort.code.toUpperCase());
     if (existingIndex >= 0) {
@@ -998,17 +1057,17 @@ export const Store = {
       data.resorts.unshift(resort);
     }
     saveData(data);
-    syncToSupabase("resorts", resortToDbRow(resort), "id");
+    await syncToSupabase("resorts", resortToDbRow(resort), "id");
     return resort;
   },
 
-  deleteResort(idOrCode: string): boolean {
+  async deleteResort(idOrCode: string): Promise<boolean> {
     const data = readData();
     const prevLen = data.resorts.length;
     data.resorts = data.resorts.filter(r => r.id !== idOrCode && r.code.toUpperCase() !== idOrCode.toUpperCase());
     if (data.resorts.length !== prevLen) {
       saveData(data);
-      deleteFromSupabase("resorts", idOrCode);
+      await deleteFromSupabase("resorts", idOrCode);
       return true;
     }
     return false;
