@@ -35,6 +35,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# local uploads & large video files
+# large raw video files (over 50MB)
 public/videos/*
-public/uploads/*

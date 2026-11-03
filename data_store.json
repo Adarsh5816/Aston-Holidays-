@@ -4,7 +4,7 @@
       "id": "resort-ah-111",
       "code": "AH-111",
       "name": "2BHK - Le Eden",
-      "slug": "ah-111-le-eden-moolankavu",
+      "slug": "2bhk---le-eden-moolankavu",
       "destination": "Moolankavu",
       "locationDetails": "Moolankavu, Moolankavu, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Le%20Eden%20Moolankavu%20Wayanad",
@@ -23,8 +23,10 @@
       "pricePerNight": 10000,
       "b2bRate": 8000,
       "featured": false,
-      "coverImage": "",
-      "photos": [],
+      "coverImage": "/uploads/resorts/resort-1793734139717-7409-WhatsApp_Image_2026-08-13_at_1.jpeg",
+      "photos": [
+        "/uploads/resorts/resort-1793734139717-7409-WhatsApp_Image_2026-08-13_at_1.jpeg"
+      ],
       "amenities": [
         "Private Swimming Pool",
         "Scenic Mountain / Plantation View",
@@ -60,13 +62,13 @@
       "checkOutTime": "11:00 AM",
       "overview": "Nestled in the lush hills of Moolankavu, Le Eden offers Private Pool Villa living with Independent Private Cottage/Villa. Perfect for couples, families, and friend gatherings looking for privacy and authentic Wayanad hospitality.",
       "inclusions": [
-        "Full private villa / cottage access",
-        "Complimentary high-speed WiFi",
-        "Morning tea & estate stroll"
+        "Exclusive access to villa & private pool",
+        "Welcome drink on arrival",
+        "High-speed WiFi"
       ],
       "exclusions": [
-        "Forest entry & wildlife safari fees",
-        "Extra bed charges"
+        "Chef-prepared BBQ and dinners",
+        "Vehicle sightseeing"
       ]
     },
     {
