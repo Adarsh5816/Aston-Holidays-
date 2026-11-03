@@ -45,6 +45,7 @@ export default function ResortManagerPage() {
   ]);
 
   const [isUploadingPhotos, setIsUploadingPhotos] = useState(false);
+  const [uploadProgressText, setUploadProgressText] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleUploadPhotos = async (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -53,33 +54,49 @@ export default function ResortManagerPage() {
 
     try {
       setIsUploadingPhotos(true);
-      const formData = new FormData();
+      const newUrls: string[] = [];
+
+      // Upload file-by-file sequentially to prevent large batch timeouts and ensure 100% reliability
       for (let i = 0; i < files.length; i++) {
-        formData.append("files", files[i]);
+        const file = files[i];
+        setUploadProgressText(`Uploading ${i + 1} of ${files.length}...`);
+
+        const formData = new FormData();
+        formData.append("files", file);
+
+        const res = await fetch("/api/v1/upload", {
+          method: "POST",
+          body: formData
+        });
+
+        if (!res.ok) {
+          const errData = await res.json().catch(() => null);
+          const msg = errData?.error || `Server HTTP ${res.status}: ${res.statusText || "Request rejected"}`;
+          throw new Error(`"${file.name}": ${msg}`);
+        }
+
+        const data = await res.json();
+        if (data.urls && data.urls.length > 0) {
+          newUrls.push(...data.urls);
+        } else if (data.url) {
+          newUrls.push(data.url);
+        }
       }
 
-      const res = await fetch("/api/v1/upload", {
-        method: "POST",
-        body: formData
-      });
-
-      if (!res.ok) {
-        throw new Error("Upload failed");
-      }
-
-      const data = await res.json();
-      if (data.urls && data.urls.length > 0) {
+      if (newUrls.length > 0) {
         const currentList = photosStr.split(",").map((s) => s.trim()).filter(Boolean);
-        const combined = [...currentList, ...data.urls];
+        const combined = [...currentList, ...newUrls];
         setPhotosStr(combined.join(", "));
         if (!coverImage) {
-          setCoverImage(data.urls[0]);
+          setCoverImage(newUrls[0]);
         }
       }
     } catch (err: any) {
+      console.error("Upload error:", err);
       alert("Failed to upload photos: " + err.message);
     } finally {
       setIsUploadingPhotos(false);
+      setUploadProgressText("");
       if (fileInputRef.current) fileInputRef.current.value = "";
     }
   };
@@ -634,7 +651,7 @@ export default function ResortManagerPage() {
                         {isUploadingPhotos ? (
                           <>
                             <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                            <span>Uploading...</span>
+                            <span>{uploadProgressText || "Uploading..."}</span>
                           </>
                         ) : (
                           <>

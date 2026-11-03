@@ -82,30 +82,40 @@ export default function BrochureStudioPage() {
     setAiEnhancedSuccess(false);
   };
 
-  // Upload Photos to server disk storage
+  // Upload Photos to server disk storage sequentially
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
 
     try {
-      const formData = new FormData();
+      const newUrls: string[] = [];
       for (let i = 0; i < files.length; i++) {
-        formData.append("files", files[i]);
+        const file = files[i];
+        const formData = new FormData();
+        formData.append("files", file);
+
+        const res = await fetch("/api/v1/upload", {
+          method: "POST",
+          body: formData
+        });
+
+        if (!res.ok) {
+          const errData = await res.json().catch(() => null);
+          const msg = errData?.error || `Server HTTP ${res.status}: ${res.statusText || "Request rejected"}`;
+          throw new Error(`"${file.name}": ${msg}`);
+        }
+
+        const data = await res.json();
+        if (data.urls && data.urls.length > 0) {
+          newUrls.push(...data.urls);
+        } else if (data.url) {
+          newUrls.push(data.url);
+        }
       }
 
-      const res = await fetch("/api/v1/upload", {
-        method: "POST",
-        body: formData
-      });
-
-      if (!res.ok) {
-        throw new Error("Upload failed");
-      }
-
-      const data = await res.json();
-      if (data.urls && data.urls.length > 0) {
+      if (newUrls.length > 0) {
         setSelectedPhotos((prev) => {
-          const updated = [...prev, ...data.urls];
+          const updated = [...prev, ...newUrls];
           if (!coverPhoto && updated.length > 0) {
             setCoverPhoto(updated[0]);
           }
@@ -113,6 +123,7 @@ export default function BrochureStudioPage() {
         });
       }
     } catch (err: any) {
+      console.error("Upload error:", err);
       alert("Failed to upload photos: " + err.message);
     } finally {
       if (fileInputRef.current) fileInputRef.current.value = "";

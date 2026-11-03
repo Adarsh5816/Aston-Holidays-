@@ -2,8 +2,24 @@ import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
 
+export const dynamic = "force-dynamic";
+export const maxDuration = 60;
+
 // Supported image extensions and mimes
-const ALLOWED_EXTS = new Set([".jpg", ".jpeg", ".png", ".webp", ".avif", ".gif"]);
+const ALLOWED_EXTS = new Set([
+  ".jpg",
+  ".jpeg",
+  ".png",
+  ".webp",
+  ".avif",
+  ".gif",
+  ".jfif",
+  ".heic",
+  ".heif",
+  ".bmp",
+  ".tiff",
+  ".svg"
+]);
 
 export async function POST(req: NextRequest) {
   try {
@@ -18,19 +34,27 @@ export async function POST(req: NextRequest) {
     // Case 1: multipart/form-data
     if (contentType.includes("multipart/form-data")) {
       const formData = await req.formData();
-      const files = formData.getAll("files") as File[];
+      const files = formData.getAll("files") as (File | string)[];
       const singleFile = formData.get("file") as File | null;
       const allFiles = files.length > 0 ? files : singleFile ? [singleFile] : [];
 
       if (allFiles.length === 0) {
-        return NextResponse.json({ error: "No files provided" }, { status: 400 });
+        return NextResponse.json({ error: "No files received in request" }, { status: 400 });
       }
 
-      for (const file of allFiles) {
-        if (!file || typeof file.arrayBuffer !== "function") continue;
+      for (const item of allFiles) {
+        if (!item || typeof item === "string" || typeof item.arrayBuffer !== "function") {
+          continue;
+        }
+
+        const file = item as File;
+        if (file.size === 0) {
+          continue;
+        }
+
         const origExt = path.extname(file.name || "image.jpg").toLowerCase() || ".jpg";
         const ext = ALLOWED_EXTS.has(origExt) ? origExt : ".jpg";
-        const cleanBase = (file.name || "photo").replace(/[^a-zA-Z0-9_-]/g, "_").slice(0, 30);
+        const cleanBase = (file.name || "photo").replace(/[^a-zA-Z0-9_-]/g, "_").slice(0, 35);
         const fileName = `resort-${Date.now()}-${Math.floor(Math.random() * 10000)}-${cleanBase}${ext}`;
         const filePath = path.join(uploadDir, fileName);
 
@@ -59,7 +83,7 @@ export async function POST(req: NextRequest) {
           base64Data = match[2];
         }
 
-        const cleanBase = (item.name || "photo").replace(/[^a-zA-Z0-9_-]/g, "_").slice(0, 30);
+        const cleanBase = (item.name || "photo").replace(/[^a-zA-Z0-9_-]/g, "_").slice(0, 35);
         const fileName = `resort-${Date.now()}-${Math.floor(Math.random() * 10000)}-${cleanBase}${ext}`;
         const filePath = path.join(uploadDir, fileName);
 
@@ -68,11 +92,11 @@ export async function POST(req: NextRequest) {
         savedUrls.push(`/uploads/resorts/${fileName}`);
       }
     } else {
-      return NextResponse.json({ error: "Unsupported content type" }, { status: 400 });
+      return NextResponse.json({ error: "Unsupported content type: " + contentType }, { status: 400 });
     }
 
     if (savedUrls.length === 0) {
-      return NextResponse.json({ error: "No valid image files were uploaded" }, { status: 400 });
+      return NextResponse.json({ error: "No valid image files were found to save" }, { status: 400 });
     }
 
     return NextResponse.json({
@@ -82,7 +106,7 @@ export async function POST(req: NextRequest) {
     }, { status: 201 });
 
   } catch (err: any) {
-    console.error("Upload error:", err);
-    return NextResponse.json({ error: err.message || "Upload failed" }, { status: 500 });
+    console.error("Upload route error:", err);
+    return NextResponse.json({ error: err.message || "Server error while saving uploaded photos" }, { status: 500 });
   }
 }
