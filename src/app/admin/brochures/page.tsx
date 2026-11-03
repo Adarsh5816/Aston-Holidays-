@@ -82,6 +82,58 @@ export default function BrochureStudioPage() {
     setAiEnhancedSuccess(false);
   };
 
+  // Client-side instant canvas compressor: compresses large photos to crisp ~250KB Web images
+  const compressImageForWeb = async (file: File): Promise<File> => {
+    if (!file.type.startsWith("image/") || file.type.includes("svg") || file.type.includes("gif")) {
+      return file;
+    }
+    return new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        const img = new window.Image();
+        img.onload = () => {
+          const maxWidth = 1600;
+          const maxHeight = 1600;
+          let width = img.width;
+          let height = img.height;
+
+          if (width > maxWidth || height > maxHeight) {
+            if (width > height) {
+              height = Math.round((height * maxWidth) / width);
+              width = maxWidth;
+            } else {
+              width = Math.round((width * maxHeight) / height);
+              height = maxHeight;
+            }
+          }
+
+          const canvas = document.createElement("canvas");
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext("2d");
+          if (!ctx) return resolve(file);
+          ctx.drawImage(img, 0, 0, width, height);
+
+          canvas.toBlob(
+            (blob) => {
+              if (!blob || blob.size >= file.size) {
+                return resolve(file);
+              }
+              const cleanName = file.name.replace(/\.[^.]+$/, ".jpg");
+              resolve(new File([blob], cleanName, { type: "image/jpeg", lastModified: Date.now() }));
+            },
+            "image/jpeg",
+            0.85
+          );
+        };
+        img.onerror = () => resolve(file);
+        img.src = event.target?.result as string;
+      };
+      reader.onerror = () => resolve(file);
+      reader.readAsDataURL(file);
+    });
+  };
+
   // Upload Photos to server disk storage sequentially
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -90,9 +142,11 @@ export default function BrochureStudioPage() {
     try {
       const newUrls: string[] = [];
       for (let i = 0; i < files.length; i++) {
-        const file = files[i];
+        const originalFile = files[i];
+        const fileToUpload = await compressImageForWeb(originalFile);
+
         const formData = new FormData();
-        formData.append("files", file);
+        formData.append("files", fileToUpload);
 
         const res = await fetch("/api/v1/upload", {
           method: "POST",
@@ -102,7 +156,7 @@ export default function BrochureStudioPage() {
         if (!res.ok) {
           const errData = await res.json().catch(() => null);
           const msg = errData?.error || `Server HTTP ${res.status}: ${res.statusText || "Request rejected"}`;
-          throw new Error(`"${file.name}": ${msg}`);
+          throw new Error(`"${originalFile.name}": ${msg}`);
         }
 
         const data = await res.json();

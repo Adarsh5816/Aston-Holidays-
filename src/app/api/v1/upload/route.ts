@@ -25,9 +25,6 @@ export async function POST(req: NextRequest) {
   try {
     const contentType = req.headers.get("content-type") || "";
     const uploadDir = path.join(process.cwd(), "public", "uploads", "resorts");
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir, { recursive: true });
-    }
 
     const savedUrls: string[] = [];
 
@@ -56,14 +53,33 @@ export async function POST(req: NextRequest) {
         const ext = ALLOWED_EXTS.has(origExt) ? origExt : ".jpg";
         const cleanBase = (file.name || "photo").replace(/[^a-zA-Z0-9_-]/g, "_").slice(0, 35);
         const fileName = `resort-${Date.now()}-${Math.floor(Math.random() * 10000)}-${cleanBase}${ext}`;
-        const filePath = path.join(uploadDir, fileName);
 
         const buffer = Buffer.from(await file.arrayBuffer());
-        fs.writeFileSync(filePath, buffer);
-        savedUrls.push(`/uploads/resorts/${fileName}`);
+        let savedOnDisk = false;
+
+        // Attempt writing to public disk (writable on local dev / VPS)
+        try {
+          if (!fs.existsSync(uploadDir)) {
+            fs.mkdirSync(uploadDir, { recursive: true });
+          }
+          const filePath = path.join(uploadDir, fileName);
+          fs.writeFileSync(filePath, buffer);
+          savedUrls.push(`/uploads/resorts/${fileName}`);
+          savedOnDisk = true;
+        } catch (fsErr: any) {
+          // Vercel serverless / read-only filesystem (EROFS): fallback to permanent high-res data URL
+          console.warn("Filesystem is read-only (Vercel serverless). Using data URL fallback:", fsErr?.message);
+        }
+
+        // Resilient Fallback: if server filesystem is read-only (Vercel), store as permanent Data URL directly into Supabase
+        if (!savedOnDisk) {
+          const mime = ext === ".png" ? "image/png" : ext === ".webp" ? "image/webp" : "image/jpeg";
+          const dataUrl = `data:${mime};base64,${buffer.toString("base64")}`;
+          savedUrls.push(dataUrl);
+        }
       }
     } 
-    // Case 2: application/json (Base64 data URL convert to physical file on disk)
+    // Case 2: application/json (Base64 data URL convert)
     else if (contentType.includes("application/json")) {
       const body = await req.json();
       const items = Array.isArray(body.items) ? body.items : [body];
@@ -85,11 +101,24 @@ export async function POST(req: NextRequest) {
 
         const cleanBase = (item.name || "photo").replace(/[^a-zA-Z0-9_-]/g, "_").slice(0, 35);
         const fileName = `resort-${Date.now()}-${Math.floor(Math.random() * 10000)}-${cleanBase}${ext}`;
-        const filePath = path.join(uploadDir, fileName);
 
-        const buffer = Buffer.from(base64Data, "base64");
-        fs.writeFileSync(filePath, buffer);
-        savedUrls.push(`/uploads/resorts/${fileName}`);
+        let savedOnDisk = false;
+        try {
+          if (!fs.existsSync(uploadDir)) {
+            fs.mkdirSync(uploadDir, { recursive: true });
+          }
+          const filePath = path.join(uploadDir, fileName);
+          const buffer = Buffer.from(base64Data, "base64");
+          fs.writeFileSync(filePath, buffer);
+          savedUrls.push(`/uploads/resorts/${fileName}`);
+          savedOnDisk = true;
+        } catch (fsErr: any) {
+          console.warn("Filesystem read-only. Retaining data URL:", fsErr?.message);
+        }
+
+        if (!savedOnDisk) {
+          savedUrls.push(dataUrl);
+        }
       }
     } else {
       return NextResponse.json({ error: "Unsupported content type: " + contentType }, { status: 400 });
