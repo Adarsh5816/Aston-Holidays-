@@ -120,11 +120,13 @@ const defaultUsers: User[] = [
 ];
 
 const defaultSettings: SiteSettings = {
-  heroTitle: "Romantic Getaways, Private Pool Villas & Historic Wayanad Escapes",
-  heroSubtitle: "Explore handpicked stays across Padinjarathara, Vythiri, and Meppadi. Get instant 12-page brochures with high-res photos and transparent rates sent directly to your WhatsApp.",
+  heroTitle: "The luxury travel experts for Wayanad",
+  heroSubtitle: "Tailor-made itineraries, private pool villas, glass canopy treehouses, and untouched rainforest estates. Designed around how you want to feel.",
   heroBannerImage: "/brand/wayanad-backcover.jpg",
-  announcementText: "Historic Footprints of Wayanad & Curated Escapes",
-  heritageStoryTitle: "Where Ancient Footprints Meet Unmatched Hospitality",
+  heroVideoUrl: "/videos/wayanad-hero.mp4",
+  heroVideoPoster: "/brand/wayanad-backcover.jpg",
+  announcementText: "Bespoke Wayanad Journeys & Rare Sanctuaries • Est. Aston",
+  heritageStoryTitle: "Every journey starts with a feeling",
   heritageStoryText: "Wayanad’s soul is etched into the ancient stone engravings of the Edakkal Caves, dating back over 6,000 years to the Neolithic era. Aston Holidays’ unique brand symbol and document footprint celebrate this rich history.",
   heritageImage: "/brand/edakkal-footprint.jpg",
   companyName: "Aston Holidays",

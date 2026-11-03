@@ -87,6 +87,8 @@ export interface SiteSettings {
   heroTitle: string;
   heroSubtitle: string;
   heroBannerImage: string;
+  heroVideoUrl?: string;
+  heroVideoPoster?: string;
   announcementText: string;
   heritageStoryTitle: string;
   heritageStoryText: string;

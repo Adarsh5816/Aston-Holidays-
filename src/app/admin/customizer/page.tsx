@@ -125,13 +125,35 @@ export default function CustomizerPage() {
               </div>
 
               <div>
-                <label className="block text-stone-700 mb-1">Hero Background Panorama Image</label>
+                <label className="block text-stone-700 mb-1">Hero Background Panorama Image / Video Fallback Poster</label>
                 <input
                   type="text"
                   value={settings.heroBannerImage}
                   onChange={(e) => setSettings({ ...settings, heroBannerImage: e.target.value })}
                   placeholder="/brand/wayanad-backcover.jpg or https://..."
                   className="w-full px-3 py-2 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 font-mono text-[11px]"
+                />
+              </div>
+
+              {/* Black Tomato Style Hero Video Configuration */}
+              <div className="p-4 bg-emerald-50/60 rounded-xl border border-emerald-200/80 space-y-3">
+                <div className="flex items-center justify-between">
+                  <label className="block text-emerald-950 font-bold">
+                    🎥 Ambient Hero Video of Wayanad (Black Tomato Style)
+                  </label>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-700 bg-white px-2 py-0.5 rounded border border-emerald-200">
+                    Cinematic Fullscreen
+                  </span>
+                </div>
+                <p className="text-[11px] text-emerald-800 leading-relaxed">
+                  You can drop your video file directly into <code className="bg-white px-1.5 py-0.5 rounded border border-emerald-200 text-stone-800">public/videos/wayanad-hero.mp4</code> or enter any direct MP4 video URL / cloud storage link below.
+                </p>
+                <input
+                  type="text"
+                  value={settings.heroVideoUrl || ""}
+                  onChange={(e) => setSettings({ ...settings, heroVideoUrl: e.target.value })}
+                  placeholder="/videos/wayanad-hero.mp4 or https://..."
+                  className="w-full px-3 py-2 rounded-xl border border-emerald-300 bg-white focus:outline-none focus:ring-2 focus:ring-emerald-700/20 font-mono text-[11px] font-semibold text-stone-900"
                 />
               </div>
             </div>
