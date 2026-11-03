@@ -243,7 +243,8 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
         </button>
       </div>
 
-      {/* Right Bottom: Slide Tabs Indicator */}
+      {/* Right Bottom: Slide Tabs Indicator (Hidden) */}
+      {/*
       <div className="absolute bottom-6 right-6 z-20 hidden md:flex items-center gap-3">
         {slides.map((s, idx) => (
           <button
@@ -260,6 +261,7 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
           </button>
         ))}
       </div>
+      */}
 
       {/* Down Scroll Indicator */}
       <div className="absolute bottom-3 inset-x-0 z-20 flex justify-center pointer-events-none">
