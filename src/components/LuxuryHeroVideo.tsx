@@ -104,7 +104,7 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
   }, [slides.length]);
 
   return (
-    <section className="relative w-full h-[92vh] min-h-[640px] max-h-[960px] flex items-center justify-between overflow-hidden bg-black select-none">
+    <section className="relative w-full h-screen min-h-[100dvh] flex items-center justify-between overflow-hidden bg-black select-none">
       
       {/* ================= RAW, 100% UNMASKED VIDEO & POSTER (ZERO SHADING / ZERO TINT) ================= */}
       <div className="absolute inset-0 z-0 overflow-hidden">
