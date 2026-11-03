@@ -2821,7 +2821,9 @@
     "phone": "+91 97449 00414",
     "email": "info@astonholidays.com",
     "whatsappNumber": "+91 97449 00414",
-    "whatsappWebhookUrl": "http://localhost:3001/api/send-message"
+    "whatsappWebhookUrl": "http://localhost:3001/api/send-message",
+    "heroVideoUrl": "/videos/wayanad-hero.mp4",
+    "heroVideoPoster": "/brand/wayanad-backcover.jpg"
   },
   "integration": {
     "whatsappAppBaseUrl": "http://localhost:3001",

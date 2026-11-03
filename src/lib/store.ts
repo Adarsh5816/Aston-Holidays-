@@ -545,7 +545,7 @@ function readData(): DataStoreSchema {
         leads: parsed.leads || initialLeads,
         invoices: parsed.invoices || initialInvoices,
         users: parsed.users || defaultUsers,
-        settings: parsed.settings || defaultSettings,
+        settings: { ...defaultSettings, ...(parsed.settings || {}) },
         integration: { ...defaultIntegration, ...(parsed.integration || {}) },
         auditLogs: parsed.auditLogs || [],
         packages: parsed.packages || initialPackages,

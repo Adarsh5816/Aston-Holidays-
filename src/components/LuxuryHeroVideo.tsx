@@ -44,6 +44,33 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
   const primaryVideoSource = settings.heroVideoUrl || "/videos/wayanad-hero.mp4";
   const fallbackCdnVideo = "https://assets.mixkit.co/videos/preview/mixkit-clouds-and-mist-rolling-over-the-mountain-peaks-42797-large.mp4";
 
+  // Robust Autoplay Initializer for all modern mobile and desktop browsers
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Direct DOM property setting bypasses browser autoplay restrictions
+    video.defaultMuted = true;
+    video.muted = true;
+
+    const attemptAutoplay = () => {
+      const playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            setIsPlaying(true);
+            setVideoLoaded(true);
+          })
+          .catch((err) => {
+            console.log("Autoplay waiting for user gesture or muted unlock:", err);
+            // It will remain ready to play on first user interaction
+          });
+      }
+    };
+
+    attemptAutoplay();
+  }, []);
+
   const toggleSound = () => {
     if (videoRef.current) {
       videoRef.current.muted = !videoRef.current.muted;
@@ -76,25 +103,8 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
       
       {/* ================= BACKGROUND VIDEO & POSTER ================= */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted={isMuted}
-          playsInline
-          preload="metadata"
-          onLoadedData={() => setVideoLoaded(true)}
-          poster={settings.heroBannerImage || "/brand/wayanad-backcover.jpg"}
-          className="w-full h-full object-cover scale-105 transition-all duration-1000 ease-out"
-        >
-          {/* User's local or custom video */}
-          <source src={primaryVideoSource} type="video/mp4" />
-          {/* Cloud CDN fallback */}
-          <source src={fallbackCdnVideo} type="video/mp4" />
-        </video>
-
-        {/* Fallback image poster if video takes time to buffer */}
-        {!videoLoaded && (
+        {/* Underneath Poster Image: Always available immediately so background is never blank */}
+        <div className="absolute inset-0 z-0">
           <Image
             src={settings.heroBannerImage || "/brand/wayanad-backcover.jpg"}
             alt="Misty Wayanad Mountains"
@@ -102,13 +112,37 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
             priority
             className="object-cover opacity-60"
           />
-        )}
+        </div>
+
+        {/* Video Element: Sits on top of poster, smooth fades in upon first frame */}
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted={isMuted}
+          playsInline
+          preload="auto"
+          onLoadedData={() => setVideoLoaded(true)}
+          onCanPlay={() => setVideoLoaded(true)}
+          onPlay={() => {
+            setVideoLoaded(true);
+            setIsPlaying(true);
+          }}
+          className={`relative z-10 w-full h-full object-cover scale-105 transition-opacity duration-1000 ease-out ${
+            videoLoaded ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          {primaryVideoSource && <source src={primaryVideoSource} type="video/mp4" />}
+          <source src="/videos/wayanad-hero.mp4" type="video/mp4" />
+          <source src="/videos/wayanad-hero.mp4.mp4" type="video/mp4" />
+          <source src={fallbackCdnVideo} type="video/mp4" />
+        </video>
 
         {/* Black Tomato Multi-Layer Dark Gradient Vignettes */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1009] via-[#0A1009]/40 to-[#0A1009]/70" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A1009]/80 via-transparent to-[#0A1009]/80" />
+        <div className="absolute inset-0 z-20 bg-gradient-to-t from-[#0A1009] via-[#0A1009]/40 to-[#0A1009]/70 pointer-events-none" />
+        <div className="absolute inset-0 z-20 bg-gradient-to-r from-[#0A1009]/80 via-transparent to-[#0A1009]/80 pointer-events-none" />
         {/* Subtle cinematic grain */}
-        <div className="absolute inset-0 bg-black/20 mix-blend-overlay pointer-events-none" />
+        <div className="absolute inset-0 z-20 bg-black/20 mix-blend-overlay pointer-events-none" />
       </div>
 
       {/* Subtle Wayanad Mist Animation Overlay */}
