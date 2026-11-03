@@ -2,8 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import Image from "next/image";
-import Link from "next/link";
-import { Volume2, VolumeX, Play, Pause, Compass, Sparkles, ChevronDown, ArrowRight, ShieldCheck } from "lucide-react";
+import { Volume2, VolumeX, Play, Pause, Sparkles, ChevronDown, ArrowRight, ShieldCheck, MessageCircle } from "lucide-react";
 import { SiteSettings } from "@/lib/types";
 
 interface LuxuryHeroVideoProps {
@@ -18,31 +17,38 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
   const [activeSlide, setActiveSlide] = useState(0);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
-  // Slides showcasing Wayanad feelings
+  // Atmospheric slides focused on bespoke travel feeling (no resort advertising)
   const slides = [
     {
-      kicker: "BESPOKE WAYANAD JOURNEYS • EST. ASTON",
-      title: "The luxury travel experts for Wayanad",
-      subtitle: "Tailor-made itineraries, private pool villas, glass canopy treehouses, and untouched rainforest estates. Designed around how you want to feel.",
-      label: "Misty Rainforests"
+      kicker: "ASTON HOLIDAYS • WAYANAD",
+      title: "A journey designed around how you want to feel.",
+      subtitle: "Tailor-made itineraries, private escapes, and slow luxury crafted amidst the mist of the Western Ghats. Designed around your personal rhythm.",
+      label: "The Experience"
     },
     {
-      kicker: "SECLUDED SANCTUARIES • PRIVATE POOLS",
-      title: "Every journey begins with a feeling",
-      subtitle: "Wake up to mist dancing over Banasura Dam waters, fresh estate coffee, and five-star quietude away from tourist trails.",
-      label: "Banasura Waters"
+      kicker: "BESPOKE PRIVATE ESCAPES",
+      title: "Every journey begins with a feeling.",
+      subtitle: "Wake up to mist dancing over calm waters, aromatic coffee estates, and secluded stillness away from crowded trails.",
+      label: "The Escapes"
     },
     {
-      kicker: "CANOPY LIVING • CHEMBRA PEAKS",
-      title: "Rare escapes crafted around you",
-      subtitle: "Exclusive glass-fronted treehouses nestled high in the Western Ghats canopies. Slow, purposeful, and deeply restorative.",
-      label: "Canopy Treehouses"
+      kicker: "DEDICATED TRAVEL ARCHITECT",
+      title: "Rare moments, crafted exclusively for you.",
+      subtitle: "From romantic getaways to restorative multi-generational holidays. Tell us what you seek, and we will bring it to life.",
+      label: "The Concierge"
     }
   ];
 
   // Primary video URL: user custom setting -> local public video -> cloud pristine nature loop
   const primaryVideoSource = settings.heroVideoUrl || "/videos/wayanad-hero.mp4";
   const fallbackCdnVideo = "https://assets.mixkit.co/videos/preview/mixkit-clouds-and-mist-rolling-over-the-mountain-peaks-42797-large.mp4";
+
+  // WhatsApp Concierge direct link
+  const rawPhone = settings.whatsappNumber || "+919744900414";
+  const whatsappDigits = rawPhone.replace(/[^0-9]/g, "");
+  const whatsappUrl = `https://wa.me/${whatsappDigits}?text=${encodeURIComponent(
+    "Hello Aston Holidays, I would like to plan a bespoke luxury holiday to Wayanad."
+  )}`;
 
   // Robust Autoplay Initializer for all modern mobile and desktop browsers
   useEffect(() => {
@@ -63,7 +69,6 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
           })
           .catch((err) => {
             console.log("Autoplay waiting for user gesture or muted unlock:", err);
-            // It will remain ready to play on first user interaction
           });
       }
     };
@@ -99,22 +104,22 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
   }, [slides.length]);
 
   return (
-    <section className="relative w-full h-[92vh] min-h-[640px] max-h-[960px] flex items-center justify-center overflow-hidden bg-[#0A1009] select-none">
+    <section className="relative w-full h-[92vh] min-h-[640px] max-h-[960px] flex items-center justify-between overflow-hidden bg-[#070D06] select-none">
       
-      {/* ================= BACKGROUND VIDEO & POSTER ================= */}
+      {/* ================= BACKGROUND VIDEO & POSTER (HIGHLIGHTED & VIVID) ================= */}
       <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* Underneath Poster Image: Always available immediately so background is never blank */}
+        {/* Underneath Poster Image: Clean backdrop before first frame */}
         <div className="absolute inset-0 z-0">
           <Image
             src={settings.heroBannerImage || "/brand/wayanad-backcover.jpg"}
             alt="Misty Wayanad Mountains"
             fill
             priority
-            className="object-cover opacity-60"
+            className="object-cover opacity-80"
           />
         </div>
 
-        {/* Video Element: Sits on top of poster, smooth fades in upon first frame */}
+        {/* Video Element: 100% bright, crisp and vibrant without heavy darkening filters */}
         <video
           ref={videoRef}
           autoPlay
@@ -128,7 +133,7 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
             setVideoLoaded(true);
             setIsPlaying(true);
           }}
-          className={`relative z-10 w-full h-full object-cover scale-105 transition-opacity duration-1000 ease-out ${
+          className={`relative z-10 w-full h-full object-cover transition-opacity duration-1000 ease-out ${
             videoLoaded ? "opacity-100" : "opacity-0"
           }`}
         >
@@ -138,76 +143,78 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
           <source src={fallbackCdnVideo} type="video/mp4" />
         </video>
 
-        {/* Black Tomato Multi-Layer Dark Gradient Vignettes */}
-        <div className="absolute inset-0 z-20 bg-gradient-to-t from-[#0A1009] via-[#0A1009]/40 to-[#0A1009]/70 pointer-events-none" />
-        <div className="absolute inset-0 z-20 bg-gradient-to-r from-[#0A1009]/80 via-transparent to-[#0A1009]/80 pointer-events-none" />
-        {/* Subtle cinematic grain */}
-        <div className="absolute inset-0 z-20 bg-black/20 mix-blend-overlay pointer-events-none" />
-      </div>
-
-      {/* Subtle Wayanad Mist Animation Overlay */}
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute -top-1/4 -left-1/4 w-[160%] h-[160%] bg-gradient-to-r from-emerald-950/20 via-white/5 to-emerald-900/15 blur-3xl animate-mist" />
-      </div>
-
-      {/* ================= HERO CONTENT (Black Tomato Editorial Style) ================= */}
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center flex flex-col items-center justify-center h-full">
+        {/* Elegant Left-Edge Vignette: Gently shades the left third for razor-sharp typography readability, while leaving the center and right 65% of the video totally bright, vivid and clear */}
+        <div className="absolute inset-0 z-20 bg-gradient-to-r from-black/85 via-black/45 via-45% to-transparent pointer-events-none" />
         
-        {/* Kicker Tagline with Elegant Spacing */}
-        <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-emerald-300 text-[11px] font-bold tracking-luxury uppercase mb-6 shadow-xl animate-float">
-          <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-          <span>{slides[activeSlide].kicker}</span>
-        </div>
+        {/* Subtle Bottom Fade: Smooth transition into the content section */}
+        <div className="absolute bottom-0 inset-x-0 h-28 z-20 bg-gradient-to-t from-[#070D06] to-transparent pointer-events-none" />
 
-        {/* Grand Headline (Didot / Cormorant Garamond feel) */}
-        <h1 className="text-3xl sm:text-5xl lg:text-7xl font-editorial font-normal text-white tracking-tight leading-[1.12] max-w-4xl mx-auto drop-shadow-md transition-all duration-700">
-          {slides[activeSlide].title}
-        </h1>
+        {/* Subtle Top Fade: Legibility for top navbar */}
+        <div className="absolute top-0 inset-x-0 h-24 z-20 bg-gradient-to-b from-black/60 to-transparent pointer-events-none" />
+      </div>
 
-        {/* Subtitle with High-End Understated Refinement */}
-        <p className="mt-5 sm:mt-6 text-sm sm:text-lg text-stone-200/90 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-sm font-sans-luxury">
-          {slides[activeSlide].subtitle}
-        </p>
+      {/* ================= EDITORIAL CONTENT (SIDE-WISE / LEFT-ALIGNED LAYOUT) ================= */}
+      <div className="relative z-30 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-20 flex flex-col justify-center items-start text-left h-full pointer-events-none">
+        
+        <div className="max-w-xl lg:max-w-2xl pointer-events-auto">
+          {/* Refined Kicker Tagline */}
+          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-emerald-300 text-[11px] font-bold tracking-luxury uppercase mb-6 shadow-xl animate-float">
+            <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+            <span>{slides[activeSlide].kicker}</span>
+          </div>
 
-        {/* Black Tomato Dual Action CTAs */}
-        <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4">
-          {/* Primary Bespoke Planner Button */}
-          <button
-            onClick={onOpenEnquiry}
-            className="group inline-flex items-center gap-2.5 bg-[#2E4F28] hover:bg-[#233D1F] text-white text-xs sm:text-sm font-semibold tracking-luxury uppercase px-8 py-4 rounded-full shadow-2xl hover:shadow-emerald-900/50 transition-all transform hover:-translate-y-0.5 active:translate-y-0 border border-emerald-400/30"
-          >
-            <span>Plan My Journey</span>
-            <ArrowRight className="w-4 h-4 text-emerald-300 group-hover:translate-x-0.5 transition-transform" />
-          </button>
+          {/* Grand Headline (Didot / Cormorant Garamond feel, Left-aligned) */}
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-editorial font-normal text-white tracking-tight leading-[1.12] drop-shadow-lg transition-all duration-700">
+            {slides[activeSlide].title}
+          </h1>
 
-          {/* Secondary Ghost Button */}
-          <Link
-            href="/resorts"
-            className="inline-flex items-center gap-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white text-xs sm:text-sm font-semibold tracking-luxury uppercase px-8 py-4 rounded-full transition-all border border-white/30 hover:border-white shadow-lg"
-          >
-            <Compass className="w-4 h-4 text-stone-300" />
-            <span>Explore Curated Stays</span>
-          </Link>
-        </div>
+          {/* Editorial Subtitle */}
+          <p className="mt-5 sm:mt-6 text-sm sm:text-base lg:text-lg text-stone-200/90 font-light leading-relaxed drop-shadow-md font-sans-luxury">
+            {slides[activeSlide].subtitle}
+          </p>
 
-        {/* Trust Endorsement Pill */}
-        <div className="mt-10 hidden sm:flex items-center gap-6 text-[11px] text-stone-300 font-light tracking-wider">
-          <span className="flex items-center gap-1.5">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-            Direct Property Rates
-          </span>
-          <span className="text-stone-500">•</span>
-          <span>Zero Planning Surcharges</span>
-          <span className="text-stone-500">•</span>
-          <span>100% Curated Kerala Stays</span>
+          {/* Primary Action Buttons: Home & Bespoke Enquiry Focus */}
+          <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4">
+            {/* Primary Bespoke Planner Enquiry Button */}
+            <button
+              onClick={onOpenEnquiry}
+              className="group inline-flex items-center gap-3 bg-[#2E4F28] hover:bg-[#233D1F] text-white text-xs sm:text-sm font-semibold tracking-luxury uppercase px-8 py-4 rounded-full shadow-2xl hover:shadow-emerald-950/60 transition-all transform hover:-translate-y-0.5 active:translate-y-0 border border-emerald-400/40"
+            >
+              <span>Plan Your Journey</span>
+              <ArrowRight className="w-4 h-4 text-emerald-300 group-hover:translate-x-1 transition-transform" />
+            </button>
+
+            {/* Direct WhatsApp Concierge Button */}
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 bg-white/10 hover:bg-white/20 backdrop-blur-md text-white text-xs sm:text-sm font-semibold tracking-luxury uppercase px-7 py-4 rounded-full transition-all border border-white/25 hover:border-white shadow-lg"
+            >
+              <MessageCircle className="w-4 h-4 text-emerald-400" />
+              <span>WhatsApp Concierge</span>
+            </a>
+          </div>
+
+          {/* Luxury Travel Assurances (No pushy resort ads) */}
+          <div className="mt-8 flex flex-wrap items-center gap-4 sm:gap-6 text-[11px] text-stone-300 font-light tracking-wider">
+            <span className="flex items-center gap-1.5">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+              Dedicated Travel Architect
+            </span>
+            <span className="text-stone-500">•</span>
+            <span>Tailor-Made Itineraries</span>
+            <span className="text-stone-500">•</span>
+            <span>Seamless 24/7 Concierge</span>
+          </div>
         </div>
 
       </div>
 
       {/* ================= CONTROLS & CAROUSEL INDICATORS ================= */}
       
-      {/* Left: Video Sound & Play Controls */}
-      <div className="absolute bottom-6 left-6 z-20 flex items-center gap-2">
+      {/* Left Bottom: Subtle Video Sound & Play Controls */}
+      <div className="absolute bottom-6 left-6 z-30 flex items-center gap-2">
         <button
           onClick={toggleSound}
           aria-label={isMuted ? "Unmute audio" : "Mute audio"}
@@ -235,13 +242,13 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
         </button>
       </div>
 
-      {/* Right: Black Tomato Slide Tabs Indicator */}
-      <div className="absolute bottom-6 right-6 z-20 hidden md:flex items-center gap-3">
+      {/* Right Bottom: Slide Tabs Indicator */}
+      <div className="absolute bottom-6 right-6 z-30 hidden md:flex items-center gap-3">
         {slides.map((s, idx) => (
           <button
             key={s.label}
             onClick={() => setActiveSlide(idx)}
-            className={`flex items-center gap-2 px-3 py-1.5 rounded-full text-[11px] font-semibold tracking-wider transition-all duration-300 border ${
+            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-semibold tracking-wider transition-all duration-300 border ${
               activeSlide === idx
                 ? "bg-white/20 border-white text-white backdrop-blur-md shadow-lg"
                 : "bg-black/30 border-white/10 text-stone-400 hover:text-white hover:border-white/30"
@@ -253,9 +260,9 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
         ))}
       </div>
 
-      {/* Down Scroll Arrow */}
-      <div className="absolute bottom-2 inset-x-0 z-10 flex justify-center pointer-events-none">
-        <div className="animate-bounce text-stone-400 opacity-60">
+      {/* Down Scroll Indicator */}
+      <div className="absolute bottom-3 inset-x-0 z-20 flex justify-center pointer-events-none">
+        <div className="animate-bounce text-stone-400/80">
           <ChevronDown className="w-5 h-5" />
         </div>
       </div>
