@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import Image from "next/image";
 import { Volume2, VolumeX, Play, Pause, Sparkles, ChevronDown, ArrowRight, ShieldCheck, MessageCircle } from "lucide-react";
 import { SiteSettings } from "@/lib/types";
 
@@ -106,26 +105,16 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
   return (
     <section className="relative w-full h-screen min-h-[100dvh] flex items-center justify-between overflow-hidden bg-black select-none">
       
-      {/* ================= RAW, 100% UNMASKED VIDEO & POSTER (ZERO SHADING / ZERO TINT) ================= */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* Underneath Poster Image: Clean fallback before first frame */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={settings.heroBannerImage || "/brand/wayanad-backcover.jpg"}
-            alt="Wayanad Natural Landscape"
-            fill
-            priority
-            className="object-cover"
-          />
-        </div>
-
-        {/* Video Element: 100% Pure, Untouched High-Definition Video — No overlays, no masks, no dark shading */}
+      {/* ================= RAW, 100% UNMASKED VIDEO (NO OLD BACKGROUND) ================= */}
+      <div className="absolute inset-0 z-0 overflow-hidden bg-black">
+        {/* Video Element: 100% Pure, Untouched High-Definition Video — No overlays, no masks, no background image */}
         <video
           ref={videoRef}
           autoPlay
           loop
           muted={isMuted}
           playsInline
+          preload="auto"
           src={primaryVideoSource}
           onLoadedData={() => setVideoLoaded(true)}
           onCanPlay={() => setVideoLoaded(true)}
@@ -133,9 +122,7 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
             setVideoLoaded(true);
             setIsPlaying(true);
           }}
-          className={`relative z-10 w-full h-full object-cover transition-opacity duration-700 ease-out ${
-            videoLoaded ? "opacity-100" : "opacity-0"
-          }`}
+          className="relative z-10 w-full h-full object-cover"
         >
           {primaryVideoSource && <source src={primaryVideoSource} type="video/mp4" />}
           <source src="/videos/wayanad-hero.mp4" type="video/mp4" />
