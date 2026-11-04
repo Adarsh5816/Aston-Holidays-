@@ -192,7 +192,12 @@ function InvoicesContent() {
       let localSaved: Invoice[] = [];
       try {
         const localStr = localStorage.getItem(LOCAL_INVOICES_BACKUP_KEY);
-        if (localStr) localSaved = JSON.parse(localStr);
+        if (localStr) {
+          localSaved = JSON.parse(localStr);
+          if (localSaved.length > 0) {
+            setInvoices(localSaved); // Instant render from cache (0ms)
+          }
+        }
       } catch {}
 
       const [invRes, resRes] = await Promise.all([
@@ -523,15 +528,23 @@ function InvoicesContent() {
 
   // If viewing single invoice template
   if (selectedInvoice) {
+    const handleBackToList = () => {
+      setSelectedInvoice(null);
+      if (typeof window !== "undefined" && window.history && window.history.pushState) {
+        window.history.pushState({}, "", "/admin/invoices");
+      }
+    };
+
     return (
       <div className="relative">
         <InvoiceTemplate
           invoice={selectedInvoice}
           onUpdateStatus={handleUpdateStatus}
+          onBack={handleBackToList}
         />
         <div className="no-print fixed bottom-6 right-6">
           <button
-            onClick={() => setSelectedInvoice(null)}
+            onClick={handleBackToList}
             className="bg-stone-900 text-white text-xs font-bold px-4 py-2.5 rounded-full shadow-lg hover:bg-black transition"
           >
             ← Back to All Invoices

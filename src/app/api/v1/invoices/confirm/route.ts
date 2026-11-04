@@ -37,7 +37,7 @@ export async function POST(req: NextRequest) {
       invoice.version = invoice.version || 1;
       invoice.versions = [...(invoice.versions || []), v1Snapshot];
     }
-    Store.saveInvoice(invoice);
+    await Store.saveInvoice(invoice);
 
     const host = req.headers.get("host") || "localhost:3000";
     const proto = req.headers.get("x-forwarded-proto") || "http";

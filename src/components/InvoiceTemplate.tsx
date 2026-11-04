@@ -11,9 +11,10 @@ import { printElementIsolated, downloadElementAsPdf } from "@/lib/printUtils";
 interface InvoiceTemplateProps {
   invoice: Invoice;
   onUpdateStatus?: (newStatus: Invoice["status"]) => void;
+  onBack?: () => void;
 }
 
-export default function InvoiceTemplate({ invoice, onUpdateStatus }: InvoiceTemplateProps) {
+export default function InvoiceTemplate({ invoice, onUpdateStatus, onBack }: InvoiceTemplateProps) {
   const [qrCodeUrl, setQrCodeUrl] = useState<string>("");
   const [copied, setCopied] = useState(false);
   const [confirmModalOpen, setConfirmModalOpen] = useState(false);
@@ -133,12 +134,22 @@ export default function InvoiceTemplate({ invoice, onUpdateStatus }: InvoiceTemp
       {/* Control Bar (Hidden when printing) */}
       <div className="no-print max-w-4xl mx-auto mb-6 px-4 flex flex-wrap items-center justify-between gap-3 bg-white p-4 rounded-xl shadow-sm border border-stone-200">
         <div className="flex items-center gap-3">
-          <Link
-            href="/admin/invoices"
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-stone-600 hover:text-stone-900 px-3 py-1.5 rounded-lg hover:bg-stone-100 transition"
-          >
-            <ArrowLeft className="w-4 h-4" /> Back to Invoices
-          </Link>
+          {onBack ? (
+            <button
+              type="button"
+              onClick={onBack}
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-stone-700 hover:text-stone-950 px-3 py-1.5 rounded-lg hover:bg-stone-100 transition cursor-pointer border border-stone-200"
+            >
+              <ArrowLeft className="w-4 h-4 text-stone-600" /> Back to Invoices
+            </button>
+          ) : (
+            <Link
+              href="/admin/invoices"
+              className="inline-flex items-center gap-1.5 text-xs font-medium text-stone-600 hover:text-stone-900 px-3 py-1.5 rounded-lg hover:bg-stone-100 transition"
+            >
+              <ArrowLeft className="w-4 h-4" /> Back to Invoices
+            </Link>
+          )}
           <span className="text-xs bg-stone-900 text-white font-mono px-2.5 py-1 rounded-md font-semibold">
             {invoice.invoiceNumber}
           </span>

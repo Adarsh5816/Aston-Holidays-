@@ -812,6 +812,13 @@ function saveData(data: DataStoreSchema): void {
   }
 }
 
+// In-Memory High-Speed Caches with TTL for sub-millisecond API response times
+let resortsCache: { data: Resort[]; timestamp: number } | null = null;
+const RESORTS_CACHE_TTL_MS = 60 * 1000; // 60s TTL
+
+let invoicesCache: { data: Invoice[]; timestamp: number } | null = null;
+const INVOICES_CACHE_TTL_MS = 30 * 1000; // 30s TTL
+
 export const Store = {
   // Users & Auth
   getUsers(): User[] {
@@ -934,16 +941,22 @@ export const Store = {
   },
 
   async getResortsLive(filters?: FilterParams): Promise<Resort[]> {
+    if (resortsCache && Date.now() - resortsCache.timestamp < RESORTS_CACHE_TTL_MS) {
+      return Store.filterResortList(resortsCache.data, filters);
+    }
+
     let allResorts: Resort[] = [];
     try {
       if (supabase) {
         const { data: dbRows, error } = await supabase.from("resorts").select("*");
         if (!error && Array.isArray(dbRows) && dbRows.length > 0) {
           allResorts = dbRows.map(dbRowToResort);
-          // Update local snapshot cache
-          const localData = readData();
-          localData.resorts = allResorts;
-          saveData(localData);
+          resortsCache = { data: allResorts, timestamp: Date.now() };
+          try {
+            const localData = readData();
+            localData.resorts = allResorts;
+            saveData(localData);
+          } catch {}
         }
       }
     } catch (err: any) {
@@ -952,6 +965,9 @@ export const Store = {
 
     if (allResorts.length === 0) {
       allResorts = readData().resorts;
+      if (allResorts.length > 0) {
+        resortsCache = { data: allResorts, timestamp: Date.now() };
+      }
     }
 
     return Store.filterResortList(allResorts, filters);
@@ -1049,6 +1065,7 @@ export const Store = {
   },
 
   async saveResort(resort: Resort): Promise<Resort> {
+    resortsCache = null;
     const data = readData();
     const existingIndex = data.resorts.findIndex(r => r.id === resort.id || r.code.toUpperCase() === resort.code.toUpperCase());
     if (existingIndex >= 0) {
@@ -1062,6 +1079,7 @@ export const Store = {
   },
 
   async deleteResort(idOrCode: string): Promise<boolean> {
+    resortsCache = null;
     const data = readData();
     const prevLen = data.resorts.length;
     data.resorts = data.resorts.filter(r => r.id !== idOrCode && r.code.toUpperCase() !== idOrCode.toUpperCase());
@@ -1130,12 +1148,50 @@ export const Store = {
     return readData().invoices;
   },
 
+  async getInvoicesLive(): Promise<Invoice[]> {
+    if (invoicesCache && Date.now() - invoicesCache.timestamp < INVOICES_CACHE_TTL_MS) {
+      return invoicesCache.data;
+    }
+
+    let allInvoices: Invoice[] = [];
+    try {
+      if (supabase) {
+        const { data: dbRows, error } = await supabase
+          .from("invoices")
+          .select("*")
+          .order("created_at", { ascending: false });
+        if (!error && Array.isArray(dbRows) && dbRows.length > 0) {
+          allInvoices = dbRows.map(dbRowToInvoice);
+        }
+      }
+    } catch (err: any) {
+      console.warn("getInvoicesLive notice:", err?.message);
+    }
+
+    const localInvoices = readData().invoices || [];
+    const seenIds = new Set(allInvoices.map(i => i.id || i.invoiceNumber));
+    for (const loc of localInvoices) {
+      if (!seenIds.has(loc.id) && !seenIds.has(loc.invoiceNumber)) {
+        allInvoices.push(loc);
+      }
+    }
+
+    invoicesCache = { data: allInvoices, timestamp: Date.now() };
+    return allInvoices;
+  },
+
+  async getInvoiceByIdLive(id: string): Promise<Invoice | undefined> {
+    const list = await Store.getInvoicesLive();
+    return list.find(inv => inv.id === id || inv.invoiceNumber === id);
+  },
+
   getInvoiceById(id: string): Invoice | undefined {
     const data = readData();
     return data.invoices.find(inv => inv.id === id || inv.invoiceNumber === id);
   },
 
-  saveInvoice(invoice: Invoice): Invoice {
+  async saveInvoice(invoice: Invoice): Promise<Invoice> {
+    invoicesCache = null; // Invalidate cache immediately
     const data = readData();
     const existingIndex = data.invoices.findIndex(inv => inv.id === invoice.id || inv.invoiceNumber === invoice.invoiceNumber);
     if (existingIndex >= 0) {
@@ -1144,7 +1200,7 @@ export const Store = {
       data.invoices.unshift(invoice);
     }
     saveData(data);
-    syncToSupabase("invoices", {
+    await syncToSupabase("invoices", {
       id: invoice.id,
       invoice_number: invoice.invoiceNumber,
       type: invoice.type,
@@ -1182,13 +1238,14 @@ export const Store = {
     return invoice;
   },
 
-  deleteInvoice(id: string): boolean {
+  async deleteInvoice(id: string): Promise<boolean> {
+    invoicesCache = null;
     const data = readData();
     const prevLen = data.invoices.length;
     data.invoices = data.invoices.filter(inv => inv.id !== id && inv.invoiceNumber !== id);
     if (data.invoices.length !== prevLen) {
       saveData(data);
-      deleteFromSupabase("invoices", id);
+      await deleteFromSupabase("invoices", id);
       return true;
     }
     return false;
