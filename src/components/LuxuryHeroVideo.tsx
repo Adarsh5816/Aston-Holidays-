@@ -159,26 +159,54 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
             {slides[activeSlide].subtitle}
           </p>
 
-          {/* Primary Action Buttons: Home & Bespoke Enquiry Focus */}
+          {/* Primary Action Tabs: Opaque Ice Cube / Crystal Glassmorphic Tabs */}
           <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4">
-            {/* Primary Bespoke Planner Enquiry Button */}
+            {/* Opaque Ice Cube Crystal Tab: Plan Your Journey */}
             <button
               onClick={onOpenEnquiry}
-              className="group inline-flex items-center gap-3 bg-[#2E4F28] hover:bg-[#233D1F] text-white text-xs sm:text-sm font-semibold tracking-luxury uppercase px-8 py-4 rounded-full shadow-[0_10px_35px_rgba(0,0,0,0.6)] transition-all transform hover:-translate-y-0.5 active:translate-y-0 border border-emerald-400/50"
+              className="group relative inline-flex items-center gap-3.5 px-8 py-4 rounded-2xl overflow-hidden
+                         bg-gradient-to-b from-white/35 via-white/18 to-white/8
+                         hover:from-white/45 hover:via-white/28 hover:to-white/14
+                         backdrop-blur-2xl
+                         border border-white/50 hover:border-white/80
+                         shadow-[0_14px_40px_rgba(0,0,0,0.5),inset_0_1.5px_1px_rgba(255,255,255,0.85),inset_0_-2px_4px_rgba(0,0,0,0.25)]
+                         hover:shadow-[0_18px_50px_rgba(0,0,0,0.6),0_0_25px_rgba(255,255,255,0.35),inset_0_1.5px_1.5px_rgba(255,255,255,1)]
+                         text-white text-xs sm:text-sm font-semibold tracking-luxury uppercase
+                         transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0"
             >
-              <span>Plan Your Journey</span>
-              <ArrowRight className="w-4 h-4 text-emerald-300 group-hover:translate-x-1 transition-transform" />
+              {/* Top crystal facet light prism */}
+              <div className="absolute inset-x-0 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/95 to-transparent pointer-events-none" />
+              {/* Ice refraction shimmer sweep */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
+              
+              <span className="relative z-10 drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]">Plan Your Journey</span>
+              <ArrowRight className="relative z-10 w-4 h-4 text-emerald-300 group-hover:translate-x-1 transition-transform drop-shadow" />
             </button>
 
-            {/* Direct WhatsApp Concierge Button */}
+            {/* Opaque Ice Cube Crystal Tab: WhatsApp Concierge */}
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 bg-black/45 hover:bg-black/65 backdrop-blur-md text-white text-xs sm:text-sm font-semibold tracking-luxury uppercase px-7 py-4 rounded-full transition-all border border-white/35 hover:border-white shadow-[0_10px_35px_rgba(0,0,0,0.6)]"
+              className="group relative inline-flex items-center gap-3.5 px-7 py-4 rounded-2xl overflow-hidden
+                         bg-gradient-to-b from-white/22 via-white/10 to-black/35
+                         hover:from-white/32 hover:via-white/18 to-black/25
+                         backdrop-blur-2xl
+                         border border-white/35 hover:border-white/70
+                         shadow-[0_14px_40px_rgba(0,0,0,0.5),inset_0_1.5px_1px_rgba(255,255,255,0.6),inset_0_-2px_4px_rgba(0,0,0,0.35)]
+                         hover:shadow-[0_18px_50px_rgba(0,0,0,0.6),0_0_20px_rgba(52,211,153,0.3),inset_0_1.5px_1.5px_rgba(255,255,255,0.9)]
+                         text-white text-xs sm:text-sm font-semibold tracking-luxury uppercase
+                         transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0"
             >
-              <MessageCircle className="w-4 h-4 text-emerald-400" />
-              <span>WhatsApp Concierge</span>
+              {/* Top crystal facet light prism */}
+              <div className="absolute inset-x-0 top-0 h-[1.5px] bg-gradient-to-r from-transparent via-white/80 to-transparent pointer-events-none" />
+              {/* Ice refraction shimmer sweep */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-300/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
+              
+              <div className="relative z-10 p-1 rounded-lg bg-emerald-500/25 border border-emerald-400/40 backdrop-blur-sm">
+                <MessageCircle className="w-4 h-4 text-emerald-300 drop-shadow" />
+              </div>
+              <span className="relative z-10 drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]">WhatsApp Concierge</span>
             </a>
           </div>
 
