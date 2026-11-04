@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Search, MapPin, Home, Users, DollarSign, Filter, Sparkles, Calendar, Layers, Bed, Baby, RefreshCw } from "lucide-react";
 import { FilterParams } from "@/lib/types";
 
@@ -24,6 +24,14 @@ export default function FilterBar({ onFilterChange, initialFilters = {} }: Filte
   const [query, setQuery] = useState(initialFilters.query || "");
 
   const [expandedAdvanced, setExpandedAdvanced] = useState(false);
+  const [taxonomies, setTaxonomies] = useState<any>(null);
+
+  useEffect(() => {
+    fetch("/api/v1/taxonomies")
+      .then((r) => r.json())
+      .then((d) => setTaxonomies(d))
+      .catch(() => null);
+  }, []);
 
   const handleApply = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
@@ -95,13 +103,17 @@ export default function FilterBar({ onFilterChange, initialFilters = {} }: Filte
             className="w-full text-xs font-medium px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 bg-white"
           >
             <option value="all">All Stay Types</option>
-            <option value="Private Pool Villa">Private Pool Villa</option>
-            <option value="Tree House">Canopy Tree House</option>
-            <option value="Luxury Resort">Luxury Resort</option>
-            <option value="Plantation Resort">Plantation Heritage Resort</option>
-            <option value="Heritage Bungalow">Colonial Heritage Bungalow</option>
-            <option value="Budget Stay">Budget Friendly Stay</option>
-            <option value="Glamping / Tent">Glamping & Luxury Tents</option>
+            {(taxonomies?.resortFilters?.accommodationTypes || [
+              "Private Pool Villa",
+              "Tree House",
+              "Luxury Resort",
+              "Plantation Resort",
+              "Heritage Bungalow",
+              "Budget Stay",
+              "Glamping / Tent"
+            ]).map((t: string) => (
+              <option key={t} value={t}>{t}</option>
+            ))}
           </select>
         </div>
 
@@ -116,13 +128,19 @@ export default function FilterBar({ onFilterChange, initialFilters = {} }: Filte
             className="w-full text-xs font-medium px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 bg-white"
           >
             <option value="all">All Wayanad Regions</option>
-            <option value="Padinjarathara">Padinjarathara (Banasura Dam)</option>
-            <option value="Vythiri">Vythiri (Pookode & Canopies)</option>
-            <option value="Meppadi">Meppadi (Chembra Peak)</option>
-            <option value="Sulthan Bathery">Sulthan Bathery (Edakkal Caves)</option>
-            <option value="Kalpetta">Kalpetta (Central Wayanad)</option>
-            <option value="Ambalavayal">Ambalavayal</option>
-            <option value="Muthanga">Muthanga & Tholpetty (Safari)</option>
+            {(taxonomies?.resortFilters?.destinations || [
+              "Padinjarathara (Banasura)",
+              "Vythiri",
+              "Meppadi (Chembra)",
+              "Sulthan Bathery",
+              "Kalpetta",
+              "Ambalavayal",
+              "Muthanga",
+              "Mananthavady",
+              "Lakkidi"
+            ]).map((d: string) => (
+              <option key={d} value={d.split(" ")[0]}>{d}</option>
+            ))}
           </select>
         </div>
 
@@ -179,10 +197,14 @@ export default function FilterBar({ onFilterChange, initialFilters = {} }: Filte
             className="w-full text-xs font-medium px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 bg-white"
           >
             <option value="all">Any Preference</option>
-            <option value="Independent Private Cottage/Villa">Independent Villa/Cottage</option>
-            <option value="Individual Room/Suite">Individual Room / Suite</option>
-            <option value="Group / Bachelor Friendly">Group / Bachelor Friendly</option>
-            <option value="Family Gathering">Family Gathering</option>
+            {(taxonomies?.resortFilters?.stayPreferences || [
+              "Independent Private Cottage/Villa",
+              "Individual Room/Suite",
+              "Group / Bachelor Friendly",
+              "Family Gathering"
+            ]).map((p: string) => (
+              <option key={p} value={p}>{p}</option>
+            ))}
           </select>
         </div>
 

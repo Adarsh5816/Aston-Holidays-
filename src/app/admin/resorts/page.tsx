@@ -169,12 +169,21 @@ export default function ResortManagerPage() {
     }
   };
 
+  const [taxonomies, setTaxonomies] = useState<any>(null);
+
   const loadResorts = async () => {
     try {
-      const res = await fetch("/api/v1/resorts");
+      const [res, taxRes] = await Promise.all([
+        fetch("/api/v1/resorts"),
+        fetch("/api/v1/taxonomies").catch(() => null)
+      ]);
       if (res.ok) {
         const data = await res.json();
         setResorts(data);
+      }
+      if (taxRes && taxRes.ok) {
+        const taxData = await taxRes.json();
+        setTaxonomies(taxData);
       }
     } catch (e) {
       console.error(e);
@@ -548,14 +557,18 @@ export default function ResortManagerPage() {
                       }}
                       className="w-full px-3 py-2 rounded-xl border border-stone-200 bg-white"
                     >
-                      <option value="Private Pool Villa">Private Pool Villa</option>
-                      <option value="Tree House">Canopy Tree House</option>
-                      <option value="Luxury Resort">Luxury Resort</option>
-                      <option value="Plantation Resort">Plantation Resort</option>
-                      <option value="Heritage Bungalow">Heritage Bungalow</option>
-                      <option value="Budget Stay">Budget Friendly Stay</option>
-                      <option value="Glamping / Tent">Glamping / Tent</option>
-                      <option value="Houseboat">Houseboat</option>
+                      {(taxonomies?.resortFilters?.accommodationTypes || [
+                        "Private Pool Villa",
+                        "Tree House",
+                        "Luxury Resort",
+                        "Plantation Resort",
+                        "Heritage Bungalow",
+                        "Budget Stay",
+                        "Glamping / Tent",
+                        "Houseboat"
+                      ]).map((type: string) => (
+                        <option key={type} value={type}>{type}</option>
+                      ))}
                     </select>
                   </div>
                   <div>
@@ -565,10 +578,14 @@ export default function ResortManagerPage() {
                       onChange={(e) => setStayPreference(e.target.value as StayPreference)}
                       className="w-full px-3 py-2 rounded-xl border border-stone-200 bg-white"
                     >
-                      <option value="Independent Private Cottage/Villa">Independent Private Cottage / Villa</option>
-                      <option value="Individual Room/Suite">Individual Room / Suite</option>
-                      <option value="Group / Bachelor Friendly">Group / Bachelor Friendly</option>
-                      <option value="Family Gathering">Family Gathering</option>
+                      {(taxonomies?.resortFilters?.stayPreferences || [
+                        "Independent Private Cottage/Villa",
+                        "Individual Room/Suite",
+                        "Group / Bachelor Friendly",
+                        "Family Gathering"
+                      ]).map((pref: string) => (
+                        <option key={pref} value={pref}>{pref}</option>
+                      ))}
                     </select>
                   </div>
                 </div>
@@ -582,13 +599,19 @@ export default function ResortManagerPage() {
                       onChange={(e) => setDestination(e.target.value)}
                       className="w-full px-3 py-2 rounded-xl border border-stone-200 bg-white"
                     >
-                      <option value="Padinjarathara">Padinjarathara (Banasura)</option>
-                      <option value="Vythiri">Vythiri</option>
-                      <option value="Meppadi">Meppadi (Chembra)</option>
-                      <option value="Sulthan Bathery">Sulthan Bathery</option>
-                      <option value="Kalpetta">Kalpetta</option>
-                      <option value="Ambalavayal">Ambalavayal</option>
-                      <option value="Muthanga">Muthanga & Tholpetty</option>
+                      {(taxonomies?.resortFilters?.destinations || [
+                        "Padinjarathara",
+                        "Vythiri",
+                        "Meppadi",
+                        "Sulthan Bathery",
+                        "Kalpetta",
+                        "Ambalavayal",
+                        "Muthanga",
+                        "Mananthavady",
+                        "Lakkidi"
+                      ]).map((dest: string) => (
+                        <option key={dest} value={dest.split(" ")[0]}>{dest}</option>
+                      ))}
                     </select>
                   </div>
                   <div>

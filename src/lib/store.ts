@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { Resort, Lead, Invoice, FilterParams, User, SiteSettings, IntegrationConfig, ApiAuditLog, HolidayPackage, BlogPost, ClientReview, PackageItineraryBooking, ResortApiConnection, LiveRoomAvailability, ResortBookingRequest, ResortSyncLog } from "./types";
+import { Resort, Lead, Invoice, FilterParams, User, SiteSettings, IntegrationConfig, ApiAuditLog, HolidayPackage, BlogPost, ClientReview, PackageItineraryBooking, ResortApiConnection, LiveRoomAvailability, ResortBookingRequest, ResortSyncLog, CustomTaxonomies } from "./types";
 import { initialResorts } from "@/data/resorts";
 import { initialPackages, initialBlogs, initialReviews } from "@/data/content";
 import { supabase } from "./supabase";
@@ -179,6 +179,7 @@ interface DataStoreSchema {
   resortBookingRequests: ResortBookingRequest[];
   resortSyncLogs: ResortSyncLog[];
   liveAvailability: LiveRoomAvailability[];
+  taxonomies?: CustomTaxonomies;
 }
 
 const STORE_PATH = path.join(process.cwd(), "data_store.json");
@@ -812,6 +813,87 @@ function saveData(data: DataStoreSchema): void {
   }
 }
 
+export const defaultTaxonomies: CustomTaxonomies = {
+  resortFilters: {
+    accommodationTypes: [
+      "Private Pool Villa",
+      "Canopy Tree House",
+      "Luxury Resort",
+      "Plantation Resort",
+      "Heritage Bungalow",
+      "Budget Friendly Stay",
+      "Glamping / Luxury Tents",
+      "Houseboat",
+      "A-Frame Chalet"
+    ],
+    stayPreferences: [
+      "Independent Private Cottage/Villa",
+      "Individual Room/Suite",
+      "Group / Bachelor Friendly",
+      "Family Gathering"
+    ],
+    destinations: [
+      "Padinjarathara (Banasura)",
+      "Vythiri (Pookode & Canopies)",
+      "Meppadi (Chembra)",
+      "Sulthan Bathery (Edakkal Caves)",
+      "Kalpetta (Central Wayanad)",
+      "Ambalavayal",
+      "Muthanga & Tholpetty (Safari)",
+      "Mananthavady",
+      "Lakkidi"
+    ],
+    ambienceTypes: [
+      "Mountain / Valley View",
+      "Lake / Dam Waterfront",
+      "Rainforest & Stream",
+      "Tea / Coffee Plantation",
+      "Romantic / Honeymoon",
+      "Secluded & Peaceful",
+      "Adventure & Hilltop"
+    ],
+    budgetTiers: [6000, 10000, 15000, 20000, 30000]
+  },
+  itineraryConfig: {
+    vehicleTypes: [
+      "Sedan (Dzire / Etios)",
+      "SUV (Innova / Ertiga)",
+      "Innova Crysta",
+      "Tempo Traveller (12-17 Seater)",
+      "Mini Coach"
+    ],
+    mealPlans: [
+      "EP (Room Only)",
+      "CP (Bed & Breakfast)",
+      "MAP (Breakfast + Dinner)",
+      "AP (All Meals Included)"
+    ],
+    standardInclusions: [
+      "Accommodation with selected meal plan",
+      "Private dedicated air-conditioned vehicle with fuel, toll & parking",
+      "Driver bata & night halts",
+      "Complimentary plantation walk & morning mist viewpoint access",
+      "24/7 dedicated Aston Holidays travel concierge"
+    ],
+    standardExclusions: [
+      "Entry tickets to adventure spots, boating, and safari fees",
+      "Personal expenses (laundry, room service, telephone charges)",
+      "Any airfare or train fare",
+      "GST 5% extra on total package value"
+    ],
+    activityTypes: [
+      "Banasura Sagar Dam Speedboating",
+      "Edakkal Caves Historical Exploration",
+      "Chembra Peak Heart-Shaped Lake Trek",
+      "Kuruva Island Bamboo Rafting",
+      "Wayanad Wildlife Safari",
+      "Tea Factory Tasting Tour",
+      "Romantic Candlelight Dinner by the Pool",
+      "Campfire & Music Setup"
+    ]
+  }
+};
+
 // In-Memory High-Speed Caches with TTL for sub-millisecond API response times
 let resortsCache: { data: Resort[]; timestamp: number } | null = null;
 const RESORTS_CACHE_TTL_MS = 60 * 1000; // 60s TTL
@@ -820,6 +902,23 @@ let invoicesCache: { data: Invoice[]; timestamp: number } | null = null;
 const INVOICES_CACHE_TTL_MS = 30 * 1000; // 30s TTL
 
 export const Store = {
+  // Dynamic Taxonomies & Developer Code Studio
+  getTaxonomies(): CustomTaxonomies {
+    const data = readData();
+    if (data.taxonomies && data.taxonomies.resortFilters && data.taxonomies.itineraryConfig) {
+      return data.taxonomies;
+    }
+    return defaultTaxonomies;
+  },
+
+  async saveTaxonomies(taxonomies: CustomTaxonomies): Promise<CustomTaxonomies> {
+    const data = readData();
+    data.taxonomies = taxonomies;
+    saveData(data);
+    resortsCache = null;
+    invoicesCache = null;
+    return taxonomies;
+  },
   // Users & Auth
   getUsers(): User[] {
     return readData().users;

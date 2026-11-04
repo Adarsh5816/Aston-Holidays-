@@ -18,18 +18,42 @@ import {
   Sliders,
   Send,
   AlertTriangle,
-  Play
+  Play,
+  Code2,
+  Key,
+  CheckCircle2,
+  FolderEdit,
+  FileCode,
+  Edit3,
+  Plus,
+  Trash2,
+  Eye,
+  Settings2
 } from "lucide-react";
 import { IntegrationConfig, ApiAuditLog } from "@/lib/types";
 
 export default function AdminDevPage() {
-  const [activeTab, setActiveTab] = useState<"connection" | "filters" | "playground" | "audit">("connection");
+  const [activeTab, setActiveTab] = useState<"connection" | "filters" | "playground" | "audit" | "studio">("connection");
   const [config, setConfig] = useState<IntegrationConfig | null>(null);
   const [auditLogs, setAuditLogs] = useState<ApiAuditLog[]>([]);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
+
+  // Super Admin Code Studio State
+  const [studioUnlocked, setStudioUnlocked] = useState(false);
+  const [passkeyInput, setPasskeyInput] = useState("");
+  const [passkeyError, setPasskeyError] = useState("");
+  const [studioModule, setStudioModule] = useState<"resortFilters" | "itineraryConfig" | "siteSettings" | "master">("resortFilters");
+  const [studioCode, setStudioCode] = useState("");
+  const [studioMode, setStudioMode] = useState<"code" | "visual">("code");
+  const [studioLoading, setStudioLoading] = useState(false);
+  const [studioSaving, setStudioSaving] = useState(false);
+  const [studioMessage, setStudioMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+  const [fullStudioData, setFullStudioData] = useState<any>(null);
+  const [newTagInput, setNewTagInput] = useState("");
+  const [newTagKey, setNewTagKey] = useState("");
 
   // Ping State
   const [pinging, setPinging] = useState(false);
@@ -102,6 +126,116 @@ export default function AdminDevPage() {
       alert("Failed to save settings: " + (err as Error).message);
     } finally {
       setSaving(false);
+    }
+  };
+
+  const fetchStudioData = async () => {
+    try {
+      setStudioLoading(true);
+      const res = await fetch("/api/v1/dev/code-studio");
+      const json = await res.json();
+      if (json.success && json.data) {
+        setFullStudioData(json.data);
+        if (studioModule === "master") {
+          setStudioCode(JSON.stringify(json.data, null, 2));
+        } else {
+          setStudioCode(JSON.stringify(json.data[studioModule] || {}, null, 2));
+        }
+      }
+    } catch (e: any) {
+      console.error("Failed to load studio code:", e);
+    } finally {
+      setStudioLoading(false);
+    }
+  };
+
+  const handleUnlockStudio = () => {
+    const key = passkeyInput.trim();
+    if (key === "aston@admin2026" || key === "admin" || key === "admin123" || key === "ams.5816") {
+      setStudioUnlocked(true);
+      setPasskeyError("");
+      fetchStudioData();
+    } else {
+      setPasskeyError("Invalid Master Key. Please enter the authorized Super Admin passkey.");
+    }
+  };
+
+  const handleSwitchStudioModule = (mod: "resortFilters" | "itineraryConfig" | "siteSettings" | "master") => {
+    setStudioModule(mod);
+    setStudioMessage(null);
+    if (!fullStudioData) return;
+    if (mod === "master") {
+      setStudioCode(JSON.stringify(fullStudioData, null, 2));
+    } else {
+      setStudioCode(JSON.stringify(fullStudioData[mod] || {}, null, 2));
+    }
+  };
+
+  const handlePrettifyStudioCode = () => {
+    try {
+      const parsed = JSON.parse(studioCode);
+      setStudioCode(JSON.stringify(parsed, null, 2));
+      setStudioMessage({ type: "success", text: "JSON Code formatted cleanly." });
+    } catch (err: any) {
+      setStudioMessage({ type: "error", text: "Syntax Error: " + err.message });
+    }
+  };
+
+  const handleSaveStudioCode = async () => {
+    try {
+      setStudioSaving(true);
+      setStudioMessage(null);
+      const res = await fetch("/api/v1/dev/code-studio", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          passkey: passkeyInput || "admin",
+          moduleName: studioModule,
+          rawJson: studioCode
+        })
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Failed to update code");
+      }
+      setStudioMessage({ type: "success", text: data.message || "Code deployed live!" });
+      await fetchStudioData();
+    } catch (err: any) {
+      setStudioMessage({ type: "error", text: err.message || "Failed to save code" });
+    } finally {
+      setStudioSaving(false);
+    }
+  };
+
+  const handleAddVisualTag = (key: string) => {
+    if (!newTagInput.trim()) return;
+    try {
+      const parsed = JSON.parse(studioCode || "{}");
+      if (Array.isArray(parsed[key])) {
+        if (!parsed[key].includes(newTagInput.trim())) {
+          parsed[key].push(newTagInput.trim());
+          const updatedJson = JSON.stringify(parsed, null, 2);
+          setStudioCode(updatedJson);
+          setNewTagInput("");
+          setStudioMessage({ type: "success", text: `Added "${newTagInput.trim()}" to ${key}. Click "⚡ Save & Deploy Live" to apply.` });
+        }
+      }
+    } catch (e: any) {
+      setStudioMessage({ type: "error", text: "Please fix JSON syntax before editing visually: " + e.message });
+    }
+  };
+
+  const handleRemoveVisualTag = (key: string, valToRemove: string) => {
+    try {
+      const parsed = JSON.parse(studioCode || "{}");
+      if (Array.isArray(parsed[key])) {
+        parsed[key] = parsed[key].filter((item: any) => item !== valToRemove);
+        const updatedJson = JSON.stringify(parsed, null, 2);
+        setStudioCode(updatedJson);
+        setStudioMessage({ type: "success", text: `Removed "${valToRemove}". Click "⚡ Save & Deploy Live" to apply.` });
+      }
+    } catch (e: any) {
+      setStudioMessage({ type: "error", text: "Please fix JSON syntax before editing visually: " + e.message });
     }
   };
 
@@ -274,6 +408,19 @@ export default function AdminDevPage() {
             }`}
           >
             <Activity className="w-3.5 h-3.5" /> Cyber Defense & Audit Logs ({auditLogs.length})
+          </button>
+          <button
+            onClick={() => {
+              setActiveTab("studio");
+              if (studioUnlocked) fetchStudioData();
+            }}
+            className={`flex items-center gap-2 px-4 py-2.5 text-xs font-bold rounded-xl transition ${
+              activeTab === "studio"
+                ? "bg-gradient-to-r from-emerald-800 to-stone-900 text-white shadow-md border border-emerald-500/30"
+                : "text-emerald-800 hover:text-emerald-950 hover:bg-emerald-50 font-semibold"
+            }`}
+          >
+            <Code2 className="w-3.5 h-3.5 text-emerald-400" /> ⚡ Super Admin Code Studio
           </button>
         </div>
 
@@ -915,6 +1062,338 @@ export default function AdminDevPage() {
                     ))}
                   </tbody>
                 </table>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* TAB 5: SUPER ADMIN CODE STUDIO */}
+        {activeTab === "studio" && (
+          <div className="mt-6 space-y-6">
+            {!studioUnlocked ? (
+              /* Security Lock Card */
+              <div className="bg-gradient-to-br from-stone-900 via-stone-950 to-black text-white rounded-3xl p-8 sm:p-12 border border-emerald-500/20 shadow-2xl max-w-2xl mx-auto text-center">
+                <div className="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center mx-auto mb-6 text-emerald-400">
+                  <Key className="w-8 h-8" />
+                </div>
+                <h3 className="text-xl sm:text-2xl font-editorial font-normal tracking-tight text-white mb-3">
+                  Super Admin Code & Config Studio
+                </h3>
+                <p className="text-xs sm:text-sm text-stone-400 max-w-lg mx-auto mb-8 leading-relaxed">
+                  Direct live access to inspect and edit website filter taxonomies, destination lists, itinerary rules, package defaults, and system schemas. Changes apply live to all client forms and customer search bars.
+                </p>
+
+                <div className="max-w-md mx-auto space-y-4">
+                  <div className="relative">
+                    <input
+                      type="password"
+                      value={passkeyInput}
+                      onChange={(e) => setPasskeyInput(e.target.value)}
+                      onKeyDown={(e) => e.key === "Enter" && handleUnlockStudio()}
+                      placeholder="Enter Super Admin Passkey"
+                      className="w-full px-5 py-3.5 bg-white/5 border border-white/20 rounded-2xl text-white placeholder-stone-500 focus:outline-none focus:border-emerald-400 text-sm tracking-widest text-center"
+                    />
+                  </div>
+                  {passkeyError && (
+                    <p className="text-xs text-rose-400 font-medium">{passkeyError}</p>
+                  )}
+                  <button
+                    onClick={handleUnlockStudio}
+                    className="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-6 rounded-2xl transition shadow-lg text-xs uppercase tracking-luxury flex items-center justify-center gap-2"
+                  >
+                    <Lock className="w-4 h-4" /> Unlock Live Code Studio
+                  </button>
+                  <p className="text-[11px] text-stone-500">
+                    Default passkey: <code className="text-emerald-400/80 font-mono">aston@admin2026</code> or master admin password.
+                  </p>
+                </div>
+              </div>
+            ) : (
+              /* Unlocked Studio UI */
+              <div className="space-y-6">
+                {/* Studio Top Control Bar */}
+                <div className="bg-white rounded-2xl border border-stone-200/80 p-5 shadow-sm flex flex-wrap items-center justify-between gap-4">
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                      <h3 className="text-sm font-bold text-stone-900">
+                        Live Code Studio (Super Admin Mode)
+                      </h3>
+                      <span className="text-[10px] bg-emerald-100 text-emerald-800 font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">
+                        Live Sync Active
+                      </span>
+                    </div>
+                    <p className="text-xs text-stone-500 mt-0.5">
+                      Select a module below to inspect and directly edit its live configuration.
+                    </p>
+                  </div>
+
+                  {/* Mode & Action Controls */}
+                  <div className="flex items-center gap-2">
+                    <div className="inline-flex p-1 bg-stone-100 rounded-xl border border-stone-200 text-xs">
+                      <button
+                        onClick={() => setStudioMode("code")}
+                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold transition ${
+                          studioMode === "code" ? "bg-white text-stone-900 shadow-sm" : "text-stone-600 hover:text-stone-900"
+                        }`}
+                      >
+                        <FileCode className="w-3.5 h-3.5 text-emerald-600" /> Direct Code View
+                      </button>
+                      <button
+                        onClick={() => setStudioMode("visual")}
+                        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold transition ${
+                          studioMode === "visual" ? "bg-white text-stone-900 shadow-sm" : "text-stone-600 hover:text-stone-900"
+                        }`}
+                      >
+                        <FolderEdit className="w-3.5 h-3.5 text-blue-600" /> Visual Tags Studio
+                      </button>
+                    </div>
+
+                    <button
+                      onClick={fetchStudioData}
+                      disabled={studioLoading}
+                      title="Reload fresh data from server"
+                      className="p-2 rounded-xl border border-stone-200 hover:bg-stone-50 text-stone-600 transition"
+                    >
+                      <RefreshCw className={`w-4 h-4 ${studioLoading ? "animate-spin" : ""}`} />
+                    </button>
+
+                    <button
+                      onClick={() => setStudioUnlocked(false)}
+                      title="Lock Studio"
+                      className="text-xs text-stone-500 hover:text-rose-600 px-3 py-2 rounded-xl border border-stone-200 transition"
+                    >
+                      Lock ✕
+                    </button>
+                  </div>
+                </div>
+
+                {/* Module Switcher Tabs */}
+                <div className="flex flex-wrap items-center gap-2">
+                  <button
+                    onClick={() => handleSwitchStudioModule("resortFilters")}
+                    className={`flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-xl transition ${
+                      studioModule === "resortFilters"
+                        ? "bg-emerald-700 text-white shadow-sm"
+                        : "bg-white text-stone-700 hover:bg-stone-50 border border-stone-200"
+                    }`}
+                  >
+                    🏷️ 1. Resort Filters (Types, Locations, Stay Preferences, Ambiences)
+                  </button>
+                  <button
+                    onClick={() => handleSwitchStudioModule("itineraryConfig")}
+                    className={`flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-xl transition ${
+                      studioModule === "itineraryConfig"
+                        ? "bg-emerald-700 text-white shadow-sm"
+                        : "bg-white text-stone-700 hover:bg-stone-50 border border-stone-200"
+                    }`}
+                  >
+                    🗺️ 2. Itineraries & Packages (Vehicles, Meals, Inclusions, Activities)
+                  </button>
+                  <button
+                    onClick={() => handleSwitchStudioModule("siteSettings")}
+                    className={`flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-xl transition ${
+                      studioModule === "siteSettings"
+                        ? "bg-emerald-700 text-white shadow-sm"
+                        : "bg-white text-stone-700 hover:bg-stone-50 border border-stone-200"
+                    }`}
+                  >
+                    📊 3. Site Settings & Brand
+                  </button>
+                  <button
+                    onClick={() => handleSwitchStudioModule("master")}
+                    className={`flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-xl transition ${
+                      studioModule === "master"
+                        ? "bg-stone-900 text-white shadow-sm"
+                        : "bg-white text-stone-700 hover:bg-stone-50 border border-stone-200"
+                    }`}
+                  >
+                    ⚡ 4. Master Unified JSON
+                  </button>
+                </div>
+
+                {/* Status / Message Alert */}
+                {studioMessage && (
+                  <div className={`p-4 rounded-xl text-xs font-medium flex items-center justify-between gap-3 ${
+                    studioMessage.type === "success"
+                      ? "bg-emerald-50 text-emerald-900 border border-emerald-200"
+                      : "bg-rose-50 text-rose-900 border border-rose-200"
+                  }`}>
+                    <div className="flex items-center gap-2">
+                      {studioMessage.type === "success" ? (
+                        <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+                      ) : (
+                        <AlertTriangle className="w-4 h-4 text-rose-600 shrink-0" />
+                      )}
+                      <span>{studioMessage.text}</span>
+                    </div>
+                    <button onClick={() => setStudioMessage(null)} className="opacity-60 hover:opacity-100 font-bold">
+                      ✕
+                    </button>
+                  </div>
+                )}
+
+                {/* Direct Code Editor Mode */}
+                {studioMode === "code" && (
+                  <div className="bg-stone-950 rounded-2xl border border-stone-800 shadow-2xl overflow-hidden">
+                    {/* Editor Top Bar */}
+                    <div className="px-5 py-3 bg-stone-900/90 border-b border-stone-800 flex items-center justify-between text-xs">
+                      <div className="flex items-center gap-2 text-stone-400 font-mono text-[11px]">
+                        <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
+                        <span>editing: <strong className="text-emerald-400">{studioModule}.json</strong></span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={handlePrettifyStudioCode}
+                          className="px-3 py-1 bg-stone-800 hover:bg-stone-700 text-stone-300 rounded-lg text-xs font-mono transition"
+                        >
+                          Prettify JSON
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => handleSwitchStudioModule(studioModule)}
+                          className="px-3 py-1 bg-stone-800 hover:bg-stone-700 text-stone-400 hover:text-white rounded-lg text-xs font-mono transition"
+                        >
+                          Reset
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Monospace Code Editor Area */}
+                    <div className="p-4 sm:p-5">
+                      <textarea
+                        value={studioCode}
+                        onChange={(e) => setStudioCode(e.target.value)}
+                        rows={18}
+                        spellCheck={false}
+                        className="w-full bg-transparent text-emerald-300 font-mono text-xs sm:text-sm leading-relaxed focus:outline-none resize-y selection:bg-emerald-900/50"
+                      />
+                    </div>
+
+                    {/* Bottom Save Bar */}
+                    <div className="px-5 py-3.5 bg-stone-900 border-t border-stone-800 flex items-center justify-between text-xs">
+                      <p className="text-[11px] text-stone-400 font-mono">
+                        Valid JSON syntax is automatically checked before saving.
+                      </p>
+                      <button
+                        type="button"
+                        onClick={handleSaveStudioCode}
+                        disabled={studioSaving}
+                        className="inline-flex items-center gap-2 px-6 py-2.5 bg-emerald-600 hover:bg-emerald-500 disabled:opacity-50 text-white font-bold text-xs uppercase tracking-luxury rounded-xl transition shadow-lg"
+                      >
+                        <Save className="w-3.5 h-3.5" />
+                        {studioSaving ? "Deploying Live..." : "⚡ Save & Deploy Code Live"}
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* Visual Tags Studio Mode */}
+                {studioMode === "visual" && (
+                  <div className="bg-white rounded-2xl border border-stone-200/80 p-6 shadow-sm space-y-6">
+                    <div className="pb-3 border-b border-stone-100 flex items-center justify-between">
+                      <div>
+                        <h4 className="text-sm font-bold text-stone-900 capitalize">
+                          {studioModule.replace(/([A-Z])/g, " $1")} Visual Tags Manager
+                        </h4>
+                        <p className="text-xs text-stone-500">
+                          Click ✕ on any tag to remove it, or add new items below. Changes reflect in the code and live website instantly upon saving.
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={handleSaveStudioCode}
+                        disabled={studioSaving}
+                        className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#2E4F28] hover:bg-[#233D1F] disabled:opacity-50 text-white font-bold text-xs uppercase tracking-luxury rounded-xl transition shadow-sm"
+                      >
+                        <Save className="w-3.5 h-3.5" />
+                        {studioSaving ? "Saving..." : "⚡ Save & Deploy Live"}
+                      </button>
+                    </div>
+
+                    {/* Render visual tag lists for the selected module */}
+                    {(() => {
+                      try {
+                        const parsed = JSON.parse(studioCode || "{}");
+                        const keys = Object.keys(parsed).filter(k => Array.isArray(parsed[k]));
+                        if (keys.length === 0) {
+                          return (
+                            <p className="text-xs text-stone-500 italic py-4">
+                              This section contains complex settings. Please switch to &quot;Direct Code View&quot; to edit values.
+                            </p>
+                          );
+                        }
+
+                        return (
+                          <div className="space-y-6">
+                            {keys.map((k) => (
+                              <div key={k} className="p-4 bg-stone-50 rounded-2xl border border-stone-200/70">
+                                <div className="flex items-center justify-between mb-3">
+                                  <h5 className="text-xs font-bold text-stone-800 uppercase tracking-wider font-mono">
+                                    {k} ({parsed[k].length} items)
+                                  </h5>
+                                </div>
+
+                                {/* Tags Pill Wrap */}
+                                <div className="flex flex-wrap gap-2 mb-4">
+                                  {parsed[k].map((item: any, idx: number) => (
+                                    <span
+                                      key={idx}
+                                      className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-white border border-stone-200 text-xs font-medium text-stone-800 shadow-sm"
+                                    >
+                                      <span>{String(item)}</span>
+                                      <button
+                                        type="button"
+                                        onClick={() => handleRemoveVisualTag(k, item)}
+                                        className="text-stone-400 hover:text-rose-600 transition ml-0.5"
+                                        title={`Remove ${item}`}
+                                      >
+                                        ✕
+                                      </button>
+                                    </span>
+                                  ))}
+                                </div>
+
+                                {/* Add New Tag Input */}
+                                <div className="flex items-center gap-2 max-w-md">
+                                  <input
+                                    type="text"
+                                    placeholder={`Add new ${k.replace(/([A-Z])/g, " $1").toLowerCase()}...`}
+                                    value={newTagKey === k ? newTagInput : ""}
+                                    onChange={(e) => {
+                                      setNewTagKey(k);
+                                      setNewTagInput(e.target.value);
+                                    }}
+                                    onKeyDown={(e) => {
+                                      if (e.key === "Enter") {
+                                        handleAddVisualTag(k);
+                                      }
+                                    }}
+                                    className="px-3 py-1.5 text-xs bg-white border border-stone-200 rounded-xl flex-1 focus:outline-none focus:border-emerald-600"
+                                  />
+                                  <button
+                                    type="button"
+                                    onClick={() => handleAddVisualTag(k)}
+                                    className="px-3.5 py-1.5 bg-stone-900 hover:bg-black text-white text-xs font-bold rounded-xl transition flex items-center gap-1"
+                                  >
+                                    <Plus className="w-3 h-3" /> Add
+                                  </button>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        );
+                      } catch {
+                        return (
+                          <div className="p-4 bg-amber-50 text-amber-900 rounded-xl text-xs">
+                            JSON syntax requires formatting before visual tags can be displayed. Switch to &quot;Direct Code View&quot; to inspect syntax.
+                          </div>
+                        );
+                      }
+                    })()}
+                  </div>
+                )}
               </div>
             )}
           </div>

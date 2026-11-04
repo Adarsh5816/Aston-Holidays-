@@ -37,6 +37,23 @@ export type AmbienceType =
   | "Secluded & Peaceful"
   | "Adventure & Hilltop";
 
+export interface CustomTaxonomies {
+  resortFilters: {
+    accommodationTypes: string[];
+    stayPreferences: string[];
+    destinations: string[];
+    ambienceTypes: string[];
+    budgetTiers: number[];
+  };
+  itineraryConfig: {
+    vehicleTypes: string[];
+    mealPlans: string[];
+    standardInclusions: string[];
+    standardExclusions: string[];
+    activityTypes: string[];
+  };
+}
+
 export interface Resort {
   id: string;
   code: string; // e.g., "AH-121"
