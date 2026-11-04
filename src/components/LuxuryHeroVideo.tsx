@@ -126,7 +126,7 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
           loop
           muted={isMuted}
           playsInline
-          preload="auto"
+          src={primaryVideoSource}
           onLoadedData={() => setVideoLoaded(true)}
           onCanPlay={() => setVideoLoaded(true)}
           onPlay={() => {
@@ -139,8 +139,6 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
         >
           {primaryVideoSource && <source src={primaryVideoSource} type="video/mp4" />}
           <source src="/videos/wayanad-hero.mp4" type="video/mp4" />
-          <source src="/videos/wayanad-hero.mp4.mp4" type="video/mp4" />
-          <source src={fallbackCdnVideo} type="video/mp4" />
         </video>
       </div>
 

@@ -35,5 +35,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# large raw video files (over 50MB)
-public/videos/*
+# Ignore videos larger than 100MB
+# public/videos/*
+
