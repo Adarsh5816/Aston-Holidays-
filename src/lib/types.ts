@@ -71,6 +71,7 @@ export interface SiteTypographyConfig {
   invoices?: PageFontSetting;
   contact?: PageFontSetting;
   admin?: PageFontSetting;
+  footerLogoColor?: "white" | "gold" | "emerald" | "original";
   customGoogleFonts?: string[];
 }
 

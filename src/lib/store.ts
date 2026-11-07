@@ -959,6 +959,7 @@ export const defaultTypography: SiteTypographyConfig = {
     headingTransform: "none",
     headingWeight: "normal"
   },
+  footerLogoColor: "white",
   customGoogleFonts: [
     "Playfair Display",
     "Cormorant Garamond",
@@ -989,7 +990,10 @@ export const Store = {
   getTypography(): SiteTypographyConfig {
     const data = readData();
     if (data.typography && data.typography.global) {
-      return data.typography;
+      return {
+        ...data.typography,
+        footerLogoColor: data.settings?.footerLogoColor || data.typography.footerLogoColor || "white"
+      };
     }
     return defaultTypography;
   },
@@ -997,6 +1001,10 @@ export const Store = {
   async saveTypography(typography: SiteTypographyConfig): Promise<SiteTypographyConfig> {
     const data = readData();
     data.typography = typography;
+    if (typography.footerLogoColor) {
+      if (!data.settings) data.settings = { ...defaultSettings };
+      data.settings.footerLogoColor = typography.footerLogoColor;
+    }
     saveData(data);
     return typography;
   },
