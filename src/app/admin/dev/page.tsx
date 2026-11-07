@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import AdminSidebar from "@/components/AdminSidebar";
 import Link from "next/link";
+import Image from "next/image";
 import {
   ShieldCheck,
   Zap,
@@ -40,7 +41,7 @@ import {
   Mail,
   Layers
 } from "lucide-react";
-import { IntegrationConfig, ApiAuditLog, SiteTypographyConfig, PageFontSetting } from "@/lib/types";
+import { IntegrationConfig, ApiAuditLog, SiteTypographyConfig, PageFontSetting, SiteSettings } from "@/lib/types";
 
 const CURATED_HEADING_FONTS = [
   "Playfair Display",
@@ -104,6 +105,7 @@ export default function AdminDevPage() {
   const [typographyMessage, setTypographyMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
   const [customHeadingInput, setCustomHeadingInput] = useState("");
   const [customBodyInput, setCustomBodyInput] = useState("");
+  const [siteSettings, setSiteSettings] = useState<SiteSettings | null>(null);
 
   // Super Admin Code Studio State
   const [studioUnlocked, setStudioUnlocked] = useState(false);
@@ -150,6 +152,10 @@ export default function AdminDevPage() {
     try {
       setLoading(true);
       fetchTypography();
+      fetch("/api/v1/settings")
+        .then(r => r.json())
+        .then(s => setSiteSettings(s))
+        .catch(() => {});
       const res = await fetch("/api/v1/dev");
       const data = await res.json();
       if (data.success) {
@@ -160,6 +166,22 @@ export default function AdminDevPage() {
       console.error("Error loading dev settings:", err);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleSaveLogoColor = async (color: "white" | "gold" | "emerald" | "original") => {
+    if (!siteSettings) return;
+    const updated = { ...siteSettings, footerLogoColor: color };
+    setSiteSettings(updated);
+    try {
+      await fetch("/api/v1/settings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updated)
+      });
+      setTypographyMessage({ type: "success", text: `Brand footer logo color updated to "${color.toUpperCase()}"! Applied live across all pages.` });
+    } catch (err: any) {
+      setTypographyMessage({ type: "error", text: "Failed to update logo color: " + err.message });
     }
   };
 
@@ -1689,6 +1711,113 @@ export default function AdminDevPage() {
                       <span className={`text-[9px] mt-0.5 ${isSelected ? "text-amber-200" : "text-stone-400"}`}>
                         {p.path}
                       </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Brand Logo Color Studio (Footer & Dark Backgrounds) */}
+            <div className="bg-white rounded-2xl border border-stone-200 p-5 shadow-sm">
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-4 border-b border-stone-100">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-700 flex items-center justify-center border border-amber-200">
+                    <Palette className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-stone-900 flex items-center gap-2">
+                      Brand Logo Color & Contrast
+                      <span className="text-[10px] font-semibold bg-emerald-50 text-emerald-800 px-2 py-0.5 rounded-full border border-emerald-200">
+                        Footer & Dark Theme
+                      </span>
+                    </h3>
+                    <p className="text-xs text-stone-500 mt-0.5">
+                      Ensure your logo stands out with high clarity against dark backgrounds like the luxury footer. Select a theme below to apply live.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Logo Live Sample Box */}
+                <div className="flex items-center gap-3 bg-[#0B120B] p-3 px-5 rounded-xl border border-white/10 shadow-inner">
+                  <span className="text-[10px] uppercase tracking-wider text-stone-400 font-mono">Live Footer Preview:</span>
+                  <div className="relative w-32 h-9">
+                    {(() => {
+                      const activeColor = siteSettings?.footerLogoColor || "white";
+                      let filterClass = "brightness-0 invert opacity-95";
+                      if (activeColor === "gold") filterClass = "brightness-0 invert sepia hue-rotate-[18deg] saturate-[2.5] brightness-125 opacity-95";
+                      if (activeColor === "emerald") filterClass = "brightness-0 invert sepia hue-rotate-[90deg] saturate-[2.5] opacity-95";
+                      if (activeColor === "original") filterClass = "brightness-100 opacity-90";
+
+                      return (
+                        <Image
+                          src="/brand/logo.png"
+                          alt="Aston Holidays"
+                          fill
+                          className={`object-contain object-left ${filterClass}`}
+                        />
+                      );
+                    })()}
+                  </div>
+                </div>
+              </div>
+
+              {/* 4 Theme Color Options */}
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4">
+                {[
+                  {
+                    id: "white",
+                    label: "Crisp Pure White",
+                    desc: "100% crystal clarity on dark footer (Recommended)",
+                    badge: "Default",
+                    chipBg: "bg-white text-stone-900 border-stone-300"
+                  },
+                  {
+                    id: "gold",
+                    label: "Luxury Gold / Champagne",
+                    desc: "Warm prestigious golden metallic luster",
+                    badge: "Luxury",
+                    chipBg: "bg-amber-100 text-amber-900 border-amber-300"
+                  },
+                  {
+                    id: "emerald",
+                    label: "Emerald Botanical",
+                    desc: "Subtle rainforest green tint matching Wayanad hills",
+                    badge: "Nature",
+                    chipBg: "bg-emerald-100 text-emerald-900 border-emerald-300"
+                  },
+                  {
+                    id: "original",
+                    label: "Original Dark Logo",
+                    desc: "Unmodified original dark logo mark",
+                    badge: "Standard",
+                    chipBg: "bg-stone-200 text-stone-800 border-stone-400"
+                  }
+                ].map((opt) => {
+                  const isCurrent = (siteSettings?.footerLogoColor || "white") === opt.id;
+
+                  return (
+                    <button
+                      key={opt.id}
+                      type="button"
+                      onClick={() => handleSaveLogoColor(opt.id as any)}
+                      className={`p-3.5 rounded-xl border text-left transition flex flex-col justify-between ${
+                        isCurrent
+                          ? "bg-amber-900/90 text-white border-amber-700 shadow-md ring-2 ring-amber-500/30"
+                          : "bg-stone-50 hover:bg-stone-100/80 border-stone-200 text-stone-800"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between mb-1.5">
+                        <span className={`text-[9px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-md border ${opt.chipBg}`}>
+                          {opt.badge}
+                        </span>
+                        {isCurrent && <span className="text-[10px] text-amber-300 font-bold">Active ✓</span>}
+                      </div>
+                      <div>
+                        <h4 className="text-xs font-bold leading-tight">{opt.label}</h4>
+                        <p className={`text-[10px] mt-1 line-clamp-2 ${isCurrent ? "text-amber-200/80" : "text-stone-500"}`}>
+                          {opt.desc}
+                        </p>
+                      </div>
                     </button>
                   );
                 })}

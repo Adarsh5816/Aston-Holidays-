@@ -147,9 +147,9 @@ export default function HomePageClient({
               {testimonials.map((t, idx) => (
                 <div key={idx} className="flex flex-col justify-between text-center md:text-left space-y-4">
                   <div>
-                    <Quote className="w-6 h-6 text-emerald-800/40 mb-3 mx-auto md:mx-0" />
-                    <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-stone-900 leading-snug">
-                      "{t.quote}"
+                    <Quote className="w-6 h-6 text-emerald-700/50 mb-3 mx-auto md:mx-0" />
+                    <p className="text-sm sm:text-[15px] font-editorial italic font-normal text-stone-800 leading-relaxed">
+                      &ldquo;{t.quote}&rdquo;
                     </p>
                   </div>
                   <div className="pt-2">
@@ -424,7 +424,7 @@ export default function HomePageClient({
       </main>
 
       {/* Luxury Footer */}
-      <LuxuryFooter onOpenEnquiry={() => handleOpenEnquiry()} />
+      <LuxuryFooter onOpenEnquiry={() => handleOpenEnquiry()} settings={settings} />
 
       {/* Interactive Bespoke Enquiry Modal */}
       <BespokeEnquiryModal

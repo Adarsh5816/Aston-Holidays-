@@ -132,28 +132,28 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
       {/* ================= EDITORIAL CONTENT (SIDE-WISE / FLOATING TYPOGRAPHY) ================= */}
       <div className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-20 flex flex-col justify-center items-start text-left h-full pointer-events-none">
         
-        <div className="max-w-xl lg:max-w-2xl pointer-events-auto">
+        <div className="max-w-xl lg:max-w-3xl pointer-events-auto p-4 sm:p-8 -ml-4 sm:-ml-8 rounded-3xl bg-gradient-to-r from-black/50 via-black/20 to-transparent backdrop-blur-[1.5px]">
           {/* Black Tomato Style Floating Pill */}
           <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/30 text-white text-[11px] font-bold tracking-luxury uppercase mb-6 shadow-2xl">
             <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
             <span>{slides[activeSlide].kicker}</span>
           </div>
 
-          {/* Grand Headline: High clarity text-shadow ensures 100% crisp readability over raw bright video without dimming the video */}
+          {/* Grand Headline: Soft, cinematic, eye-pleasing depth without muddy text halos */}
           <h1
-            className="text-3xl sm:text-5xl lg:text-6xl font-editorial font-normal text-white tracking-tight leading-[1.12] transition-all duration-700"
+            className="text-3xl sm:text-5xl lg:text-6xl font-editorial font-normal text-white tracking-[-0.015em] leading-[1.14] transition-all duration-700 antialiased"
             style={{
-              textShadow: "0 2px 14px rgba(0,0,0,0.85), 0 6px 32px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.95)"
+              textShadow: "0 2px 25px rgba(0,0,0,0.55), 0 4px 50px rgba(0,0,0,0.35), 0 1px 3px rgba(0,0,0,0.7)"
             }}
           >
             {slides[activeSlide].title}
           </h1>
 
-          {/* Editorial Subtitle with Crisp Text Shadow */}
+          {/* Editorial Subtitle with Soft Cinematic Shadow */}
           <p
-            className="mt-5 sm:mt-6 text-sm sm:text-base lg:text-lg text-stone-100 font-light leading-relaxed font-sans-luxury"
+            className="mt-5 sm:mt-6 text-sm sm:text-base lg:text-lg text-stone-100/95 font-light leading-relaxed font-sans-luxury max-w-xl"
             style={{
-              textShadow: "0 1px 10px rgba(0,0,0,0.9), 0 3px 20px rgba(0,0,0,0.8)"
+              textShadow: "0 2px 16px rgba(0,0,0,0.65), 0 1px 3px rgba(0,0,0,0.7)"
             }}
           >
             {slides[activeSlide].subtitle}
@@ -208,16 +208,22 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
             </a>
           </div>
 
-          {/* Luxury Travel Assurances (Floating Frosted Capsule) */}
-          <div className="mt-8 inline-flex flex-wrap items-center gap-4 sm:gap-6 text-[11px] text-stone-100 font-medium tracking-wider bg-black/40 backdrop-blur-md px-5 py-2.5 rounded-full border border-white/20 shadow-2xl">
-            <span className="flex items-center gap-1.5 text-white">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+          {/* Luxury Travel Assurances (Floating Frosted Capsule - Responsive Mobile & Desktop) */}
+          <div className="mt-6 sm:mt-8 inline-flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-6 text-[11px] text-stone-200 font-medium tracking-wider bg-black/45 backdrop-blur-md px-4 sm:px-6 py-3 sm:py-2.5 rounded-2xl sm:rounded-full border border-white/20 shadow-2xl max-w-full">
+            <span className="flex items-center gap-2 text-white">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
               Dedicated Travel Architect
             </span>
-            <span className="text-white/40">•</span>
-            <span>Tailor-Made Itineraries</span>
-            <span className="text-white/40">•</span>
-            <span>Seamless 24/7 Concierge</span>
+            <span className="hidden sm:inline text-white/30">•</span>
+            <span className="flex items-center gap-2 sm:gap-0">
+              <span className="sm:hidden text-emerald-400 font-bold">✓</span>
+              Tailor-Made Itineraries
+            </span>
+            <span className="hidden sm:inline text-white/30">•</span>
+            <span className="flex items-center gap-2 sm:gap-0">
+              <span className="sm:hidden text-emerald-400 font-bold">✓</span>
+              Seamless 24/7 Concierge
+            </span>
           </div>
         </div>
 

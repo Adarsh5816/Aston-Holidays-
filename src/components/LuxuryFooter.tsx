@@ -4,8 +4,25 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Phone, Mail, MapPin, MessageCircle, Heart, ShieldCheck, ArrowRight } from "lucide-react";
+import { SiteSettings } from "@/lib/types";
 
-export default function LuxuryFooter({ onOpenEnquiry }: { onOpenEnquiry: () => void }) {
+export default function LuxuryFooter({
+  onOpenEnquiry,
+  settings
+}: {
+  onOpenEnquiry: () => void;
+  settings?: SiteSettings;
+}) {
+  const logoColor = settings?.footerLogoColor || "white";
+  let logoFilterClass = "brightness-0 invert opacity-95 hover:opacity-100 transition-opacity";
+  if (logoColor === "gold") {
+    logoFilterClass = "brightness-0 invert sepia hue-rotate-[18deg] saturate-[2.5] brightness-125 opacity-95 hover:opacity-100 transition-opacity";
+  } else if (logoColor === "emerald") {
+    logoFilterClass = "brightness-0 invert sepia hue-rotate-[90deg] saturate-[2.5] opacity-95 hover:opacity-100 transition-opacity";
+  } else if (logoColor === "original") {
+    logoFilterClass = "brightness-100 opacity-90 hover:opacity-100 transition-opacity";
+  }
+
   return (
     <footer className="bg-[#0B120B] text-stone-300 pt-20 pb-12 border-t border-white/10 select-none">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -21,7 +38,7 @@ export default function LuxuryFooter({ onOpenEnquiry }: { onOpenEnquiry: () => v
                   src="/brand/logo.png"
                   alt="Aston Holidays"
                   fill
-                  className="object-contain object-left"
+                  className={`object-contain object-left ${logoFilterClass}`}
                 />
               </div>
             </Link>

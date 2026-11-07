@@ -137,6 +137,7 @@ export interface SiteSettings {
   whatsappNumber: string;
   whatsappWebhookUrl?: string;
   bankDetails?: BankDetails;
+  footerLogoColor?: "white" | "gold" | "emerald" | "original";
 }
 
 export interface Destination {

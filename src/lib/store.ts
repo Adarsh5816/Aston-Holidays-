@@ -241,7 +241,8 @@ const defaultSettings: SiteSettings = {
   phone: "+91 97449 00414",
   email: "info@astonholidays.com",
   whatsappNumber: "+91 97449 00414",
-  whatsappWebhookUrl: "http://localhost:3001/api/send-message"
+  whatsappWebhookUrl: "http://localhost:3001/api/send-message",
+  footerLogoColor: "white"
 };
 
 const initialLeads: Lead[] = [

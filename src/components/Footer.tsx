@@ -11,12 +11,12 @@ export default function Footer() {
           
           {/* Brand & Story */}
           <div className="md:col-span-1 space-y-4">
-            <div className="relative w-44 h-14 bg-white/95 p-2 rounded-lg">
+            <div className="relative w-44 h-14">
               <Image
                 src="/brand/logo.png"
                 alt="Aston Holidays"
                 fill
-                className="object-contain p-1"
+                className="object-contain object-left brightness-0 invert opacity-95"
               />
             </div>
             <p className="text-xs text-stone-400 leading-relaxed">
