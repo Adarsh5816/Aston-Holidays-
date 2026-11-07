@@ -10,6 +10,7 @@ export async function GET() {
     const taxonomies = Store.getTaxonomies();
     const settings = Store.getSettings();
     const integration = Store.getIntegrationConfig();
+    const typography = Store.getTypography();
 
     return NextResponse.json({
       success: true,
@@ -17,7 +18,8 @@ export async function GET() {
         resortFilters: taxonomies.resortFilters,
         itineraryConfig: taxonomies.itineraryConfig,
         siteSettings: settings,
-        integrationConfig: integration
+        integrationConfig: integration,
+        typographyConfig: typography
       }
     });
   } catch (err: any) {
@@ -69,11 +71,19 @@ export async function POST(req: NextRequest) {
       await Store.saveTaxonomies(currentTaxonomies);
     } else if (moduleName === "siteSettings") {
       Store.updateSettings(parsed);
+    } else if (moduleName === "typographyConfig") {
+      if (!parsed.global || !parsed.global.headingFont || !parsed.global.bodyFont) {
+        return NextResponse.json({
+          error: "Invalid structure: 'global' with 'headingFont' and 'bodyFont' is required."
+        }, { status: 400 });
+      }
+      await Store.saveTypography(parsed);
     } else if (moduleName === "master") {
       if (parsed.resortFilters) currentTaxonomies.resortFilters = parsed.resortFilters;
       if (parsed.itineraryConfig) currentTaxonomies.itineraryConfig = parsed.itineraryConfig;
       await Store.saveTaxonomies(currentTaxonomies);
       if (parsed.siteSettings) Store.updateSettings(parsed.siteSettings);
+      if (parsed.typographyConfig) await Store.saveTypography(parsed.typographyConfig);
     } else {
       return NextResponse.json({ error: "Unknown module name" }, { status: 400 });
     }

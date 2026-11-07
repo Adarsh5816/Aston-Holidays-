@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import PWAInstallBanner from "@/components/PWAInstallBanner";
+import TypographyProvider from "@/components/TypographyProvider";
 
 export const viewport: Viewport = {
   themeColor: "#2E4F28",
@@ -31,6 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased bg-[#FAF8F5] text-stone-900 min-h-screen flex flex-col">
+        <TypographyProvider />
         {children}
         <PWAInstallBanner />
       </body>

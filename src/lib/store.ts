@@ -1,6 +1,6 @@
 import fs from "fs";
 import path from "path";
-import { Resort, Lead, Invoice, FilterParams, User, SiteSettings, IntegrationConfig, ApiAuditLog, HolidayPackage, BlogPost, ClientReview, PackageItineraryBooking, ResortApiConnection, LiveRoomAvailability, ResortBookingRequest, ResortSyncLog, CustomTaxonomies } from "./types";
+import { Resort, Lead, Invoice, FilterParams, User, SiteSettings, IntegrationConfig, ApiAuditLog, HolidayPackage, BlogPost, ClientReview, PackageItineraryBooking, ResortApiConnection, LiveRoomAvailability, ResortBookingRequest, ResortSyncLog, CustomTaxonomies, SiteTypographyConfig, PageFontSetting } from "./types";
 import { initialResorts } from "@/data/resorts";
 import { initialPackages, initialBlogs, initialReviews } from "@/data/content";
 import { supabase } from "./supabase";
@@ -180,6 +180,7 @@ interface DataStoreSchema {
   resortSyncLogs: ResortSyncLog[];
   liveAvailability: LiveRoomAvailability[];
   taxonomies?: CustomTaxonomies;
+  typography?: SiteTypographyConfig;
 }
 
 const STORE_PATH = path.join(process.cwd(), "data_store.json");
@@ -734,7 +735,9 @@ function readData(): DataStoreSchema {
         resortApiConnections: parsed.resortApiConnections || initialResortApiConnections,
         resortBookingRequests: parsed.resortBookingRequests || initialResortBookingRequests,
         resortSyncLogs: parsed.resortSyncLogs || initialResortSyncLogs,
-        liveAvailability: parsed.liveAvailability || initialLiveAvailability
+        liveAvailability: parsed.liveAvailability || initialLiveAvailability,
+        taxonomies: parsed.taxonomies || defaultTaxonomies,
+        typography: parsed.typography || defaultTypography
       };
       return data;
     } catch (parseErr) {
@@ -758,7 +761,9 @@ function readData(): DataStoreSchema {
             resortApiConnections: parsedBackup.resortApiConnections || initialResortApiConnections,
             resortBookingRequests: parsedBackup.resortBookingRequests || initialResortBookingRequests,
             resortSyncLogs: parsedBackup.resortSyncLogs || initialResortSyncLogs,
-            liveAvailability: parsedBackup.liveAvailability || initialLiveAvailability
+            liveAvailability: parsedBackup.liveAvailability || initialLiveAvailability,
+            taxonomies: parsedBackup.taxonomies || defaultTaxonomies,
+            typography: parsedBackup.typography || defaultTypography
           };
         } catch {}
       }
@@ -781,7 +786,9 @@ function readData(): DataStoreSchema {
     resortApiConnections: initialResortApiConnections,
     resortBookingRequests: initialResortBookingRequests,
     resortSyncLogs: initialResortSyncLogs,
-    liveAvailability: initialLiveAvailability
+    liveAvailability: initialLiveAvailability,
+    taxonomies: defaultTaxonomies,
+    typography: defaultTypography
   };
   if (!fs.existsSync(STORE_PATH)) {
     saveData(defaultData);
@@ -894,6 +901,81 @@ export const defaultTaxonomies: CustomTaxonomies = {
   }
 };
 
+export const defaultTypography: SiteTypographyConfig = {
+  global: {
+    headingFont: "Playfair Display",
+    bodyFont: "Plus Jakarta Sans",
+    headingLetterSpacing: "normal",
+    headingTransform: "none",
+    headingWeight: "normal"
+  },
+  home: {
+    headingFont: "Playfair Display",
+    bodyFont: "Plus Jakarta Sans",
+    headingLetterSpacing: "normal",
+    headingTransform: "none",
+    headingWeight: "normal"
+  },
+  resorts: {
+    headingFont: "Playfair Display",
+    bodyFont: "Plus Jakarta Sans",
+    headingLetterSpacing: "normal",
+    headingTransform: "none",
+    headingWeight: "normal"
+  },
+  destinations: {
+    headingFont: "Playfair Display",
+    bodyFont: "Plus Jakarta Sans",
+    headingLetterSpacing: "normal",
+    headingTransform: "none",
+    headingWeight: "normal"
+  },
+  brochure: {
+    headingFont: "Cormorant Garamond",
+    bodyFont: "Plus Jakarta Sans",
+    headingLetterSpacing: "wide",
+    headingTransform: "none",
+    headingWeight: "medium"
+  },
+  invoices: {
+    headingFont: "Playfair Display",
+    bodyFont: "Plus Jakarta Sans",
+    headingLetterSpacing: "normal",
+    headingTransform: "none",
+    headingWeight: "normal"
+  },
+  contact: {
+    headingFont: "Playfair Display",
+    bodyFont: "Plus Jakarta Sans",
+    headingLetterSpacing: "normal",
+    headingTransform: "none",
+    headingWeight: "normal"
+  },
+  admin: {
+    headingFont: "Plus Jakarta Sans",
+    bodyFont: "Plus Jakarta Sans",
+    headingLetterSpacing: "normal",
+    headingTransform: "none",
+    headingWeight: "normal"
+  },
+  customGoogleFonts: [
+    "Playfair Display",
+    "Cormorant Garamond",
+    "Plus Jakarta Sans",
+    "Inter",
+    "Cinzel",
+    "Poppins",
+    "Outfit",
+    "Lora",
+    "Prata",
+    "Montserrat",
+    "Marcellus",
+    "Bodoni Moda",
+    "Syne",
+    "Great Vibes"
+  ]
+};
+
 // In-Memory High-Speed Caches with TTL for sub-millisecond API response times
 let resortsCache: { data: Resort[]; timestamp: number } | null = null;
 const RESORTS_CACHE_TTL_MS = 60 * 1000; // 60s TTL
@@ -902,6 +984,22 @@ let invoicesCache: { data: Invoice[]; timestamp: number } | null = null;
 const INVOICES_CACHE_TTL_MS = 30 * 1000; // 30s TTL
 
 export const Store = {
+  // Dynamic Typography & Page Fonts
+  getTypography(): SiteTypographyConfig {
+    const data = readData();
+    if (data.typography && data.typography.global) {
+      return data.typography;
+    }
+    return defaultTypography;
+  },
+
+  async saveTypography(typography: SiteTypographyConfig): Promise<SiteTypographyConfig> {
+    const data = readData();
+    data.typography = typography;
+    saveData(data);
+    return typography;
+  },
+
   // Dynamic Taxonomies & Developer Code Studio
   getTaxonomies(): CustomTaxonomies {
     const data = readData();

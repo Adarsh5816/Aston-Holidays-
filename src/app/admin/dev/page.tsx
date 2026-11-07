@@ -28,12 +28,67 @@ import {
   Plus,
   Trash2,
   Eye,
-  Settings2
+  Settings2,
+  Type,
+  Palette,
+  Sparkles,
+  Globe,
+  Home,
+  Compass,
+  FileText,
+  Receipt,
+  Mail,
+  Layers
 } from "lucide-react";
-import { IntegrationConfig, ApiAuditLog } from "@/lib/types";
+import { IntegrationConfig, ApiAuditLog, SiteTypographyConfig, PageFontSetting } from "@/lib/types";
+
+const CURATED_HEADING_FONTS = [
+  "Playfair Display",
+  "Cormorant Garamond",
+  "Cinzel",
+  "Cinzel Decorative",
+  "Prata",
+  "Bodoni Moda",
+  "Marcellus",
+  "Lora",
+  "Merriweather",
+  "Fraunces",
+  "Great Vibes",
+  "Italiana",
+  "DM Serif Display",
+  "Syne",
+  "Montserrat",
+  "Plus Jakarta Sans",
+  "Inter"
+];
+
+const CURATED_BODY_FONTS = [
+  "Plus Jakarta Sans",
+  "Inter",
+  "Poppins",
+  "Outfit",
+  "DM Sans",
+  "Roboto",
+  "Open Sans",
+  "Lato",
+  "Montserrat",
+  "Nunito",
+  "Raleway"
+];
+
+const FONT_PAGES = [
+  { id: "global", label: "Global Baseline", icon: Globe, path: "* (All Pages)", desc: "Default typography applied site-wide unless specifically overridden below." },
+  { id: "home", label: "Home Page", icon: Home, path: "/", desc: "Hero headlines, category cards, and heritage story on the homepage (/)." },
+  { id: "resorts", label: "Resorts Explorer", icon: Compass, path: "/resorts", desc: "Resort directory, search filters, villa specification cards, and room details." },
+  { id: "destinations", label: "Destinations", icon: Compass, path: "/destinations", desc: "Wayanad region guides, tourist attraction cards, and distance markers." },
+  { id: "brochure", label: "Interactive Brochures", icon: FileText, path: "/brochure/*", desc: "Guest brochure viewing page and generated PDF brochure templates." },
+  { id: "invoices", label: "Invoices & Vouchers", icon: Receipt, path: "/admin/invoices", desc: "Official booking stay vouchers, tax invoices, and payment summaries." },
+  { id: "contact", label: "Contact & About", icon: Mail, path: "/contact", desc: "Direct contact inquiry page, office location cards, and WhatsApp quick links." },
+  { id: "admin", label: "Admin Portal", icon: Settings2, path: "/admin/*", desc: "Admin dashboard, CRM leads table, inventory editor, and reports." },
+] as const;
 
 export default function AdminDevPage() {
-  const [activeTab, setActiveTab] = useState<"connection" | "filters" | "playground" | "audit" | "studio">("connection");
+  const [activeTab, setActiveTab] = useState<"connection" | "filters" | "playground" | "audit" | "studio" | "typography">("connection");
   const [config, setConfig] = useState<IntegrationConfig | null>(null);
   const [auditLogs, setAuditLogs] = useState<ApiAuditLog[]>([]);
   const [loading, setLoading] = useState(true);
@@ -41,11 +96,20 @@ export default function AdminDevPage() {
   const [saveSuccess, setSaveSuccess] = useState(false);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
+  // Typography State
+  const [typography, setTypography] = useState<SiteTypographyConfig | null>(null);
+  const [selectedFontPage, setSelectedFontPage] = useState<"global" | "home" | "resorts" | "destinations" | "brochure" | "invoices" | "contact" | "admin">("global");
+  const [typographyLoading, setTypographyLoading] = useState(false);
+  const [typographySaving, setTypographySaving] = useState(false);
+  const [typographyMessage, setTypographyMessage] = useState<{ type: "success" | "error"; text: string } | null>(null);
+  const [customHeadingInput, setCustomHeadingInput] = useState("");
+  const [customBodyInput, setCustomBodyInput] = useState("");
+
   // Super Admin Code Studio State
   const [studioUnlocked, setStudioUnlocked] = useState(false);
   const [passkeyInput, setPasskeyInput] = useState("");
   const [passkeyError, setPasskeyError] = useState("");
-  const [studioModule, setStudioModule] = useState<"resortFilters" | "itineraryConfig" | "siteSettings" | "master">("resortFilters");
+  const [studioModule, setStudioModule] = useState<"resortFilters" | "itineraryConfig" | "siteSettings" | "typographyConfig" | "master">("resortFilters");
   const [studioCode, setStudioCode] = useState("");
   const [studioMode, setStudioMode] = useState<"code" | "visual">("code");
   const [studioLoading, setStudioLoading] = useState(false);
@@ -85,6 +149,7 @@ export default function AdminDevPage() {
   const fetchData = async () => {
     try {
       setLoading(true);
+      fetchTypography();
       const res = await fetch("/api/v1/dev");
       const data = await res.json();
       if (data.success) {
@@ -97,6 +162,112 @@ export default function AdminDevPage() {
       setLoading(false);
     }
   };
+
+  const fetchTypography = async () => {
+    try {
+      setTypographyLoading(true);
+      const res = await fetch("/api/v1/fonts");
+      const data = await res.json();
+      if (data && data.global) {
+        setTypography(data);
+      }
+    } catch (err) {
+      console.error("Failed to load typography:", err);
+    } finally {
+      setTypographyLoading(false);
+    }
+  };
+
+  const handleSaveTypography = async (updated?: SiteTypographyConfig) => {
+    const toSave = updated || typography;
+    if (!toSave) return;
+    try {
+      setTypographySaving(true);
+      setTypographyMessage(null);
+      const res = await fetch("/api/v1/fonts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(toSave)
+      });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || "Failed to save fonts");
+      }
+      setTypography(data.data || toSave);
+      try {
+        localStorage.setItem("aston_typography_cache", JSON.stringify(data.data || toSave));
+      } catch {}
+      window.dispatchEvent(new CustomEvent("aston_typography_updated", { detail: data.data || toSave }));
+      setTypographyMessage({ type: "success", text: "⚡ Fonts updated live! All pages now reflect your customized typography." });
+    } catch (err: any) {
+      setTypographyMessage({ type: "error", text: err.message || "Failed to save fonts." });
+    } finally {
+      setTypographySaving(false);
+    }
+  };
+
+  const updateCurrentPageFont = (field: keyof PageFontSetting, value: any) => {
+    if (!typography) return;
+    const current = (typography as any)[selectedFontPage] || { ...typography.global };
+    const updated = { ...current, [field]: value };
+    const newTypography: SiteTypographyConfig = {
+      ...typography,
+      [selectedFontPage]: updated
+    };
+    setTypography(newTypography);
+    window.dispatchEvent(new CustomEvent("aston_typography_updated", { detail: newTypography }));
+  };
+
+  const handleCopyPageFontToAll = () => {
+    if (!typography) return;
+    const current = (typography as any)[selectedFontPage] || { ...typography.global };
+    const newTypography: SiteTypographyConfig = {
+      ...typography,
+      global: { ...current },
+      home: { ...current },
+      resorts: { ...current },
+      destinations: { ...current },
+      brochure: { ...current },
+      invoices: { ...current },
+      contact: { ...current },
+      admin: { ...current }
+    };
+    setTypography(newTypography);
+    window.dispatchEvent(new CustomEvent("aston_typography_updated", { detail: newTypography }));
+    setTypographyMessage({ type: "success", text: `Copied settings from "${selectedFontPage}" to ALL pages! Click "⚡ Save Typography & Deploy Live" to apply permanently.` });
+  };
+
+  const handleResetCurrentPageFont = () => {
+    if (!typography) return;
+    const newTypography: SiteTypographyConfig = {
+      ...typography,
+      [selectedFontPage]: { ...typography.global }
+    };
+    setTypography(newTypography);
+    window.dispatchEvent(new CustomEvent("aston_typography_updated", { detail: newTypography }));
+    setTypographyMessage({ type: "success", text: `Reset "${selectedFontPage}" to use Global Baseline.` });
+  };
+
+  // Dynamically load Google Fonts into head for the interactive preview card
+  useEffect(() => {
+    if (!typography || typeof document === "undefined") return;
+    const currentHeading = (typography as any)[selectedFontPage]?.headingFont || typography.global?.headingFont;
+    const currentBody = (typography as any)[selectedFontPage]?.bodyFont || typography.global?.bodyFont;
+    const fontsToLoad = [currentHeading, currentBody].filter(Boolean);
+
+    const families = Array.from(new Set(fontsToLoad)).map(f => `family=${f.replace(/\s+/g, "+")}:wght@300;400;500;600;700;800`);
+    if (families.length === 0) return;
+
+    const url = `https://fonts.googleapis.com/css2?${families.join("&")}&display=swap`;
+    let link = document.getElementById("admin-preview-fonts") as HTMLLinkElement | null;
+    if (!link) {
+      link = document.createElement("link");
+      link.id = "admin-preview-fonts";
+      link.rel = "stylesheet";
+      document.head.appendChild(link);
+    }
+    link.href = url;
+  }, [typography, selectedFontPage]);
 
   useEffect(() => {
     fetchData();
@@ -160,7 +331,7 @@ export default function AdminDevPage() {
     }
   };
 
-  const handleSwitchStudioModule = (mod: "resortFilters" | "itineraryConfig" | "siteSettings" | "master") => {
+  const handleSwitchStudioModule = (mod: "resortFilters" | "itineraryConfig" | "siteSettings" | "typographyConfig" | "master") => {
     setStudioModule(mod);
     setStudioMessage(null);
     if (!fullStudioData) return;
@@ -408,6 +579,19 @@ export default function AdminDevPage() {
             }`}
           >
             <Activity className="w-3.5 h-3.5" /> Cyber Defense & Audit Logs ({auditLogs.length})
+          </button>
+          <button
+            onClick={() => {
+              setActiveTab("typography");
+              if (!typography) fetchTypography();
+            }}
+            className={`flex items-center gap-2 px-4 py-2.5 text-xs font-bold rounded-xl transition ${
+              activeTab === "typography"
+                ? "bg-gradient-to-r from-amber-700 to-stone-900 text-white shadow-md border border-amber-500/30"
+                : "text-amber-800 hover:text-amber-950 hover:bg-amber-50 font-semibold"
+            }`}
+          >
+            <Type className="w-3.5 h-3.5 text-amber-500" /> 🎨 Page Typography & Fonts
           </button>
           <button
             onClick={() => {
@@ -1201,6 +1385,16 @@ export default function AdminDevPage() {
                     📊 3. Site Settings & Brand
                   </button>
                   <button
+                    onClick={() => handleSwitchStudioModule("typographyConfig")}
+                    className={`flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-xl transition ${
+                      studioModule === "typographyConfig"
+                        ? "bg-emerald-700 text-white shadow-sm"
+                        : "bg-white text-stone-700 hover:bg-stone-50 border border-stone-200"
+                    }`}
+                  >
+                    🎨 4. Page Typography & Fonts
+                  </button>
+                  <button
                     onClick={() => handleSwitchStudioModule("master")}
                     className={`flex items-center gap-2 px-4 py-2 text-xs font-bold rounded-xl transition ${
                       studioModule === "master"
@@ -1208,7 +1402,7 @@ export default function AdminDevPage() {
                         : "bg-white text-stone-700 hover:bg-stone-50 border border-stone-200"
                     }`}
                   >
-                    ⚡ 4. Master Unified JSON
+                    ⚡ 5. Master Unified JSON
                   </button>
                 </div>
 
@@ -1394,6 +1588,472 @@ export default function AdminDevPage() {
                     })()}
                   </div>
                 )}
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* TAB 6: PAGE TYPOGRAPHY & FONTS */}
+        {activeTab === "typography" && (
+          <div className="mt-6 space-y-6">
+            {/* Top Typography Header & Save Bar */}
+            <div className="bg-gradient-to-r from-amber-950 via-stone-900 to-stone-950 text-white rounded-2xl p-6 shadow-md border border-amber-500/20">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div>
+                  <div className="flex items-center gap-2.5">
+                    <span className="p-2 bg-amber-500/10 text-amber-400 rounded-xl border border-amber-500/30">
+                      <Type className="w-5 h-5" />
+                    </span>
+                    <div>
+                      <h2 className="text-lg font-black tracking-tight flex items-center gap-2">
+                        Page-by-Page Typography & Font Studio
+                        <span className="text-[10px] font-bold uppercase tracking-wider bg-amber-500/20 text-amber-300 px-2.5 py-0.5 rounded-full border border-amber-500/40">
+                          Google Fonts Stream
+                        </span>
+                      </h2>
+                      <p className="text-xs text-stone-400 mt-0.5">
+                        Assign tailored Heading (Playfair/Editorial) and Body (Inter/Sans-Luxury) fonts for each page independently, or maintain a cohesive Global Baseline.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-2.5 w-full sm:w-auto">
+                  <button
+                    onClick={() => handleSaveTypography()}
+                    disabled={typographySaving || !typography}
+                    className="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-5 py-2.5 bg-amber-600 hover:bg-amber-500 text-white font-bold text-xs rounded-xl shadow transition disabled:opacity-50"
+                  >
+                    <Save className={`w-3.5 h-3.5 ${typographySaving ? "animate-spin" : ""}`} />
+                    {typographySaving ? "Deploying Live..." : "⚡ Save & Deploy Live"}
+                  </button>
+                </div>
+              </div>
+
+              {/* Status Alert */}
+              {typographyMessage && (
+                <div className={`mt-4 p-3 rounded-xl text-xs font-semibold flex items-center justify-between gap-2 ${
+                  typographyMessage.type === "success"
+                    ? "bg-emerald-950/80 text-emerald-200 border border-emerald-500/40"
+                    : "bg-rose-950/80 text-rose-200 border border-rose-500/40"
+                }`}>
+                  <div className="flex items-center gap-2">
+                    {typographyMessage.type === "success" ? (
+                      <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                    ) : (
+                      <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0" />
+                    )}
+                    <span>{typographyMessage.text}</span>
+                  </div>
+                  <button onClick={() => setTypographyMessage(null)} className="opacity-70 hover:opacity-100 font-bold">
+                    ✕
+                  </button>
+                </div>
+              )}
+            </div>
+
+            {/* Page Selection Pill Bar */}
+            <div className="bg-white rounded-2xl border border-stone-200 p-3 shadow-sm">
+              <div className="text-[11px] font-bold uppercase tracking-wider text-stone-400 px-2 mb-2 flex items-center justify-between">
+                <span>Select Target Page To Configure</span>
+                <span className="text-[10px] text-stone-500 font-normal">8 Available Page Targets</span>
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-2">
+                {FONT_PAGES.map((p) => {
+                  const Icon = p.icon;
+                  const isSelected = selectedFontPage === p.id;
+                  const pageSetting = (typography as any)?.[p.id];
+                  const hasCustom = p.id !== "global" && pageSetting && (
+                    pageSetting.headingFont !== typography?.global?.headingFont ||
+                    pageSetting.bodyFont !== typography?.global?.bodyFont
+                  );
+
+                  return (
+                    <button
+                      key={p.id}
+                      onClick={() => {
+                        setSelectedFontPage(p.id as any);
+                        setTypographyMessage(null);
+                      }}
+                      className={`flex flex-col items-center justify-center p-3 rounded-xl border text-center transition relative ${
+                        isSelected
+                          ? "bg-amber-900/90 text-white border-amber-700 shadow-sm"
+                          : "bg-stone-50 hover:bg-stone-100 text-stone-700 border-stone-200/80"
+                      }`}
+                    >
+                      {hasCustom && (
+                        <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-amber-400" title="Custom override active" />
+                      )}
+                      <Icon className={`w-4 h-4 mb-1 ${isSelected ? "text-amber-300" : "text-stone-500"}`} />
+                      <span className="text-xs font-bold leading-tight">{p.label}</span>
+                      <span className={`text-[9px] mt-0.5 ${isSelected ? "text-amber-200" : "text-stone-400"}`}>
+                        {p.path}
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Main Configuration & Live Preview Studio */}
+            {typography && (
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                {/* Left Column: Font Controls */}
+                <div className="lg:col-span-7 bg-white rounded-2xl border border-stone-200 p-6 shadow-sm space-y-6">
+                  {/* Selected Page Banner */}
+                  {(() => {
+                    const currentInfo = FONT_PAGES.find(p => p.id === selectedFontPage) || FONT_PAGES[0];
+                    const currentSetting: PageFontSetting = (typography as any)[selectedFontPage] || { ...typography.global };
+                    const Icon = currentInfo.icon;
+
+                    return (
+                      <>
+                        <div className="flex items-center justify-between pb-4 border-b border-stone-100">
+                          <div className="flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-800 flex items-center justify-center border border-amber-200">
+                              <Icon className="w-5 h-5" />
+                            </div>
+                            <div>
+                              <h3 className="text-sm font-bold text-stone-900 flex items-center gap-2">
+                                {currentInfo.label} Typography
+                                <code className="text-[10px] bg-stone-100 text-stone-600 px-2 py-0.5 rounded font-mono">
+                                  {currentInfo.path}
+                                </code>
+                              </h3>
+                              <p className="text-xs text-stone-500 mt-0.5">
+                                {currentInfo.desc}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="flex items-center gap-1.5">
+                            {selectedFontPage !== "global" && (
+                              <button
+                                type="button"
+                                onClick={handleResetCurrentPageFont}
+                                className="text-[11px] font-semibold text-stone-600 hover:text-stone-900 bg-stone-100 hover:bg-stone-200 px-2.5 py-1.5 rounded-lg transition"
+                                title="Inherit fonts directly from Global Baseline"
+                              >
+                                Reset to Global
+                              </button>
+                            )}
+                            <button
+                              type="button"
+                              onClick={handleCopyPageFontToAll}
+                              className="text-[11px] font-semibold text-amber-800 hover:text-amber-950 bg-amber-50 hover:bg-amber-100 px-2.5 py-1.5 rounded-lg border border-amber-200 transition"
+                              title="Copy this font pairing to all 8 pages across the website"
+                            >
+                              Copy to All Pages
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Heading Font Controls */}
+                        <div className="space-y-3">
+                          <div className="flex items-center justify-between">
+                            <label className="text-xs font-bold text-stone-900 flex items-center gap-1.5">
+                              <Type className="w-3.5 h-3.5 text-amber-600" />
+                              1. Heading & Title Font
+                              <span className="text-[10px] font-normal text-stone-400">
+                                (Applied to H1, H2, H3, .font-editorial, .font-serif)
+                              </span>
+                            </label>
+                            <span className="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md font-bold">
+                              {currentSetting.headingFont}
+                            </span>
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                              <span className="block text-[10px] text-stone-500 font-medium mb-1">Pick from Curated Luxury Fonts</span>
+                              <select
+                                value={currentSetting.headingFont}
+                                onChange={(e) => updateCurrentPageFont("headingFont", e.target.value)}
+                                className="w-full text-xs font-medium bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 focus:outline-none focus:border-amber-600 focus:bg-white"
+                              >
+                                {CURATED_HEADING_FONTS.map(f => (
+                                  <option key={f} value={f}>{f}</option>
+                                ))}
+                              </select>
+                            </div>
+
+                            <div>
+                              <span className="block text-[10px] text-stone-500 font-medium mb-1">Or Apply Any Custom Google Font</span>
+                              <div className="flex items-center gap-1.5">
+                                <input
+                                  type="text"
+                                  placeholder="e.g. Italianno, Montserrat..."
+                                  value={customHeadingInput}
+                                  onChange={(e) => setCustomHeadingInput(e.target.value)}
+                                  onKeyDown={(e) => {
+                                    if (e.key === "Enter" && customHeadingInput.trim()) {
+                                      updateCurrentPageFont("headingFont", customHeadingInput.trim());
+                                      setCustomHeadingInput("");
+                                    }
+                                  }}
+                                  className="w-full text-xs bg-stone-50 border border-stone-200 rounded-xl px-3 py-2 focus:outline-none focus:border-amber-600 focus:bg-white"
+                                />
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    if (customHeadingInput.trim()) {
+                                      updateCurrentPageFont("headingFont", customHeadingInput.trim());
+                                      setCustomHeadingInput("");
+                                    }
+                                  }}
+                                  className="px-3 py-2 bg-stone-900 hover:bg-black text-white text-xs font-bold rounded-xl transition shrink-0"
+                                >
+                                  Apply
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Body Font Controls */}
+                        <div className="space-y-3 pt-2 border-t border-stone-100">
+                          <div className="flex items-center justify-between">
+                            <label className="text-xs font-bold text-stone-900 flex items-center gap-1.5">
+                              <Sparkles className="w-3.5 h-3.5 text-blue-600" />
+                              2. Body & Reading Font
+                              <span className="text-[10px] font-normal text-stone-400">
+                                (Applied to Paragraphs, UI elements, .font-sans-luxury)
+                              </span>
+                            </label>
+                            <span className="text-[10px] font-mono text-blue-700 bg-blue-50 px-2 py-0.5 rounded-md font-bold">
+                              {currentSetting.bodyFont}
+                            </span>
+                          </div>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                            <div>
+                              <span className="block text-[10px] text-stone-500 font-medium mb-1">Pick from Curated Clean UI Fonts</span>
+                              <select
+                                value={currentSetting.bodyFont}
+                                onChange={(e) => updateCurrentPageFont("bodyFont", e.target.value)}
+                                className="w-full text-xs font-medium bg-stone-50 border border-stone-200 rounded-xl px-3 py-2.5 focus:outline-none focus:border-amber-600 focus:bg-white"
+                              >
+                                {CURATED_BODY_FONTS.map(f => (
+                                  <option key={f} value={f}>{f}</option>
+                                ))}
+                              </select>
+                            </div>
+
+                            <div>
+                              <span className="block text-[10px] text-stone-500 font-medium mb-1">Or Apply Any Custom Google Font</span>
+                              <div className="flex items-center gap-1.5">
+                                <input
+                                  type="text"
+                                  placeholder="e.g. Poppins, DM Sans..."
+                                  value={customBodyInput}
+                                  onChange={(e) => setCustomBodyInput(e.target.value)}
+                                  onKeyDown={(e) => {
+                                    if (e.key === "Enter" && customBodyInput.trim()) {
+                                      updateCurrentPageFont("bodyFont", customBodyInput.trim());
+                                      setCustomBodyInput("");
+                                    }
+                                  }}
+                                  className="w-full text-xs bg-stone-50 border border-stone-200 rounded-xl px-3 py-2 focus:outline-none focus:border-amber-600 focus:bg-white"
+                                />
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    if (customBodyInput.trim()) {
+                                      updateCurrentPageFont("bodyFont", customBodyInput.trim());
+                                      setCustomBodyInput("");
+                                    }
+                                  }}
+                                  className="px-3 py-2 bg-stone-900 hover:bg-black text-white text-xs font-bold rounded-xl transition shrink-0"
+                                >
+                                  Apply
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Spacing & Transform Controls */}
+                        <div className="pt-2 border-t border-stone-100 space-y-4">
+                          <label className="text-xs font-bold text-stone-900 flex items-center gap-1.5">
+                            <Layers className="w-3.5 h-3.5 text-amber-600" />
+                            3. Heading Letter Spacing & Transform
+                          </label>
+
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                              <span className="block text-[10px] text-stone-500 font-medium mb-1">Letter Spacing</span>
+                              <div className="grid grid-cols-3 gap-1.5 bg-stone-100 p-1 rounded-xl">
+                                {[
+                                  { id: "normal", label: "Normal" },
+                                  { id: "wide", label: "Wide" },
+                                  { id: "wider", label: "Luxury Wider" }
+                                ].map((opt) => (
+                                  <button
+                                    key={opt.id}
+                                    type="button"
+                                    onClick={() => updateCurrentPageFont("headingLetterSpacing", opt.id)}
+                                    className={`py-1.5 text-[11px] font-bold rounded-lg transition ${
+                                      (currentSetting.headingLetterSpacing || "normal") === opt.id
+                                        ? "bg-white text-stone-900 shadow-sm"
+                                        : "text-stone-600 hover:text-stone-900"
+                                    }`}
+                                  >
+                                    {opt.label}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+
+                            <div>
+                              <span className="block text-[10px] text-stone-500 font-medium mb-1">Text Transform</span>
+                              <div className="grid grid-cols-3 gap-1.5 bg-stone-100 p-1 rounded-xl">
+                                {[
+                                  { id: "none", label: "Default" },
+                                  { id: "uppercase", label: "UPPER" },
+                                  { id: "capitalize", label: "Capitalize" }
+                                ].map((opt) => (
+                                  <button
+                                    key={opt.id}
+                                    type="button"
+                                    onClick={() => updateCurrentPageFont("headingTransform", opt.id)}
+                                    className={`py-1.5 text-[11px] font-bold rounded-lg transition ${
+                                      (currentSetting.headingTransform || "none") === opt.id
+                                        ? "bg-white text-stone-900 shadow-sm"
+                                        : "text-stone-600 hover:text-stone-900"
+                                    }`}
+                                  >
+                                    {opt.label}
+                                  </button>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Save Trigger */}
+                        <div className="pt-4 border-t border-stone-100 flex items-center justify-end gap-3">
+                          <button
+                            type="button"
+                            onClick={() => handleSaveTypography()}
+                            disabled={typographySaving}
+                            className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#2E4F28] hover:bg-[#233D1F] text-white text-xs font-bold rounded-xl shadow transition disabled:opacity-50"
+                          >
+                            <Save className={`w-3.5 h-3.5 ${typographySaving ? "animate-spin" : ""}`} />
+                            {typographySaving ? "Saving..." : "Save Typography For Live Website"}
+                          </button>
+                        </div>
+                      </>
+                    );
+                  })()}
+                </div>
+
+                {/* Right Column: Interactive Live Preview Card */}
+                <div className="lg:col-span-5 space-y-4">
+                  <div className="bg-stone-900 text-white p-4 rounded-2xl flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <Eye className="w-4 h-4 text-amber-400" />
+                      <span className="text-xs font-bold tracking-tight">
+                        Live Preview • {FONT_PAGES.find(p => p.id === selectedFontPage)?.label}
+                      </span>
+                    </div>
+                    <span className="text-[10px] bg-emerald-500/20 text-emerald-300 font-mono px-2 py-0.5 rounded border border-emerald-500/30">
+                      Real-time Font Render
+                    </span>
+                  </div>
+
+                  {(() => {
+                    const currentSetting: PageFontSetting = (typography as any)[selectedFontPage] || { ...typography.global };
+                    const headingFont = currentSetting.headingFont || "Playfair Display";
+                    const bodyFont = currentSetting.bodyFont || "Plus Jakarta Sans";
+                    
+                    let letterSpacing = "normal";
+                    if (currentSetting.headingLetterSpacing === "wide") letterSpacing = "0.08em";
+                    if (currentSetting.headingLetterSpacing === "wider") letterSpacing = "0.18em";
+
+                    let textTransform: "none" | "uppercase" | "capitalize" = "none";
+                    if (currentSetting.headingTransform === "uppercase") textTransform = "uppercase";
+                    if (currentSetting.headingTransform === "capitalize") textTransform = "capitalize";
+
+                    return (
+                      <div className="bg-[#FAF8F5] rounded-2xl border border-stone-200/90 p-6 shadow-sm space-y-5">
+                        {/* Sample Villa Card */}
+                        <div className="space-y-3">
+                          <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#2E4F28]/10 text-[#2E4F28] rounded-full text-[10px] font-bold tracking-wider uppercase">
+                            ⭐ Curated Luxury Villa • Wayanad
+                          </div>
+
+                          <h3
+                            style={{
+                              fontFamily: `'${headingFont}', Georgia, serif`,
+                              letterSpacing,
+                              textTransform
+                            }}
+                            className="text-2xl font-bold text-stone-900 leading-snug"
+                          >
+                            Banasura Heritage Lake Villa
+                          </h3>
+
+                          <p
+                            style={{
+                              fontFamily: `'${bodyFont}', sans-serif`
+                            }}
+                            className="text-xs text-stone-600 leading-relaxed"
+                          >
+                            Experience pure tranquility nestled among Wayanad misty tea plantation slopes. Features an exclusive infinity pool, antique teak interiors, and authentic Kerala dining.
+                          </p>
+                        </div>
+
+                        {/* Specs Pill Row */}
+                        <div
+                          style={{ fontFamily: `'${bodyFont}', sans-serif` }}
+                          className="grid grid-cols-2 gap-2 text-[11px] text-stone-700 bg-white p-3 rounded-xl border border-stone-200/70"
+                        >
+                          <div>✓ 3 BHK Private Cottage</div>
+                          <div>✓ Infinity Heated Pool</div>
+                          <div>✓ Mountain & Lake View</div>
+                          <div>✓ Check-in: 01:00 PM</div>
+                        </div>
+
+                        {/* Price & CTA */}
+                        <div className="flex items-center justify-between pt-2 border-t border-stone-200/60">
+                          <div>
+                            <span className="text-[10px] text-stone-500 uppercase tracking-wider block">Best Rate Guarantee</span>
+                            <span
+                              style={{ fontFamily: `'${headingFont}', Georgia, serif` }}
+                              className="text-lg font-bold text-stone-900"
+                            >
+                              ₹18,500 <span className="text-xs text-stone-500 font-normal">/ night</span>
+                            </span>
+                          </div>
+
+                          <button
+                            type="button"
+                            style={{ fontFamily: `'${bodyFont}', sans-serif` }}
+                            className="px-4 py-2 bg-[#2E4F28] text-white text-xs font-bold rounded-xl shadow-sm hover:bg-[#233D1F] transition"
+                          >
+                            Explore Villa
+                          </button>
+                        </div>
+
+                        {/* Active Font Badges */}
+                        <div className="p-3 bg-stone-100 rounded-xl space-y-1.5 text-[11px] font-mono text-stone-700">
+                          <div className="flex items-center justify-between">
+                            <span className="text-stone-500 font-sans">Active Heading Font:</span>
+                            <span className="font-bold text-emerald-800">{headingFont}</span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-stone-500 font-sans">Active Body Font:</span>
+                            <span className="font-bold text-blue-800">{bodyFont}</span>
+                          </div>
+                          <div className="flex items-center justify-between">
+                            <span className="text-stone-500 font-sans">Letter Spacing:</span>
+                            <span>{currentSetting.headingLetterSpacing || "normal"}</span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
+                </div>
               </div>
             )}
           </div>

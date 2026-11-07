@@ -54,6 +54,26 @@ export interface CustomTaxonomies {
   };
 }
 
+export interface PageFontSetting {
+  headingFont: string;
+  bodyFont: string;
+  headingLetterSpacing?: "normal" | "wide" | "wider";
+  headingTransform?: "none" | "uppercase" | "capitalize";
+  headingWeight?: "normal" | "medium" | "semibold" | "bold";
+}
+
+export interface SiteTypographyConfig {
+  global: PageFontSetting;
+  home?: PageFontSetting;
+  resorts?: PageFontSetting;
+  destinations?: PageFontSetting;
+  brochure?: PageFontSetting;
+  invoices?: PageFontSetting;
+  contact?: PageFontSetting;
+  admin?: PageFontSetting;
+  customGoogleFonts?: string[];
+}
+
 export interface Resort {
   id: string;
   code: string; // e.g., "AH-121"
