@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Phone, Mail, MapPin, MessageCircle, Heart, ShieldCheck, ArrowRight } from "lucide-react";
-import { SiteSettings } from "@/lib/types";
+import { SiteSettings, getBrandLogoFilterClass } from "@/lib/types";
 
 export default function LuxuryFooter({
   onOpenEnquiry,
@@ -13,15 +13,36 @@ export default function LuxuryFooter({
   onOpenEnquiry: () => void;
   settings?: SiteSettings;
 }) {
-  const logoColor = settings?.footerLogoColor || "white";
-  let logoFilterClass = "brightness-0 invert opacity-95 hover:opacity-100 transition-opacity";
-  if (logoColor === "gold") {
-    logoFilterClass = "brightness-0 invert sepia hue-rotate-[18deg] saturate-[2.5] brightness-125 opacity-95 hover:opacity-100 transition-opacity";
-  } else if (logoColor === "emerald") {
-    logoFilterClass = "brightness-0 invert sepia hue-rotate-[90deg] saturate-[2.5] opacity-95 hover:opacity-100 transition-opacity";
-  } else if (logoColor === "original") {
-    logoFilterClass = "brightness-100 opacity-90 hover:opacity-100 transition-opacity";
-  }
+  const [logoTheme, setLogoTheme] = useState<string>(settings?.footerLogoColor || "white");
+
+  useEffect(() => {
+    try {
+      const cached = localStorage.getItem("aston_typography_cache");
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (parsed.footerLogoColor) {
+          setLogoTheme(parsed.footerLogoColor);
+        }
+      }
+    } catch {}
+
+    const handleUpdate = (e: any) => {
+      if (e.detail?.footerLogoColor) {
+        setLogoTheme(e.detail.footerLogoColor);
+      }
+    };
+
+    window.addEventListener("aston_typography_updated" as any, handleUpdate);
+    return () => {
+      window.removeEventListener("aston_typography_updated" as any, handleUpdate);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (settings?.footerLogoColor) {
+      setLogoTheme(settings.footerLogoColor);
+    }
+  }, [settings?.footerLogoColor]);
 
   return (
     <footer className="bg-[#0B120B] text-stone-300 pt-20 pb-12 border-t border-white/10 select-none">
@@ -38,7 +59,7 @@ export default function LuxuryFooter({
                   src="/brand/logo.png"
                   alt="Aston Holidays"
                   fill
-                  className={`object-contain object-left ${logoFilterClass}`}
+                  className={`object-contain object-left ${getBrandLogoFilterClass(logoTheme)}`}
                 />
               </div>
             </Link>

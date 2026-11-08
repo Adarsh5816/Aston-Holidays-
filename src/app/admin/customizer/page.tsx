@@ -32,6 +32,15 @@ export default function CustomizerPage() {
       });
       if (res.ok) {
         setSavedSuccess(true);
+        if (typeof window !== "undefined") {
+          window.dispatchEvent(new CustomEvent("aston_typography_updated", { detail: { footerLogoColor: settings.footerLogoColor } }));
+          try {
+            const cached = localStorage.getItem("aston_typography_cache");
+            const parsed = cached ? JSON.parse(cached) : {};
+            parsed.footerLogoColor = settings.footerLogoColor;
+            localStorage.setItem("aston_typography_cache", JSON.stringify(parsed));
+          } catch {}
+        }
         setTimeout(() => setSavedSuccess(false), 3000);
       }
     } catch (e) {
@@ -263,25 +272,25 @@ export default function CustomizerPage() {
             </div>
           </div>
 
-          {/* Section 4: Brand Logo & Dark Theme */}
+          {/* Section 4: Brand Logo & Dark Theme (Header & Footer) */}
           <div className="bg-white p-6 rounded-2xl border border-stone-200 shadow-sm space-y-4">
             <h2 className="text-sm font-bold text-stone-900 uppercase tracking-wider flex items-center gap-2 border-b border-stone-100 pb-3">
-              <Palette className="w-4 h-4 text-emerald-700" /> 4. Brand Logo Color on Dark Backgrounds
+              <Palette className="w-4 h-4 text-emerald-700" /> 4. Brand Logo Color on Dark Backgrounds (Header & Footer)
             </h2>
             <div className="text-xs font-medium space-y-3">
-              <label className="block text-stone-700">Footer Logo Color Tone</label>
+              <label className="block text-stone-700">Navbar Header & Footer Logo Tone</label>
               <select
                 value={settings.footerLogoColor || "white"}
                 onChange={(e) => setSettings({ ...settings, footerLogoColor: e.target.value as any })}
                 className="w-full px-3 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 text-xs font-bold"
               >
-                <option value="white">⚪ Crisp Pure White (Recommended for Dark Footer)</option>
+                <option value="white">⚪ Crisp Pure White (Recommended for Dark Header & Footer)</option>
                 <option value="gold">🟡 Luxury Gold / Champagne</option>
                 <option value="emerald">🟢 Emerald Botanical</option>
                 <option value="original">⚫ Natural Original Logo</option>
               </select>
               <p className="text-[11px] text-stone-500">
-                Controls the logo rendering contrast on the luxury dark footer across all customer-facing pages.
+                Controls the logo rendering contrast on the top luxury navigation bar and dark footer across customer-facing pages.
               </p>
             </div>
           </div>

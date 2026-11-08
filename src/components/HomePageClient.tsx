@@ -75,7 +75,7 @@ export default function HomePageClient({
     <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-stone-900 font-sans selection:bg-[#2E4F28] selection:text-white">
       
       {/* Luxury Navbar with transparent-to-frosted transition */}
-      <LuxuryNavbar onOpenEnquiry={() => handleOpenEnquiry()} />
+      <LuxuryNavbar onOpenEnquiry={() => handleOpenEnquiry()} settings={settings} />
 
       <main className="flex-1">
         

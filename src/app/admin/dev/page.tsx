@@ -179,7 +179,21 @@ export default function AdminDevPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updated)
       });
-      setTypographyMessage({ type: "success", text: `Brand footer logo color updated to "${color.toUpperCase()}"! Applied live across all pages.` });
+      // Also sync typography config and local cache
+      const typoUpdated: any = { ...typography, footerLogoColor: color };
+      setTypography(typoUpdated);
+      await fetch("/api/v1/fonts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(typoUpdated)
+      });
+      if (typeof window !== "undefined") {
+        window.dispatchEvent(new CustomEvent("aston_typography_updated", { detail: typoUpdated }));
+        try {
+          localStorage.setItem("aston_typography_cache", JSON.stringify(typoUpdated));
+        } catch {}
+      }
+      setTypographyMessage({ type: "success", text: `Brand logo theme updated to "${color.toUpperCase()}"! Applied live across Header Navbar & Footer.` });
     } catch (err: any) {
       setTypographyMessage({ type: "error", text: "Failed to update logo color: " + err.message });
     }
@@ -1728,18 +1742,18 @@ export default function AdminDevPage() {
                     <h3 className="text-sm font-bold text-stone-900 flex items-center gap-2">
                       Brand Logo Color & Contrast
                       <span className="text-[10px] font-semibold bg-emerald-50 text-emerald-800 px-2 py-0.5 rounded-full border border-emerald-200">
-                        Footer & Dark Theme
+                        Header & Footer Dark Theme
                       </span>
                     </h3>
                     <p className="text-xs text-stone-500 mt-0.5">
-                      Ensure your logo stands out with high clarity against dark backgrounds like the luxury footer. Select a theme below to apply live.
+                      Ensure your logo stands out with high clarity against dark backgrounds (the top luxury navigation header and dark footer). Select a theme below to apply live.
                     </p>
                   </div>
                 </div>
 
                 {/* Logo Live Sample Box */}
                 <div className="flex items-center gap-3 bg-[#0B120B] p-3 px-5 rounded-xl border border-white/10 shadow-inner">
-                  <span className="text-[10px] uppercase tracking-wider text-stone-400 font-mono">Live Footer Preview:</span>
+                  <span className="text-[10px] uppercase tracking-wider text-stone-400 font-mono">Live Header & Footer Preview:</span>
                   <div className="relative w-32 h-9">
                     {(() => {
                       const activeColor = siteSettings?.footerLogoColor || "white";

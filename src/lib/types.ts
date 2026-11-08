@@ -75,6 +75,20 @@ export interface SiteTypographyConfig {
   customGoogleFonts?: string[];
 }
 
+export function getBrandLogoFilterClass(theme?: "white" | "gold" | "emerald" | "original" | string): string {
+  if (theme === "gold") {
+    return "brightness-0 invert sepia hue-rotate-[18deg] saturate-[2.5] brightness-125 opacity-95 hover:opacity-100 transition-all";
+  }
+  if (theme === "emerald") {
+    return "brightness-0 invert sepia hue-rotate-[90deg] saturate-[2.5] opacity-95 hover:opacity-100 transition-all";
+  }
+  if (theme === "original") {
+    return "brightness-100 opacity-90 hover:opacity-100 transition-all";
+  }
+  // Default is Crisp Pure White on dark backgrounds
+  return "brightness-0 invert opacity-95 hover:opacity-100 transition-all";
+}
+
 export interface Resort {
   id: string;
   code: string; // e.g., "AH-121"

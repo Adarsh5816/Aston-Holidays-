@@ -4,16 +4,19 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Phone, Menu, X, Sparkles, ChevronDown, Compass, Heart, ShieldCheck, MapPin } from "lucide-react";
+import { SiteSettings, getBrandLogoFilterClass } from "@/lib/types";
 
 interface LuxuryNavbarProps {
   onOpenEnquiry: () => void;
+  settings?: SiteSettings;
 }
 
-export default function LuxuryNavbar({ onOpenEnquiry }: LuxuryNavbarProps) {
+export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [destinationsOpen, setDestinationsOpen] = useState(false);
   const [sanctuariesOpen, setSanctuariesOpen] = useState(false);
+  const [logoTheme, setLogoTheme] = useState<string>(settings?.footerLogoColor || "white");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +25,37 @@ export default function LuxuryNavbar({ onOpenEnquiry }: LuxuryNavbarProps) {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Sync with live typography / brand logo updates
+  useEffect(() => {
+    try {
+      const cached = localStorage.getItem("aston_typography_cache");
+      if (cached) {
+        const parsed = JSON.parse(cached);
+        if (parsed.footerLogoColor) {
+          setLogoTheme(parsed.footerLogoColor);
+        }
+      }
+    } catch {}
+
+    const handleUpdate = (e: any) => {
+      if (e.detail?.footerLogoColor) {
+        setLogoTheme(e.detail.footerLogoColor);
+      }
+    };
+
+    window.addEventListener("aston_typography_updated" as any, handleUpdate);
+    return () => {
+      window.removeEventListener("aston_typography_updated" as any, handleUpdate);
+    };
+  }, []);
+
+  // Keep in sync if settings prop changes
+  useEffect(() => {
+    if (settings?.footerLogoColor) {
+      setLogoTheme(settings.footerLogoColor);
+    }
+  }, [settings?.footerLogoColor]);
 
   return (
     <>
@@ -35,14 +69,14 @@ export default function LuxuryNavbar({ onOpenEnquiry }: LuxuryNavbarProps) {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             
-            {/* Brand Logo */}
+            {/* Brand Logo - Crisp White on Dark Luxury Navbar */}
             <Link href="/" className="flex items-center gap-3 shrink-0">
               <div className="relative w-36 sm:w-44 h-12">
                 <Image
                   src="/brand/logo.png"
                   alt="Aston Holidays"
                   fill
-                  className="object-contain object-left"
+                  className={`object-contain object-left ${getBrandLogoFilterClass(logoTheme)}`}
                   priority
                 />
               </div>

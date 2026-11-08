@@ -3500,7 +3500,8 @@
     "phone": "+91 97449 00414",
     "email": "info@astonholidays.com",
     "whatsappNumber": "+91 97449 00414",
-    "whatsappWebhookUrl": "http://localhost:3001/api/send-message"
+    "whatsappWebhookUrl": "http://localhost:3001/api/send-message",
+    "footerLogoColor": "white"
   },
   "integration": {
     "whatsappAppBaseUrl": "http://localhost:3001",
@@ -5037,5 +5038,8 @@
       "b2bRate": 6200,
       "lastUpdated": "2026-10-22T05:01:06.087Z"
     }
-  ]
+  ],
+  "typography": {
+    "footerLogoColor": "white"
+  }
 }
