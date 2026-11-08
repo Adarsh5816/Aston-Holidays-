@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import Image from "next/image";
 import {
   Volume2,
   VolumeX,
@@ -24,10 +23,17 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
   const [isMuted, setIsMuted] = useState(true);
   const [isPlaying, setIsPlaying] = useState(true);
   const [activeSlide, setActiveSlide] = useState(0);
-  const [videoLoaded, setVideoLoaded] = useState(false);
 
-  // Iconic Mulli/Wayanad-inspired atmospheric slides
+  // Atmospheric slides with terracotta accents
   const slides = [
+    {
+      eyebrow: "ABOVE CLOUDS & CANOPIES",
+      line1: "Stillness",
+      accent: "amidst the mist",
+      line2: "and quiet peaks.",
+      sub1: "Private infinity pool estates and glass canopy treehouses.",
+      sub2: "Crafted exclusively around your personal pace."
+    },
     {
       eyebrow: "A DIFFERENT KIND OF WILD",
       line1: "Go where",
@@ -43,14 +49,6 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
       line2: "how you feel.",
       sub1: "Tailor-made itineraries across 37+ verified private sanctuaries.",
       sub2: "Zero middleman surcharges. 24/7 dedicated travel architect."
-    },
-    {
-      eyebrow: "ABOVE CLOUDS & CANOPIES",
-      line1: "Stillness",
-      accent: "amidst the mist",
-      line2: "and quiet peaks.",
-      sub1: "Private infinity pool estates and glass canopy treehouses.",
-      sub2: "Crafted exclusively around your personal pace."
     }
   ];
 
@@ -63,7 +61,7 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
     "Hello Aston Holidays, I would like to plan a bespoke luxury holiday to Wayanad."
   )}`;
 
-  // Autoplay handler
+  // Autoplay video safely
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
@@ -71,21 +69,14 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
     video.defaultMuted = true;
     video.muted = true;
 
-    const attemptAutoplay = () => {
-      const playPromise = video.play();
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            setIsPlaying(true);
-            setVideoLoaded(true);
-          })
-          .catch(() => {
-            // Video autoplay paused, static majestic background remains fully visible
-          });
-      }
-    };
-
-    attemptAutoplay();
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => setIsPlaying(true))
+        .catch(() => {
+          // Autoplay was blocked, will resume upon gesture
+        });
+    }
   }, []);
 
   const toggleSound = () => {
@@ -107,7 +98,7 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
     }
   };
 
-  // Cycle through atmospheric phrases every 9 seconds
+  // Cycle through atmospheric slides every 9 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % slides.length);
@@ -120,45 +111,29 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
   return (
     <section className="relative w-full h-screen min-h-[100dvh] flex items-center justify-between overflow-hidden bg-[#0A130B] select-none">
       
-      {/* ================= 1. HIGH-DEFINITION NATURE BACKDROP (DEEP GREEN MISTY WAYANAD) ================= */}
-      <div className="absolute inset-0 z-0 overflow-hidden">
-        {/* High-res pristine landscape matching the exact reference composition (winding road through misty rainforest & tea estates) */}
-        <Image
-          src="/brand/hero-wayanad-deep-green.jpg"
-          alt="Go where the green gets deep - Wayanad Kerala"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center transform scale-[1.02] transition-transform duration-[10000ms] ease-out"
-        />
+      {/* ================= 1. PURE CLEAN VIDEO BACKGROUND (NO STATIC OVERLAPPING TEXT IMAGES) ================= */}
+      <div className="absolute inset-0 z-0 overflow-hidden bg-[#070E08]">
+        <video
+          ref={videoRef}
+          autoPlay
+          loop
+          muted={isMuted}
+          playsInline
+          preload="auto"
+          poster={settings.heroVideoPoster || "/brand/wayanad-backcover.jpg"}
+          src={primaryVideoSource}
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          {primaryVideoSource && <source src={primaryVideoSource} type="video/mp4" />}
+          <source src="/videos/wayanad-hero.mp4" type="video/mp4" />
+        </video>
 
-        {/* Ambient Video Layer (Blends smoothly if video plays) */}
-        {primaryVideoSource && (
-          <video
-            ref={videoRef}
-            autoPlay
-            loop
-            muted={isMuted}
-            playsInline
-            preload="auto"
-            src={primaryVideoSource}
-            onLoadedData={() => setVideoLoaded(true)}
-            onCanPlay={() => setVideoLoaded(true)}
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
-              videoLoaded && isPlaying ? "opacity-40 mix-blend-screen" : "opacity-0"
-            }`}
-          >
-            <source src={primaryVideoSource} type="video/mp4" />
-          </video>
-        )}
-
-        {/* Atmospheric Lighting Overlays: Soft moody left shadow for high typography contrast + golden dusk horizon glow */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#070E08]/85 via-[#070E08]/45 to-transparent pointer-events-none" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#070E08]/90 via-transparent to-black/30 pointer-events-none" />
-        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-amber-600/10 via-transparent to-transparent pointer-events-none" />
+        {/* Ambient atmospheric gradients for pure legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-transparent to-black/35 pointer-events-none" />
       </div>
 
-      {/* ================= 2. SIGNATURE EDITORIAL HERO CONTENT ================= */}
+      {/* ================= 2. CLEAN EDITORIAL HERO CONTENT ================= */}
       <div className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-24 sm:py-28 flex flex-col justify-center items-start text-left h-full pointer-events-none">
         
         <div className="max-w-2xl lg:max-w-3xl pointer-events-auto">
@@ -181,31 +156,29 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
             {currentSlide.line2}
           </h1>
 
-          {/* Bottom Narrative + Circular "Explore journeys" CTA */}
+          {/* Bottom Actions: Fully Transparent Words (No Circles, No Tile Highlighters) */}
           <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10">
             
-            {/* 2-Line Subtext */}
+            {/* 2-Line Narrative Subtext */}
             <div className="text-xs sm:text-[13px] text-[#E5E0D8]/90 font-light leading-relaxed font-sans max-w-xs drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
               <p>{currentSlide.sub1}</p>
               <p className="mt-0.5">{currentSlide.sub2}</p>
             </div>
 
-            {/* The Iconic Minimalist Circular "Explore journeys ↓" CTA */}
+            {/* Transparent "Explore Journeys" (No circle border, no circle background, just clean words) */}
             <a
               href="#feelings-engine"
-              className="group relative w-20 h-20 sm:w-22 sm:h-22 rounded-full border border-white/35 hover:border-[#D48D6C] bg-black/25 hover:bg-black/50 backdrop-blur-md flex flex-col items-center justify-center text-center transition-all duration-300 hover:scale-105 shrink-0 shadow-2xl"
+              className="group inline-flex items-center gap-2 text-xs sm:text-sm font-sans font-semibold uppercase tracking-[0.22em] text-[#F6F4EE] hover:text-[#D48D6C] transition-colors py-1 border-b border-white/20 hover:border-[#D48D6C] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
             >
-              <span className="text-[10px] sm:text-[11px] font-sans font-medium uppercase tracking-widest text-[#F6F4EE] leading-tight">
-                Explore<br />journeys
-              </span>
-              <span className="mt-1 text-xs text-[#D48D6C] group-hover:translate-y-1 transition-transform">↓</span>
+              <span>Explore Journeys</span>
+              <span className="text-sm text-[#D48D6C] group-hover:translate-y-1 transition-transform">↓</span>
             </a>
 
-            {/* Direct Concierge Link & WhatsApp Button */}
-            <div className="flex items-center gap-3">
+            {/* Transparent "Plan Journey" (No tile highlighter, no pill background, just clean words) */}
+            <div className="flex items-center gap-6">
               <button
                 onClick={onOpenEnquiry}
-                className="group inline-flex items-center gap-2.5 text-[11px] font-sans font-semibold uppercase tracking-[0.2em] text-[#F6F4EE] hover:text-[#D48D6C] py-2.5 px-5 rounded-full bg-white/10 hover:bg-white/20 border border-white/25 hover:border-[#D48D6C]/60 backdrop-blur-sm transition-all shadow-xl"
+                className="group inline-flex items-center gap-2 text-xs sm:text-sm font-sans font-semibold uppercase tracking-[0.22em] text-[#F6F4EE] hover:text-[#D48D6C] transition-colors py-1 border-b border-white/20 hover:border-[#D48D6C] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
               >
                 <span>Plan Journey</span>
                 <ArrowRight className="w-3.5 h-3.5 text-[#D48D6C] group-hover:translate-x-1 transition-transform" />
@@ -215,24 +188,25 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-full bg-white/10 hover:bg-white/25 border border-white/25 text-[#D48D6C] hover:text-white backdrop-blur-sm transition-all shadow-xl"
+                className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-sans font-semibold uppercase tracking-[0.22em] text-[#F6F4EE]/90 hover:text-[#D48D6C] transition-colors py-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
                 title="Chat with Concierge on WhatsApp"
               >
-                <MessageCircle className="w-4 h-4" />
+                <MessageCircle className="w-4 h-4 text-[#D48D6C]" />
+                <span className="hidden sm:inline">WhatsApp</span>
               </a>
             </div>
 
           </div>
 
-          {/* Luxury Travel Assurances Frosted Capsule */}
-          <div className="mt-6 sm:mt-8 inline-flex flex-wrap items-center gap-2 sm:gap-5 text-[11px] text-[#E5E0D8]/80 font-medium tracking-wider bg-black/40 backdrop-blur-md px-4 sm:px-5 py-2 rounded-full border border-white/15 shadow-2xl">
+          {/* Luxury Travel Assurances (Transparent, no heavy tile pill) */}
+          <div className="mt-6 sm:mt-8 flex flex-wrap items-center gap-3 sm:gap-6 text-xs text-[#E5E0D8]/80 font-medium tracking-wider drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
             <span className="flex items-center gap-1.5 text-[#F6F4EE]">
               <ShieldCheck className="w-3.5 h-3.5 text-[#D48D6C] shrink-0" />
               Dedicated Travel Architect
             </span>
-            <span className="text-white/25 hidden sm:inline">•</span>
+            <span className="text-white/30 hidden sm:inline">•</span>
             <span>Tailor-Made Itineraries</span>
-            <span className="text-white/25 hidden sm:inline">•</span>
+            <span className="text-white/30 hidden sm:inline">•</span>
             <span>Seamless 24/7 Concierge</span>
           </div>
 

@@ -204,7 +204,7 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
               {/* Terracotta Plan Journey Button */}
               <button
                 onClick={onOpenEnquiry}
-                className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#D48D6C] hover:bg-[#C47D5C] text-[#0A130B] text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] transition-all shadow-lg hover:shadow-[#D48D6C]/30"
+                className="hidden sm:inline-flex items-center gap-2 px-5 py-1.5 rounded-full border border-[#D48D6C]/80 text-[#F6F4EE] hover:bg-[#D48D6C] hover:text-[#0A130B] text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] transition-all shadow-md"
               >
                 <span>Enquire</span>
               </button>
