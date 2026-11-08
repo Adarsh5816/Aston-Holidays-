@@ -26,6 +26,23 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Close menu on ESC and prevent background scroll
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+      window.addEventListener("keydown", handleKeyDown);
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [mobileOpen]);
+
   // Sync with live typography / brand logo updates
   useEffect(() => {
     try {
@@ -214,82 +231,103 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
           </div>
         </div>
 
-        {/* ================= MOBILE MENU DRAWER ================= */}
-        {mobileOpen && (
-          <div className="lg:hidden bg-[#0A110A] border-b border-white/15 px-6 py-8 space-y-6 animate-in slide-in-from-top duration-300 shadow-2xl">
-            <nav className="space-y-4 text-xs font-bold uppercase tracking-luxury text-stone-200">
-              <Link
-                href="/"
+      </header>
+
+      {/* ================= UNIVERSAL LUXURY MENU DRAWER (LAPTOP, DESKTOP & MOBILE) ================= */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-50 flex justify-end animate-in fade-in duration-300">
+          {/* Backdrop overlay */}
+          <div
+            onClick={() => setMobileOpen(false)}
+            className="fixed inset-0 bg-black/75 backdrop-blur-sm transition-opacity"
+          />
+
+          {/* Slide-over Drawer Panel */}
+          <aside className="relative z-10 w-full sm:w-[460px] h-full bg-[#09120A] border-l border-white/15 shadow-2xl p-6 sm:p-10 flex flex-col justify-between overflow-y-auto animate-in slide-in-from-right duration-300">
+            {/* Drawer Header */}
+            <div className="flex items-center justify-between pb-6 border-b border-white/15">
+              <div className="flex flex-col">
+                <span className="text-xs font-editorial font-bold tracking-[0.25em] text-[#F6F4EE] uppercase">
+                  Aston Holidays
+                </span>
+                <span className="text-[9px] font-mono tracking-[0.28em] text-[#D48D6C] uppercase font-semibold mt-0.5">
+                  Wayanad, Kerala
+                </span>
+              </div>
+
+              <button
                 onClick={() => setMobileOpen(false)}
-                className="block hover:text-emerald-300 transition"
+                className="group flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-stone-300 hover:text-[#D48D6C] py-1.5 px-3 rounded-full border border-white/20 hover:border-[#D48D6C]/50 transition"
+                aria-label="Close Menu"
               >
-                Home
-              </Link>
-              <Link
-                href="/resorts"
-                onClick={() => setMobileOpen(false)}
-                className="block hover:text-emerald-300 transition"
-              >
-                Explore Curated Stays (37 Stays)
-              </Link>
-              <Link
-                href="/resorts?category=Pool+Villa"
-                onClick={() => setMobileOpen(false)}
-                className="block hover:text-emerald-300 transition text-emerald-400"
-              >
-                Private Pool Villas
-              </Link>
-              <Link
-                href="/resorts?category=Tree+House"
-                onClick={() => setMobileOpen(false)}
-                className="block hover:text-emerald-300 transition text-emerald-400"
-              >
-                Glass Canopy Treehouses
-              </Link>
-              <a
-                href="#feelings-engine"
-                onClick={() => setMobileOpen(false)}
-                className="block hover:text-emerald-300 transition"
-              >
-                The Feelings Engine
-              </a>
-              <a
-                href="#philosophy"
-                onClick={() => setMobileOpen(false)}
-                className="block hover:text-emerald-300 transition"
-              >
-                Our Philosophy
-              </a>
-              <Link
-                href="/admin"
-                onClick={() => setMobileOpen(false)}
-                className="block text-stone-400 hover:text-white transition"
-              >
-                Admin / Staff Login
-              </Link>
+                <span>Close</span>
+                <X className="w-4 h-4 text-[#D48D6C] group-hover:rotate-90 transition-transform duration-300" />
+              </button>
+            </div>
+
+            {/* Navigation Links with Editorial Numbering & Hover Accents */}
+            <nav className="py-8 space-y-5 text-sm sm:text-base font-editorial font-normal tracking-wide text-stone-200">
+              {[
+                { label: "Home", href: "/" },
+                { label: "Curated Stays & Journeys", href: "/resorts", badge: "37 Stays" },
+                { label: "Private Pool Villas", href: "/resorts?category=Pool+Villa" },
+                { label: "Glass Canopy Treehouses", href: "/resorts?category=Tree+House" },
+                { label: "Wayanad Destinations", href: "/destinations" },
+                { label: "The Feelings Engine", href: "/#feelings-engine" },
+                { label: "Our Philosophy", href: "/#philosophy" },
+                { label: "Staff & Admin Portal", href: "/admin", isMuted: true }
+              ].map((item, idx) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={`group flex items-center justify-between py-1 transition-all ${
+                    item.isMuted
+                      ? "text-stone-400 hover:text-stone-200 text-xs font-sans uppercase tracking-[0.2em]"
+                      : "text-stone-100 hover:text-[#D48D6C]"
+                  }`}
+                >
+                  <span className="flex items-center gap-3">
+                    <span className="text-[10px] font-mono text-[#D48D6C]/70">0{idx + 1}</span>
+                    <span className="group-hover:translate-x-1.5 transition-transform">{item.label}</span>
+                  </span>
+                  {item.badge && (
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#D48D6C] bg-[#D48D6C]/10 px-2 py-0.5 rounded-full border border-[#D48D6C]/30">
+                      {item.badge}
+                    </span>
+                  )}
+                </Link>
+              ))}
             </nav>
 
-            <div className="pt-4 border-t border-white/10 space-y-3">
+            {/* Drawer Footer: Concierge Desk & Actions */}
+            <div className="pt-6 border-t border-white/15 space-y-4">
               <a
                 href="tel:+919744900414"
-                className="flex items-center gap-2 text-xs font-bold text-[#D48D6C]"
+                className="flex items-center gap-2.5 text-xs font-semibold text-stone-300 hover:text-[#D48D6C] transition"
               >
                 <Phone className="w-3.5 h-3.5 text-[#D48D6C]" />
                 <span>Concierge Desk: +91 97449 00414</span>
               </a>
+
               <button
                 onClick={() => {
                   setMobileOpen(false);
                   onOpenEnquiry();
                 }}
-                className="w-full py-3 rounded-full bg-[#D48D6C] hover:bg-[#C47D5C] text-[#0A130B] text-xs font-bold uppercase tracking-[0.2em] transition shadow-lg"
+                className="w-full py-3.5 rounded-full bg-[#D48D6C] hover:bg-[#C47D5C] text-[#0A130B] text-xs font-bold uppercase tracking-[0.22em] transition-all shadow-xl hover:shadow-[#D48D6C]/40"
               >
                 Plan My Journey
               </button>
+
+              <div className="pt-2 flex items-center justify-between text-[10px] font-mono tracking-widest text-stone-500 uppercase">
+                <span>11° 41&apos; N • 76° 07&apos; E</span>
+                <span>Wayanad, Kerala</span>
+              </div>
             </div>
-          </div>
-        )}
-      </header>
+          </aside>
+        </div>
+      )}
     </>
   );
 }
