@@ -5,7 +5,59 @@ import Image from "next/image";
 import Link from "next/link";
 import AdminSidebar from "@/components/AdminSidebar";
 import { Resort, NearbyAttraction, AccommodationType, StayPreference, AmbienceType } from "@/lib/types";
-import { Building2, Search, Bed, Users, Plus, FileText, Check, X, MapPin, Trash2, Edit3, Navigation, Sparkles, Layers, Upload, Loader2, Star } from "lucide-react";
+import { Building2, Search, Bed, Users, Plus, FileText, Check, X, MapPin, Trash2, Edit3, Navigation, Sparkles, Layers, Upload, Loader2, Star, CheckSquare, Square, DollarSign } from "lucide-react";
+
+const CATEGORY_CHOICES = [
+  "Private Pool Villa",
+  "Family Resort",
+  "Group",
+  "Tree House",
+  "Plantation Stay",
+  "Luxury Resort",
+  "Heritage Bungalow",
+  "Budget Resort",
+  "Glamping / Tent"
+];
+
+const STAY_TYPE_CHOICES = [
+  "Independent",
+  "Twin Cottage",
+  "Multi Cottage"
+];
+
+const ROOMS_PROVIDED_CHOICES = [
+  "Family",
+  "Group",
+  "Family or Group"
+];
+
+const BUDGET_CATEGORY_CHOICES = [
+  "2000-5000",
+  "5000-10000",
+  "10000 Plus"
+];
+
+const ROOMS_AVAILABLE_OPTIONS = [1, 2, 3, 4, 5, 6, 7, "7+"];
+
+const STANDARD_AMENITIES = [
+  "Parking",
+  "Swimming Pool",
+  "WiFi",
+  "Spa & Wellness Centre",
+  "Jacuzzi",
+  "Restaurant",
+  "Electric Charging Station",
+  "Handicapped / Wheelchair Accessible",
+  "Room Service or Butler",
+  "Kitchen / Self Cooking",
+  "Barbecue",
+  "Campfire",
+  "Candle Light Dinner",
+  "Kids Play Area",
+  "Badminton",
+  "Indoor / Outdoor Games",
+  "Play Area"
+];
 
 export default function ResortManagerPage() {
   const [resorts, setResorts] = useState<Resort[]>([]);
@@ -24,6 +76,27 @@ export default function ResortManagerPage() {
   const [stayPreference, setStayPreference] = useState<StayPreference>("Independent Private Cottage/Villa");
   const [ambienceStr, setAmbienceStr] = useState("Mountain / Valley View, Lake / Dam Waterfront");
   const [category, setCategory] = useState<Resort["category"]>("Pool Villa");
+
+  // Automation & Multi-Dimension Filter States
+  const [selectedCategories, setSelectedCategories] = useState<string[]>(["Private Pool Villa"]);
+  const [stayType, setStayType] = useState<string>("Independent");
+  const [roomsProvidedType, setRoomsProvidedType] = useState<string>("Family");
+  const [budgetCategory, setBudgetCategory] = useState<string>("5000-10000");
+  const [rateB2c, setRateB2c] = useState<string>("₹12,000 / night");
+  const [rateB2b, setRateB2b] = useState<string>("₹9,000 / night");
+  const [ratePerPerson, setRatePerPerson] = useState<string>("");
+  const [rateFullProperty, setRateFullProperty] = useState<string>("");
+  const [roomsAvailableCount, setRoomsAvailableCount] = useState<number | string>(2);
+  const [dormitoryDetails, setDormitoryDetails] = useState<string>("");
+  const [selectedAmenities, setSelectedAmenities] = useState<string[]>([
+    "Swimming Pool",
+    "WiFi",
+    "Parking",
+    "Campfire",
+    "Barbecue"
+  ]);
+  const [customAmenityInput, setCustomAmenityInput] = useState<string>("");
+
   const [bedrooms, setBedrooms] = useState(2);
   const [bathrooms, setBathrooms] = useState(2);
   const [maxAdults, setMaxAdults] = useState(6);
@@ -194,6 +267,48 @@ export default function ResortManagerPage() {
     loadResorts();
   }, []);
 
+  const toggleCategory = (cat: string) => {
+    if (selectedCategories.includes(cat)) {
+      setSelectedCategories(selectedCategories.filter((c) => c !== cat));
+    } else {
+      setSelectedCategories([...selectedCategories, cat]);
+    }
+  };
+
+  const handleSelectAllCategories = () => {
+    if (selectedCategories.length === CATEGORY_CHOICES.length) {
+      setSelectedCategories([]);
+    } else {
+      setSelectedCategories([...CATEGORY_CHOICES]);
+    }
+  };
+
+  const toggleAmenity = (amenity: string) => {
+    if (selectedAmenities.includes(amenity)) {
+      setSelectedAmenities(selectedAmenities.filter((a) => a !== amenity));
+    } else {
+      setSelectedAmenities([...selectedAmenities, amenity]);
+    }
+  };
+
+  const handleSelectAllAmenities = () => {
+    if (selectedAmenities.length >= STANDARD_AMENITIES.length) {
+      setSelectedAmenities([]);
+    } else {
+      setSelectedAmenities([...STANDARD_AMENITIES]);
+    }
+  };
+
+  const handleAddCustomAmenity = () => {
+    if (customAmenityInput.trim()) {
+      const trimmed = customAmenityInput.trim();
+      if (!selectedAmenities.includes(trimmed)) {
+        setSelectedAmenities([...selectedAmenities, trimmed]);
+      }
+      setCustomAmenityInput("");
+    }
+  };
+
   const openCreateModal = () => {
     setEditingResort(null);
     setCode(`AH-${120 + resorts.length + 1}`);
@@ -205,6 +320,24 @@ export default function ResortManagerPage() {
     setStayPreference("Independent Private Cottage/Villa");
     setAmbienceStr("Mountain / Valley View, Lake / Dam Waterfront, Secluded & Peaceful");
     setCategory("Pool Villa");
+    setSelectedCategories(["Private Pool Villa"]);
+    setStayType("Independent");
+    setRoomsProvidedType("Family");
+    setBudgetCategory("5000-10000");
+    setRateB2c("₹12,000 / night");
+    setRateB2b("₹9,000 / night");
+    setRatePerPerson("");
+    setRateFullProperty("");
+    setRoomsAvailableCount(2);
+    setDormitoryDetails("");
+    setSelectedAmenities([
+      "Parking",
+      "Swimming Pool",
+      "WiFi",
+      "Campfire",
+      "Barbecue"
+    ]);
+    setCustomAmenityInput("");
     setBedrooms(2);
     setBathrooms(2);
     setMaxAdults(6);
@@ -238,6 +371,26 @@ export default function ResortManagerPage() {
     setStayPreference(resort.stayPreference || "Independent Private Cottage/Villa");
     setAmbienceStr(resort.ambience ? resort.ambience.join(", ") : "Mountain / Valley View");
     setCategory(resort.category);
+    setSelectedCategories(
+      Array.isArray(resort.categories) && resort.categories.length > 0
+        ? resort.categories
+        : [resort.accommodationType || "Private Pool Villa"]
+    );
+    setStayType(resort.stayType || "Independent");
+    setRoomsProvidedType(resort.roomsProvidedType || "Family");
+    setBudgetCategory(resort.budgetCategory || "5000-10000");
+    setRateB2c(resort.rates?.b2c || (resort.pricePerNight ? `₹${resort.pricePerNight.toLocaleString("en-IN")}` : ""));
+    setRateB2b(resort.rates?.b2b || (resort.b2bRate ? `₹${resort.b2bRate.toLocaleString("en-IN")}` : ""));
+    setRatePerPerson(resort.rates?.perPerson || "");
+    setRateFullProperty(resort.rates?.fullProperty || "");
+    setRoomsAvailableCount(resort.roomsAvailableCount ?? resort.bedrooms ?? 1);
+    setDormitoryDetails(resort.dormitoryDetails || "");
+    setSelectedAmenities(
+      Array.isArray(resort.amenities) && resort.amenities.length > 0
+        ? resort.amenities
+        : ["Swimming Pool", "WiFi", "Parking"]
+    );
+    setCustomAmenityInput("");
     setBedrooms(resort.bedrooms);
     setBathrooms(resort.bathrooms);
     setMaxAdults(resort.maxAdults || resort.maxGuests);
@@ -280,10 +433,11 @@ export default function ResortManagerPage() {
     const photoList = photos.filter(Boolean);
     const finalCover = coverImage.trim() || photoList[0] || "";
 
-    const amenityList = amenitiesStr
+    const manualAmenityList = amenitiesStr
       .split(",")
       .map(s => s.trim())
       .filter(s => s.length > 0);
+    const combinedAmenities = Array.from(new Set([...selectedAmenities, ...manualAmenityList]));
 
     const specialityList = specialitiesStr
       .split(",")
@@ -294,6 +448,9 @@ export default function ResortManagerPage() {
       .split(",")
       .map(s => s.trim())
       .filter(s => s.length > 0) as AmbienceType[];
+
+    const parsedB2cNumber = parseInt(rateB2c.replace(/[^0-9]/g, ""), 10) || pricePerNight;
+    const parsedB2bNumber = parseInt(rateB2b.replace(/[^0-9]/g, ""), 10) || b2bRate;
 
     const resortObj: Resort = {
       id: editingResort ? editingResort.id : `resort-${code.toLowerCase().replace(/[^a-z0-9]/g, "-")}`,
@@ -307,17 +464,29 @@ export default function ResortManagerPage() {
       stayPreference,
       ambience: ambienceList.length > 0 ? ambienceList : ["Mountain / Valley View"],
       category,
+      categories: selectedCategories.length > 0 ? selectedCategories : [category],
+      stayType,
+      roomsProvidedType,
+      budgetCategory,
+      rates: {
+        b2c: rateB2c.trim() || `₹${parsedB2cNumber.toLocaleString("en-IN")}`,
+        b2b: rateB2b.trim() || `₹${parsedB2bNumber.toLocaleString("en-IN")}`,
+        perPerson: ratePerPerson.trim() || undefined,
+        fullProperty: rateFullProperty.trim() || undefined
+      },
+      roomsAvailableCount,
+      dormitoryDetails: dormitoryDetails.trim() || undefined,
       bedrooms: Number(bedrooms),
       bathrooms: Number(bathrooms),
       maxAdults: Number(maxAdults),
       maxChildren: Number(maxChildren),
       maxGuests: Number(maxGuests),
-      pricePerNight: Number(pricePerNight),
-      b2bRate: Number(b2bRate),
+      pricePerNight: parsedB2cNumber,
+      b2bRate: parsedB2bNumber,
       featured: editingResort ? editingResort.featured : true,
       coverImage: finalCover,
       photos: photoList,
-      amenities: amenityList,
+      amenities: combinedAmenities,
       specialities: specialityList,
       nearbyAttractions: nearbyAttractions.filter(a => a.name.trim().length > 0),
       checkInTime,
@@ -448,32 +617,57 @@ export default function ResortManagerPage() {
                     </span>
                   </div>
 
-                  {/* Ambience & Preference Tags */}
-                  <div className="mt-2 flex flex-wrap gap-1">
-                    <span className="text-[10px] bg-emerald-50 text-emerald-800 font-semibold px-2 py-0.5 rounded">
-                      {resort.stayPreference || "Private Villa"}
-                    </span>
-                    {resort.ambience && resort.ambience.slice(0, 1).map((amb, i) => (
-                      <span key={i} className="text-[10px] bg-stone-100 text-stone-700 px-2 py-0.5 rounded">
-                        {amb}
+                  {/* Automation & Category Tags */}
+                  <div className="mt-2.5 flex flex-wrap gap-1">
+                    {(resort.categories && resort.categories.length > 0 ? resort.categories : [resort.accommodationType || resort.category]).slice(0, 3).map((cat, i) => (
+                      <span key={i} className="text-[10px] bg-emerald-50 text-emerald-800 font-semibold px-2 py-0.5 rounded-md border border-emerald-100">
+                        {cat}
                       </span>
                     ))}
+                    {resort.categories && resort.categories.length > 3 && (
+                      <span className="text-[10px] bg-emerald-50 text-emerald-800 font-semibold px-1.5 py-0.5 rounded-md">
+                        +{resort.categories.length - 3} more
+                      </span>
+                    )}
+                    {resort.stayType && (
+                      <span className="text-[10px] bg-stone-100 text-stone-700 font-medium px-2 py-0.5 rounded-md border border-stone-200">
+                        {resort.stayType}
+                      </span>
+                    )}
+                    {resort.budgetCategory && (
+                      <span className="text-[10px] bg-amber-50 text-amber-800 font-medium px-2 py-0.5 rounded-md border border-amber-200">
+                        ₹{resort.budgetCategory}
+                      </span>
+                    )}
+                    {resort.roomsAvailableCount && (
+                      <span className="text-[10px] bg-blue-50 text-blue-800 font-medium px-2 py-0.5 rounded-md border border-blue-200">
+                        {resort.roomsAvailableCount} Rooms
+                      </span>
+                    )}
                   </div>
 
                   {/* Pricing Box */}
-                  <div className="mt-3 bg-stone-50 p-3 rounded-xl border border-stone-200/80 flex items-center justify-between text-xs">
-                    <div>
-                      <span className="text-[10px] text-stone-400 block uppercase font-bold">Customer Rate</span>
-                      <span className="text-sm font-extrabold text-[#2E4F28]">
-                        ₹{resort.pricePerNight.toLocaleString("en-IN")}/n
-                      </span>
+                  <div className="mt-3 bg-stone-50 p-3 rounded-xl border border-stone-200/80 text-xs space-y-2">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <span className="text-[10px] text-stone-400 block uppercase font-bold">Customer Rate</span>
+                        <span className="text-sm font-extrabold text-[#2E4F28]">
+                          {resort.rates?.b2c || `₹${resort.pricePerNight.toLocaleString("en-IN")}/n`}
+                        </span>
+                      </div>
+                      <div className="text-right">
+                        <span className="text-[10px] text-stone-400 block uppercase font-bold">B2B Agent Rate</span>
+                        <span className="text-sm font-bold text-stone-700">
+                          {resort.rates?.b2b || `₹${resort.b2bRate.toLocaleString("en-IN")}/n`}
+                        </span>
+                      </div>
                     </div>
-                    <div className="text-right">
-                      <span className="text-[10px] text-stone-400 block uppercase font-bold">B2B Agent Rate</span>
-                      <span className="text-sm font-bold text-stone-700">
-                        ₹{resort.b2bRate.toLocaleString("en-IN")}/n
-                      </span>
-                    </div>
+                    {(resort.rates?.perPerson || resort.rates?.fullProperty) && (
+                      <div className="pt-2 border-t border-stone-200/60 flex items-center justify-between text-[11px] text-stone-600">
+                        {resort.rates.perPerson && <span>Per Person: <strong className="text-stone-900">{resort.rates.perPerson}</strong></span>}
+                        {resort.rates.fullProperty && <span>Full Property: <strong className="text-stone-900">{resort.rates.fullProperty}</strong></span>}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -539,6 +733,258 @@ export default function ResortManagerPage() {
                       placeholder="e.g. 3BHK-Private Pool Villa"
                       className="w-full px-3 py-2 rounded-xl border border-stone-200 font-semibold"
                     />
+                  </div>
+                </div>
+
+                {/* AUTOMATION & MULTI-DIMENSION MATCHING MATRIX */}
+                <div className="bg-gradient-to-br from-emerald-50/60 via-stone-50 to-emerald-50/40 p-5 rounded-2xl border-2 border-emerald-600/30 space-y-4">
+                  <div className="flex items-center justify-between pb-3 border-b border-emerald-200/60">
+                    <div>
+                      <h3 className="font-bold text-stone-900 text-sm flex items-center gap-2">
+                        <Sparkles className="w-4 h-4 text-emerald-700" />
+                        <span>Automation & Matching Filter Matrix</span>
+                      </h3>
+                      <p className="text-[11px] text-stone-600">
+                        Multi-select category, stay types, budget tiers, and room counts used for automated WhatsApp Bot matching and custom quotes.
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* 1. Category Choices (Multi-Select with Select All) */}
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between">
+                      <label className="block text-stone-800 font-bold text-xs flex items-center gap-1.5">
+                        <Layers className="w-3.5 h-3.5 text-emerald-700" />
+                        Category Choices (Multi-Select)
+                        <span className="text-[11px] font-normal text-stone-500">
+                          ({selectedCategories.length} selected)
+                        </span>
+                      </label>
+                      <button
+                        type="button"
+                        onClick={handleSelectAllCategories}
+                        className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-bold rounded-lg border border-emerald-600/40 text-emerald-800 bg-white hover:bg-emerald-50 transition"
+                      >
+                        {selectedCategories.length === CATEGORY_CHOICES.length ? (
+                          <>
+                            <Square className="w-3 h-3 text-emerald-700" /> Deselect All
+                          </>
+                        ) : (
+                          <>
+                            <CheckSquare className="w-3 h-3 text-emerald-700" /> Select All Categories
+                          </>
+                        )}
+                      </button>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2 pt-1">
+                      {CATEGORY_CHOICES.map((cat) => {
+                        const isSelected = selectedCategories.includes(cat);
+                        return (
+                          <button
+                            key={cat}
+                            type="button"
+                            onClick={() => toggleCategory(cat)}
+                            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition border ${
+                              isSelected
+                                ? "bg-emerald-800 text-white border-emerald-800 shadow-sm"
+                                : "bg-white text-stone-700 border-stone-200 hover:border-emerald-600/60"
+                            }`}
+                          >
+                            {isSelected && <Check className="w-3.5 h-3.5" />}
+                            {cat}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* 2. Stay Type, Rooms Provided & Budget Category in 3 Columns */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
+                    {/* Stay Type */}
+                    <div className="bg-white p-3 rounded-xl border border-stone-200/80 space-y-1.5">
+                      <label className="block text-stone-800 font-bold text-xs">Stay Type</label>
+                      <div className="flex flex-col gap-1.5">
+                        {STAY_TYPE_CHOICES.map((st) => (
+                          <button
+                            key={st}
+                            type="button"
+                            onClick={() => setStayType(st)}
+                            className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between border transition ${
+                              stayType === st
+                                ? "bg-emerald-50 text-emerald-900 border-emerald-600 font-bold"
+                                : "bg-stone-50 text-stone-700 border-transparent hover:border-stone-200"
+                            }`}
+                          >
+                            <span>{st}</span>
+                            {stayType === st && <Check className="w-3.5 h-3.5 text-emerald-700" />}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Rooms Provided */}
+                    <div className="bg-white p-3 rounded-xl border border-stone-200/80 space-y-1.5">
+                      <label className="block text-stone-800 font-bold text-xs">Rooms Provided</label>
+                      <div className="flex flex-col gap-1.5">
+                        {ROOMS_PROVIDED_CHOICES.map((rp) => (
+                          <button
+                            key={rp}
+                            type="button"
+                            onClick={() => setRoomsProvidedType(rp)}
+                            className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between border transition ${
+                              roomsProvidedType === rp
+                                ? "bg-emerald-50 text-emerald-900 border-emerald-600 font-bold"
+                                : "bg-stone-50 text-stone-700 border-transparent hover:border-stone-200"
+                            }`}
+                          >
+                            <span>{rp}</span>
+                            {roomsProvidedType === rp && <Check className="w-3.5 h-3.5 text-emerald-700" />}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Budget Category */}
+                    <div className="bg-white p-3 rounded-xl border border-stone-200/80 space-y-1.5">
+                      <label className="block text-stone-800 font-bold text-xs">Budget Category (₹)</label>
+                      <div className="flex flex-col gap-1.5">
+                        {BUDGET_CATEGORY_CHOICES.map((bc) => (
+                          <button
+                            key={bc}
+                            type="button"
+                            onClick={() => setBudgetCategory(bc)}
+                            className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between border transition ${
+                              budgetCategory === bc
+                                ? "bg-emerald-50 text-emerald-900 border-emerald-600 font-bold"
+                                : "bg-stone-50 text-stone-700 border-transparent hover:border-stone-200"
+                            }`}
+                          >
+                            <span>₹ {bc}</span>
+                            {budgetCategory === bc && <Check className="w-3.5 h-3.5 text-emerald-700" />}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 3. No. of Rooms Available & Dormitory Details */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                    <div className="bg-white p-3 rounded-xl border border-stone-200/80 space-y-2">
+                      <label className="block text-stone-800 font-bold text-xs">
+                        No. of Rooms Available
+                      </label>
+                      <div className="flex flex-wrap gap-1.5">
+                        {ROOMS_AVAILABLE_OPTIONS.map((opt) => {
+                          const isActive = String(roomsAvailableCount) === String(opt);
+                          return (
+                            <button
+                              key={opt}
+                              type="button"
+                              onClick={() => {
+                                setRoomsAvailableCount(opt);
+                                if (typeof opt === "number") setBedrooms(opt);
+                              }}
+                              className={`w-9 h-9 rounded-xl text-xs font-bold transition border flex items-center justify-center ${
+                                isActive
+                                  ? "bg-emerald-800 text-white border-emerald-800 shadow"
+                                  : "bg-stone-50 text-stone-700 border-stone-200 hover:border-emerald-500"
+                              }`}
+                            >
+                              {opt}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    <div className="bg-white p-3 rounded-xl border border-stone-200/80 space-y-1">
+                      <label className="block text-stone-800 font-bold text-xs">
+                        Dormitory Details (If in case there)
+                      </label>
+                      <input
+                        type="text"
+                        value={dormitoryDetails}
+                        onChange={(e) => setDormitoryDetails(e.target.value)}
+                        placeholder="e.g. 12-Bed AC Dormitory with 2 attached washrooms and lockers"
+                        className="w-full px-3 py-2 rounded-xl border border-stone-200 bg-stone-50 text-xs focus:bg-white"
+                      />
+                    </div>
+                  </div>
+
+                  {/* 4. Rates (Text Input Options for B2C, B2B, Per Person, Full Property) */}
+                  <div className="bg-white p-3.5 rounded-xl border border-stone-200/80 space-y-2.5">
+                    <div>
+                      <label className="block text-stone-800 font-bold text-xs flex items-center gap-1.5">
+                        <DollarSign className="w-3.5 h-3.5 text-emerald-700" />
+                        Rate Details (Enter Custom Text)
+                      </label>
+                      <p className="text-[10px] text-stone-500">
+                        Enter custom text rates (e.g. ₹12,000 / night, ₹9,000 net, ₹2,200 / person, ₹35,000 full property).
+                      </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+                      <div>
+                        <label className="block text-stone-700 font-medium text-[11px] mb-1">
+                          B2C Customer Rate *
+                        </label>
+                        <input
+                          type="text"
+                          value={rateB2c}
+                          onChange={(e) => {
+                            setRateB2c(e.target.value);
+                            const num = parseInt(e.target.value.replace(/[^0-9]/g, ""), 10);
+                            if (num) setPricePerNight(num);
+                          }}
+                          placeholder="e.g. ₹12,000 / night"
+                          className="w-full px-3 py-1.5 rounded-xl border border-stone-200 font-semibold text-xs"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-stone-700 font-medium text-[11px] mb-1">
+                          B2B Agent Rate *
+                        </label>
+                        <input
+                          type="text"
+                          value={rateB2b}
+                          onChange={(e) => {
+                            setRateB2b(e.target.value);
+                            const num = parseInt(e.target.value.replace(/[^0-9]/g, ""), 10);
+                            if (num) setB2bRate(num);
+                          }}
+                          placeholder="e.g. ₹9,000 / night"
+                          className="w-full px-3 py-1.5 rounded-xl border border-stone-200 font-semibold text-xs text-stone-700"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-stone-700 font-medium text-[11px] mb-1">
+                          Per Person Rate
+                        </label>
+                        <input
+                          type="text"
+                          value={ratePerPerson}
+                          onChange={(e) => setRatePerPerson(e.target.value)}
+                          placeholder="e.g. ₹2,200 / person"
+                          className="w-full px-3 py-1.5 rounded-xl border border-stone-200 text-xs"
+                        />
+                      </div>
+
+                      <div>
+                        <label className="block text-stone-700 font-medium text-[11px] mb-1">
+                          Full Property Rate
+                        </label>
+                        <input
+                          type="text"
+                          value={rateFullProperty}
+                          onChange={(e) => setRateFullProperty(e.target.value)}
+                          placeholder="e.g. ₹35,000 / property"
+                          className="w-full px-3 py-1.5 rounded-xl border border-stone-200 text-xs"
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -834,15 +1280,104 @@ export default function ResortManagerPage() {
                   </div>
                 </div>
 
-                {/* Amenities */}
-                <div>
-                  <label className="block text-stone-700 mb-1">Amenities (Comma-separated)</label>
-                  <input
-                    type="text"
-                    value={amenitiesStr}
-                    onChange={(e) => setAmenitiesStr(e.target.value)}
-                    className="w-full px-3 py-2 rounded-xl border border-stone-200"
-                  />
+                {/* Interactive Amenities Selector with Select All */}
+                <div className="bg-stone-50 p-4 rounded-2xl border border-stone-200 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-bold text-stone-900 text-xs flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
+                        Amenities & Facilities Checklist
+                        <span className="text-[11px] font-normal text-stone-500">
+                          ({selectedAmenities.length}/{STANDARD_AMENITIES.length} selected)
+                        </span>
+                      </h4>
+                      <p className="text-[10px] text-stone-500">
+                        Check all applicable amenities. These power website badges, 12-page brochures, and WhatsApp bot matching.
+                      </p>
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={handleSelectAllAmenities}
+                      className="inline-flex items-center gap-1 px-3 py-1.5 text-xs font-bold rounded-xl border border-emerald-700/40 text-emerald-800 bg-white hover:bg-emerald-50 transition shadow-sm"
+                    >
+                      {selectedAmenities.length >= STANDARD_AMENITIES.length ? (
+                        <>
+                          <Square className="w-3.5 h-3.5 text-emerald-700" /> Deselect All
+                        </>
+                      ) : (
+                        <>
+                          <CheckSquare className="w-3.5 h-3.5 text-emerald-700" /> Select All Amenities
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  {/* 17 Standard Amenities Checkbox Grid */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 pt-1">
+                    {STANDARD_AMENITIES.map((amenity) => {
+                      const isChecked = selectedAmenities.includes(amenity);
+                      return (
+                        <button
+                          key={amenity}
+                          type="button"
+                          onClick={() => toggleAmenity(amenity)}
+                          className={`flex items-center gap-2 p-2 rounded-xl text-left text-xs transition border ${
+                            isChecked
+                              ? "bg-emerald-50 border-emerald-600 text-emerald-950 font-bold"
+                              : "bg-white border-stone-200 text-stone-600 hover:border-stone-300 font-medium"
+                          }`}
+                        >
+                          <div
+                            className={`w-4 h-4 rounded flex items-center justify-center shrink-0 border ${
+                              isChecked ? "bg-emerald-700 border-emerald-700 text-white" : "border-stone-300 bg-white"
+                            }`}
+                          >
+                            {isChecked && <Check className="w-3 h-3" />}
+                          </div>
+                          <span className="truncate">{amenity}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Custom Amenity Adder */}
+                  <div className="pt-2 border-t border-stone-200/80 flex items-center gap-2">
+                    <input
+                      type="text"
+                      value={customAmenityInput}
+                      onChange={(e) => setCustomAmenityInput(e.target.value)}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          handleAddCustomAmenity();
+                        }
+                      }}
+                      placeholder="Add custom amenity (e.g. Forest View Deck, EV Charging Hub)..."
+                      className="flex-1 px-3 py-1.5 rounded-xl border border-stone-200 bg-white text-xs"
+                    />
+                    <button
+                      type="button"
+                      onClick={handleAddCustomAmenity}
+                      className="px-3 py-1.5 bg-stone-800 hover:bg-stone-900 text-white rounded-xl text-xs font-bold transition shrink-0"
+                    >
+                      + Add Amenity
+                    </button>
+                  </div>
+
+                  {/* Manual Comma-Separated Tag Sync (Advanced) */}
+                  <div className="pt-2 border-t border-stone-200/80">
+                    <label className="block text-[11px] font-bold text-stone-600 mb-1">
+                      Additional Amenities / Custom Raw Tags (Comma-separated)
+                    </label>
+                    <input
+                      type="text"
+                      value={amenitiesStr}
+                      onChange={(e) => setAmenitiesStr(e.target.value)}
+                      placeholder="e.g. Infinity Swimming Pool, Kids Play area, Camp Fire"
+                      className="w-full px-3 py-1.5 rounded-xl border border-stone-200 text-xs bg-white"
+                    />
+                  </div>
                 </div>
 
                 {/* Nearby Attractions */}

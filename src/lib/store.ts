@@ -36,7 +36,14 @@ function resortToDbRow(r: Resort) {
     check_out_time: r.checkOutTime,
     overview: r.overview,
     inclusions: r.inclusions,
-    exclusions: r.exclusions
+    exclusions: r.exclusions,
+    categories: r.categories,
+    stay_type: r.stayType,
+    rooms_provided_type: r.roomsProvidedType,
+    budget_category: r.budgetCategory,
+    rates: r.rates,
+    rooms_available_count: r.roomsAvailableCount,
+    dormitory_details: r.dormitoryDetails
   };
 }
 
@@ -102,7 +109,19 @@ function dbRowToResort(row: any): Resort {
     checkOutTime: row.check_out_time || "11:00 AM",
     overview: row.overview || "",
     inclusions: Array.isArray(row.inclusions) ? row.inclusions : [],
-    exclusions: Array.isArray(row.exclusions) ? row.exclusions : []
+    exclusions: Array.isArray(row.exclusions) ? row.exclusions : [],
+    categories: Array.isArray(row.categories) ? row.categories : (row.category ? [row.category] : []),
+    stayType: row.stay_type || row.stayType || "",
+    roomsProvidedType: row.rooms_provided_type || row.roomsProvidedType || "",
+    budgetCategory: row.budget_category || row.budgetCategory || "",
+    rates: row.rates || {
+      b2c: row.b2c_rate || (row.price_per_night ? String(row.price_per_night) : ""),
+      b2b: row.b2b_rate_text || (row.b2b_rate ? String(row.b2b_rate) : ""),
+      perPerson: row.per_person_rate || "",
+      fullProperty: row.full_property_rate || ""
+    },
+    roomsAvailableCount: row.rooms_available_count || row.roomsAvailableCount || row.bedrooms || 1,
+    dormitoryDetails: row.dormitory_details || row.dormitoryDetails || ""
   };
 }
 

@@ -89,6 +89,13 @@ export function getBrandLogoFilterClass(theme?: "white" | "gold" | "emerald" | "
   return "brightness-0 invert opacity-95 hover:opacity-100 transition-all";
 }
 
+export interface ResortRates {
+  b2c?: string;
+  b2b?: string;
+  perPerson?: string;
+  fullProperty?: string;
+}
+
 export interface Resort {
   id: string;
   code: string; // e.g., "AH-121"
@@ -112,6 +119,15 @@ export interface Resort {
   
   // Legacy / convenience category
   category: "Pool Villa" | "Tree House" | "Luxury Resort" | "Budget Resort" | "Honeymoon Suite" | "Plantation Stay";
+
+  // Automation & Multi-Dimension Filter Tags:
+  categories?: string[]; // Multi-select: "Private pool Villa", "Family resort", "Group", etc.
+  stayType?: string; // "Independent" | "twin cottage" | "multi cottage"
+  roomsProvidedType?: string; // "Family" | "Group" | "Family or Group"
+  budgetCategory?: string; // "2000-5000" | "5000-10000" | "10000 Plus"
+  rates?: ResortRates; // b2c, b2b, perperson rate, full property
+  roomsAvailableCount?: number | string; // 1, 2, 3, 4, 5, 6, 7, 7+
+  dormitoryDetails?: string;
 
   featured: boolean;
   coverImage: string;
