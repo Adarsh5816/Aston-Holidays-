@@ -1,7 +1,17 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Volume2, VolumeX, Play, Pause, Sparkles, ChevronDown, ArrowRight, ShieldCheck, MessageCircle } from "lucide-react";
+import Image from "next/image";
+import {
+  Volume2,
+  VolumeX,
+  Play,
+  Pause,
+  ArrowRight,
+  ShieldCheck,
+  MessageCircle,
+  ChevronDown
+} from "lucide-react";
 import { SiteSettings } from "@/lib/types";
 
 interface LuxuryHeroVideoProps {
@@ -16,31 +26,35 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
   const [activeSlide, setActiveSlide] = useState(0);
   const [videoLoaded, setVideoLoaded] = useState(false);
 
-  // Atmospheric slides focused on bespoke travel feeling (no resort advertising)
+  // Iconic Mulli/Wayanad-inspired atmospheric slides
   const slides = [
     {
-      kicker: "ASTON HOLIDAYS • WAYANAD",
-      title: "A journey designed around how you want to feel.",
-      subtitle: "Tailor-made itineraries, private escapes, and slow luxury crafted amidst the mist of the Western Ghats. Designed around your personal rhythm.",
-      label: "The Experience"
+      eyebrow: "A DIFFERENT KIND OF WILD",
+      line1: "Go where",
+      accent: "the green",
+      line2: "gets deep.",
+      sub1: "Small, considered journeys through Wayanad.",
+      sub2: "Made slowly. Remembered forever."
     },
     {
-      kicker: "BESPOKE PRIVATE ESCAPES",
-      title: "Every journey begins with a feeling.",
-      subtitle: "Wake up to mist dancing over calm waters, aromatic coffee estates, and secluded stillness away from crowded trails.",
-      label: "The Escapes"
+      eyebrow: "BESPOKE PRIVATE ESCAPES",
+      line1: "A journey",
+      accent: "designed around",
+      line2: "how you feel.",
+      sub1: "Tailor-made itineraries across 37+ verified private sanctuaries.",
+      sub2: "Zero middleman surcharges. 24/7 dedicated travel architect."
     },
     {
-      kicker: "DEDICATED TRAVEL ARCHITECT",
-      title: "Rare moments, crafted exclusively for you.",
-      subtitle: "From romantic getaways to restorative multi-generational holidays. Tell us what you seek, and we will bring it to life.",
-      label: "The Concierge"
+      eyebrow: "ABOVE CLOUDS & CANOPIES",
+      line1: "Stillness",
+      accent: "amidst the mist",
+      line2: "and quiet peaks.",
+      sub1: "Private infinity pool estates and glass canopy treehouses.",
+      sub2: "Crafted exclusively around your personal pace."
     }
   ];
 
-  // Primary video URL: user custom setting -> local public video -> cloud pristine nature loop
   const primaryVideoSource = settings.heroVideoUrl || "/videos/wayanad-hero.mp4";
-  const fallbackCdnVideo = "https://assets.mixkit.co/videos/preview/mixkit-clouds-and-mist-rolling-over-the-mountain-peaks-42797-large.mp4";
 
   // WhatsApp Concierge direct link
   const rawPhone = settings.whatsappNumber || "+919744900414";
@@ -49,12 +63,11 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
     "Hello Aston Holidays, I would like to plan a bespoke luxury holiday to Wayanad."
   )}`;
 
-  // Robust Autoplay Initializer for all modern mobile and desktop browsers
+  // Autoplay handler
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
 
-    // Direct DOM property setting bypasses browser autoplay restrictions
     video.defaultMuted = true;
     video.muted = true;
 
@@ -66,8 +79,8 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
             setIsPlaying(true);
             setVideoLoaded(true);
           })
-          .catch((err) => {
-            console.log("Autoplay waiting for user gesture or muted unlock:", err);
+          .catch(() => {
+            // Video autoplay paused, static majestic background remains fully visible
           });
       }
     };
@@ -94,144 +107,153 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
     }
   };
 
-  // Auto-cycle through slides every 8 seconds
+  // Cycle through atmospheric phrases every 9 seconds
   useEffect(() => {
     const timer = setInterval(() => {
       setActiveSlide((prev) => (prev + 1) % slides.length);
-    }, 8000);
+    }, 9000);
     return () => clearInterval(timer);
   }, [slides.length]);
 
+  const currentSlide = slides[activeSlide];
+
   return (
-    <section className="relative w-full h-screen min-h-[100dvh] flex items-center justify-between overflow-hidden bg-black select-none">
+    <section className="relative w-full h-screen min-h-[100dvh] flex items-center justify-between overflow-hidden bg-[#0A130B] select-none">
       
-      {/* ================= RAW, 100% UNMASKED VIDEO (NO OLD BACKGROUND) ================= */}
-      <div className="absolute inset-0 z-0 overflow-hidden bg-black">
-        {/* Video Element: 100% Pure, Untouched High-Definition Video — No overlays, no masks, no background image */}
-        <video
-          ref={videoRef}
-          autoPlay
-          loop
-          muted={isMuted}
-          playsInline
-          preload="auto"
-          src={primaryVideoSource}
-          onLoadedData={() => setVideoLoaded(true)}
-          onCanPlay={() => setVideoLoaded(true)}
-          onPlay={() => {
-            setVideoLoaded(true);
-            setIsPlaying(true);
-          }}
-          className="relative z-10 w-full h-full object-cover"
-        >
-          {primaryVideoSource && <source src={primaryVideoSource} type="video/mp4" />}
-          <source src="/videos/wayanad-hero.mp4" type="video/mp4" />
-        </video>
+      {/* ================= 1. HIGH-DEFINITION NATURE BACKDROP (DEEP GREEN MISTY WAYANAD) ================= */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        {/* High-res pristine landscape matching the exact reference composition (winding road through misty rainforest & tea estates) */}
+        <Image
+          src="/brand/hero-wayanad-deep-green.jpg"
+          alt="Go where the green gets deep - Wayanad Kerala"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center transform scale-[1.02] transition-transform duration-[10000ms] ease-out"
+        />
+
+        {/* Ambient Video Layer (Blends smoothly if video plays) */}
+        {primaryVideoSource && (
+          <video
+            ref={videoRef}
+            autoPlay
+            loop
+            muted={isMuted}
+            playsInline
+            preload="auto"
+            src={primaryVideoSource}
+            onLoadedData={() => setVideoLoaded(true)}
+            onCanPlay={() => setVideoLoaded(true)}
+            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${
+              videoLoaded && isPlaying ? "opacity-40 mix-blend-screen" : "opacity-0"
+            }`}
+          >
+            <source src={primaryVideoSource} type="video/mp4" />
+          </video>
+        )}
+
+        {/* Atmospheric Lighting Overlays: Soft moody left shadow for high typography contrast + golden dusk horizon glow */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#070E08]/85 via-[#070E08]/45 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#070E08]/90 via-transparent to-black/30 pointer-events-none" />
+        <div className="absolute top-0 right-0 w-1/2 h-1/2 bg-gradient-to-bl from-amber-600/10 via-transparent to-transparent pointer-events-none" />
       </div>
 
-      {/* ================= EDITORIAL CONTENT (SIDE-WISE / FLOATING TYPOGRAPHY) ================= */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-20 flex flex-col justify-center items-start text-left h-full pointer-events-none">
+      {/* ================= 2. SIGNATURE EDITORIAL HERO CONTENT ================= */}
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 sm:px-12 lg:px-20 py-24 sm:py-28 flex flex-col justify-center items-start text-left h-full pointer-events-none">
         
-        <div className="max-w-xl lg:max-w-3xl pointer-events-auto p-4 sm:p-8 -ml-4 sm:-ml-8 rounded-3xl bg-gradient-to-r from-black/50 via-black/20 to-transparent backdrop-blur-[1.5px]">
-          {/* Black Tomato Style Floating Pill */}
-          <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/40 backdrop-blur-md border border-white/30 text-white text-[11px] font-bold tracking-luxury uppercase mb-6 shadow-2xl">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
-            <span>{slides[activeSlide].kicker}</span>
+        <div className="max-w-2xl lg:max-w-3xl pointer-events-auto">
+          
+          {/* Eyebrow with Leading Dash Line */}
+          <div className="flex items-center gap-3 text-[#D48D6C] text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase mb-5 sm:mb-7 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+            <span className="w-8 sm:w-10 h-[1.5px] bg-[#D48D6C]" />
+            <span>{currentSlide.eyebrow}</span>
           </div>
 
-          {/* Grand Headline: Soft, cinematic, eye-pleasing depth without muddy text halos */}
+          {/* Signature 3-Line Headline with Terracotta Italic Accent */}
           <h1
-            className="text-3xl sm:text-5xl lg:text-6xl font-editorial font-normal text-white tracking-[-0.015em] leading-[1.14] transition-all duration-700 antialiased"
-            style={{
-              textShadow: "0 2px 25px rgba(0,0,0,0.55), 0 4px 50px rgba(0,0,0,0.35), 0 1px 3px rgba(0,0,0,0.7)"
-            }}
+            className="text-5xl sm:text-7xl lg:text-[5.5rem] xl:text-[6.2rem] font-editorial font-normal text-[#F6F4EE] tracking-[-0.025em] leading-[1.04] antialiased drop-shadow-[0_4px_30px_rgba(0,0,0,0.7)] transition-all duration-700"
           >
-            {slides[activeSlide].title}
+            {currentSlide.line1} <br />
+            <span className="italic font-normal text-[#D48D6C] font-editorial drop-shadow-[0_4px_30px_rgba(0,0,0,0.7)]">
+              {currentSlide.accent}
+            </span>{" "}
+            <br />
+            {currentSlide.line2}
           </h1>
 
-          {/* Editorial Subtitle with Soft Cinematic Shadow */}
-          <p
-            className="mt-5 sm:mt-6 text-sm sm:text-base lg:text-lg text-stone-100/95 font-light leading-relaxed font-sans-luxury max-w-xl"
-            style={{
-              textShadow: "0 2px 16px rgba(0,0,0,0.65), 0 1px 3px rgba(0,0,0,0.7)"
-            }}
-          >
-            {slides[activeSlide].subtitle}
-          </p>
+          {/* Bottom Narrative + Circular "Explore journeys" CTA */}
+          <div className="mt-8 sm:mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-6 sm:gap-10">
+            
+            {/* 2-Line Subtext */}
+            <div className="text-xs sm:text-[13px] text-[#E5E0D8]/90 font-light leading-relaxed font-sans max-w-xs drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)]">
+              <p>{currentSlide.sub1}</p>
+              <p className="mt-0.5">{currentSlide.sub2}</p>
+            </div>
 
-          {/* Primary Action Tabs: Semi-Transparent Crystal Glassmorphic Tabs */}
-          <div className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4">
-            {/* Semi-Transparent Crystal Glass Tab: Plan Your Journey */}
-            <button
-              onClick={onOpenEnquiry}
-              className="group relative inline-flex items-center gap-3.5 px-8 py-4 rounded-2xl overflow-hidden
-                         bg-white/[0.08] hover:bg-white/[0.18]
-                         backdrop-blur-md
-                         border border-white/25 hover:border-white/60
-                         shadow-[0_10px_35px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.5),inset_0_-1px_2px_rgba(0,0,0,0.2)]
-                         hover:shadow-[0_14px_45px_rgba(0,0,0,0.5),0_0_20px_rgba(255,255,255,0.2),inset_0_1px_1.5px_rgba(255,255,255,0.7)]
-                         text-white text-xs sm:text-sm font-semibold tracking-luxury uppercase
-                         transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0"
-            >
-              {/* Subtle top crystal prism highlight */}
-              <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/80 to-transparent pointer-events-none" />
-              {/* Delicate refraction shimmer on hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
-              
-              <span className="relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">Plan Your Journey</span>
-              <ArrowRight className="relative z-10 w-4 h-4 text-emerald-300 group-hover:translate-x-1 transition-transform drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" />
-            </button>
-
-            {/* Semi-Transparent Crystal Glass Tab: WhatsApp Concierge */}
+            {/* The Iconic Minimalist Circular "Explore journeys ↓" CTA */}
             <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative inline-flex items-center gap-3.5 px-7 py-4 rounded-2xl overflow-hidden
-                         bg-white/[0.06] hover:bg-white/[0.15]
-                         backdrop-blur-md
-                         border border-white/20 hover:border-white/50
-                         shadow-[0_10px_35px_rgba(0,0,0,0.4),inset_0_1px_1px_rgba(255,255,255,0.4),inset_0_-1px_2px_rgba(0,0,0,0.2)]
-                         hover:shadow-[0_14px_45px_rgba(0,0,0,0.5),0_0_20px_rgba(52,211,153,0.25),inset_0_1px_1.5px_rgba(255,255,255,0.6)]
-                         text-white text-xs sm:text-sm font-semibold tracking-luxury uppercase
-                         transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0"
+              href="#feelings-engine"
+              className="group relative w-20 h-20 sm:w-22 sm:h-22 rounded-full border border-white/35 hover:border-[#D48D6C] bg-black/25 hover:bg-black/50 backdrop-blur-md flex flex-col items-center justify-center text-center transition-all duration-300 hover:scale-105 shrink-0 shadow-2xl"
             >
-              {/* Subtle top crystal prism highlight */}
-              <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/70 to-transparent pointer-events-none" />
-              {/* Delicate emerald shimmer on hover */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-emerald-300/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out pointer-events-none" />
-              
-              <div className="relative z-10 p-1 rounded-lg bg-emerald-500/20 border border-emerald-400/30 backdrop-blur-sm">
-                <MessageCircle className="w-4 h-4 text-emerald-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]" />
-              </div>
-              <span className="relative z-10 drop-shadow-[0_2px_4px_rgba(0,0,0,0.9)]">WhatsApp Concierge</span>
+              <span className="text-[10px] sm:text-[11px] font-sans font-medium uppercase tracking-widest text-[#F6F4EE] leading-tight">
+                Explore<br />journeys
+              </span>
+              <span className="mt-1 text-xs text-[#D48D6C] group-hover:translate-y-1 transition-transform">↓</span>
             </a>
+
+            {/* Direct Concierge Link & WhatsApp Button */}
+            <div className="flex items-center gap-3">
+              <button
+                onClick={onOpenEnquiry}
+                className="group inline-flex items-center gap-2.5 text-[11px] font-sans font-semibold uppercase tracking-[0.2em] text-[#F6F4EE] hover:text-[#D48D6C] py-2.5 px-5 rounded-full bg-white/10 hover:bg-white/20 border border-white/25 hover:border-[#D48D6C]/60 backdrop-blur-sm transition-all shadow-xl"
+              >
+                <span>Plan Journey</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#D48D6C] group-hover:translate-x-1 transition-transform" />
+              </button>
+
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2.5 rounded-full bg-white/10 hover:bg-white/25 border border-white/25 text-[#D48D6C] hover:text-white backdrop-blur-sm transition-all shadow-xl"
+                title="Chat with Concierge on WhatsApp"
+              >
+                <MessageCircle className="w-4 h-4" />
+              </a>
+            </div>
+
           </div>
 
-          {/* Luxury Travel Assurances (Floating Frosted Capsule - Responsive Mobile & Desktop) */}
-          <div className="mt-6 sm:mt-8 inline-flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-6 text-[11px] text-stone-200 font-medium tracking-wider bg-black/45 backdrop-blur-md px-4 sm:px-6 py-3 sm:py-2.5 rounded-2xl sm:rounded-full border border-white/20 shadow-2xl max-w-full">
-            <span className="flex items-center gap-2 text-white">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+          {/* Luxury Travel Assurances Frosted Capsule */}
+          <div className="mt-6 sm:mt-8 inline-flex flex-wrap items-center gap-2 sm:gap-5 text-[11px] text-[#E5E0D8]/80 font-medium tracking-wider bg-black/40 backdrop-blur-md px-4 sm:px-5 py-2 rounded-full border border-white/15 shadow-2xl">
+            <span className="flex items-center gap-1.5 text-[#F6F4EE]">
+              <ShieldCheck className="w-3.5 h-3.5 text-[#D48D6C] shrink-0" />
               Dedicated Travel Architect
             </span>
-            <span className="hidden sm:inline text-white/30">•</span>
-            <span className="flex items-center gap-2 sm:gap-0">
-              <span className="sm:hidden text-emerald-400 font-bold">✓</span>
-              Tailor-Made Itineraries
-            </span>
-            <span className="hidden sm:inline text-white/30">•</span>
-            <span className="flex items-center gap-2 sm:gap-0">
-              <span className="sm:hidden text-emerald-400 font-bold">✓</span>
-              Seamless 24/7 Concierge
-            </span>
+            <span className="text-white/25 hidden sm:inline">•</span>
+            <span>Tailor-Made Itineraries</span>
+            <span className="text-white/25 hidden sm:inline">•</span>
+            <span>Seamless 24/7 Concierge</span>
           </div>
+
         </div>
 
       </div>
 
-      {/* ================= CONTROLS & CAROUSEL INDICATORS ================= */}
-      
-      {/* Left Bottom: Video Sound & Play Controls */}
+      {/* ================= 3. WAYANAD EXACT GPS COORDINATES (BOTTOM-RIGHT) ================= */}
+      <div className="absolute bottom-8 right-6 sm:right-12 z-20 text-right pointer-events-none drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]">
+        <p className="text-[10px] sm:text-[11px] font-mono tracking-[0.28em] text-[#F6F4EE]/75 uppercase">
+          11° 41&apos; N
+        </p>
+        <p className="text-[10px] sm:text-[11px] font-mono tracking-[0.28em] text-[#F6F4EE]/75 uppercase mt-0.5">
+          76° 07&apos; E
+        </p>
+        <p className="text-[9px] font-sans tracking-[0.22em] text-[#D48D6C] uppercase mt-1 font-semibold">
+          Wayanad, Kerala
+        </p>
+      </div>
+
+      {/* ================= 4. SOUND & VIDEO CONTROLS (BOTTOM-LEFT) ================= */}
       <div className="absolute bottom-6 left-6 z-20 flex items-center gap-2">
         <button
           onClick={toggleSound}
@@ -245,8 +267,8 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
             </>
           ) : (
             <>
-              <Volume2 className="w-3.5 h-3.5 text-emerald-400 animate-pulse" />
-              <span className="text-[10px] uppercase font-bold tracking-wider text-emerald-300 hidden sm:inline">Sound On</span>
+              <Volume2 className="w-3.5 h-3.5 text-[#D48D6C] animate-pulse" />
+              <span className="text-[10px] uppercase font-bold tracking-wider text-[#D48D6C] hidden sm:inline">Sound On</span>
             </>
           )}
         </button>
@@ -260,30 +282,10 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
         </button>
       </div>
 
-      {/* Right Bottom: Slide Tabs Indicator (Hidden) */}
-      {/*
-      <div className="absolute bottom-6 right-6 z-20 hidden md:flex items-center gap-3">
-        {slides.map((s, idx) => (
-          <button
-            key={s.label}
-            onClick={() => setActiveSlide(idx)}
-            className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-[11px] font-semibold tracking-wider transition-all duration-300 border ${
-              activeSlide === idx
-                ? "bg-white/25 border-white text-white backdrop-blur-md shadow-2xl"
-                : "bg-black/45 border-white/15 text-stone-300 hover:text-white hover:border-white/35 backdrop-blur-sm"
-            }`}
-          >
-            <span className={`w-1.5 h-1.5 rounded-full ${activeSlide === idx ? "bg-emerald-400" : "bg-stone-400"}`} />
-            <span>0{idx + 1} / {s.label}</span>
-          </button>
-        ))}
-      </div>
-      */}
-
       {/* Down Scroll Indicator */}
       <div className="absolute bottom-3 inset-x-0 z-20 flex justify-center pointer-events-none">
-        <div className="animate-bounce text-white drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
-          <ChevronDown className="w-5 h-5" />
+        <div className="animate-bounce text-[#D48D6C] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+          <ChevronDown className="w-5 h-5 opacity-70" />
         </div>
       </div>
 

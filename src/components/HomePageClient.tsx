@@ -72,7 +72,7 @@ export default function HomePageClient({
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#FAF8F5] text-stone-900 font-sans selection:bg-[#2E4F28] selection:text-white">
+    <div className="min-h-screen flex flex-col bg-[#F7F4EE] text-stone-900 font-sans selection:bg-[#D48D6C] selection:text-[#0A130B]">
       
       {/* Luxury Navbar with transparent-to-frosted transition */}
       <LuxuryNavbar onOpenEnquiry={() => handleOpenEnquiry()} settings={settings} />
@@ -86,7 +86,7 @@ export default function HomePageClient({
         />
 
         {/* ================= 2. THE PHILOSOPHY MANIFESTO (Black Tomato Signature Section) ================= */}
-        <section className="py-24 sm:py-32 bg-[#FAF8F5] relative overflow-hidden" id="philosophy">
+        <section className="py-24 sm:py-32 bg-[#F7F4EE] relative overflow-hidden" id="philosophy">
           
           {/* Subtle Watermark Emblem */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-[0.03] pointer-events-none">
@@ -100,8 +100,8 @@ export default function HomePageClient({
 
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-950/10 text-emerald-900 text-[11px] font-bold tracking-luxury uppercase mb-6">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D48D6C]/10 text-[#C47D5C] border border-[#D48D6C]/30 text-[11px] font-bold tracking-[0.2em] uppercase mb-6">
+              <Sparkles className="w-3.5 h-3.5 text-[#D48D6C]" />
               The Aston Philosophy
             </div>
 
@@ -130,10 +130,10 @@ export default function HomePageClient({
             <div className="mt-10">
               <button
                 onClick={() => handleOpenEnquiry()}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#1A2218] hover:bg-[#2E4F28] text-white text-xs font-semibold tracking-luxury uppercase transition-all shadow-xl hover:shadow-stone-900/40"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#0A130B] hover:bg-[#D48D6C] text-white hover:text-[#0A130B] text-xs font-semibold tracking-luxury uppercase transition-all shadow-xl hover:shadow-[#D48D6C]/30"
               >
                 <span>Get In Touch with our Concierge</span>
-                <ArrowRight className="w-4 h-4 text-emerald-300" />
+                <ArrowRight className="w-4 h-4 text-[#D48D6C]" />
               </button>
             </div>
 
@@ -147,13 +147,13 @@ export default function HomePageClient({
               {testimonials.map((t, idx) => (
                 <div key={idx} className="flex flex-col justify-between text-center md:text-left space-y-4">
                   <div>
-                    <Quote className="w-6 h-6 text-emerald-700/50 mb-3 mx-auto md:mx-0" />
+                    <Quote className="w-6 h-6 text-[#D48D6C] mb-3 mx-auto md:mx-0" />
                     <p className="text-sm sm:text-[15px] font-editorial italic font-normal text-stone-800 leading-relaxed">
                       &ldquo;{t.quote}&rdquo;
                     </p>
                   </div>
                   <div className="pt-2">
-                    <p className="text-xs font-semibold text-emerald-900">{t.author}</p>
+                    <p className="text-xs font-semibold text-stone-900">{t.author}</p>
                     <p className="text-[11px] text-stone-500 font-light">{t.location}</p>
                   </div>
                 </div>

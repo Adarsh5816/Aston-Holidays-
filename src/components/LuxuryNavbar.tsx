@@ -60,18 +60,18 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
   return (
     <>
       <header
-        className={`fixed top-0 inset-x-0 z-40 transition-all duration-500 ${
+        className={`fixed top-0 inset-x-0 z-40 transition-all duration-500 border-b border-white/15 ${
           scrolled
-            ? "bg-[#0B120B]/95 backdrop-blur-md border-b border-white/10 text-white shadow-2xl py-3"
-            : "bg-gradient-to-b from-black/80 via-black/40 to-transparent text-white py-5"
+            ? "bg-[#09120A]/95 backdrop-blur-md text-white shadow-2xl py-3"
+            : "bg-gradient-to-b from-black/85 via-black/40 to-transparent text-white py-4 sm:py-5"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between">
             
-            {/* Brand Logo - Crisp White on Dark Luxury Navbar */}
-            <Link href="/" className="flex items-center gap-3 shrink-0">
-              <div className="relative w-36 sm:w-44 h-12">
+            {/* Brand Logo & Editorial Location Subtitle (Matches Reference "mulli / WAYANAD, KERALA") */}
+            <Link href="/" className="flex flex-col items-start shrink-0 group">
+              <div className="relative w-36 sm:w-44 h-10 sm:h-11">
                 <Image
                   src="/brand/logo.png"
                   alt="Aston Holidays"
@@ -80,61 +80,17 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
                   priority
                 />
               </div>
+              <span className="text-[8px] sm:text-[9px] font-mono tracking-[0.28em] text-[#D48D6C] uppercase font-semibold pl-0.5 mt-0.5">
+                WAYANAD, KERALA
+              </span>
             </Link>
 
-            {/* Desktop Navigation Links (Black Tomato Letter-Spaced Typography) */}
-            <nav className="hidden lg:flex items-center gap-8 text-[11px] font-semibold tracking-luxury uppercase text-stone-200">
+            {/* Desktop Navigation Links (Clean Spaced Uppercase Typography) */}
+            <nav className="hidden lg:flex items-center gap-8 text-[11px] font-semibold tracking-[0.22em] uppercase text-stone-200">
               
-              <Link href="/" className="hover:text-emerald-300 transition">
-                Home
+              <Link href="/resorts" className="hover:text-[#D48D6C] transition">
+                Journeys
               </Link>
-
-              {/* Destinations Dropdown */}
-              <div
-                className="relative py-2"
-                onMouseEnter={() => setDestinationsOpen(true)}
-                onMouseLeave={() => setDestinationsOpen(false)}
-              >
-                <button className="flex items-center gap-1 hover:text-emerald-300 transition">
-                  <span>Destinations</span>
-                  <ChevronDown className="w-3 h-3 opacity-60" />
-                </button>
-
-                {destinationsOpen && (
-                  <div className="absolute top-full left-0 w-64 bg-[#0F1710] border border-white/15 rounded-2xl p-3 shadow-2xl space-y-1 backdrop-blur-xl animate-in fade-in duration-200">
-                    <Link
-                      href="/resorts?destination=Padinjarathara"
-                      className="block p-2.5 rounded-xl hover:bg-white/10 text-xs font-medium text-stone-200 hover:text-white transition"
-                    >
-                      Padinjarathara (Banasura Lake)
-                    </Link>
-                    <Link
-                      href="/resorts?destination=Vythiri"
-                      className="block p-2.5 rounded-xl hover:bg-white/10 text-xs font-medium text-stone-200 hover:text-white transition"
-                    >
-                      Vythiri (Rainforest Canopies)
-                    </Link>
-                    <Link
-                      href="/resorts?destination=Meppadi"
-                      className="block p-2.5 rounded-xl hover:bg-white/10 text-xs font-medium text-stone-200 hover:text-white transition"
-                    >
-                      Meppadi (Chembra Peaks)
-                    </Link>
-                    <Link
-                      href="/resorts?destination=Sulthan+Bathery"
-                      className="block p-2.5 rounded-xl hover:bg-white/10 text-xs font-medium text-stone-200 hover:text-white transition"
-                    >
-                      Sulthan Bathery (Edakkal Caves)
-                    </Link>
-                    <Link
-                      href="/resorts"
-                      className="block p-2.5 rounded-xl bg-white/5 text-xs font-bold text-emerald-400 hover:bg-white/10 transition mt-1"
-                    >
-                      Explore All 37 Verified Stays →
-                    </Link>
-                  </div>
-                )}
-              </div>
 
               {/* Sanctuaries Dropdown */}
               <div
@@ -142,13 +98,13 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
                 onMouseEnter={() => setSanctuariesOpen(true)}
                 onMouseLeave={() => setSanctuariesOpen(false)}
               >
-                <button className="flex items-center gap-1 hover:text-emerald-300 transition">
-                  <span>Sanctuaries</span>
-                  <ChevronDown className="w-3 h-3 opacity-60" />
+                <button className="flex items-center gap-1 hover:text-[#D48D6C] transition">
+                  <span>The Sanctuaries</span>
+                  <ChevronDown className="w-3 h-3 opacity-60 text-[#D48D6C]" />
                 </button>
 
                 {sanctuariesOpen && (
-                  <div className="absolute top-full left-0 w-64 bg-[#0F1710] border border-white/15 rounded-2xl p-3 shadow-2xl space-y-1 backdrop-blur-xl animate-in fade-in duration-200">
+                  <div className="absolute top-full left-0 w-64 bg-[#0A130B]/95 border border-white/15 rounded-2xl p-3 shadow-2xl space-y-1 backdrop-blur-xl animate-in fade-in duration-200">
                     <Link
                       href="/resorts?category=Pool+Villa"
                       className="block p-2.5 rounded-xl hover:bg-white/10 text-xs font-medium text-stone-200 hover:text-white transition"
@@ -168,56 +124,89 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
                       Heritage Plantation Estates
                     </Link>
                     <Link
-                      href="/brochure/AH-121"
-                      className="block p-2.5 rounded-xl bg-white/5 text-xs font-bold text-emerald-400 hover:bg-white/10 transition mt-1"
+                      href="/resorts"
+                      className="block p-2.5 rounded-xl bg-white/5 text-xs font-bold text-[#D48D6C] hover:bg-white/10 transition mt-1"
                     >
-                      Featured: AH-121 3BHK Villa →
+                      Explore All 37 Verified Stays →
                     </Link>
                   </div>
                 )}
               </div>
 
-              <a href="#feelings-engine" className="hover:text-emerald-300 transition">
-                The Feelings Engine
-              </a>
+              {/* Destinations Dropdown */}
+              <div
+                className="relative py-2"
+                onMouseEnter={() => setDestinationsOpen(true)}
+                onMouseLeave={() => setDestinationsOpen(false)}
+              >
+                <button className="flex items-center gap-1 hover:text-[#D48D6C] transition">
+                  <span>The Place</span>
+                  <ChevronDown className="w-3 h-3 opacity-60 text-[#D48D6C]" />
+                </button>
 
-              <a href="#philosophy" className="hover:text-emerald-300 transition">
-                Philosophy
-              </a>
+                {destinationsOpen && (
+                  <div className="absolute top-full left-0 w-64 bg-[#0A130B]/95 border border-white/15 rounded-2xl p-3 shadow-2xl space-y-1 backdrop-blur-xl animate-in fade-in duration-200">
+                    <Link
+                      href="/resorts?destination=Padinjarathara"
+                      className="block p-2.5 rounded-xl hover:bg-white/10 text-xs font-medium text-stone-200 hover:text-white transition"
+                    >
+                      Padinjarathara (Banasura Lake)
+                    </Link>
+                    <Link
+                      href="/resorts?destination=Vythiri"
+                      className="block p-2.5 rounded-xl hover:bg-white/10 text-xs font-medium text-stone-200 hover:text-white transition"
+                    >
+                      Vythiri (Rainforest Canopies)
+                    </Link>
+                    <Link
+                      href="/resorts?destination=Meppadi"
+                      className="block p-2.5 rounded-xl hover:bg-white/10 text-xs font-medium text-stone-200 hover:text-white transition"
+                    >
+                      Meppadi (Chembra Peaks)
+                    </Link>
+                    <Link
+                      href="/destinations"
+                      className="block p-2.5 rounded-xl bg-white/5 text-xs font-bold text-[#D48D6C] hover:bg-white/10 transition mt-1"
+                    >
+                      All Wayanad Destinations →
+                    </Link>
+                  </div>
+                )}
+              </div>
 
-              <Link href="/admin" className="text-stone-400 hover:text-white transition text-[10px]">
-                Staff Login
-              </Link>
+              <a href="#philosophy" className="hover:text-[#D48D6C] transition">
+                Journal
+              </a>
 
             </nav>
 
-            {/* Right Action: Concierge Phone & Black Tomato Pill CTA */}
-            <div className="flex items-center gap-4">
+            {/* Right Action: Menu Trigger & Bespoke Enquiry Pill */}
+            <div className="flex items-center gap-3">
               
               {/* Phone Desk */}
               <a
                 href="tel:+919744900414"
-                className="hidden xl:flex items-center gap-2 text-xs font-semibold text-stone-300 hover:text-white transition"
+                className="hidden xl:flex items-center gap-2 text-xs font-semibold text-stone-300 hover:text-white transition mr-1"
               >
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-[#D48D6C] animate-pulse" />
                 <span>+91 97449 00414</span>
               </a>
 
-              {/* Signature Black Tomato Rounded Pill CTA */}
-              <button
-                onClick={onOpenEnquiry}
-                className="inline-flex items-center gap-2 px-6 sm:px-7 py-2.5 sm:py-3 rounded-full bg-[#2E4F28] hover:bg-[#233D1F] text-white text-[11px] sm:text-xs font-bold uppercase tracking-luxury transition-all shadow-xl hover:shadow-emerald-950/80 border border-emerald-400/30 transform hover:-translate-y-0.5 active:translate-y-0"
-              >
-                <span>Enquire Now</span>
-              </button>
-
-              {/* Mobile Hamburger Toggle */}
+              {/* Minimal Menu Pill (Matches Reference "MENU" with hamburger) */}
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="lg:hidden p-2 rounded-full bg-white/10 text-stone-200 hover:text-white hover:bg-white/20 transition"
-                aria-label="Toggle Navigation"
+                className="flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.22em] text-stone-200 hover:text-[#D48D6C] transition py-1.5 px-3.5 rounded-full border border-white/20 hover:border-[#D48D6C]/50 bg-black/20 hover:bg-black/40 backdrop-blur-sm"
               >
-                {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                {mobileOpen ? <X className="w-3.5 h-3.5 text-[#D48D6C]" /> : <Menu className="w-3.5 h-3.5 text-[#D48D6C]" />}
+                <span>Menu</span>
+              </button>
+
+              {/* Terracotta Plan Journey Button */}
+              <button
+                onClick={onOpenEnquiry}
+                className="hidden sm:inline-flex items-center gap-2 px-5 py-2 rounded-full bg-[#D48D6C] hover:bg-[#C47D5C] text-[#0A130B] text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] transition-all shadow-lg hover:shadow-[#D48D6C]/30"
+              >
+                <span>Enquire</span>
               </button>
 
             </div>
@@ -283,17 +272,17 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
             <div className="pt-4 border-t border-white/10 space-y-3">
               <a
                 href="tel:+919744900414"
-                className="flex items-center gap-2 text-xs font-bold text-emerald-300"
+                className="flex items-center gap-2 text-xs font-bold text-[#D48D6C]"
               >
-                <Phone className="w-3.5 h-3.5" />
-                <span>Call Desk: +91 97449 00414</span>
+                <Phone className="w-3.5 h-3.5 text-[#D48D6C]" />
+                <span>Concierge Desk: +91 97449 00414</span>
               </a>
               <button
                 onClick={() => {
                   setMobileOpen(false);
                   onOpenEnquiry();
                 }}
-                className="w-full py-3 rounded-full bg-emerald-500 hover:bg-emerald-400 text-stone-950 text-xs font-bold uppercase tracking-luxury transition shadow-lg"
+                className="w-full py-3 rounded-full bg-[#D48D6C] hover:bg-[#C47D5C] text-[#0A130B] text-xs font-bold uppercase tracking-[0.2em] transition shadow-lg"
               >
                 Plan My Journey
               </button>
