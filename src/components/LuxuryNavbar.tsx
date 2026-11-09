@@ -105,8 +105,8 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
             {/* Desktop Navigation Links (Clean Spaced Uppercase Typography) */}
             <nav className="hidden lg:flex items-center gap-8 text-[11px] font-semibold tracking-[0.22em] uppercase text-stone-200">
               
-              <Link href="/resorts" className="hover:text-[#D48D6C] transition">
-                Journeys
+              <Link href="/resorts" className="hover:text-[#D48D6C] transition uppercase">
+                JOURNEYS
               </Link>
 
               {/* Sanctuaries Dropdown */}
@@ -115,8 +115,8 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
                 onMouseEnter={() => setSanctuariesOpen(true)}
                 onMouseLeave={() => setSanctuariesOpen(false)}
               >
-                <button className="flex items-center gap-1 hover:text-[#D48D6C] transition">
-                  <span>The Sanctuaries</span>
+                <button className="flex items-center gap-1 hover:text-[#D48D6C] transition uppercase tracking-[0.22em] text-[11px]">
+                  <span>THE SANCTUARIES</span>
                   <ChevronDown className="w-3 h-3 opacity-60 text-[#D48D6C]" />
                 </button>
 
@@ -156,8 +156,8 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
                 onMouseEnter={() => setDestinationsOpen(true)}
                 onMouseLeave={() => setDestinationsOpen(false)}
               >
-                <button className="flex items-center gap-1 hover:text-[#D48D6C] transition">
-                  <span>The Place</span>
+                <button className="flex items-center gap-1 hover:text-[#D48D6C] transition uppercase tracking-[0.22em] text-[11px]">
+                  <span>THE PLACE</span>
                   <ChevronDown className="w-3 h-3 opacity-60 text-[#D48D6C]" />
                 </button>
 
@@ -191,8 +191,8 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
                 )}
               </div>
 
-              <a href="#philosophy" className="hover:text-[#D48D6C] transition">
-                Journal
+              <a href="#philosophy" className="hover:text-[#D48D6C] transition uppercase">
+                JOURNAL
               </a>
 
             </nav>
