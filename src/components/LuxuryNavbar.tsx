@@ -97,9 +97,6 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
                   priority
                 />
               </div>
-              <span className="text-[8px] sm:text-[9px] font-mono tracking-[0.28em] text-[#D48D6C] uppercase font-semibold pl-0.5 mt-0.5">
-                WAYANAD, KERALA
-              </span>
             </Link>
 
             {/* Desktop Navigation Links (Clean Spaced Uppercase Typography) */}
