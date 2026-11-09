@@ -27,6 +27,33 @@ export default function FilterBar({ onFilterChange, initialFilters = {} }: Filte
   const [taxonomies, setTaxonomies] = useState<any>(null);
 
   useEffect(() => {
+    if (initialFilters.accommodationType || initialFilters.category) {
+      setAccommodationType(initialFilters.accommodationType || initialFilters.category || "all");
+    }
+    if (initialFilters.stayPreference) {
+      setStayPreference(initialFilters.stayPreference);
+    }
+    if (initialFilters.location || initialFilters.destination) {
+      setLocation(initialFilters.location || initialFilters.destination || "all");
+    }
+    if (initialFilters.budgetMax !== undefined) {
+      setBudgetMax(initialFilters.budgetMax);
+    }
+    if (initialFilters.ambience) {
+      setAmbience(initialFilters.ambience);
+    }
+    if (initialFilters.rooms !== undefined || initialFilters.bedrooms !== undefined) {
+      setRooms(initialFilters.rooms || initialFilters.bedrooms || 0);
+    }
+    if (initialFilters.adults !== undefined) {
+      setAdults(initialFilters.adults);
+    }
+    if (initialFilters.query !== undefined) {
+      setQuery(initialFilters.query);
+    }
+  }, [initialFilters]);
+
+  useEffect(() => {
     fetch("/api/v1/taxonomies")
       .then((r) => r.json())
       .then((d) => setTaxonomies(d))
@@ -36,6 +63,7 @@ export default function FilterBar({ onFilterChange, initialFilters = {} }: Filte
   const handleApply = (e?: React.FormEvent) => {
     if (e) e.preventDefault();
     onFilterChange({
+      collection: initialFilters.collection,
       accommodationType: accommodationType === "all" ? undefined : accommodationType,
       stayPreference: stayPreference === "all" ? undefined : stayPreference,
       location: location === "all" ? undefined : location,

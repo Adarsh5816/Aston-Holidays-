@@ -13,31 +13,31 @@ export default function StartYourJourneyTabs() {
       title: "Honeymoon & Couples",
       tagline: "Intimate pool villas & candlelit rainforest dinners",
       image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=900&q=80",
-      link: "/resorts?category=Pool+Villa"
+      link: "/resorts?collection=Honeymoon+%26+Couples"
     },
     {
       title: "Family Vacations",
       tagline: "Spacious private estates with lawns and safe shallow pools",
       image: "https://images.unsplash.com/photo-1571896349842-33c89424de2d?auto=format&fit=crop&w=900&q=80",
-      link: "/resorts?accommodationType=Entire+Villa"
+      link: "/resorts?collection=Family+Vacations"
     },
     {
       title: "Private Groups",
       tagline: "3BHK & 4BHK villas with campfire setups & mountain grills",
       image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80",
-      link: "/resorts?accommodationType=Entire+Villa"
+      link: "/resorts?collection=Private+Groups"
     },
     {
       title: "Multi-Generational",
       tagline: "Stepless garden access, plantation verandas & wheelchair ease",
       image: "https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80",
-      link: "/resorts?stayPreference=Independent+Private+Cottage%2FVilla"
+      link: "/resorts?collection=Multi-Generational"
     },
     {
       title: "Solo Escapes",
       tagline: "Deep birdwatching, morning meditation & serene coffee estates",
       image: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?auto=format&fit=crop&w=900&q=80",
-      link: "/resorts?category=Plantation+Stay"
+      link: "/resorts?collection=Solo+Escapes"
     }
   ];
 
@@ -46,31 +46,31 @@ export default function StartYourJourneyTabs() {
       title: "Private Pool Living",
       tagline: "Temperature-controlled infinity pools facing mist & reservoirs",
       image: "https://images.unsplash.com/photo-1584132967334-10e028bd69f7?auto=format&fit=crop&w=900&q=80",
-      link: "/resorts?category=Pool+Villa"
+      link: "/resorts?collection=Private+Pool+Living"
     },
     {
       title: "Glass Treehouse Canopies",
       tagline: "Suspended 90 feet in the Western Ghats rainforest canopy",
       image: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=900&q=80",
-      link: "/resorts?category=Tree+House"
+      link: "/resorts?collection=Glass+Treehouse+Canopies"
     },
     {
       title: "Heritage Coffee Estates",
       tagline: "Colonial British-era teakwood bungalows among pepper & coffee",
       image: "https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=80",
-      link: "/resorts?category=Plantation+Stay"
+      link: "/resorts?collection=Heritage+Coffee+Estates"
     },
     {
       title: "Banasura Dam Waterfront",
       tagline: "Wake to water reflections and majestic Chembra silhouettes",
       image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80",
-      link: "/resorts?destination=Padinjarathara"
+      link: "/resorts?collection=Banasura+Dam+Waterfront"
     },
     {
       title: "Wilderness Glamping",
       tagline: "Under-canvas luxury with warm showers and star-lit decks",
       image: "https://images.unsplash.com/photo-1510312305653-8ed496efae75?auto=format&fit=crop&w=900&q=80",
-      link: "/resorts?category=Budget+Resort"
+      link: "/resorts?collection=Wilderness+Glamping"
     }
   ];
 

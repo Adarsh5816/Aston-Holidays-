@@ -140,6 +140,9 @@ export interface Resort {
   overview: string;
   inclusions: string[];
   exclusions: string[];
+
+  // Homepage Start Your Journey / Curated Collections Mapping:
+  curatedCollections?: string[];
 }
 
 export interface BankDetails {
@@ -182,6 +185,8 @@ export interface Destination {
 
 // Complete 9-Dimension Filter Parameters
 export interface FilterParams {
+  collection?: string;        // Homepage Start Your Journey Portfolio / Collection
+  curatedCollection?: string; // Alias
   accommodationType?: string; // 1. Accommodation Type
   category?: string;          // Legacy alias
   stayPreference?: string;    // 2. Room / Cottage / Group Preference

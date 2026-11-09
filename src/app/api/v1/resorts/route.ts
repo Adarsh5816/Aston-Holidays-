@@ -8,7 +8,8 @@ export async function GET(req: NextRequest) {
   const url = new URL(req.url);
   const code = url.searchParams.get("code");
 
-  // 9 Dimensions Query
+  // 9 Dimensions Query + Curated Collections
+  const collection = url.searchParams.get("collection") || url.searchParams.get("curatedCollection") || undefined;
   const accommodationType = url.searchParams.get("accommodationType") || url.searchParams.get("category") || undefined;
   const stayPreference = url.searchParams.get("stayPreference") || undefined;
   const location = url.searchParams.get("location") || url.searchParams.get("destination") || undefined;
@@ -22,6 +23,7 @@ export async function GET(req: NextRequest) {
 
   // Always fetch live resorts state from Supabase Dual-Vault
   const resorts = await Store.getResortsLive({
+    collection,
     accommodationType,
     stayPreference,
     location,

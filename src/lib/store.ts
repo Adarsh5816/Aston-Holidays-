@@ -121,7 +121,12 @@ function dbRowToResort(row: any): Resort {
       fullProperty: row.full_property_rate || ""
     },
     roomsAvailableCount: row.rooms_available_count || row.roomsAvailableCount || row.bedrooms || 1,
-    dormitoryDetails: row.dormitory_details || row.dormitoryDetails || ""
+    dormitoryDetails: row.dormitory_details || row.dormitoryDetails || "",
+    curatedCollections: Array.isArray(row.curated_collections)
+      ? row.curated_collections
+      : Array.isArray(row.curatedCollections)
+      ? row.curatedCollections
+      : []
   };
 }
 
@@ -1202,13 +1207,102 @@ export const Store = {
     if (!filters) return resorts;
     let result = [...resorts];
 
-    // 1. Accommodation Type
+    // 0. Curated Collections / Portfolio Journey Mapping
+    const collection = filters.collection || filters.curatedCollection;
+    if (collection && collection !== "all") {
+      const colLower = collection.toLowerCase();
+      result = result.filter(r => {
+        // Direct tag match if admin assigned collections
+        if (r.curatedCollections && r.curatedCollections.some(c => c.toLowerCase() === colLower || c.toLowerCase().includes(colLower))) {
+          return true;
+        }
+        // Intelligent fallback match so cards NEVER show empty screens:
+        if (colLower.includes("honeymoon") || colLower.includes("couple")) {
+          return (
+            (r.categories && r.categories.some(c => c.toLowerCase().includes("pool") || c.toLowerCase().includes("villa"))) ||
+            (r.accommodationType && r.accommodationType.toLowerCase().includes("pool")) ||
+            (r.ambience && r.ambience.some(a => a.toLowerCase().includes("romantic") || a.toLowerCase().includes("honeymoon"))) ||
+            r.bedrooms === 1 ||
+            (r.amenities && r.amenities.some(a => a.toLowerCase().includes("jacuzzi") || a.toLowerCase().includes("candle")))
+          );
+        }
+        if (colLower.includes("family")) {
+          return (
+            (r.categories && r.categories.some(c => c.toLowerCase().includes("family"))) ||
+            (r.roomsProvidedType && r.roomsProvidedType.toLowerCase().includes("family")) ||
+            r.bedrooms >= 2 ||
+            (r.stayPreference && r.stayPreference.toLowerCase().includes("family")) ||
+            (r.amenities && r.amenities.some(a => a.toLowerCase().includes("kids") || a.toLowerCase().includes("pool")))
+          );
+        }
+        if (colLower.includes("group")) {
+          return (
+            (r.categories && r.categories.some(c => c.toLowerCase().includes("group"))) ||
+            (r.roomsProvidedType && r.roomsProvidedType.toLowerCase().includes("group")) ||
+            r.bedrooms >= 3 ||
+            (r.rates && !!r.rates.fullProperty) ||
+            (r.stayPreference && r.stayPreference.toLowerCase().includes("group"))
+          );
+        }
+        if (colLower.includes("multi-generational") || colLower.includes("generational")) {
+          return (
+            (r.stayType && r.stayType.toLowerCase().includes("independent")) ||
+            (r.amenities && r.amenities.some(a => a.toLowerCase().includes("handicapped") || a.toLowerCase().includes("wheelchair") || a.toLowerCase().includes("butler"))) ||
+            r.bedrooms >= 2
+          );
+        }
+        if (colLower.includes("solo")) {
+          return (
+            r.bedrooms === 1 ||
+            (r.accommodationType && (r.accommodationType.toLowerCase().includes("plantation") || r.accommodationType.toLowerCase().includes("tree") || r.accommodationType.toLowerCase().includes("cottage"))) ||
+            (r.ambience && r.ambience.some(a => a.toLowerCase().includes("peaceful") || a.toLowerCase().includes("secluded") || a.toLowerCase().includes("plantation")))
+          );
+        }
+        if (colLower.includes("private pool") || colLower.includes("pool living")) {
+          return (
+            (r.categories && r.categories.some(c => c.toLowerCase().includes("pool"))) ||
+            (r.accommodationType && r.accommodationType.toLowerCase().includes("pool")) ||
+            (r.amenities && r.amenities.some(a => a.toLowerCase().includes("swimming pool")))
+          );
+        }
+        if (colLower.includes("treehouse") || colLower.includes("tree house") || colLower.includes("canopy")) {
+          return (
+            (r.categories && r.categories.some(c => c.toLowerCase().includes("tree"))) ||
+            (r.accommodationType && r.accommodationType.toLowerCase().includes("tree"))
+          );
+        }
+        if (colLower.includes("plantation") || colLower.includes("coffee") || colLower.includes("estate")) {
+          return (
+            (r.categories && r.categories.some(c => c.toLowerCase().includes("plantation"))) ||
+            (r.accommodationType && r.accommodationType.toLowerCase().includes("plantation")) ||
+            (r.ambience && r.ambience.some(a => a.toLowerCase().includes("plantation")))
+          );
+        }
+        if (colLower.includes("waterfront") || colLower.includes("lake") || colLower.includes("dam")) {
+          return (
+            r.destination.toLowerCase().includes("padinjarathara") ||
+            (r.ambience && r.ambience.some(a => a.toLowerCase().includes("lake") || a.toLowerCase().includes("waterfront")))
+          );
+        }
+        if (colLower.includes("glamping") || colLower.includes("wilderness") || colLower.includes("tent")) {
+          return (
+            (r.categories && r.categories.some(c => c.toLowerCase().includes("glamping") || c.toLowerCase().includes("budget"))) ||
+            (r.accommodationType && r.accommodationType.toLowerCase().includes("glamping")) ||
+            (r.amenities && r.amenities.some(a => a.toLowerCase().includes("campfire") || a.toLowerCase().includes("barbecue")))
+          );
+        }
+        return false;
+      });
+    }
+
+    // 1. Accommodation Type / Category (Checks both category, accommodationType, and categories array)
     const accType = filters.accommodationType || filters.category;
     if (accType && accType !== "all") {
       const typeLower = accType.toLowerCase();
       result = result.filter(r =>
         (r.accommodationType && r.accommodationType.toLowerCase().includes(typeLower)) ||
-        (r.category && r.category.toLowerCase().includes(typeLower))
+        (r.category && r.category.toLowerCase().includes(typeLower)) ||
+        (r.categories && r.categories.some(c => c.toLowerCase().includes(typeLower) || typeLower.includes(c.toLowerCase())))
       );
     }
 

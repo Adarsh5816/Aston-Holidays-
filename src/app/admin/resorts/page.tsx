@@ -5,7 +5,23 @@ import Image from "next/image";
 import Link from "next/link";
 import AdminSidebar from "@/components/AdminSidebar";
 import { Resort, NearbyAttraction, AccommodationType, StayPreference, AmbienceType } from "@/lib/types";
-import { Building2, Search, Bed, Users, Plus, FileText, Check, X, MapPin, Trash2, Edit3, Navigation, Sparkles, Layers, Upload, Loader2, Star, CheckSquare, Square, DollarSign } from "lucide-react";
+import { Building2, Search, Bed, Users, Plus, FileText, Check, X, MapPin, Trash2, Edit3, Navigation, Sparkles, Layers, Upload, Loader2, Star, CheckSquare, Square, DollarSign, Compass } from "lucide-react";
+
+const TRAVELLER_COLLECTION_CHOICES = [
+  "Honeymoon & Couples",
+  "Family Vacations",
+  "Private Groups",
+  "Multi-Generational",
+  "Solo Escapes"
+];
+
+const EXPERIENCE_COLLECTION_CHOICES = [
+  "Private Pool Living",
+  "Glass Treehouse Canopies",
+  "Heritage Coffee Estates",
+  "Banasura Dam Waterfront",
+  "Wilderness Glamping"
+];
 
 const CATEGORY_CHOICES = [
   "Private Pool Villa",
@@ -79,6 +95,7 @@ export default function ResortManagerPage() {
 
   // Automation & Multi-Dimension Filter States
   const [selectedCategories, setSelectedCategories] = useState<string[]>(["Private Pool Villa"]);
+  const [selectedCollections, setSelectedCollections] = useState<string[]>([]);
   const [stayType, setStayType] = useState<string>("Independent");
   const [roomsProvidedType, setRoomsProvidedType] = useState<string>("Family");
   const [budgetCategory, setBudgetCategory] = useState<string>("5000-10000");
@@ -283,6 +300,34 @@ export default function ResortManagerPage() {
     }
   };
 
+  const toggleCollection = (item: string) => {
+    if (selectedCollections.includes(item)) {
+      setSelectedCollections(selectedCollections.filter((c) => c !== item));
+    } else {
+      setSelectedCollections([...selectedCollections, item]);
+    }
+  };
+
+  const handleSelectAllTravellerCollections = () => {
+    const hasAll = TRAVELLER_COLLECTION_CHOICES.every((c) => selectedCollections.includes(c));
+    if (hasAll) {
+      setSelectedCollections(selectedCollections.filter((c) => !TRAVELLER_COLLECTION_CHOICES.includes(c)));
+    } else {
+      const merged = Array.from(new Set([...selectedCollections, ...TRAVELLER_COLLECTION_CHOICES]));
+      setSelectedCollections(merged);
+    }
+  };
+
+  const handleSelectAllExperienceCollections = () => {
+    const hasAll = EXPERIENCE_COLLECTION_CHOICES.every((c) => selectedCollections.includes(c));
+    if (hasAll) {
+      setSelectedCollections(selectedCollections.filter((c) => !EXPERIENCE_COLLECTION_CHOICES.includes(c)));
+    } else {
+      const merged = Array.from(new Set([...selectedCollections, ...EXPERIENCE_COLLECTION_CHOICES]));
+      setSelectedCollections(merged);
+    }
+  };
+
   const toggleAmenity = (amenity: string) => {
     if (selectedAmenities.includes(amenity)) {
       setSelectedAmenities(selectedAmenities.filter((a) => a !== amenity));
@@ -321,6 +366,7 @@ export default function ResortManagerPage() {
     setAmbienceStr("Mountain / Valley View, Lake / Dam Waterfront, Secluded & Peaceful");
     setCategory("Pool Villa");
     setSelectedCategories(["Private Pool Villa"]);
+    setSelectedCollections(["Honeymoon & Couples", "Family Vacations", "Private Pool Living"]);
     setStayType("Independent");
     setRoomsProvidedType("Family");
     setBudgetCategory("5000-10000");
@@ -375,6 +421,11 @@ export default function ResortManagerPage() {
       Array.isArray(resort.categories) && resort.categories.length > 0
         ? resort.categories
         : [resort.accommodationType || "Private Pool Villa"]
+    );
+    setSelectedCollections(
+      Array.isArray(resort.curatedCollections) && resort.curatedCollections.length > 0
+        ? resort.curatedCollections
+        : []
     );
     setStayType(resort.stayType || "Independent");
     setRoomsProvidedType(resort.roomsProvidedType || "Family");
@@ -465,6 +516,7 @@ export default function ResortManagerPage() {
       ambience: ambienceList.length > 0 ? ambienceList : ["Mountain / Valley View"],
       category,
       categories: selectedCategories.length > 0 ? selectedCategories : [category],
+      curatedCollections: selectedCollections,
       stayType,
       roomsProvidedType,
       budgetCategory,
@@ -983,6 +1035,96 @@ export default function ResortManagerPage() {
                           placeholder="e.g. ₹35,000 / property"
                           className="w-full px-3 py-1.5 rounded-xl border border-stone-200 text-xs"
                         />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 5. Homepage "Start Your Journey" Portfolio Mapping */}
+                  <div className="bg-white p-4 rounded-xl border border-stone-200/80 space-y-4">
+                    <div className="flex items-center justify-between pb-2 border-b border-stone-100">
+                      <div>
+                        <label className="block text-stone-900 font-bold text-xs flex items-center gap-1.5">
+                          <Compass className="w-3.5 h-3.5 text-emerald-700" />
+                          Homepage &ldquo;Start Your Journey&rdquo; Portfolio Mapping
+                          <span className="text-[11px] font-normal text-stone-500">
+                            ({selectedCollections.length} cards assigned)
+                          </span>
+                        </label>
+                        <p className="text-[10px] text-stone-500">
+                          Select which homepage portfolio cards this resort appears under when a visitor clicks them.
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* By Traveller Collections */}
+                    <div className="space-y-1.5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[11px] font-bold text-stone-700 uppercase tracking-wider">
+                          1. Traveller Types (By Traveller Tab)
+                        </span>
+                        <button
+                          type="button"
+                          onClick={handleSelectAllTravellerCollections}
+                          className="text-[10px] font-bold text-emerald-800 hover:underline"
+                        >
+                          {TRAVELLER_COLLECTION_CHOICES.every(c => selectedCollections.includes(c)) ? "Deselect All" : "Select All Traveller"}
+                        </button>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {TRAVELLER_COLLECTION_CHOICES.map(col => {
+                          const isChecked = selectedCollections.includes(col);
+                          return (
+                            <button
+                              key={col}
+                              type="button"
+                              onClick={() => toggleCollection(col)}
+                              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition border ${
+                                isChecked
+                                  ? "bg-emerald-800 text-white border-emerald-800 shadow-sm"
+                                  : "bg-stone-50 text-stone-700 border-stone-200 hover:border-emerald-500"
+                              }`}
+                            >
+                              {isChecked && <Check className="w-3 h-3" />}
+                              {col}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* By Experience Collections */}
+                    <div className="space-y-1.5 pt-2 border-t border-stone-100">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[11px] font-bold text-stone-700 uppercase tracking-wider">
+                          2. Experiences (By Experience Tab)
+                        </span>
+                        <button
+                          type="button"
+                          onClick={handleSelectAllExperienceCollections}
+                          className="text-[10px] font-bold text-emerald-800 hover:underline"
+                        >
+                          {EXPERIENCE_COLLECTION_CHOICES.every(c => selectedCollections.includes(c)) ? "Deselect All" : "Select All Experiences"}
+                        </button>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {EXPERIENCE_COLLECTION_CHOICES.map(exp => {
+                          const isChecked = selectedCollections.includes(exp);
+                          return (
+                            <button
+                              key={exp}
+                              type="button"
+                              onClick={() => toggleCollection(exp)}
+                              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition border ${
+                                isChecked
+                                  ? "bg-[#1A2218] text-[#7eb840] border-[#1A2218] shadow-sm font-bold"
+                                  : "bg-stone-50 text-stone-700 border-stone-200 hover:border-emerald-500"
+                              }`}
+                            >
+                              {isChecked && <Check className="w-3 h-3 text-[#7eb840]" />}
+                              {exp}
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>

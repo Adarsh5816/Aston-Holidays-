@@ -15,6 +15,7 @@ function ResortsCatalogContent() {
   const [loading, setLoading] = useState(true);
 
   // Initialize from URL query params
+  const initialCollection = searchParams.get("collection") || searchParams.get("curatedCollection") || undefined;
   const initialDestination = searchParams.get("destination") || searchParams.get("location") || undefined;
   const initialType = searchParams.get("accommodationType") || searchParams.get("category") || undefined;
   const initialPreference = searchParams.get("stayPreference") || undefined;
@@ -28,6 +29,7 @@ function ResortsCatalogContent() {
     setLoading(true);
     try {
       const query = new URLSearchParams();
+      if (filters.collection) query.set("collection", filters.collection);
       if (filters.accommodationType) query.set("accommodationType", filters.accommodationType);
       if (filters.stayPreference) query.set("stayPreference", filters.stayPreference);
       if (filters.location) query.set("location", filters.location);
@@ -52,6 +54,7 @@ function ResortsCatalogContent() {
 
   useEffect(() => {
     fetchResorts({
+      collection: initialCollection,
       location: initialDestination,
       accommodationType: initialType,
       stayPreference: initialPreference,
@@ -61,7 +64,7 @@ function ResortsCatalogContent() {
       adults: initialAdults,
       query: initialQuery
     });
-  }, [initialDestination, initialType, initialPreference, initialAmbience, initialBudgetMax, initialRooms, initialAdults, initialQuery]);
+  }, [initialCollection, initialDestination, initialType, initialPreference, initialAmbience, initialBudgetMax, initialRooms, initialAdults, initialQuery]);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
@@ -76,6 +79,24 @@ function ResortsCatalogContent() {
         <p className="text-sm text-stone-500 mt-1 max-w-xl">
           Filtered by Accommodation Type, Stay Preference, Location, Budget, Ambience, Adults, Children, and Rooms.
         </p>
+
+        {/* Active Collection Filter Pill */}
+        {initialCollection && (
+          <div className="mt-4 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#1A2218] text-[#7eb840] text-xs font-semibold shadow-sm border border-[#7eb840]/30">
+            <Sparkles className="w-3.5 h-3.5 text-[#7eb840]" />
+            <span>Curated Portfolio: <strong className="text-white">{initialCollection}</strong></span>
+            <button
+              onClick={() => {
+                window.history.pushState({}, "", "/resorts");
+                fetchResorts({});
+              }}
+              className="ml-2 w-4 h-4 rounded-full bg-white/20 hover:bg-white/40 text-white flex items-center justify-center text-[10px] transition"
+              title="Clear collection filter"
+            >
+              ✕
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Filter Component */}
@@ -83,6 +104,7 @@ function ResortsCatalogContent() {
         <FilterBar
           onFilterChange={fetchResorts}
           initialFilters={{
+            collection: initialCollection,
             location: initialDestination,
             accommodationType: initialType,
             stayPreference: initialPreference,
