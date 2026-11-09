@@ -144,9 +144,9 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
             <span>{currentSlide.eyebrow}</span>
           </div>
 
-          {/* Signature 3-Line Headline with Terracotta Italic Accent */}
+          {/* Signature 3-Line Headline with Accent */}
           <h1
-            className="text-5xl sm:text-7xl lg:text-[5.5rem] xl:text-[6.2rem] font-editorial font-normal text-[#F6F4EE] tracking-[-0.025em] leading-[1.04] antialiased drop-shadow-[0_4px_30px_rgba(0,0,0,0.7)] transition-all duration-700"
+            className="text-4xl sm:text-6xl lg:text-[4.5rem] xl:text-[5.2rem] font-editorial font-normal text-[#F6F4EE] tracking-[-0.025em] leading-[1.06] antialiased drop-shadow-[0_4px_30px_rgba(0,0,0,0.7)] transition-all duration-700"
           >
             {currentSlide.line1} <br />
             <span className="italic font-normal text-[#7eb840] font-editorial drop-shadow-[0_4px_30px_rgba(0,0,0,0.7)]">
