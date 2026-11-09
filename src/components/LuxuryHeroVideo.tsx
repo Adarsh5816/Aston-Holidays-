@@ -139,17 +139,17 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
         <div className="max-w-2xl lg:max-w-3xl pointer-events-auto">
           
           {/* Eyebrow with Leading Dash Line */}
-          <div className="flex items-center gap-3 text-[#7eb840] text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase mb-5 sm:mb-7 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+          <div className="flex items-center gap-3 text-[#7eb840] text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase mb-5 sm:mb-7">
             <span className="w-8 sm:w-10 h-[1.5px] bg-[#7eb840]" />
             <span>{currentSlide.eyebrow}</span>
           </div>
 
           {/* Signature 3-Line Headline with Accent */}
           <h1
-            className="text-4xl sm:text-6xl lg:text-[4.5rem] xl:text-[5.2rem] font-editorial font-normal text-[#F6F4EE] tracking-[-0.025em] leading-[1.06] antialiased drop-shadow-[0_4px_30px_rgba(0,0,0,0.7)] transition-all duration-700"
+            className="text-4xl sm:text-6xl lg:text-[4.5rem] xl:text-[5.2rem] font-editorial font-normal text-[#F6F4EE] tracking-[-0.025em] leading-[1.06] antialiased transition-all duration-700"
           >
             {currentSlide.line1} <br />
-            <span className="italic font-normal text-[#7eb840] font-editorial drop-shadow-[0_4px_30px_rgba(0,0,0,0.7)]">
+            <span className="italic font-normal text-[#7eb840] font-editorial">
               {currentSlide.accent}
             </span>{" "}
             <br />
