@@ -139,8 +139,8 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
         <div className="max-w-2xl lg:max-w-3xl pointer-events-auto">
           
           {/* Eyebrow with Leading Dash Line */}
-          <div className="flex items-center gap-3 text-[#D48D6C] text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase mb-5 sm:mb-7 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-            <span className="w-8 sm:w-10 h-[1.5px] bg-[#D48D6C]" />
+          <div className="flex items-center gap-3 text-[#7eb840] text-[11px] sm:text-xs font-semibold tracking-[0.28em] uppercase mb-5 sm:mb-7 drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+            <span className="w-8 sm:w-10 h-[1.5px] bg-[#7eb840]" />
             <span>{currentSlide.eyebrow}</span>
           </div>
 
@@ -149,7 +149,7 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
             className="text-5xl sm:text-7xl lg:text-[5.5rem] xl:text-[6.2rem] font-editorial font-normal text-[#F6F4EE] tracking-[-0.025em] leading-[1.04] antialiased drop-shadow-[0_4px_30px_rgba(0,0,0,0.7)] transition-all duration-700"
           >
             {currentSlide.line1} <br />
-            <span className="italic font-normal text-[#D48D6C] font-editorial drop-shadow-[0_4px_30px_rgba(0,0,0,0.7)]">
+            <span className="italic font-normal text-[#7eb840] font-editorial drop-shadow-[0_4px_30px_rgba(0,0,0,0.7)]">
               {currentSlide.accent}
             </span>{" "}
             <br />
@@ -168,30 +168,30 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
             {/* Transparent "Explore Journeys" (No circle border, no circle background, just clean words) */}
             <a
               href="#feelings-engine"
-              className="group inline-flex items-center gap-2 text-xs sm:text-sm font-sans font-semibold uppercase tracking-[0.22em] text-[#F6F4EE] hover:text-[#D48D6C] transition-colors py-1 border-b border-white/20 hover:border-[#D48D6C] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+              className="group inline-flex items-center gap-2 text-xs sm:text-sm font-sans font-semibold uppercase tracking-[0.22em] text-[#F6F4EE] hover:text-[#7eb840] transition-colors py-1 border-b border-white/20 hover:border-[#7eb840] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
             >
               <span>Explore Journeys</span>
-              <span className="text-sm text-[#D48D6C] group-hover:translate-y-1 transition-transform">↓</span>
+              <span className="text-sm text-[#7eb840] group-hover:translate-y-1 transition-transform">↓</span>
             </a>
 
             {/* Transparent "Plan Journey" (No tile highlighter, no pill background, just clean words) */}
             <div className="flex items-center gap-6">
               <button
                 onClick={onOpenEnquiry}
-                className="group inline-flex items-center gap-2 text-xs sm:text-sm font-sans font-semibold uppercase tracking-[0.22em] text-[#F6F4EE] hover:text-[#D48D6C] transition-colors py-1 border-b border-white/20 hover:border-[#D48D6C] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+                className="group inline-flex items-center gap-2 text-xs sm:text-sm font-sans font-semibold uppercase tracking-[0.22em] text-[#F6F4EE] hover:text-[#7eb840] transition-colors py-1 border-b border-white/20 hover:border-[#7eb840] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
               >
                 <span>Plan Journey</span>
-                <ArrowRight className="w-3.5 h-3.5 text-[#D48D6C] group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="w-3.5 h-3.5 text-[#7eb840] group-hover:translate-x-1 transition-transform" />
               </button>
 
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-sans font-semibold uppercase tracking-[0.22em] text-[#F6F4EE]/90 hover:text-[#D48D6C] transition-colors py-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+                className="group inline-flex items-center gap-1.5 text-xs sm:text-sm font-sans font-semibold uppercase tracking-[0.22em] text-[#F6F4EE]/90 hover:text-[#7eb840] transition-colors py-1 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
                 title="Chat with Concierge on WhatsApp"
               >
-                <MessageCircle className="w-4 h-4 text-[#D48D6C]" />
+                <MessageCircle className="w-4 h-4 text-[#7eb840]" />
                 <span className="hidden sm:inline">WhatsApp</span>
               </a>
             </div>
@@ -201,7 +201,7 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
           {/* Luxury Travel Assurances (Transparent, no heavy tile pill) */}
           <div className="mt-6 sm:mt-8 flex flex-wrap items-center gap-3 sm:gap-6 text-xs text-[#E5E0D8]/80 font-medium tracking-wider drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)]">
             <span className="flex items-center gap-1.5 text-[#F6F4EE]">
-              <ShieldCheck className="w-3.5 h-3.5 text-[#D48D6C] shrink-0" />
+              <ShieldCheck className="w-3.5 h-3.5 text-[#7eb840] shrink-0" />
               Dedicated Travel Architect
             </span>
             <span className="text-white/30 hidden sm:inline">•</span>
@@ -222,7 +222,7 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
         <p className="text-[10px] sm:text-[11px] font-mono tracking-[0.28em] text-[#F6F4EE]/75 uppercase mt-0.5">
           76° 07&apos; E
         </p>
-        <p className="text-[9px] font-sans tracking-[0.22em] text-[#D48D6C] uppercase mt-1 font-semibold">
+        <p className="text-[9px] font-sans tracking-[0.22em] text-[#7eb840] uppercase mt-1 font-semibold">
           Wayanad, Kerala
         </p>
       </div>
@@ -241,8 +241,8 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
             </>
           ) : (
             <>
-              <Volume2 className="w-3.5 h-3.5 text-[#D48D6C] animate-pulse" />
-              <span className="text-[10px] uppercase font-bold tracking-wider text-[#D48D6C] hidden sm:inline">Sound On</span>
+              <Volume2 className="w-3.5 h-3.5 text-[#7eb840] animate-pulse" />
+              <span className="text-[10px] uppercase font-bold tracking-wider text-[#7eb840] hidden sm:inline">Sound On</span>
             </>
           )}
         </button>
@@ -258,7 +258,7 @@ export default function LuxuryHeroVideo({ settings, onOpenEnquiry }: LuxuryHeroV
 
       {/* Down Scroll Indicator */}
       <div className="absolute bottom-3 inset-x-0 z-20 flex justify-center pointer-events-none">
-        <div className="animate-bounce text-[#D48D6C] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
+        <div className="animate-bounce text-[#7eb840] drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
           <ChevronDown className="w-5 h-5 opacity-70" />
         </div>
       </div>

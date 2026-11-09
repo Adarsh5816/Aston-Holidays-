@@ -102,7 +102,7 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
             {/* Desktop Navigation Links (Clean Spaced Uppercase Typography) */}
             <nav className="hidden lg:flex items-center gap-8 text-[11px] font-semibold tracking-[0.22em] uppercase text-stone-200">
               
-              <Link href="/resorts" className="hover:text-[#D48D6C] transition uppercase">
+              <Link href="/resorts" className="hover:text-[#7eb840] transition uppercase">
                 JOURNEYS
               </Link>
 
@@ -112,9 +112,9 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
                 onMouseEnter={() => setSanctuariesOpen(true)}
                 onMouseLeave={() => setSanctuariesOpen(false)}
               >
-                <button className="flex items-center gap-1 hover:text-[#D48D6C] transition uppercase tracking-[0.22em] text-[11px]">
+                <button className="flex items-center gap-1 hover:text-[#7eb840] transition uppercase tracking-[0.22em] text-[11px]">
                   <span>THE SANCTUARIES</span>
-                  <ChevronDown className="w-3 h-3 opacity-60 text-[#D48D6C]" />
+                  <ChevronDown className="w-3 h-3 opacity-60 text-[#7eb840]" />
                 </button>
 
                 {sanctuariesOpen && (
@@ -139,7 +139,7 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
                     </Link>
                     <Link
                       href="/resorts"
-                      className="block p-2.5 rounded-xl bg-white/5 text-xs font-bold text-[#D48D6C] hover:bg-white/10 transition mt-1"
+                      className="block p-2.5 rounded-xl bg-white/5 text-xs font-bold text-[#7eb840] hover:bg-white/10 transition mt-1"
                     >
                       Explore All 37 Verified Stays →
                     </Link>
@@ -153,9 +153,9 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
                 onMouseEnter={() => setDestinationsOpen(true)}
                 onMouseLeave={() => setDestinationsOpen(false)}
               >
-                <button className="flex items-center gap-1 hover:text-[#D48D6C] transition uppercase tracking-[0.22em] text-[11px]">
+                <button className="flex items-center gap-1 hover:text-[#7eb840] transition uppercase tracking-[0.22em] text-[11px]">
                   <span>THE PLACE</span>
-                  <ChevronDown className="w-3 h-3 opacity-60 text-[#D48D6C]" />
+                  <ChevronDown className="w-3 h-3 opacity-60 text-[#7eb840]" />
                 </button>
 
                 {destinationsOpen && (
@@ -180,7 +180,7 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
                     </Link>
                     <Link
                       href="/destinations"
-                      className="block p-2.5 rounded-xl bg-white/5 text-xs font-bold text-[#D48D6C] hover:bg-white/10 transition mt-1"
+                      className="block p-2.5 rounded-xl bg-white/5 text-xs font-bold text-[#7eb840] hover:bg-white/10 transition mt-1"
                     >
                       All Wayanad Destinations →
                     </Link>
@@ -188,7 +188,7 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
                 )}
               </div>
 
-              <a href="#philosophy" className="hover:text-[#D48D6C] transition uppercase">
+              <a href="#philosophy" className="hover:text-[#7eb840] transition uppercase">
                 JOURNAL
               </a>
 
@@ -202,23 +202,23 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
                 href="tel:+919744900414"
                 className="hidden xl:flex items-center gap-2 text-xs font-semibold text-stone-300 hover:text-white transition mr-1"
               >
-                <span className="w-2 h-2 rounded-full bg-[#D48D6C] animate-pulse" />
+                <span className="w-2 h-2 rounded-full bg-[#7eb840] animate-pulse" />
                 <span>+91 97449 00414</span>
               </a>
 
               {/* Minimal Menu Pill (Matches Reference "MENU" with hamburger) */}
               <button
                 onClick={() => setMobileOpen(!mobileOpen)}
-                className="flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.22em] text-stone-200 hover:text-[#D48D6C] transition py-1.5 px-3.5 rounded-full border border-white/20 hover:border-[#D48D6C]/50 bg-black/20 hover:bg-black/40 backdrop-blur-sm"
+                className="flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.22em] text-stone-200 hover:text-[#7eb840] transition py-1.5 px-3.5 rounded-full border border-white/20 hover:border-[#7eb840]/50 bg-black/20 hover:bg-black/40 backdrop-blur-sm"
               >
-                {mobileOpen ? <X className="w-3.5 h-3.5 text-[#D48D6C]" /> : <Menu className="w-3.5 h-3.5 text-[#D48D6C]" />}
+                {mobileOpen ? <X className="w-3.5 h-3.5 text-[#7eb840]" /> : <Menu className="w-3.5 h-3.5 text-[#7eb840]" />}
                 <span>Menu</span>
               </button>
 
               {/* Terracotta Plan Journey Button */}
               <button
                 onClick={onOpenEnquiry}
-                className="hidden sm:inline-flex items-center gap-2 px-5 py-1.5 rounded-full border border-[#D48D6C]/80 text-[#F6F4EE] hover:bg-[#D48D6C] hover:text-[#0A130B] text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] transition-all shadow-md"
+                className="hidden sm:inline-flex items-center gap-2 px-5 py-1.5 rounded-full border border-[#7eb840]/80 text-[#F6F4EE] hover:bg-[#7eb840] hover:text-[#0A130B] text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.18em] transition-all shadow-md"
               >
                 <span>Enquire</span>
               </button>
@@ -247,18 +247,18 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
                 <span className="text-xs font-editorial font-bold tracking-[0.25em] text-[#F6F4EE] uppercase">
                   Aston Holidays
                 </span>
-                <span className="text-[9px] font-mono tracking-[0.28em] text-[#D48D6C] uppercase font-semibold mt-0.5">
+                <span className="text-[9px] font-mono tracking-[0.28em] text-[#7eb840] uppercase font-semibold mt-0.5">
                   Wayanad, Kerala
                 </span>
               </div>
 
               <button
                 onClick={() => setMobileOpen(false)}
-                className="group flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-stone-300 hover:text-[#D48D6C] py-1.5 px-3 rounded-full border border-white/20 hover:border-[#D48D6C]/50 transition"
+                className="group flex items-center gap-2 text-[10px] sm:text-[11px] font-bold uppercase tracking-[0.2em] text-stone-300 hover:text-[#7eb840] py-1.5 px-3 rounded-full border border-white/20 hover:border-[#7eb840]/50 transition"
                 aria-label="Close Menu"
               >
                 <span>Close</span>
-                <X className="w-4 h-4 text-[#D48D6C] group-hover:rotate-90 transition-transform duration-300" />
+                <X className="w-4 h-4 text-[#7eb840] group-hover:rotate-90 transition-transform duration-300" />
               </button>
             </div>
 
@@ -281,15 +281,15 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
                   className={`group flex items-center justify-between py-1 transition-all ${
                     item.isMuted
                       ? "text-stone-400 hover:text-stone-200 text-xs font-sans uppercase tracking-[0.2em]"
-                      : "text-stone-100 hover:text-[#D48D6C]"
+                      : "text-stone-100 hover:text-[#7eb840]"
                   }`}
                 >
                   <span className="flex items-center gap-3">
-                    <span className="text-[10px] font-mono text-[#D48D6C]/70">0{idx + 1}</span>
+                    <span className="text-[10px] font-mono text-[#7eb840]/70">0{idx + 1}</span>
                     <span className="group-hover:translate-x-1.5 transition-transform">{item.label}</span>
                   </span>
                   {item.badge && (
-                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#D48D6C] bg-[#D48D6C]/10 px-2 py-0.5 rounded-full border border-[#D48D6C]/30">
+                    <span className="text-[10px] font-mono uppercase tracking-wider text-[#7eb840] bg-[#7eb840]/10 px-2 py-0.5 rounded-full border border-[#7eb840]/30">
                       {item.badge}
                     </span>
                   )}
@@ -301,9 +301,9 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
             <div className="pt-6 border-t border-white/15 space-y-4">
               <a
                 href="tel:+919744900414"
-                className="flex items-center gap-2.5 text-xs font-semibold text-stone-300 hover:text-[#D48D6C] transition"
+                className="flex items-center gap-2.5 text-xs font-semibold text-stone-300 hover:text-[#7eb840] transition"
               >
-                <Phone className="w-3.5 h-3.5 text-[#D48D6C]" />
+                <Phone className="w-3.5 h-3.5 text-[#7eb840]" />
                 <span>Concierge Desk: +91 97449 00414</span>
               </a>
 
@@ -312,7 +312,7 @@ export default function LuxuryNavbar({ onOpenEnquiry, settings }: LuxuryNavbarPr
                   setMobileOpen(false);
                   onOpenEnquiry();
                 }}
-                className="w-full py-3.5 rounded-full bg-[#D48D6C] hover:bg-[#C47D5C] text-[#0A130B] text-xs font-bold uppercase tracking-[0.22em] transition-all shadow-xl hover:shadow-[#D48D6C]/40"
+                className="w-full py-3.5 rounded-full bg-[#7eb840] hover:bg-[#6da634] text-[#0A130B] text-xs font-bold uppercase tracking-[0.22em] transition-all shadow-xl hover:shadow-[#7eb840]/40"
               >
                 Plan My Journey
               </button>

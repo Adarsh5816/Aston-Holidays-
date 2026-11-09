@@ -82,7 +82,7 @@ export default function HomePageClient({
   ];
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#F7F4EE] text-stone-900 font-sans selection:bg-[#D48D6C] selection:text-[#0A130B]">
+    <div className="min-h-screen flex flex-col bg-[#F7F4EE] text-stone-900 font-sans selection:bg-[#7eb840] selection:text-[#0A130B]">
       
       {/* Luxury Navbar with transparent-to-frosted transition */}
       <LuxuryNavbar onOpenEnquiry={() => handleOpenEnquiry()} settings={settings} />
@@ -110,8 +110,8 @@ export default function HomePageClient({
 
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             
-            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#D48D6C]/10 text-[#C47D5C] border border-[#D48D6C]/30 text-[11px] font-bold tracking-[0.2em] uppercase mb-6">
-              <Sparkles className="w-3.5 h-3.5 text-[#D48D6C]" />
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#7eb840]/10 text-[#6da634] border border-[#7eb840]/30 text-[11px] font-bold tracking-[0.2em] uppercase mb-6">
+              <Sparkles className="w-3.5 h-3.5 text-[#7eb840]" />
               The Aston Philosophy
             </div>
 
@@ -140,10 +140,10 @@ export default function HomePageClient({
             <div className="mt-10">
               <button
                 onClick={() => handleOpenEnquiry()}
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#0A130B] hover:bg-[#D48D6C] text-white hover:text-[#0A130B] text-xs font-semibold tracking-luxury uppercase transition-all shadow-xl hover:shadow-[#D48D6C]/30"
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-[#0A130B] hover:bg-[#7eb840] text-white hover:text-[#0A130B] text-xs font-semibold tracking-luxury uppercase transition-all shadow-xl hover:shadow-[#7eb840]/30"
               >
                 <span>Get In Touch with our Concierge</span>
-                <ArrowRight className="w-4 h-4 text-[#D48D6C]" />
+                <ArrowRight className="w-4 h-4 text-[#7eb840]" />
               </button>
             </div>
 
@@ -169,7 +169,7 @@ export default function HomePageClient({
                 <div>
                   <div className="flex items-center gap-1.5">
                     <span className="text-base font-bold text-stone-900 font-sans tracking-tight">EXCELLENT</span>
-                    <span className="text-sm font-extrabold text-[#D48D6C]">5.0</span>
+                    <span className="text-sm font-extrabold text-[#7eb840]">5.0</span>
                     <div className="flex items-center text-amber-400 gap-0.5 ml-1">
                       {[...Array(5)].map((_, i) => (
                         <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
@@ -186,7 +186,7 @@ export default function HomePageClient({
                 href={googleMapsReviewsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-stone-200 hover:border-[#D48D6C] text-xs font-semibold text-stone-700 hover:text-[#D48D6C] bg-stone-50/80 hover:bg-stone-100 transition shadow-sm"
+                className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full border border-stone-200 hover:border-[#7eb840] text-xs font-semibold text-stone-700 hover:text-[#7eb840] bg-stone-50/80 hover:bg-stone-100 transition shadow-sm"
               >
                 <span>Read all Google Reviews</span>
                 <ExternalLink className="w-3.5 h-3.5" />
@@ -243,10 +243,10 @@ export default function HomePageClient({
                 href={googleMapsReviewsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#D48D6C] transition flex items-center gap-1"
+                className="hover:text-[#7eb840] transition flex items-center gap-1"
               >
                 <span>5.0 Star Rated on Google Maps</span>
-                <ExternalLink className="w-3 h-3 text-[#D48D6C]" />
+                <ExternalLink className="w-3 h-3 text-[#7eb840]" />
               </a>
             </div>
           </div>
