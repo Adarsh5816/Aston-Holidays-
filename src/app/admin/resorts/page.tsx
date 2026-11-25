@@ -692,7 +692,7 @@ export default function ResortManagerPage() {
               Resort & Villa Inventory Manager
             </h1>
             <p className="text-xs text-stone-500 mt-1">
-              Add new properties with all 9 criteria (Accommodation Type, Stay Preference, Ambience, Adults, Children, Rooms, Attractions).
+              Manage resort inventory with 7 compulsory automation dimensions: Type, Guest Type, Room Type, Location, Price Range, Ambiance &amp; No of Rooms.
             </p>
           </div>
 
@@ -751,7 +751,7 @@ export default function ResortManagerPage() {
                     {resort.code}
                   </div>
                   <div className="absolute top-3 right-3 bg-white/95 text-stone-800 text-[10px] font-bold px-2 py-0.5 rounded shadow">
-                    {resort.accommodationType || resort.category}
+                    {resort.types && resort.types.length > 0 ? resort.types.join(", ") : (resort.accommodationType || resort.category)}
                   </div>
                 </div>
 
@@ -763,37 +763,52 @@ export default function ResortManagerPage() {
 
                   <div className="flex items-center gap-4 text-xs font-medium text-stone-600 mt-3 pt-3 border-t border-stone-100">
                     <span className="flex items-center gap-1">
-                      <Bed className="w-3.5 h-3.5 text-stone-400" /> {resort.bedrooms} BHK
+                      <Bed className="w-3.5 h-3.5 text-stone-400" /> {resort.roomsAvailableCount ? `${resort.roomsAvailableCount} Rooms` : `${resort.bedrooms} BHK`}
                     </span>
                     <span className="flex items-center gap-1">
                       <Users className="w-3.5 h-3.5 text-stone-400" /> {resort.maxAdults || resort.maxGuests} Adults, {resort.maxChildren || 2} Kids
                     </span>
                   </div>
 
-                  {/* Automation & Category Tags */}
+                  {/* 7 Compulsory Automation Tags */}
                   <div className="mt-2.5 flex flex-wrap gap-1">
-                    {(resort.categories && resort.categories.length > 0 ? resort.categories : [resort.accommodationType || resort.category]).slice(0, 3).map((cat, i) => (
-                      <span key={i} className="text-[10px] bg-emerald-50 text-emerald-800 font-semibold px-2 py-0.5 rounded-md border border-emerald-100">
-                        {cat}
+                    {/* 1. Type */}
+                    {(resort.types && resort.types.length > 0 ? resort.types : [resort.accommodationType || resort.category]).filter(Boolean).map((t, i) => (
+                      <span key={`t-${i}`} className="text-[10px] bg-emerald-50 text-emerald-800 font-semibold px-2 py-0.5 rounded-md border border-emerald-100">
+                        {t}
                       </span>
                     ))}
-                    {resort.categories && resort.categories.length > 3 && (
-                      <span className="text-[10px] bg-emerald-50 text-emerald-800 font-semibold px-1.5 py-0.5 rounded-md">
-                        +{resort.categories.length - 3} more
+                    {/* 2. Guest Type */}
+                    {(resort.guestTypes && resort.guestTypes.length > 0 ? resort.guestTypes : (resort.guestType ? [resort.guestType] : [])).filter(Boolean).map((gt, i) => (
+                      <span key={`gt-${i}`} className="text-[10px] bg-indigo-50 text-indigo-800 font-semibold px-2 py-0.5 rounded-md border border-indigo-100">
+                        {gt}
                       </span>
-                    )}
-                    {resort.stayType && (
+                    ))}
+                    {/* 3. Room Type */}
+                    {(resort.roomType || resort.stayType) && (
                       <span className="text-[10px] bg-stone-100 text-stone-700 font-medium px-2 py-0.5 rounded-md border border-stone-200">
-                        {resort.stayType}
+                        {resort.roomType || resort.stayType}
                       </span>
                     )}
-                    {resort.budgetCategory && (
-                      <span className="text-[10px] bg-amber-50 text-amber-800 font-medium px-2 py-0.5 rounded-md border border-amber-200">
-                        ₹{resort.budgetCategory}
+                    {/* 4. Location */}
+                    <span className="text-[10px] bg-teal-50 text-teal-800 font-medium px-2 py-0.5 rounded-md border border-teal-200">
+                      {resort.destination}
+                    </span>
+                    {/* 5. Price Range */}
+                    {(resort.priceRange || resort.budgetCategory) && (
+                      <span className="text-[10px] bg-amber-50 text-amber-800 font-bold px-2 py-0.5 rounded-md border border-amber-200">
+                        ₹{resort.priceRange || resort.budgetCategory}
                       </span>
                     )}
+                    {/* 6. Ambiance */}
+                    {Array.isArray(resort.ambiance) && resort.ambiance.map((amb, i) => (
+                      <span key={`amb-${i}`} className="text-[10px] bg-purple-50 text-purple-800 font-medium px-2 py-0.5 rounded-md border border-purple-200">
+                        {amb}
+                      </span>
+                    ))}
+                    {/* 7. No of Rooms */}
                     {resort.roomsAvailableCount && (
-                      <span className="text-[10px] bg-blue-50 text-blue-800 font-medium px-2 py-0.5 rounded-md border border-blue-200">
+                      <span className="text-[10px] bg-blue-50 text-blue-800 font-bold px-2 py-0.5 rounded-md border border-blue-200">
                         {resort.roomsAvailableCount} Rooms
                       </span>
                     )}
@@ -855,7 +870,7 @@ export default function ResortManagerPage() {
                   <h2 className="text-xl font-bold text-stone-900">
                     {editingResort ? `Edit Resort [${editingResort.code}]` : "Add New Resort / Villa"}
                   </h2>
-                  <p className="text-xs text-stone-500">Configure all 9 criteria: Accommodation Type, Stay Preference, Ambience, Guests & Attractions</p>
+                  <p className="text-xs text-stone-500">Compulsory Automation Points (7 Mandatory Dimensions Only)</p>
                 </div>
                 <button onClick={() => setIsModalOpen(false)} className="text-stone-400 hover:text-stone-700">
                   <X className="w-5 h-5" />
@@ -895,10 +910,10 @@ export default function ResortManagerPage() {
                     <div>
                       <h3 className="font-bold text-stone-900 text-sm flex items-center gap-2">
                         <Sparkles className="w-4 h-4 text-emerald-700" />
-                        <span>Automation & Matching Filter Matrix</span>
+                        <span>Compulsory Automation Points (7 Mandatory Dimensions Only)</span>
                       </h3>
                       <p className="text-[11px] text-stone-600">
-                        Multi-select category, stay types, budget tiers, and room counts used for automated WhatsApp Bot matching and custom quotes.
+                        Strict compulsory options required for automated matching and quotes. Only the 7 mandatory dimensions are enabled below.
                       </p>
                     </div>
                   </div>
@@ -1110,212 +1125,32 @@ export default function ResortManagerPage() {
                     </div>
                   </div>
 
-                  {/* 7. No of rooms & Dormitory Details */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="bg-white p-3.5 rounded-xl border border-stone-200/80 space-y-2">
-                      <label className="block text-stone-800 font-bold text-xs">
-                        7. No of rooms * (1, 2, 3, 4, 5, 6, 7, 7+)
-                      </label>
-                      <div className="flex flex-wrap gap-1.5">
-                        {ROOMS_AVAILABLE_OPTIONS.map((opt) => {
-                          const isActive = String(roomsAvailableCount) === String(opt);
-                          return (
-                            <button
-                              key={opt}
-                              type="button"
-                              onClick={() => {
-                                setRoomsAvailableCount(opt);
-                                if (typeof opt === "number") setBedrooms(opt);
-                              }}
-                              className={`w-9 h-9 rounded-xl text-xs font-bold transition border flex items-center justify-center ${
-                                isActive
-                                  ? "bg-emerald-800 text-white border-emerald-800 shadow"
-                                  : "bg-stone-50 text-stone-700 border-stone-200 hover:border-emerald-500"
-                              }`}
-                            >
-                              {opt}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    <div className="bg-white p-3.5 rounded-xl border border-stone-200/80 space-y-1">
-                      <label className="block text-stone-800 font-bold text-xs">
-                        Dormitory Details (If in case there)
-                      </label>
-                      <input
-                        type="text"
-                        value={dormitoryDetails}
-                        onChange={(e) => setDormitoryDetails(e.target.value)}
-                        placeholder="e.g. 12-Bed AC Dormitory with attached washrooms"
-                        className="w-full px-3 py-2 rounded-xl border border-stone-200 bg-stone-50 text-xs focus:bg-white"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Rates (Text inputs for B2C, B2B, Per Person, Full Property) */}
-                  <div className="bg-white p-3.5 rounded-xl border border-stone-200/80 space-y-2.5">
-                    <div>
-                      <label className="block text-stone-800 font-bold text-xs flex items-center gap-1.5">
-                        <DollarSign className="w-3.5 h-3.5 text-emerald-700" />
-                        Rate Details (Enter Custom Text)
-                      </label>
-                      <p className="text-[10px] text-stone-500">
-                        Enter custom text rates (e.g. ₹12,000 / night, ₹9,000 net, ₹2,200 / person, ₹35,000 full property).
-                      </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-                      <div>
-                        <label className="block text-stone-700 font-medium text-[11px] mb-1">
-                          B2C Customer Rate *
-                        </label>
-                        <input
-                          type="text"
-                          value={rateB2c}
-                          onChange={(e) => {
-                            setRateB2c(e.target.value);
-                            const num = parseInt(e.target.value.replace(/[^0-9]/g, ""), 10);
-                            if (num) setPricePerNight(num);
-                          }}
-                          placeholder="e.g. ₹12,000 / night"
-                          className="w-full px-3 py-1.5 rounded-xl border border-stone-200 font-semibold text-xs"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-stone-700 font-medium text-[11px] mb-1">
-                          B2B Agent Rate *
-                        </label>
-                        <input
-                          type="text"
-                          value={rateB2b}
-                          onChange={(e) => {
-                            setRateB2b(e.target.value);
-                            const num = parseInt(e.target.value.replace(/[^0-9]/g, ""), 10);
-                            if (num) setB2bRate(num);
-                          }}
-                          placeholder="e.g. ₹9,000 / night"
-                          className="w-full px-3 py-1.5 rounded-xl border border-stone-200 font-semibold text-xs text-stone-700"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-stone-700 font-medium text-[11px] mb-1">
-                          Per Person Rate
-                        </label>
-                        <input
-                          type="text"
-                          value={ratePerPerson}
-                          onChange={(e) => setRatePerPerson(e.target.value)}
-                          placeholder="e.g. ₹2,200 / person"
-                          className="w-full px-3 py-1.5 rounded-xl border border-stone-200 text-xs"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="block text-stone-700 font-medium text-[11px] mb-1">
-                          Full Property Rate
-                        </label>
-                        <input
-                          type="text"
-                          value={rateFullProperty}
-                          onChange={(e) => setRateFullProperty(e.target.value)}
-                          placeholder="e.g. ₹35,000 / property"
-                          className="w-full px-3 py-1.5 rounded-xl border border-stone-200 text-xs"
-                        />
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Homepage "Start Your Journey" Portfolio Mapping */}
-                  <div className="bg-white p-4 rounded-xl border border-stone-200/80 space-y-4">
-                    <div className="flex items-center justify-between pb-2 border-b border-stone-100">
-                      <div>
-                        <label className="block text-stone-900 font-bold text-xs flex items-center gap-1.5">
-                          <Compass className="w-3.5 h-3.5 text-emerald-700" />
-                          Homepage &ldquo;Start Your Journey&rdquo; Portfolio Mapping
-                          <span className="text-[11px] font-normal text-stone-500">
-                            ({selectedCollections.length} cards assigned)
-                          </span>
-                        </label>
-                        <p className="text-[10px] text-stone-500">
-                          Select which homepage portfolio cards this resort appears under when a visitor clicks them.
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* By Traveller Collections */}
-                    <div className="space-y-1.5">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[11px] font-bold text-stone-700 uppercase tracking-wider">
-                          1. Traveller Types (By Traveller Tab)
-                        </span>
-                        <button
-                          type="button"
-                          onClick={handleSelectAllTravellerCollections}
-                          className="text-[10px] font-bold text-emerald-800 hover:underline"
-                        >
-                          {TRAVELLER_COLLECTION_CHOICES.every(c => selectedCollections.includes(c)) ? "Deselect All" : "Select All Traveller"}
-                        </button>
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {TRAVELLER_COLLECTION_CHOICES.map(col => {
-                          const isChecked = selectedCollections.includes(col);
-                          return (
-                            <button
-                              key={col}
-                              type="button"
-                              onClick={() => toggleCollection(col)}
-                              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition border ${
-                                isChecked
-                                  ? "bg-emerald-800 text-white border-emerald-800 shadow-sm"
-                                  : "bg-stone-50 text-stone-700 border-stone-200 hover:border-emerald-500"
-                              }`}
-                            >
-                              {isChecked && <Check className="w-3 h-3" />}
-                              {col}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-
-                    {/* By Experience Collections */}
-                    <div className="space-y-1.5 pt-2 border-t border-stone-100">
-                      <div className="flex items-center justify-between">
-                        <span className="text-[11px] font-bold text-stone-700 uppercase tracking-wider">
-                          2. Experiences (By Experience Tab)
-                        </span>
-                        <button
-                          type="button"
-                          onClick={handleSelectAllExperienceCollections}
-                          className="text-[10px] font-bold text-emerald-800 hover:underline"
-                        >
-                          {EXPERIENCE_COLLECTION_CHOICES.every(c => selectedCollections.includes(c)) ? "Deselect All" : "Select All Experiences"}
-                        </button>
-                      </div>
-                      <div className="flex flex-wrap gap-2">
-                        {EXPERIENCE_COLLECTION_CHOICES.map(exp => {
-                          const isChecked = selectedCollections.includes(exp);
-                          return (
-                            <button
-                              key={exp}
-                              type="button"
-                              onClick={() => toggleCollection(exp)}
-                              className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition border ${
-                                isChecked
-                                  ? "bg-[#1A2218] text-[#7eb840] border-[#1A2218] shadow-sm font-bold"
-                                  : "bg-stone-50 text-stone-700 border-stone-200 hover:border-emerald-500"
-                              }`}
-                            >
-                              {isChecked && <Check className="w-3 h-3 text-[#7eb840]" />}
-                              {exp}
-                            </button>
-                          );
-                        })}
-                      </div>
+                  {/* 7. No of rooms */}
+                  <div className="bg-white p-3.5 rounded-xl border border-stone-200/80 space-y-2">
+                    <label className="block text-stone-800 font-bold text-xs">
+                      7. No of rooms * (1, 2, 3, 4, 5, 6, 7, 7+)
+                    </label>
+                    <div className="flex flex-wrap gap-1.5">
+                      {ROOMS_AVAILABLE_OPTIONS.map((opt) => {
+                        const isActive = String(roomsAvailableCount) === String(opt);
+                        return (
+                          <button
+                            key={opt}
+                            type="button"
+                            onClick={() => {
+                              setRoomsAvailableCount(opt);
+                              if (typeof opt === "number") setBedrooms(opt);
+                            }}
+                            className={`w-9 h-9 rounded-xl text-xs font-bold transition border flex items-center justify-center ${
+                              isActive
+                                ? "bg-emerald-800 text-white border-emerald-800 shadow font-bold"
+                                : "bg-stone-50 text-stone-700 border-stone-200 hover:border-emerald-500"
+                            }`}
+                          >
+                            {opt}
+                          </button>
+                        );
+                      })}
                     </div>
                   </div>
                 </div>

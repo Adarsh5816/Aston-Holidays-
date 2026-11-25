@@ -5,17 +5,16 @@
       "code": "AH-105",
       "name": "Luxury Canopy Treehouse Villa",
       "slug": "luxury-canopy-treehouse-villa-vythiri",
-      "destination": "Vythiri",
+      "destination": "Kalpetta",
       "locationDetails": "Old Vythiri, Wayanad, Kerala - 673576",
       "googleMapsUrl": "https://maps.google.com/?q=Pookode+Lake+Vythiri+Wayanad",
-      "accommodationType": "Tree House",
-      "stayPreference": "Individual Room/Suite",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Independent cottage",
       "ambience": [
-        "Rainforest & Stream",
-        "Romantic / Honeymoon",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Tree House",
+      "category": "Private Pool Villa",
       "bedrooms": 1,
       "bathrooms": 1,
       "maxAdults": 2,
@@ -72,11 +71,12 @@
         "Vehicle sightseeing"
       ],
       "categories": [
-        "Tree House"
+        "Private Pool Villa",
+        "Family resort"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "Independent cottage",
+      "roomsProvidedType": "Solo, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "9500",
         "b2b": "7500",
@@ -84,24 +84,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 1,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Family resort"
+      ],
+      "guestTypes": [
+        "Solo",
+        "Family"
+      ],
+      "guestType": "Solo",
+      "roomType": "Independent cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-108",
       "code": "AH-108",
       "name": "Cloud Valley 2BHK Private Pool Haven",
       "slug": "cloud-valley-2bhk-pool-haven-meppadi",
-      "destination": "Meppadi",
+      "destination": "Kalpetta",
       "locationDetails": "Near Chembra Peak Base, Meppadi, Wayanad - 673577",
       "googleMapsUrl": "https://maps.google.com/?q=Chembra+Peak+Meppadi+Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Group / Bachelor Friendly",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Adventure & Hilltop",
-        "Tea / Coffee Plantation"
+        "Water Frontage",
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -156,11 +171,13 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "10000 Plus",
       "rates": {
         "b2c": "11000",
         "b2b": "8500",
@@ -168,7 +185,24 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "10000 Plus",
+      "ambiance": [
+        "Water Frontage",
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-118",
@@ -179,12 +213,12 @@
       "locationDetails": "Sulthan Bathery, Sulthan Bathery, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Palm%20Tree%20Sulthan%20Bathery%20Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "stayPreference": "multi cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 4,
       "bathrooms": 4,
       "maxAdults": 12,
@@ -239,11 +273,12 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "multi cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "10000 Plus",
       "rates": {
         "b2c": "16000",
         "b2b": "12500",
@@ -251,23 +286,38 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 4,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "multi cottage",
+      "priceRange": "10000 Plus",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-111a",
       "code": "AH-111A",
       "name": "2BHK - Le Eden-1",
       "slug": "ah-111a-le-eden-1-moolankavu",
-      "destination": "Moolankavu",
+      "destination": "Sulthan Bathery",
       "locationDetails": "Moolankavu, Moolankavu, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Le%20Eden-1%20Moolankavu%20Wayanad",
-      "accommodationType": "Budget Stay",
-      "stayPreference": "Individual Room/Suite",
+      "accommodationType": "Family resort",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Family resort",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -322,11 +372,12 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Luxury Resort"
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "2000-5000",
       "rates": {
         "b2c": "4000",
         "b2b": "3000",
@@ -334,24 +385,38 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "2000-5000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-112",
       "code": "AH-112",
       "name": "2BHK - Theyila",
       "slug": "ah-112-theyila-thaloor",
-      "destination": "Thaloor",
+      "destination": "Sulthan Bathery",
       "locationDetails": "Thaloor, Thaloor, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Theyila%20Thaloor%20Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Tea / Coffee Plantation",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -406,11 +471,13 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "8400",
         "b2b": "7000",
@@ -418,24 +485,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-112a",
       "code": "AH-112A",
       "name": "2BHK - Theyila-1",
       "slug": "ah-112a-theyila-1-thaloor",
-      "destination": "Thaloor",
+      "destination": "Sulthan Bathery",
       "locationDetails": "Thaloor, Thaloor, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Theyila-1%20Thaloor%20Wayanad",
-      "accommodationType": "Plantation Resort",
-      "stayPreference": "Individual Room/Suite",
+      "accommodationType": "Family resort",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Tea / Coffee Plantation",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Family resort",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -490,11 +572,12 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Luxury Resort"
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "5500",
         "b2b": "4500",
@@ -502,23 +585,38 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-113",
       "code": "AH-113",
       "name": "2BHK - Chembarathi",
       "slug": "ah-113-chembarathi-vaduvanchal",
-      "destination": "Vaduvanchal",
+      "destination": "Sulthan Bathery",
       "locationDetails": "Vaduvanchal, Vaduvanchal, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Chembarathi%20Vaduvanchal%20Wayanad",
-      "accommodationType": "Luxury Resort",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "accommodationType": "Family resort",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Family resort",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -573,11 +671,12 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Luxury Resort"
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "9000",
         "b2b": "8000",
@@ -585,7 +684,22 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-114b",
@@ -595,13 +709,13 @@
       "destination": "Sulthan Bathery",
       "locationDetails": "Kolgappara,Sby, Sulthan Bathery, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Crescent-Tree%20House%20Sulthan%20Bathery%20Wayanad",
-      "accommodationType": "Tree House",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "accommodationType": "Family resort",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Tree House",
+      "category": "Family resort",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -656,11 +770,12 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Tree House"
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
@@ -668,23 +783,38 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-116",
       "code": "AH-116",
       "name": "2BHK - Willow",
       "slug": "ah-116-willow-ambalavayal",
-      "destination": "Ambalavayal",
+      "destination": "Sulthan Bathery",
       "locationDetails": "Amblavayal, Ambalavayal, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Willow%20Ambalavayal%20Wayanad",
-      "accommodationType": "Luxury Resort",
-      "stayPreference": "Family Gathering",
+      "accommodationType": "Family resort",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Family resort",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -739,11 +869,12 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Luxury Resort"
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6500",
@@ -751,24 +882,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-120",
       "code": "AH-120",
       "name": "3BHK - Cozy Gaza",
       "slug": "ah-120-cozy-gaza-padinjarathara",
-      "destination": "Padinjarathara",
+      "destination": "Mananthavady",
       "locationDetails": "Banasura, Padinjarathara, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Cozy%20Gaza%20Padinjarathara%20Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "stayPreference": "multi cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Lake / Dam Waterfront",
-        "Secluded & Peaceful"
+        "Water Frontage",
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 3,
       "bathrooms": 3,
       "maxAdults": 9,
@@ -823,11 +969,12 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "multi cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "10000 Plus",
       "rates": {
         "b2c": "12000",
         "b2b": "9000",
@@ -835,23 +982,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 3,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "multi cottage",
+      "priceRange": "10000 Plus",
+      "ambiance": [
+        "Water Frontage",
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-122",
       "code": "AH-122",
       "name": "4BHK - Padygram",
       "slug": "ah-122-padygram-panamaram",
-      "destination": "Panamaram",
+      "destination": "Mananthavady",
       "locationDetails": "Panamaram, Panamaram, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Padygram%20Panamaram%20Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "stayPreference": "multi cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 4,
       "bathrooms": 4,
       "maxAdults": 12,
@@ -906,11 +1069,12 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "multi cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
@@ -918,24 +1082,38 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 4,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "multi cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-115",
       "code": "AH-115",
       "name": "4BHK - Safari Hills",
       "slug": "ah-115-safari-hills-vythiri",
-      "destination": "Vythiri",
+      "destination": "Kalpetta",
       "locationDetails": "Vythiri, Vythiri, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Safari%20Hills%20Vythiri%20Wayanad",
-      "accommodationType": "Luxury Resort",
-      "stayPreference": "Group / Bachelor Friendly",
+      "accommodationType": "Group",
+      "stayPreference": "multi cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Rainforest & Stream",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Group",
       "bedrooms": 4,
       "bathrooms": 4,
       "maxAdults": 12,
@@ -990,11 +1168,11 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Luxury Resort"
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "multi cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "5000",
         "b2b": "3000",
@@ -1002,23 +1180,38 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 4,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "multi cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-117",
       "code": "AH-117",
       "name": "2BHK - Kabani River Side",
       "slug": "ah-117-kabani-river-side-koyileri",
-      "destination": "Koyileri",
+      "destination": "Mananthavady",
       "locationDetails": "Koyileri, Koyileri, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Kabani%20River%20Side%20Koyileri%20Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Water Frontage",
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -1073,11 +1266,13 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "6000",
         "b2b": "4000",
@@ -1085,23 +1280,40 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Water Frontage",
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-119",
       "code": "AH-119",
       "name": "2BHK - Aurora",
       "slug": "ah-119-aurora-koleri",
-      "destination": "Koleri",
+      "destination": "Sulthan Bathery",
       "locationDetails": "Koleri, Koleri, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Aurora%20Koleri%20Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -1156,11 +1368,13 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "10000 Plus",
       "rates": {
         "b2c": "18000",
         "b2b": "15000",
@@ -1168,23 +1382,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "10000 Plus",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-126",
       "code": "AH-126",
       "name": "2BHK - Itria",
       "slug": "ah-126-itria-kavum-mandham",
-      "destination": "Kavum Mandham",
+      "destination": "Kalpetta",
       "locationDetails": "Kavum Mandham, Kavum Mandham, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Itria%20Kavum%20Mandham%20Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -1239,11 +1469,13 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "10000",
         "b2b": "8000",
@@ -1251,24 +1483,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-130",
       "code": "AH-130",
       "name": "2BHK - Cataliya",
       "slug": "ah-130-cataliya-meppadi",
-      "destination": "Meppadi",
+      "destination": "Kalpetta",
       "locationDetails": "Meppadi, Meppadi, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Cataliya%20Meppadi%20Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Rainforest & Stream",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -1323,11 +1570,13 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
@@ -1335,23 +1584,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-132",
       "code": "AH-132",
       "name": "2BHK - Sopanam Heritage Resort",
       "slug": "ah-132-sopanam-heritage-resort-panamaram",
-      "destination": "Panamaram",
+      "destination": "Mananthavady",
       "locationDetails": "Panamaram, Panamaram, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Sopanam%20Heritage%20Resort%20Panamaram%20Wayanad",
-      "accommodationType": "Heritage Bungalow",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "accommodationType": "Family resort",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Family resort",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -1406,11 +1671,12 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Luxury Resort"
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
@@ -1418,23 +1684,38 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-134",
       "code": "AH-134",
       "name": "2BHK - Coffe Acres",
       "slug": "ah-134-coffe-acres-pinangode",
-      "destination": "Pinangode",
+      "destination": "Kalpetta",
       "locationDetails": "Pinangode, Pinangode, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Coffe%20Acres%20Pinangode%20Wayanad",
-      "accommodationType": "Luxury Resort",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "accommodationType": "Family resort",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Family resort",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -1489,11 +1770,12 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Luxury Resort"
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
@@ -1501,24 +1783,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-129",
       "code": "AH-129",
       "name": "2BHK - Lake View",
       "slug": "ah-129-lake-view-karapuzha",
-      "destination": "Karapuzha",
+      "destination": "Sulthan Bathery",
       "locationDetails": "Karappuzha, Karapuzha, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Lake%20View%20Karapuzha%20Wayanad",
-      "accommodationType": "Luxury Resort",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "accommodationType": "Family resort",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Lake / Dam Waterfront",
-        "Secluded & Peaceful"
+        "Water Frontage",
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Family resort",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -1573,11 +1870,12 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Luxury Resort"
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
@@ -1585,23 +1883,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Water Frontage",
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-131",
       "code": "AH-131",
       "name": "4BHK - Coffe Gram",
       "slug": "ah-131-coffe-gram-kaniyambetta",
-      "destination": "Kaniyambetta",
+      "destination": "Kalpetta",
       "locationDetails": "Kaniyambetta, Kaniyambetta, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Coffe%20Gram%20Kaniyambetta%20Wayanad",
-      "accommodationType": "Luxury Resort",
-      "stayPreference": "Group / Bachelor Friendly",
+      "accommodationType": "Group",
+      "stayPreference": "multi cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Group",
       "bedrooms": 4,
       "bathrooms": 4,
       "maxAdults": 12,
@@ -1656,11 +1970,11 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Luxury Resort"
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "multi cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
@@ -1668,23 +1982,37 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 4,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "multi cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-133",
       "code": "AH-133",
       "name": "2BHK - Woods",
       "slug": "ah-133-woods-chethalayam",
-      "destination": "Chethalayam",
+      "destination": "Sulthan Bathery",
       "locationDetails": "Chethalayam, Chethalayam, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Woods%20Chethalayam%20Wayanad",
-      "accommodationType": "Luxury Resort",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "accommodationType": "Family resort",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Family resort",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -1739,11 +2067,12 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Luxury Resort"
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
@@ -1751,24 +2080,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-135",
       "code": "AH-135",
       "name": "5BHK - Fortune Banasura",
       "slug": "ah-135-fortune-banasura-padinjarathara",
-      "destination": "Padinjarathara",
+      "destination": "Mananthavady",
       "locationDetails": "Padinjarathara, Padinjarathara, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Fortune%20Banasura%20Padinjarathara%20Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Individual Room/Suite",
+      "stayPreference": "multi cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Lake / Dam Waterfront",
-        "Secluded & Peaceful"
+        "Water Frontage",
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 5,
       "bathrooms": 5,
       "maxAdults": 15,
@@ -1823,11 +2167,12 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "multi cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "4000",
@@ -1835,23 +2180,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 5,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "multi cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Water Frontage",
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-138",
       "code": "AH-138",
       "name": "8BHK - Beanwoods",
       "slug": "ah-138-beanwoods-muttil",
-      "destination": "Muttil",
+      "destination": "Kalpetta",
       "locationDetails": "Muttil, Muttil, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Beanwoods%20Muttil%20Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Individual Room/Suite",
+      "stayPreference": "multi cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 8,
       "bathrooms": 8,
       "maxAdults": 24,
@@ -1906,19 +2267,35 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "multi cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
         "perPerson": "",
         "fullProperty": ""
       },
-      "roomsAvailableCount": 8,
-      "dormitoryDetails": ""
+      "roomsAvailableCount": "7+",
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "multi cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-140",
@@ -1928,13 +2305,13 @@
       "destination": "Sulthan Bathery",
       "locationDetails": "Sulthan Bathery, Sulthan Bathery, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Kedra%20Sulthan%20Bathery%20Wayanad",
-      "accommodationType": "Luxury Resort",
-      "stayPreference": "Group / Bachelor Friendly",
+      "accommodationType": "Group",
+      "stayPreference": "multi cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Group",
       "bedrooms": 4,
       "bathrooms": 4,
       "maxAdults": 12,
@@ -1989,11 +2366,11 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Luxury Resort"
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "multi cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
@@ -2001,24 +2378,37 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 4,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "multi cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-142",
       "code": "AH-142",
       "name": "4BHK - Adithya Resort",
       "slug": "ah-142-adithya-resort-vythiri",
-      "destination": "Vythiri",
+      "destination": "Kalpetta",
       "locationDetails": "Vythiri, Vythiri, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Adithya%20Resort%20Vythiri%20Wayanad",
-      "accommodationType": "Luxury Resort",
-      "stayPreference": "Group / Bachelor Friendly",
+      "accommodationType": "Group",
+      "stayPreference": "multi cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Rainforest & Stream",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Group",
       "bedrooms": 4,
       "bathrooms": 4,
       "maxAdults": 12,
@@ -2073,11 +2463,11 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Luxury Resort"
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "multi cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
@@ -2085,23 +2475,37 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 4,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "multi cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-139",
       "code": "AH-139",
       "name": "6BHK - Misty Lunge resort",
       "slug": "ah-139-misty-lunge-resort-banasuar",
-      "destination": "Banasuar",
+      "destination": "Mananthavady",
       "locationDetails": "Banasuar, Banasuar, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Misty%20Lunge%20resort%20Banasuar%20Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "stayPreference": "multi cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 6,
       "bathrooms": 6,
       "maxAdults": 18,
@@ -2156,11 +2560,12 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "multi cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
@@ -2168,23 +2573,38 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 6,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "multi cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-141",
       "code": "AH-141",
       "name": "2BHK - Tudor Hills",
       "slug": "ah-141-tudor-hills-thrikaipetta",
-      "destination": "Thrikaipetta",
+      "destination": "Kalpetta",
       "locationDetails": "Thrikaipetta, Thrikaipetta, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Tudor%20Hills%20Thrikaipetta%20Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -2239,11 +2659,13 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
@@ -2251,24 +2673,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-143",
       "code": "AH-143",
       "name": "2BHK - Vynza",
       "slug": "ah-143-vynza-vythiri",
-      "destination": "Vythiri",
+      "destination": "Kalpetta",
       "locationDetails": "Vythiri, Vythiri, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Vynza%20Vythiri%20Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Rainforest & Stream",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -2323,11 +2760,13 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
@@ -2335,23 +2774,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-145",
       "code": "AH-145",
       "name": "4BHK - New Resort",
       "slug": "ah-145-new-resort-wayanad",
-      "destination": "Wayanad",
+      "destination": "Kalpetta",
       "locationDetails": "Wayanad, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=New%20Resort%20Wayanad%20Wayanad",
-      "accommodationType": "Luxury Resort",
-      "stayPreference": "Group / Bachelor Friendly",
+      "accommodationType": "Group",
+      "stayPreference": "multi cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Group",
       "bedrooms": 4,
       "bathrooms": 4,
       "maxAdults": 12,
@@ -2406,11 +2861,11 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Luxury Resort"
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "multi cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
@@ -2418,23 +2873,37 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 4,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "multi cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-121",
       "code": "AH-121",
       "name": "3BHK - Camp lights",
       "slug": "ah-121-camp-lights-wayanad",
-      "destination": "Wayanad",
+      "destination": "Kalpetta",
       "locationDetails": "Wayanad, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Camp%20lights%20Wayanad%20Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "stayPreference": "multi cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 3,
       "bathrooms": 3,
       "maxAdults": 9,
@@ -2489,11 +2958,12 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "multi cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "12000",
@@ -2501,7 +2971,22 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 3,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "multi cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-114",
@@ -2512,12 +2997,12 @@
       "locationDetails": "Kolgappara,Sby, Sulthan Bathery, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Cortyard%20Sulthan%20Bathery%20Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -2572,11 +3057,13 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "10000 Plus",
       "rates": {
         "b2c": "12000",
         "b2b": "10000",
@@ -2584,7 +3071,23 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "10000 Plus",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-114a",
@@ -2595,12 +3098,12 @@
       "locationDetails": "Kolgappara,Sby, Sulthan Bathery, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Crescent%20Sulthan%20Bathery%20Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Family Gathering",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -2655,11 +3158,13 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "2000-5000",
       "rates": {
         "b2c": "4000",
         "b2b": "3300",
@@ -2667,7 +3172,23 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "2000-5000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-123",
@@ -2677,13 +3198,13 @@
       "destination": "Mananthavady",
       "locationDetails": "Manathavady, Mananthavady, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=FernTree%20Mananthavady%20Wayanad",
-      "accommodationType": "Luxury Resort",
-      "stayPreference": "Group / Bachelor Friendly",
+      "accommodationType": "Group",
+      "stayPreference": "multi cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Group",
       "bedrooms": 4,
       "bathrooms": 4,
       "maxAdults": 12,
@@ -2738,11 +3259,11 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Luxury Resort"
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "multi cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
@@ -2750,24 +3271,37 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 4,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "multi cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "res-1792681693049",
       "code": "AH-300",
       "name": "Pepper Route",
       "slug": "ah-300-pepper-route",
-      "destination": "Fort kochi",
+      "destination": "Kalpetta",
       "locationDetails": "Fort kochi, Ernakulam, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Pepper%20Route%20Fort%20kochi",
-      "accommodationType": "Budget Stay",
-      "stayPreference": "Group / Bachelor Friendly",
+      "accommodationType": "Family resort",
+      "stayPreference": "Independent cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Romantic / Honeymoon",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Family resort",
       "bedrooms": 1,
       "bathrooms": 1,
       "maxAdults": 10,
@@ -2805,11 +3339,12 @@
         "Any extra meals not in plan"
       ],
       "categories": [
-        "Luxury Resort"
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "Independent cottage",
+      "roomsProvidedType": "Solo, Family, Bachelor",
+      "budgetCategory": "2000-5000",
       "rates": {
         "b2c": "2500",
         "b2b": "2100",
@@ -2817,23 +3352,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 1,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Solo",
+        "Family",
+        "Bachelor"
+      ],
+      "guestType": "Solo",
+      "roomType": "Independent cottage",
+      "priceRange": "2000-5000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-124",
       "code": "AH-124",
       "name": "2BHK - Prakriti",
       "slug": "ah-124-prakriti-koleri",
-      "destination": "Koleri",
+      "destination": "Sulthan Bathery",
       "locationDetails": "Koleri, Koleri, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Prakriti%20Koleri%20Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -2888,11 +3439,13 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
@@ -2900,23 +3453,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-125",
       "code": "AH-125",
       "name": "4BHK - Blooms",
       "slug": "ah-125-blooms-kenichira",
-      "destination": "Kenichira",
+      "destination": "Sulthan Bathery",
       "locationDetails": "Kenichira, Kenichira, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Blooms%20Kenichira%20Wayanad",
-      "accommodationType": "Luxury Resort",
-      "stayPreference": "Group / Bachelor Friendly",
+      "accommodationType": "Group",
+      "stayPreference": "multi cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Group",
       "bedrooms": 4,
       "bathrooms": 4,
       "maxAdults": 12,
@@ -2971,11 +3540,11 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Luxury Resort"
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "multi cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "2000-5000",
       "rates": {
         "b2c": "1000",
         "b2b": "900",
@@ -2983,24 +3552,38 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 4,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "multi cottage",
+      "priceRange": "2000-5000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-136",
       "code": "AH-136",
       "name": "7BHK - Lake Paradise",
       "slug": "ah-136-lake-paradise-padinjarathara",
-      "destination": "Padinjarathara",
+      "destination": "Mananthavady",
       "locationDetails": "Padinjarathara, Padinjarathara, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Lake%20Paradise%20Padinjarathara%20Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Group / Bachelor Friendly",
+      "stayPreference": "multi cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Lake / Dam Waterfront",
-        "Secluded & Peaceful"
+        "Water Frontage",
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 7,
       "bathrooms": 7,
       "maxAdults": 21,
@@ -3055,35 +3638,52 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "multi cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
         "perPerson": "",
         "fullProperty": ""
       },
-      "roomsAvailableCount": 7,
-      "dormitoryDetails": ""
+      "roomsAvailableCount": "7+",
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "multi cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Water Frontage",
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-144",
       "code": "AH-144",
       "name": "4BHK - Klov",
       "slug": "ah-144-klov-wayanad",
-      "destination": "Wayanad",
+      "destination": "Kalpetta",
       "locationDetails": "Wayanad, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Klov%20Wayanad%20Wayanad",
-      "accommodationType": "Luxury Resort",
-      "stayPreference": "Group / Bachelor Friendly",
+      "accommodationType": "Group",
+      "stayPreference": "multi cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Group",
       "bedrooms": 4,
       "bathrooms": 4,
       "maxAdults": 12,
@@ -3138,11 +3738,11 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Luxury Resort"
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "multi cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
@@ -3150,24 +3750,38 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 4,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "multi cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-137",
       "code": "AH-137",
       "name": "2BHK - Alaya",
       "slug": "ah-137-alaya-padinjarathara",
-      "destination": "Padinjarathara",
+      "destination": "Mananthavady",
       "locationDetails": "Padinjarathara, Padinjarathara, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Alaya%20Padinjarathara%20Wayanad",
-      "accommodationType": "Luxury Resort",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "accommodationType": "Family resort",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Lake / Dam Waterfront",
-        "Secluded & Peaceful"
+        "Water Frontage",
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Family resort",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -3222,11 +3836,12 @@
         "Extra bed charges"
       ],
       "categories": [
-        "Luxury Resort"
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "7500",
         "b2b": "6000",
@@ -3234,24 +3849,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Water Frontage",
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "res-1792681520276",
       "code": "AH-202",
       "name": "Maleyam home stay",
       "slug": "ah-202-maleyam-home-stay",
-      "destination": "Kadalundy",
+      "destination": "Kalpetta",
       "locationDetails": "Vythiri, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Maleyam%20home%20stay%20Kadalundy",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "stayPreference": "Independent cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Romantic / Honeymoon",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 1,
       "bathrooms": 1,
       "maxAdults": 2,
@@ -3289,11 +3919,12 @@
         "Any extra meals not in plan"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Family resort"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "Independent cottage",
+      "roomsProvidedType": "Solo, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "10000",
         "b2b": "9500",
@@ -3301,24 +3932,38 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 1,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Family resort"
+      ],
+      "guestTypes": [
+        "Solo",
+        "Family"
+      ],
+      "guestType": "Solo",
+      "roomType": "Independent cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "res-1792681784728",
       "code": "AH-301",
       "name": "House Boat",
       "slug": "ah-301-house-boat",
-      "destination": "Alappuzha",
+      "destination": "Sulthan Bathery",
       "locationDetails": "Alappuzha, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=House%20Boat%20Alappuzha",
-      "accommodationType": "Houseboat",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "accommodationType": "Family resort",
+      "stayPreference": "Independent cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Romantic / Honeymoon",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Family resort",
       "bedrooms": 1,
       "bathrooms": 1,
       "maxAdults": 4,
@@ -3356,11 +4001,12 @@
         "Any extra meals not in plan"
       ],
       "categories": [
-        "Luxury Resort"
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "Independent cottage",
+      "roomsProvidedType": "Solo, Family, Bachelor",
+      "budgetCategory": "10000 Plus",
       "rates": {
         "b2c": "14000",
         "b2b": "1300",
@@ -3368,24 +4014,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 1,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Solo",
+        "Family",
+        "Bachelor"
+      ],
+      "guestType": "Solo",
+      "roomType": "Independent cottage",
+      "priceRange": "10000 Plus",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "res-1792681889868",
       "code": "AH-303",
       "name": "Maleyam Homestay",
       "slug": "ah-303-maleyam-homestay",
-      "destination": "Kadalundy",
+      "destination": "Kalpetta",
       "locationDetails": "Kadalundy, Kozhikkode, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Maleyam%20Homestay%20Kadalundy",
-      "accommodationType": "Heritage Bungalow",
-      "stayPreference": "Group / Bachelor Friendly",
+      "accommodationType": "Family resort",
+      "stayPreference": "Independent cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Romantic / Honeymoon",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Family resort",
       "bedrooms": 1,
       "bathrooms": 1,
       "maxAdults": 8,
@@ -3423,11 +4084,12 @@
         "Any extra meals not in plan"
       ],
       "categories": [
-        "Luxury Resort"
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "Independent cottage",
+      "roomsProvidedType": "Solo, Family, Bachelor",
+      "budgetCategory": "2000-5000",
       "rates": {
         "b2c": "4500",
         "b2b": "3500",
@@ -3435,7 +4097,23 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 1,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Solo",
+        "Family",
+        "Bachelor"
+      ],
+      "guestType": "Solo",
+      "roomType": "Independent cottage",
+      "priceRange": "2000-5000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "res-1792682032007",
@@ -3445,14 +4123,13 @@
       "destination": "Sulthan Bathery",
       "locationDetails": "Sulthan Bathery, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Wayanad%20Wild%20Resort%20Sulthan%20Bathery",
-      "accommodationType": "Budget Stay",
-      "stayPreference": "Group / Bachelor Friendly",
+      "accommodationType": "Family resort",
+      "stayPreference": "Independent cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Romantic / Honeymoon",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Family resort",
       "bedrooms": 1,
       "bathrooms": 1,
       "maxAdults": 10,
@@ -3490,11 +4167,12 @@
         "Any extra meals not in plan"
       ],
       "categories": [
-        "Luxury Resort"
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "Independent cottage",
+      "roomsProvidedType": "Solo, Family, Bachelor",
+      "budgetCategory": "2000-5000",
       "rates": {
         "b2c": "4000",
         "b2b": "3500",
@@ -3502,24 +4180,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 1,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Solo",
+        "Family",
+        "Bachelor"
+      ],
+      "guestType": "Solo",
+      "roomType": "Independent cottage",
+      "priceRange": "2000-5000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "res-1792682144788",
       "code": "AH-305",
       "name": "Vanalaya",
       "slug": "ah-305-vanalaya",
-      "destination": "Meppadi",
+      "destination": "Kalpetta",
       "locationDetails": "Meppadi, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Vanalaya%20Meppadi",
-      "accommodationType": "Plantation Resort",
-      "stayPreference": "Group / Bachelor Friendly",
+      "accommodationType": "Family resort",
+      "stayPreference": "Independent cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Romantic / Honeymoon",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Family resort",
       "bedrooms": 1,
       "bathrooms": 1,
       "maxAdults": 40,
@@ -3557,11 +4250,12 @@
         "Any extra meals not in plan"
       ],
       "categories": [
-        "Luxury Resort"
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "Independent cottage",
+      "roomsProvidedType": "Solo, Family, Bachelor",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "6750",
         "b2b": "5750",
@@ -3569,23 +4263,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 1,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Solo",
+        "Family",
+        "Bachelor"
+      ],
+      "guestType": "Solo",
+      "roomType": "Independent cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "resort-ah-111",
       "code": "AH-111",
       "name": "2BHK - Le Eden",
       "slug": "2bhk---le-eden-moolankavu",
-      "destination": "Moolankavu",
+      "destination": "Sulthan Bathery",
       "locationDetails": "Moolankavu, Moolankavu, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Le%20Eden%20Moolankavu%20Wayanad",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "stayPreference": "twin cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 2,
       "bathrooms": 2,
       "maxAdults": 6,
@@ -3642,11 +4352,13 @@
         "Vehicle sightseeing"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "twin cottage",
+      "roomsProvidedType": "Bachelor, Family",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "10000",
         "b2b": "8000",
@@ -3654,24 +4366,39 @@
         "fullProperty": ""
       },
       "roomsAvailableCount": 2,
-      "dormitoryDetails": ""
+      "dormitoryDetails": "",
+      "types": [
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
+      ],
+      "guestTypes": [
+        "Bachelor",
+        "Family"
+      ],
+      "guestType": "Bachelor",
+      "roomType": "twin cottage",
+      "priceRange": "5000-10000",
+      "ambiance": [
+        "Mountain/Hill top",
+        "Forest/Plantation"
+      ]
     },
     {
       "id": "res-1795148520553",
       "code": "AH-306",
       "name": "Family Resort Padinjarathar",
       "slug": "ah-306-family-resort-padinjarathar",
-      "destination": "Padinjarathara",
+      "destination": "Mananthavady",
       "locationDetails": "Padinjarathara",
       "googleMapsUrl": "https://maps.google.com/?q=Family%20Resort%20Padinjarathar%20Padinjarathara",
-      "accommodationType": "Plantation Resort",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "accommodationType": "Family resort",
+      "stayPreference": "Independent cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Romantic / Honeymoon",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Family resort",
       "bedrooms": 1,
       "bathrooms": 1,
       "maxAdults": 10,
@@ -3709,23 +4436,28 @@
         "Any extra meals not in plan"
       ],
       "types": [
-        "Luxury Resort"
+        "Family resort",
+        "Group"
       ],
-      "guestTypes": [],
-      "guestType": "",
-      "roomType": "",
-      "priceRange": "",
+      "guestTypes": [
+        "Solo",
+        "Family",
+        "Bachelor"
+      ],
+      "guestType": "Solo",
+      "roomType": "Independent cottage",
+      "priceRange": "10000 Plus",
       "ambiance": [
-        "Mountain / Valley View",
-        "Romantic / Honeymoon",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
       "categories": [
-        "Luxury Resort"
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "Independent cottage",
+      "roomsProvidedType": "Solo, Family, Bachelor",
+      "budgetCategory": "10000 Plus",
       "rates": {
         "b2c": "18000",
         "b2b": "15000",
@@ -3741,17 +4473,16 @@
       "code": "AH-307",
       "name": "4Bhk Private pool Villa Meppadi",
       "slug": "ah-307-4bhk-private-pool-villa-meppadi",
-      "destination": "Nellarachal",
+      "destination": "Sulthan Bathery",
       "locationDetails": "Ambalavayal",
       "googleMapsUrl": "https://maps.google.com/?q=4Bhk%20Private%20pool%20Villa%20Meppadi%20Nellarachal",
       "accommodationType": "Private Pool Villa",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "stayPreference": "Independent cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Romantic / Honeymoon",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Pool Villa",
+      "category": "Private Pool Villa",
       "bedrooms": 1,
       "bathrooms": 1,
       "maxAdults": 10,
@@ -3789,23 +4520,30 @@
         "Any extra meals not in plan"
       ],
       "types": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
       ],
-      "guestTypes": [],
-      "guestType": "",
-      "roomType": "",
-      "priceRange": "",
+      "guestTypes": [
+        "Solo",
+        "Family",
+        "Bachelor"
+      ],
+      "guestType": "Solo",
+      "roomType": "Independent cottage",
+      "priceRange": "10000 Plus",
       "ambiance": [
-        "Mountain / Valley View",
-        "Romantic / Honeymoon",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
       "categories": [
-        "Pool Villa"
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "Independent cottage",
+      "roomsProvidedType": "Solo, Family, Bachelor",
+      "budgetCategory": "10000 Plus",
       "rates": {
         "b2c": "23000",
         "b2b": "160000",
@@ -3821,17 +4559,16 @@
       "code": "AH-308",
       "name": "Family Resort Kolagapara",
       "slug": "ah-308-family-resort-kolagapara",
-      "destination": "Vythiri",
+      "destination": "Kalpetta",
       "locationDetails": "Sulthan Bathery, Wayanad, Kerala",
       "googleMapsUrl": "https://maps.google.com/?q=Family%20Resort%20Kolagapara%20Vythiri",
-      "accommodationType": "Plantation Resort",
-      "stayPreference": "Independent Private Cottage/Villa",
+      "accommodationType": "Family resort",
+      "stayPreference": "Independent cottage",
       "ambience": [
-        "Mountain / Valley View",
-        "Romantic / Honeymoon",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
-      "category": "Luxury Resort",
+      "category": "Family resort",
       "bedrooms": 1,
       "bathrooms": 1,
       "maxAdults": 10,
@@ -3869,23 +4606,28 @@
         "Any extra meals not in plan"
       ],
       "types": [
-        "Luxury Resort"
+        "Family resort",
+        "Group"
       ],
-      "guestTypes": [],
-      "guestType": "",
-      "roomType": "",
-      "priceRange": "",
+      "guestTypes": [
+        "Solo",
+        "Family",
+        "Bachelor"
+      ],
+      "guestType": "Solo",
+      "roomType": "Independent cottage",
+      "priceRange": "5000-10000",
       "ambiance": [
-        "Mountain / Valley View",
-        "Romantic / Honeymoon",
-        "Secluded & Peaceful"
+        "Mountain/Hill top",
+        "Forest/Plantation"
       ],
       "categories": [
-        "Luxury Resort"
+        "Family resort",
+        "Group"
       ],
-      "stayType": "",
-      "roomsProvidedType": "",
-      "budgetCategory": "",
+      "stayType": "Independent cottage",
+      "roomsProvidedType": "Solo, Family, Bachelor",
+      "budgetCategory": "5000-10000",
       "rates": {
         "b2c": "8500",
         "b2b": "7500",
@@ -5911,49 +6653,60 @@
   ],
   "taxonomies": {
     "resortFilters": {
-      "accommodationTypes": [
+      "types": [
         "Private Pool Villa",
-        "Canopy Tree House",
-        "Luxury Resort",
-        "Plantation Resort",
-        "Heritage Bungalow",
-        "Budget Friendly Stay",
-        "Glamping / Luxury Tents",
-        "Houseboat",
-        "A-Frame Chalet"
+        "Family resort",
+        "Group"
       ],
-      "stayPreferences": [
-        "Independent Private Cottage/Villa",
-        "Individual Room/Suite",
-        "Group / Bachelor Friendly",
-        "Family Gathering"
+      "guestTypes": [
+        "Family",
+        "Bachelor",
+        "Solo"
+      ],
+      "roomTypes": [
+        "Independent cottage",
+        "twin cottage",
+        "multi cottage"
       ],
       "destinations": [
-        "Padinjarathara (Banasura)",
-        "Vythiri (Pookode & Canopies)",
-        "Meppadi (Chembra)",
-        "Sulthan Bathery (Edakkal Caves)",
-        "Kalpetta (Central Wayanad)",
-        "Ambalavayal",
-        "Muthanga & Tholpetty (Safari)",
-        "Mananthavady",
-        "Lakkidi"
+        "Sulthan Bathery",
+        "Kalpetta",
+        "Mananthavady"
       ],
-      "ambienceTypes": [
-        "Mountain / Valley View",
-        "Lake / Dam Waterfront",
-        "Rainforest & Stream",
-        "Tea / Coffee Plantation",
-        "Romantic / Honeymoon",
-        "Secluded & Peaceful",
-        "Adventure & Hilltop"
+      "priceRanges": [
+        "2000-5000",
+        "5000-10000",
+        "10000 Plus"
+      ],
+      "ambianceTypes": [
+        "Forest/Plantation",
+        "Mountain/Hill top",
+        "Water Frontage"
+      ],
+      "roomCounts": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        "7+"
+      ],
+      "accommodationTypes": [
+        "Private Pool Villa",
+        "Family resort",
+        "Group"
+      ],
+      "stayPreferences": [
+        "Independent cottage",
+        "twin cottage",
+        "multi cottage"
       ],
       "budgetTiers": [
-        6000,
+        5000,
         10000,
-        15000,
-        20000,
-        30000
+        50000
       ]
     },
     "itineraryConfig": {
