@@ -8,28 +8,38 @@ export async function GET(req: NextRequest) {
   const url = new URL(req.url);
   const code = url.searchParams.get("code");
 
-  // 9 Dimensions Query + Curated Collections
-  const collection = url.searchParams.get("collection") || url.searchParams.get("curatedCollection") || undefined;
-  const accommodationType = url.searchParams.get("accommodationType") || url.searchParams.get("category") || undefined;
-  const stayPreference = url.searchParams.get("stayPreference") || undefined;
+  // 7 Compulsory Automation Dimensions + Legacy Aliases
+  const type = url.searchParams.get("type") || url.searchParams.get("accommodationType") || url.searchParams.get("category") || undefined;
+  const guestType = url.searchParams.get("guestType") || undefined;
+  const roomType = url.searchParams.get("roomType") || url.searchParams.get("stayPreference") || undefined;
   const location = url.searchParams.get("location") || url.searchParams.get("destination") || undefined;
+  const priceRange = url.searchParams.get("priceRange") || undefined;
+  const ambiance = url.searchParams.get("ambiance") || url.searchParams.get("ambience") || undefined;
+  const rooms = url.searchParams.get("rooms") || url.searchParams.get("noOfRooms") || url.searchParams.get("bedrooms")
+    ? Number(String(url.searchParams.get("rooms") || url.searchParams.get("noOfRooms") || url.searchParams.get("bedrooms")).replace(/[^0-9]/g, ""))
+    : undefined;
+
+  const collection = url.searchParams.get("collection") || url.searchParams.get("curatedCollection") || undefined;
   const budgetMin = url.searchParams.get("budgetMin") ? Number(url.searchParams.get("budgetMin")) : undefined;
   const budgetMax = url.searchParams.get("budgetMax") ? Number(url.searchParams.get("budgetMax")) : undefined;
-  const ambience = url.searchParams.get("ambience") || undefined;
   const adults = url.searchParams.get("adults") ? Number(url.searchParams.get("adults")) : undefined;
   const children = url.searchParams.get("children") ? Number(url.searchParams.get("children")) : undefined;
-  const rooms = url.searchParams.get("rooms") || url.searchParams.get("bedrooms") ? Number(url.searchParams.get("rooms") || url.searchParams.get("bedrooms")) : undefined;
   const query = url.searchParams.get("q") || undefined;
 
   // Always fetch live resorts state from Supabase Dual-Vault
   const resorts = await Store.getResortsLive({
     collection,
-    accommodationType,
-    stayPreference,
+    type,
+    guestType,
+    roomType,
     location,
+    priceRange,
+    ambiance,
+    accommodationType: type,
+    stayPreference: roomType,
+    ambience: ambiance,
     budgetMin,
     budgetMax,
-    ambience,
     adults,
     children,
     rooms,

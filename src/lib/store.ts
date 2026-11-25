@@ -84,55 +84,156 @@ function normalizePhotos(coverImage: string, photos: any[]): { coverImage: strin
   return { coverImage: finalCover, photos: fixedList };
 }
 
+const SULTHAN_BATHERY_AREAS = ["sulthan bathery", "ambalavayal", "chethalayam", "nellarachal", "karapuzha", "koleri", "moolankavu", "vaduvanchal", "thaloor", "kenichira", "alappuzha"];
+const MANANTHAVADY_AREAS = ["mananthavady", "padinjarathara", "banasuar", "panamaram", "koyileri"];
+const KALPETTA_AREAS = ["kalpetta", "vythiri", "meppadi", "muttil", "thrikaipetta", "pinangode", "kavum mandham", "kaniyambetta", "fort kochi", "kadalundy", "wayanad"];
+
+function normalizeDestination(dest: string): "Sulthan Bathery" | "Kalpetta" | "Mananthavady" {
+  const d = (dest || "").toLowerCase().trim();
+  if (d === "sulthan bathery" || d === "kalpetta" || d === "mananthavady") {
+    return d === "sulthan bathery" ? "Sulthan Bathery" : d === "kalpetta" ? "Kalpetta" : "Mananthavady";
+  }
+  if (SULTHAN_BATHERY_AREAS.some(a => d.includes(a))) return "Sulthan Bathery";
+  if (MANANTHAVADY_AREAS.some(a => d.includes(a))) return "Mananthavady";
+  if (KALPETTA_AREAS.some(a => d.includes(a))) return "Kalpetta";
+  return "Sulthan Bathery";
+}
+
+function normalizeTypes(row: any, bedrooms: number, maxGuests: number): ("Private Pool Villa" | "Family resort" | "Group")[] {
+  const rawTypes = Array.isArray(row.types) && row.types.length > 0 ? row.types : (Array.isArray(row.categories) ? row.categories : (row.category ? [row.category] : []));
+  const valid = rawTypes.filter((t: string) => t === "Private Pool Villa" || t === "Family resort" || t === "Group");
+  if (valid.length > 0) return valid;
+
+  const tSet = new Set<"Private Pool Villa" | "Family resort" | "Group">();
+  const text = `${row.name || ""} ${rawTypes.join(" ")} ${row.accommodation_type || row.accommodationType || ""}`.toLowerCase();
+  if (text.includes("pool") || text.includes("villa")) tSet.add("Private Pool Villa");
+  if (text.includes("family") || bedrooms === 2 || bedrooms === 1) tSet.add("Family resort");
+  if (text.includes("group") || text.includes("bachelor") || bedrooms >= 3 || maxGuests >= 6) tSet.add("Group");
+  if (tSet.size === 0) tSet.add("Private Pool Villa");
+  return Array.from(tSet);
+}
+
+function normalizeGuestTypes(row: any, bedrooms: number, maxGuests: number): ("Family" | "Bachelor" | "Solo")[] {
+  const rawGuests = Array.isArray(row.guest_types) ? row.guest_types : (Array.isArray(row.guestTypes) ? row.guestTypes : (row.guest_type ? [row.guest_type] : []));
+  const valid = rawGuests.filter((g: string) => g === "Family" || g === "Bachelor" || g === "Solo");
+  if (valid.length > 0) return valid;
+
+  const gSet = new Set<"Family" | "Bachelor" | "Solo">();
+  const text = `${row.name || ""} ${rawGuests.join(" ")} ${row.rooms_provided_type || ""}`.toLowerCase();
+  if (bedrooms === 1 || Number(row.max_adults || row.maxAdults || 2) <= 2) {
+    gSet.add("Solo");
+    gSet.add("Family");
+  }
+  if (text.includes("bachelor") || text.includes("group") || bedrooms >= 3 || maxGuests >= 6) {
+    gSet.add("Bachelor");
+    gSet.add("Family");
+  }
+  if (gSet.size === 0) gSet.add("Family");
+  return Array.from(gSet);
+}
+
+function normalizeRoomType(row: any, bedrooms: number): "Independent cottage" | "twin cottage" | "multi cottage" {
+  const raw = String(row.room_type || row.roomType || row.stay_type || row.stayType || row.stay_preference || row.stayPreference || "").toLowerCase();
+  if (raw === "independent cottage" || raw === "twin cottage" || raw === "multi cottage") return raw as any;
+  if (bedrooms === 1) return "Independent cottage";
+  if (bedrooms === 2) return "twin cottage";
+  return "multi cottage";
+}
+
+function normalizePriceRange(row: any, price: number): "2000-5000" | "5000-10000" | "10000 Plus" {
+  const raw = String(row.price_range || row.priceRange || row.budget_category || row.budgetCategory || "");
+  if (raw === "2000-5000" || raw === "5000-10000" || raw === "10000 Plus") return raw as any;
+  if (price < 5000) return "2000-5000";
+  if (price <= 10000) return "5000-10000";
+  return "10000 Plus";
+}
+
+function normalizeAmbiance(row: any): ("Forest/Plantation" | "Mountain/Hill top" | "Water Frontage")[] {
+  const raw = Array.isArray(row.ambiance) ? row.ambiance : (Array.isArray(row.ambience) ? row.ambience : []);
+  const valid = raw.filter((a: string) => a === "Forest/Plantation" || a === "Mountain/Hill top" || a === "Water Frontage");
+  if (valid.length > 0) return valid;
+
+  const aSet = new Set<"Forest/Plantation" | "Mountain/Hill top" | "Water Frontage">();
+  const text = `${raw.join(" ")} ${row.overview || ""} ${Array.isArray(row.specialities) ? row.specialities.join(" ") : ""}`.toLowerCase();
+  if (text.includes("water") || text.includes("lake") || text.includes("dam") || text.includes("river") || text.includes("frontage")) {
+    aSet.add("Water Frontage");
+  }
+  if (text.includes("mountain") || text.includes("hill") || text.includes("valley") || text.includes("adventure") || text.includes("view")) {
+    aSet.add("Mountain/Hill top");
+  }
+  if (text.includes("forest") || text.includes("plantation") || text.includes("tree") || text.includes("coffee") || text.includes("tea") || text.includes("nature") || text.includes("rainforest")) {
+    aSet.add("Forest/Plantation");
+  }
+  if (aSet.size === 0) aSet.add("Forest/Plantation");
+  return Array.from(aSet);
+}
+
 function dbRowToResort(row: any): Resort {
   const { coverImage, photos } = normalizePhotos(row.cover_image || "", row.photos);
+  const bedrooms = Number(row.bedrooms) || 1;
+  const maxGuests = Number(row.max_guests || row.maxGuests) || 2;
+  const price = Number(row.price_per_night || row.pricePerNight) || 5000;
+
+  const destination = normalizeDestination(row.destination);
+  const types = normalizeTypes(row, bedrooms, maxGuests);
+  const guestTypes = normalizeGuestTypes(row, bedrooms, maxGuests);
+  const roomType = normalizeRoomType(row, bedrooms);
+  const priceRange = normalizePriceRange(row, price);
+  const ambiance = normalizeAmbiance(row);
+  const roomsAvailableCount = row.rooms_available_count || row.roomsAvailableCount || (bedrooms >= 7 ? "7+" : bedrooms);
+
   return {
     id: row.id || `resort-${(row.code || "").toLowerCase()}`,
     code: row.code,
     name: row.name,
     slug: row.slug || (row.code || "").toLowerCase(),
-    destination: row.destination || "",
+    destination,
     locationDetails: row.location_details || row.locationDetails || "",
     googleMapsUrl: row.google_maps_url || row.googleMapsUrl || "",
-    accommodationType: row.accommodation_type || row.accommodationType || "Resort",
-    stayPreference: row.stay_preference || row.stayPreference || "Private Villa",
-    ambience: Array.isArray(row.ambience) ? row.ambience : [],
-    category: row.category || "Standard",
-    bedrooms: Number(row.bedrooms) || 1,
+    accommodationType: types[0],
+    stayPreference: roomType,
+    ambience: ambiance,
+    category: types[0],
+    bedrooms,
     bathrooms: Number(row.bathrooms) || 1,
-    maxAdults: Number(row.max_adults) || 2,
-    maxChildren: Number(row.max_children) || 0,
-    maxGuests: Number(row.max_guests) || 2,
-    pricePerNight: Number(row.price_per_night) || 5000,
-    b2bRate: Number(row.b2b_rate) || 4000,
+    maxAdults: Number(row.max_adults || row.maxAdults) || 2,
+    maxChildren: Number(row.max_children || row.maxChildren) || 0,
+    maxGuests,
+    pricePerNight: price,
+    b2bRate: Number(row.b2b_rate || row.b2bRate) || 4000,
     featured: Boolean(row.featured),
     coverImage,
     photos,
     amenities: Array.isArray(row.amenities) ? row.amenities : [],
     specialities: Array.isArray(row.specialities) ? row.specialities : [],
-    nearbyAttractions: Array.isArray(row.nearby_attractions) ? row.nearby_attractions : [],
-    checkInTime: row.check_in_time || "01:00 PM",
-    checkOutTime: row.check_out_time || "11:00 AM",
+    nearbyAttractions: Array.isArray(row.nearby_attractions || row.nearbyAttractions) ? (row.nearby_attractions || row.nearbyAttractions) : [],
+    checkInTime: row.check_in_time || row.checkInTime || "01:00 PM",
+    checkOutTime: row.check_out_time || row.checkOutTime || "11:00 AM",
     overview: row.overview || "",
     inclusions: Array.isArray(row.inclusions) ? row.inclusions : [],
     exclusions: Array.isArray(row.exclusions) ? row.exclusions : [],
-    types: Array.isArray(row.types) ? row.types : (Array.isArray(row.categories) ? row.categories : (row.category ? [row.category] : [])),
-    guestTypes: Array.isArray(row.guest_types) ? row.guest_types : (row.guest_type ? [row.guest_type] : (row.rooms_provided_type ? [row.rooms_provided_type] : [])),
-    guestType: row.guest_type || row.guestType || row.rooms_provided_type || row.roomsProvidedType || "",
-    roomType: row.room_type || row.roomType || row.stay_type || row.stayType || "",
-    priceRange: row.price_range || row.priceRange || row.budget_category || row.budgetCategory || "",
-    ambiance: Array.isArray(row.ambiance) ? row.ambiance : (Array.isArray(row.ambience) ? row.ambience : []),
-    categories: Array.isArray(row.categories) ? row.categories : (row.category ? [row.category] : []),
-    stayType: row.stay_type || row.stayType || row.room_type || row.roomType || "",
-    roomsProvidedType: row.rooms_provided_type || row.roomsProvidedType || "",
-    budgetCategory: row.budget_category || row.budgetCategory || row.price_range || row.priceRange || "",
+
+    // 7 Compulsory Automation Dimensions
+    types,
+    guestTypes,
+    guestType: guestTypes[0] || "Family",
+    roomType,
+    priceRange,
+    ambiance,
+    roomsAvailableCount,
+
+    // Legacy sync
+    categories: types,
+    stayType: roomType,
+    roomsProvidedType: guestTypes.join(", "),
+    budgetCategory: priceRange,
+
     rates: row.rates || {
-      b2c: row.b2c_rate || (row.price_per_night ? String(row.price_per_night) : ""),
-      b2b: row.b2b_rate_text || (row.b2b_rate ? String(row.b2b_rate) : ""),
+      b2c: row.b2c_rate || (price ? String(price) : ""),
+      b2b: row.b2b_rate_text || (row.b2b_rate || row.b2bRate ? String(row.b2b_rate || row.b2bRate) : ""),
       perPerson: row.per_person_rate || "",
       fullProperty: row.full_property_rate || ""
     },
-    roomsAvailableCount: row.rooms_available_count || row.roomsAvailableCount || row.bedrooms || 1,
     dormitoryDetails: row.dormitory_details || row.dormitoryDetails || "",
     curatedCollections: Array.isArray(row.curated_collections)
       ? row.curated_collections
