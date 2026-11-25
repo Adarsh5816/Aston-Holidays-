@@ -12,30 +12,48 @@ export interface NearbyAttraction {
   distance: string;
 }
 
+export type AutomationType = "Private Pool Villa" | "Family resort" | "Group";
+export type AutomationGuestType = "Family" | "Bachelor" | "Solo";
+export type AutomationRoomType = "Independent cottage" | "twin cottage" | "multi cottage";
+export type AutomationLocation = "Sulthan Bathery" | "Kalpetta" | "Mananthavady";
+export type AutomationPriceRange = "2000-5000" | "5000-10000" | "10000 Plus";
+export type AutomationAmbiance = "Forest/Plantation" | "Mountain/Hill top" | "Water Frontage";
+
 export type AccommodationType =
   | "Private Pool Villa"
+  | "Family resort"
+  | "Group"
   | "Tree House"
   | "Luxury Resort"
   | "Plantation Resort"
   | "Budget Stay"
   | "Heritage Bungalow"
   | "Glamping / Tent"
-  | "Houseboat";
+  | "Houseboat"
+  | string;
 
 export type StayPreference =
+  | "Independent cottage"
+  | "twin cottage"
+  | "multi cottage"
   | "Independent Private Cottage/Villa"
   | "Individual Room/Suite"
   | "Group / Bachelor Friendly"
-  | "Family Gathering";
+  | "Family Gathering"
+  | string;
 
 export type AmbienceType =
+  | "Forest/Plantation"
+  | "Mountain/Hill top"
+  | "Water Frontage"
   | "Mountain / Valley View"
   | "Lake / Dam Waterfront"
   | "Rainforest & Stream"
   | "Tea / Coffee Plantation"
   | "Romantic / Honeymoon"
   | "Secluded & Peaceful"
-  | "Adventure & Hilltop";
+  | "Adventure & Hilltop"
+  | string;
 
 export interface CustomTaxonomies {
   resortFilters: {
@@ -105,7 +123,16 @@ export interface Resort {
   locationDetails: string;
   googleMapsUrl?: string;
   
-  // 9 Core Dimensions:
+  // 7 Compulsory Automation Dimensions:
+  types?: string[]; // ["Private Pool Villa", "Family resort", "Group"]
+  guestTypes?: string[]; // ["Family", "Bachelor", "Solo"]
+  guestType?: string; // "Family" | "Bachelor" | "Solo"
+  roomType?: string; // "Independent cottage" | "twin cottage" | "multi cottage"
+  priceRange?: string; // "2000-5000" | "5000-10000" | "10000 Plus"
+  ambiance?: string[]; // ["Forest/Plantation", "Mountain/Hill top", "Water Frontage"]
+  roomsAvailableCount?: number | string; // 1, 2, 3, 4, 5, 6, 7, "7+"
+
+  // 9 Core Dimensions (backward compatibility):
   accommodationType: AccommodationType;
   stayPreference: StayPreference;
   ambience: AmbienceType[];
@@ -118,15 +145,14 @@ export interface Resort {
   b2bRate: number;
   
   // Legacy / convenience category
-  category: "Pool Villa" | "Tree House" | "Luxury Resort" | "Budget Resort" | "Honeymoon Suite" | "Plantation Stay";
+  category: "Pool Villa" | "Tree House" | "Luxury Resort" | "Budget Resort" | "Honeymoon Suite" | "Plantation Stay" | string;
 
   // Automation & Multi-Dimension Filter Tags:
-  categories?: string[]; // Multi-select: "Private pool Villa", "Family resort", "Group", etc.
-  stayType?: string; // "Independent" | "twin cottage" | "multi cottage"
-  roomsProvidedType?: string; // "Family" | "Group" | "Family or Group"
+  categories?: string[]; // Multi-select: "Private Pool Villa", "Family resort", "Group"
+  stayType?: string; // "Independent cottage" | "twin cottage" | "multi cottage"
+  roomsProvidedType?: string; // "Family" | "Bachelor" | "Solo"
   budgetCategory?: string; // "2000-5000" | "5000-10000" | "10000 Plus"
   rates?: ResortRates; // b2c, b2b, perperson rate, full property
-  roomsAvailableCount?: number | string; // 1, 2, 3, 4, 5, 6, 7, 7+
   dormitoryDetails?: string;
 
   featured: boolean;
@@ -183,25 +209,31 @@ export interface Destination {
   resortCount: number;
 }
 
-// Complete 9-Dimension Filter Parameters
+// Complete 7-Dimension & Extended Filter Parameters
 export interface FilterParams {
   collection?: string;        // Homepage Start Your Journey Portfolio / Collection
   curatedCollection?: string; // Alias
-  accommodationType?: string; // 1. Accommodation Type
+  type?: string;              // Type: "Private Pool Villa" | "Family resort" | "Group"
+  guestType?: string;         // Guest type: "Family" | "Bachelor" | "Solo"
+  roomType?: string;          // Room type: "Independent cottage" | "twin cottage" | "multi cottage"
+  priceRange?: string;        // Price range: "2000-5000" | "5000-10000" | "10000 Plus"
+  ambiance?: string;          // Ambiance: "Forest/Plantation" | "Mountain/Hill top" | "Water Frontage"
+  noOfRooms?: number | string;// No of rooms: 1, 2, 3, 4, 5, 6, 7, "7+"
+  accommodationType?: string; // Legacy alias for type
   category?: string;          // Legacy alias
-  stayPreference?: string;    // 2. Room / Cottage / Group Preference
-  location?: string;          // 3. Location Preference (Destination)
+  stayPreference?: string;    // Legacy alias for roomType/guestType
+  location?: string;          // Location: "Sulthan Bathery" | "Kalpetta" | "Mananthavady"
   destination?: string;       // Alias for location
-  budgetMin?: number;         // 4. Budget Min
-  budgetMax?: number;         // 4. Budget Max
-  ambience?: string;          // 5. Ambience
-  adults?: number;            // 6. Adults
-  children?: number;          // 7. Children
-  rooms?: number;             // 8. Rooms (bedrooms)
+  budgetMin?: number;         // Budget Min
+  budgetMax?: number;         // Budget Max
+  ambience?: string;          // Alias for ambiance
+  adults?: number;            // Adults
+  children?: number;          // Children
+  rooms?: number;             // Rooms (bedrooms)
   bedrooms?: number;          // Alias for rooms
   guests?: number;            // Total guests
-  checkIn?: string;           // 9. Travel Dates (Check-In)
-  checkOut?: string;          // 9. Travel Dates (Check-Out)
+  checkIn?: string;           // Travel Dates (Check-In)
+  checkOut?: string;          // Travel Dates (Check-Out)
   query?: string;
 }
 
@@ -290,40 +322,32 @@ export interface DocumentVersionSnapshot {
   snapshotData: any;
 }
 
-// 9-Dimension Request from WhatsApp API App
+// 7-Dimension & Extended Request from WhatsApp API App
 export interface RecommendationRequest {
   customerName?: string;
   customerPhone?: string;
   
-  // 1. Accommodation Type
-  accommodationType?: string;
-  stayType?: string; // Alias
-  
-  // 2. Room/Cottage/Group Preference
-  stayPreference?: string;
-  
-  // 3. Location Preference
-  location?: string;
-  destination?: string;
-  
-  // 4. Budget
-  budgetMin?: number;
-  budgetMax?: number;
-  
-  // 5. Ambience
-  ambience?: string;
-  
-  // 6. Adults
-  adults?: number;
-  
-  // 7. Children
-  children?: number;
-  
-  // 8. Rooms
+  // 7 Strict Automation Dimensions:
+  type?: string; // "Private Pool Villa" | "Family resort" | "Group"
+  guestType?: string; // "Family" | "Bachelor" | "Solo"
+  roomType?: string; // "Independent cottage" | "twin cottage" | "multi cottage"
+  location?: string; // "Sulthan Bathery" | "Kalpetta" | "Mananthavady"
+  destination?: string; // Alias
+  priceRange?: string; // "2000-5000" | "5000-10000" | "10000 Plus"
+  ambiance?: string; // "Forest/Plantation" | "Mountain/Hill top" | "Water Frontage"
+  ambience?: string; // Alias
   rooms?: number;
   bedrooms?: number;
-  
-  // 9. Travel Dates
+  noOfRooms?: number | string;
+
+  // Legacy & Extended dimensions:
+  accommodationType?: string;
+  stayType?: string;
+  stayPreference?: string;
+  budgetMin?: number;
+  budgetMax?: number;
+  adults?: number;
+  children?: number;
   checkIn?: string;
   checkOut?: string;
   nights?: number;

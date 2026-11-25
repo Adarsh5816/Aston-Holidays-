@@ -36,14 +36,20 @@ function resortToDbRow(r: Resort) {
     check_out_time: r.checkOutTime,
     overview: r.overview,
     inclusions: r.inclusions,
-    exclusions: r.exclusions,
-    categories: r.categories,
-    stay_type: r.stayType,
+    types: r.types || r.categories,
+    guest_types: r.guestTypes,
+    guest_type: r.guestType,
+    room_type: r.roomType || r.stayType,
+    price_range: r.priceRange || r.budgetCategory,
+    ambiance: r.ambiance,
+    categories: r.categories || r.types,
+    stay_type: r.stayType || r.roomType,
     rooms_provided_type: r.roomsProvidedType,
-    budget_category: r.budgetCategory,
+    budget_category: r.budgetCategory || r.priceRange,
     rates: r.rates,
     rooms_available_count: r.roomsAvailableCount,
-    dormitory_details: r.dormitoryDetails
+    dormitory_details: r.dormitoryDetails,
+    curated_collections: r.curatedCollections
   };
 }
 
@@ -110,10 +116,16 @@ function dbRowToResort(row: any): Resort {
     overview: row.overview || "",
     inclusions: Array.isArray(row.inclusions) ? row.inclusions : [],
     exclusions: Array.isArray(row.exclusions) ? row.exclusions : [],
+    types: Array.isArray(row.types) ? row.types : (Array.isArray(row.categories) ? row.categories : (row.category ? [row.category] : [])),
+    guestTypes: Array.isArray(row.guest_types) ? row.guest_types : (row.guest_type ? [row.guest_type] : (row.rooms_provided_type ? [row.rooms_provided_type] : [])),
+    guestType: row.guest_type || row.guestType || row.rooms_provided_type || row.roomsProvidedType || "",
+    roomType: row.room_type || row.roomType || row.stay_type || row.stayType || "",
+    priceRange: row.price_range || row.priceRange || row.budget_category || row.budgetCategory || "",
+    ambiance: Array.isArray(row.ambiance) ? row.ambiance : (Array.isArray(row.ambience) ? row.ambience : []),
     categories: Array.isArray(row.categories) ? row.categories : (row.category ? [row.category] : []),
-    stayType: row.stay_type || row.stayType || "",
+    stayType: row.stay_type || row.stayType || row.room_type || row.roomType || "",
     roomsProvidedType: row.rooms_provided_type || row.roomsProvidedType || "",
-    budgetCategory: row.budget_category || row.budgetCategory || "",
+    budgetCategory: row.budget_category || row.budgetCategory || row.price_range || row.priceRange || "",
     rates: row.rates || {
       b2c: row.b2c_rate || (row.price_per_night ? String(row.price_per_night) : ""),
       b2b: row.b2b_rate_text || (row.b2b_rate ? String(row.b2b_rate) : ""),
@@ -849,42 +861,25 @@ export const defaultTaxonomies: CustomTaxonomies = {
   resortFilters: {
     accommodationTypes: [
       "Private Pool Villa",
-      "Canopy Tree House",
-      "Luxury Resort",
-      "Plantation Resort",
-      "Heritage Bungalow",
-      "Budget Friendly Stay",
-      "Glamping / Luxury Tents",
-      "Houseboat",
-      "A-Frame Chalet"
+      "Family resort",
+      "Group"
     ],
     stayPreferences: [
-      "Independent Private Cottage/Villa",
-      "Individual Room/Suite",
-      "Group / Bachelor Friendly",
-      "Family Gathering"
+      "Independent cottage",
+      "twin cottage",
+      "multi cottage"
     ],
     destinations: [
-      "Padinjarathara (Banasura)",
-      "Vythiri (Pookode & Canopies)",
-      "Meppadi (Chembra)",
-      "Sulthan Bathery (Edakkal Caves)",
-      "Kalpetta (Central Wayanad)",
-      "Ambalavayal",
-      "Muthanga & Tholpetty (Safari)",
-      "Mananthavady",
-      "Lakkidi"
+      "Sulthan Bathery",
+      "Kalpetta",
+      "Mananthavady"
     ],
     ambienceTypes: [
-      "Mountain / Valley View",
-      "Lake / Dam Waterfront",
-      "Rainforest & Stream",
-      "Tea / Coffee Plantation",
-      "Romantic / Honeymoon",
-      "Secluded & Peaceful",
-      "Adventure & Hilltop"
+      "Forest/Plantation",
+      "Mountain/Hill top",
+      "Water Frontage"
     ],
-    budgetTiers: [6000, 10000, 15000, 20000, 30000]
+    budgetTiers: [5000, 10000, 20000]
   },
   itineraryConfig: {
     vehicleTypes: [
@@ -1295,26 +1290,42 @@ export const Store = {
       });
     }
 
-    // 1. Accommodation Type / Category (Checks both category, accommodationType, and categories array)
-    const accType = filters.accommodationType || filters.category;
-    if (accType && accType !== "all") {
-      const typeLower = accType.toLowerCase();
+    // 1. Type (Private Pool Villa, Family resort, Group)
+    const typeFilter = filters.type || filters.accommodationType || filters.category;
+    if (typeFilter && typeFilter !== "all") {
+      const typeLower = typeFilter.toLowerCase();
       result = result.filter(r =>
+        (r.types && r.types.some(t => t.toLowerCase().includes(typeLower) || typeLower.includes(t.toLowerCase()))) ||
+        (r.categories && r.categories.some(c => c.toLowerCase().includes(typeLower) || typeLower.includes(c.toLowerCase()))) ||
         (r.accommodationType && r.accommodationType.toLowerCase().includes(typeLower)) ||
-        (r.category && r.category.toLowerCase().includes(typeLower)) ||
-        (r.categories && r.categories.some(c => c.toLowerCase().includes(typeLower) || typeLower.includes(c.toLowerCase())))
+        (r.category && r.category.toLowerCase().includes(typeLower))
       );
     }
 
-    // 2. Room/Cottage/Group Preference
-    if (filters.stayPreference && filters.stayPreference !== "all") {
-      const prefLower = filters.stayPreference.toLowerCase();
+    // 2. Guest Type (Family, Bachelor, Solo)
+    const guestFilter = filters.guestType;
+    if (guestFilter && guestFilter !== "all") {
+      const guestLower = guestFilter.toLowerCase();
       result = result.filter(r =>
-        r.stayPreference && r.stayPreference.toLowerCase().includes(prefLower)
+        (r.guestTypes && r.guestTypes.some(g => g.toLowerCase().includes(guestLower) || guestLower.includes(g.toLowerCase()))) ||
+        (r.guestType && r.guestType.toLowerCase().includes(guestLower)) ||
+        (r.roomsProvidedType && r.roomsProvidedType.toLowerCase().includes(guestLower)) ||
+        (r.stayPreference && r.stayPreference.toLowerCase().includes(guestLower))
       );
     }
 
-    // 3. Location Preference (Destination)
+    // 3. Room Type (Independent cottage, twin cottage, multi cottage)
+    const roomTypeFilter = filters.roomType || filters.stayPreference;
+    if (roomTypeFilter && roomTypeFilter !== "all") {
+      const rtLower = roomTypeFilter.toLowerCase();
+      result = result.filter(r =>
+        (r.roomType && r.roomType.toLowerCase().includes(rtLower)) ||
+        (r.stayType && r.stayType.toLowerCase().includes(rtLower)) ||
+        (r.stayPreference && r.stayPreference.toLowerCase().includes(rtLower))
+      );
+    }
+
+    // 4. Location Preference (Sulthan Bathery, Kalpetta, Mananthavady)
     const loc = filters.location || filters.destination;
     if (loc && loc !== "all") {
       const locLower = loc.toLowerCase();
@@ -1324,7 +1335,19 @@ export const Store = {
       );
     }
 
-    // 4. Budget
+    // 5. Price Range (2000-5000, 5000-10000, 10000 Plus)
+    const prFilter = filters.priceRange;
+    if (prFilter && prFilter !== "all") {
+      result = result.filter(r => {
+        if (r.priceRange === prFilter || r.budgetCategory === prFilter) return true;
+        if (prFilter === "2000-5000") return r.pricePerNight <= 5000;
+        if (prFilter === "5000-10000") return r.pricePerNight >= 5000 && r.pricePerNight <= 10000;
+        if (prFilter === "10000 Plus") return r.pricePerNight >= 10000;
+        return true;
+      });
+    }
+
+    // Budget Min / Max
     if (filters.budgetMin && filters.budgetMin > 0) {
       result = result.filter(r => r.pricePerNight >= filters.budgetMin!);
     }
@@ -1332,28 +1355,36 @@ export const Store = {
       result = result.filter(r => r.pricePerNight <= filters.budgetMax!);
     }
 
-    // 5. Ambience
-    if (filters.ambience && filters.ambience !== "all") {
-      const ambLower = filters.ambience.toLowerCase();
+    // 6. Ambiance (Forest/Plantation, Mountain/Hill top, Water Frontage)
+    const ambFilter = filters.ambiance || filters.ambience;
+    if (ambFilter && ambFilter !== "all") {
+      const ambLower = ambFilter.toLowerCase();
       result = result.filter(r =>
-        r.ambience && r.ambience.some(a => a.toLowerCase().includes(ambLower))
+        (r.ambiance && r.ambiance.some(a => a.toLowerCase().includes(ambLower) || ambLower.includes(a.toLowerCase()))) ||
+        (r.ambience && r.ambience.some(a => a.toLowerCase().includes(ambLower) || ambLower.includes(a.toLowerCase())))
       );
     }
 
-    // 6. Adults
+    // 7. No of rooms (1, 2, 3, 4, 5, 6, 7, 7+)
+    const noOfRoomsReq = filters.noOfRooms || filters.rooms || filters.bedrooms;
+    if (noOfRoomsReq) {
+      const countNum = typeof noOfRoomsReq === "number" ? noOfRoomsReq : parseInt(String(noOfRoomsReq).replace(/[^0-9]/g, ""), 10);
+      if (countNum > 0) {
+        result = result.filter(r => {
+          const avail = typeof r.roomsAvailableCount === "number" ? r.roomsAvailableCount : (parseInt(String(r.roomsAvailableCount || r.bedrooms || 1), 10) || r.bedrooms || 1);
+          return avail >= countNum || r.bedrooms >= countNum;
+        });
+      }
+    }
+
+    // Adults
     if (filters.adults && filters.adults > 0) {
       result = result.filter(r => (r.maxAdults || r.maxGuests) >= filters.adults!);
     }
 
-    // 7. Children
+    // Children
     if (filters.children && filters.children > 0) {
       result = result.filter(r => (r.maxChildren || 2) >= filters.children!);
-    }
-
-    // 8. Rooms (Bedrooms)
-    const roomReq = filters.rooms || filters.bedrooms;
-    if (roomReq && roomReq > 0) {
-      result = result.filter(r => r.bedrooms >= roomReq);
     }
 
     // General Guest capacity
@@ -1368,6 +1399,9 @@ export const Store = {
         r.name.toLowerCase().includes(q) ||
         r.code.toLowerCase().includes(q) ||
         r.destination.toLowerCase().includes(q) ||
+        (r.types && r.types.some(t => t.toLowerCase().includes(q))) ||
+        (r.guestType && r.guestType.toLowerCase().includes(q)) ||
+        (r.roomType && r.roomType.toLowerCase().includes(q)) ||
         (r.accommodationType && r.accommodationType.toLowerCase().includes(q)) ||
         (r.stayPreference && r.stayPreference.toLowerCase().includes(q)) ||
         r.overview.toLowerCase().includes(q)

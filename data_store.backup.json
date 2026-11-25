@@ -70,7 +70,21 @@
       "exclusions": [
         "Chef-prepared BBQ and dinners",
         "Vehicle sightseeing"
-      ]
+      ],
+      "categories": [
+        "Tree House"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "9500",
+        "b2b": "7500",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 1,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-108",
@@ -140,7 +154,21 @@
       "exclusions": [
         "Chembra forest permit fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "11000",
+        "b2b": "8500",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-118",
@@ -209,7 +237,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "16000",
+        "b2b": "12500",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 4,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-111a",
@@ -278,7 +320,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "4000",
+        "b2b": "3000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-112",
@@ -348,7 +404,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "8400",
+        "b2b": "7000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-112a",
@@ -418,7 +488,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "5500",
+        "b2b": "4500",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-113",
@@ -487,7 +571,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "9000",
+        "b2b": "8000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-114b",
@@ -556,7 +654,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Tree House"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-116",
@@ -625,7 +737,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6500",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-120",
@@ -695,7 +821,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "12000",
+        "b2b": "9000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 3,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-122",
@@ -764,7 +904,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 4,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-115",
@@ -834,7 +988,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "5000",
+        "b2b": "3000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 4,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-117",
@@ -903,7 +1071,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "6000",
+        "b2b": "4000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-119",
@@ -972,7 +1154,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "18000",
+        "b2b": "15000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-126",
@@ -1041,7 +1237,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "10000",
+        "b2b": "8000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-130",
@@ -1111,7 +1321,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-132",
@@ -1180,7 +1404,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-134",
@@ -1249,7 +1487,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-129",
@@ -1319,7 +1571,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-131",
@@ -1388,7 +1654,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 4,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-133",
@@ -1457,7 +1737,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-135",
@@ -1527,7 +1821,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "4000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 5,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-138",
@@ -1596,7 +1904,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 8,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-140",
@@ -1665,7 +1987,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 4,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-142",
@@ -1735,7 +2071,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 4,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-139",
@@ -1804,7 +2154,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 6,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-141",
@@ -1873,7 +2237,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-143",
@@ -1943,7 +2321,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-145",
@@ -2012,7 +2404,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 4,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-121",
@@ -2081,7 +2487,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "12000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 3,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-114",
@@ -2150,7 +2570,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "12000",
+        "b2b": "10000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-114a",
@@ -2219,7 +2653,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "4000",
+        "b2b": "3300",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-123",
@@ -2288,7 +2736,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 4,
+      "dormitoryDetails": ""
     },
     {
       "id": "res-1792681693049",
@@ -2341,7 +2803,21 @@
       "exclusions": [
         "Personal expenses",
         "Any extra meals not in plan"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "2500",
+        "b2b": "2100",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 1,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-124",
@@ -2410,7 +2886,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-125",
@@ -2479,7 +2969,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "1000",
+        "b2b": "900",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 4,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-136",
@@ -2549,7 +3053,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 7,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-144",
@@ -2618,7 +3136,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 4,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-137",
@@ -2688,7 +3220,21 @@
       "exclusions": [
         "Forest entry & wildlife safari fees",
         "Extra bed charges"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "7500",
+        "b2b": "6000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
     },
     {
       "id": "res-1792681520276",
@@ -2741,7 +3287,21 @@
       "exclusions": [
         "Personal expenses",
         "Any extra meals not in plan"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "10000",
+        "b2b": "9500",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 1,
+      "dormitoryDetails": ""
     },
     {
       "id": "res-1792681784728",
@@ -2794,7 +3354,21 @@
       "exclusions": [
         "Personal expenses",
         "Any extra meals not in plan"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "14000",
+        "b2b": "1300",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 1,
+      "dormitoryDetails": ""
     },
     {
       "id": "res-1792681889868",
@@ -2847,7 +3421,21 @@
       "exclusions": [
         "Personal expenses",
         "Any extra meals not in plan"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "4500",
+        "b2b": "3500",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 1,
+      "dormitoryDetails": ""
     },
     {
       "id": "res-1792682032007",
@@ -2900,7 +3488,21 @@
       "exclusions": [
         "Personal expenses",
         "Any extra meals not in plan"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "4000",
+        "b2b": "3500",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 1,
+      "dormitoryDetails": ""
     },
     {
       "id": "res-1792682144788",
@@ -2953,7 +3555,21 @@
       "exclusions": [
         "Personal expenses",
         "Any extra meals not in plan"
-      ]
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "6750",
+        "b2b": "5750",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 1,
+      "dormitoryDetails": ""
     },
     {
       "id": "resort-ah-111",
@@ -3024,7 +3640,261 @@
       "exclusions": [
         "Chef-prepared BBQ and dinners",
         "Vehicle sightseeing"
-      ]
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "10000",
+        "b2b": "8000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 2,
+      "dormitoryDetails": ""
+    },
+    {
+      "id": "res-1795148520553",
+      "code": "AH-306",
+      "name": "Family Resort Padinjarathar",
+      "slug": "ah-306-family-resort-padinjarathar",
+      "destination": "Padinjarathara",
+      "locationDetails": "Padinjarathara",
+      "googleMapsUrl": "https://maps.google.com/?q=Family%20Resort%20Padinjarathar%20Padinjarathara",
+      "accommodationType": "Plantation Resort",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Romantic / Honeymoon",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "maxAdults": 10,
+      "maxChildren": 1,
+      "maxGuests": 11,
+      "pricePerNight": 18000,
+      "b2bRate": 15000,
+      "featured": false,
+      "coverImage": "/brand/hero.png",
+      "photos": [
+        "/brand/hero.png"
+      ],
+      "amenities": [
+        "Swimming Pool",
+        "Mountain View",
+        "Wi-Fi",
+        "Room Service",
+        "Power Backup"
+      ],
+      "specialities": [
+        "Scenic View",
+        "Peaceful Location"
+      ],
+      "nearbyAttractions": [],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Family Resort Padinjarathar is an exclusive property in Padinjarathara, offering premium hospitality, pristine nature surroundings, and personalized service.",
+      "inclusions": [
+        "Welcome drink on arrival",
+        "Complimentary breakfast",
+        "Free Wi-Fi access"
+      ],
+      "exclusions": [
+        "Personal expenses",
+        "Any extra meals not in plan"
+      ],
+      "types": [
+        "Luxury Resort"
+      ],
+      "guestTypes": [],
+      "guestType": "",
+      "roomType": "",
+      "priceRange": "",
+      "ambiance": [
+        "Mountain / Valley View",
+        "Romantic / Honeymoon",
+        "Secluded & Peaceful"
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "18000",
+        "b2b": "15000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 1,
+      "dormitoryDetails": "",
+      "curatedCollections": []
+    },
+    {
+      "id": "res-1795148626611",
+      "code": "AH-307",
+      "name": "4Bhk Private pool Villa Meppadi",
+      "slug": "ah-307-4bhk-private-pool-villa-meppadi",
+      "destination": "Nellarachal",
+      "locationDetails": "Ambalavayal",
+      "googleMapsUrl": "https://maps.google.com/?q=4Bhk%20Private%20pool%20Villa%20Meppadi%20Nellarachal",
+      "accommodationType": "Private Pool Villa",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Romantic / Honeymoon",
+        "Secluded & Peaceful"
+      ],
+      "category": "Pool Villa",
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "maxAdults": 10,
+      "maxChildren": 1,
+      "maxGuests": 11,
+      "pricePerNight": 23000,
+      "b2bRate": 160000,
+      "featured": false,
+      "coverImage": "/brand/hero.png",
+      "photos": [
+        "/brand/hero.png"
+      ],
+      "amenities": [
+        "Swimming Pool",
+        "Mountain View",
+        "Wi-Fi",
+        "Room Service",
+        "Power Backup"
+      ],
+      "specialities": [
+        "Scenic View",
+        "Peaceful Location"
+      ],
+      "nearbyAttractions": [],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "4Bhk Private pool Villa Meppadi is an exclusive property in Nellarachal, offering premium hospitality, pristine nature surroundings, and personalized service.",
+      "inclusions": [
+        "Welcome drink on arrival",
+        "Complimentary breakfast",
+        "Free Wi-Fi access"
+      ],
+      "exclusions": [
+        "Personal expenses",
+        "Any extra meals not in plan"
+      ],
+      "types": [
+        "Pool Villa"
+      ],
+      "guestTypes": [],
+      "guestType": "",
+      "roomType": "",
+      "priceRange": "",
+      "ambiance": [
+        "Mountain / Valley View",
+        "Romantic / Honeymoon",
+        "Secluded & Peaceful"
+      ],
+      "categories": [
+        "Pool Villa"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "23000",
+        "b2b": "160000",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 1,
+      "dormitoryDetails": "",
+      "curatedCollections": []
+    },
+    {
+      "id": "res-1795148957456",
+      "code": "AH-308",
+      "name": "Family Resort Kolagapara",
+      "slug": "ah-308-family-resort-kolagapara",
+      "destination": "Vythiri",
+      "locationDetails": "Sulthan Bathery, Wayanad, Kerala",
+      "googleMapsUrl": "https://maps.google.com/?q=Family%20Resort%20Kolagapara%20Vythiri",
+      "accommodationType": "Plantation Resort",
+      "stayPreference": "Independent Private Cottage/Villa",
+      "ambience": [
+        "Mountain / Valley View",
+        "Romantic / Honeymoon",
+        "Secluded & Peaceful"
+      ],
+      "category": "Luxury Resort",
+      "bedrooms": 1,
+      "bathrooms": 1,
+      "maxAdults": 10,
+      "maxChildren": 1,
+      "maxGuests": 11,
+      "pricePerNight": 8500,
+      "b2bRate": 7500,
+      "featured": false,
+      "coverImage": "/brand/hero.png",
+      "photos": [
+        "/brand/hero.png"
+      ],
+      "amenities": [
+        "Swimming Pool",
+        "Mountain View",
+        "Wi-Fi",
+        "Room Service",
+        "Power Backup"
+      ],
+      "specialities": [
+        "Scenic View",
+        "Peaceful Location"
+      ],
+      "nearbyAttractions": [],
+      "checkInTime": "01:00 PM",
+      "checkOutTime": "11:00 AM",
+      "overview": "Family Resort Kolagapara is an exclusive property in Vythiri, offering premium hospitality, pristine nature surroundings, and personalized service.",
+      "inclusions": [
+        "Welcome drink on arrival",
+        "Complimentary breakfast",
+        "Free Wi-Fi access"
+      ],
+      "exclusions": [
+        "Personal expenses",
+        "Any extra meals not in plan"
+      ],
+      "types": [
+        "Luxury Resort"
+      ],
+      "guestTypes": [],
+      "guestType": "",
+      "roomType": "",
+      "priceRange": "",
+      "ambiance": [
+        "Mountain / Valley View",
+        "Romantic / Honeymoon",
+        "Secluded & Peaceful"
+      ],
+      "categories": [
+        "Luxury Resort"
+      ],
+      "stayType": "",
+      "roomsProvidedType": "",
+      "budgetCategory": "",
+      "rates": {
+        "b2c": "8500",
+        "b2b": "7500",
+        "perPerson": "",
+        "fullProperty": ""
+      },
+      "roomsAvailableCount": 1,
+      "dormitoryDetails": "",
+      "curatedCollections": []
     }
   ],
   "leads": [
@@ -3500,7 +4370,8 @@
     "phone": "+91 97449 00414",
     "email": "info@astonholidays.com",
     "whatsappNumber": "+91 97449 00414",
-    "whatsappWebhookUrl": "http://localhost:3001/api/send-message"
+    "whatsappWebhookUrl": "http://localhost:3001/api/send-message",
+    "footerLogoColor": "white"
   },
   "integration": {
     "whatsappAppBaseUrl": "http://localhost:3001",
@@ -5037,5 +5908,94 @@
       "b2bRate": 6200,
       "lastUpdated": "2026-10-22T05:01:06.087Z"
     }
-  ]
+  ],
+  "taxonomies": {
+    "resortFilters": {
+      "accommodationTypes": [
+        "Private Pool Villa",
+        "Canopy Tree House",
+        "Luxury Resort",
+        "Plantation Resort",
+        "Heritage Bungalow",
+        "Budget Friendly Stay",
+        "Glamping / Luxury Tents",
+        "Houseboat",
+        "A-Frame Chalet"
+      ],
+      "stayPreferences": [
+        "Independent Private Cottage/Villa",
+        "Individual Room/Suite",
+        "Group / Bachelor Friendly",
+        "Family Gathering"
+      ],
+      "destinations": [
+        "Padinjarathara (Banasura)",
+        "Vythiri (Pookode & Canopies)",
+        "Meppadi (Chembra)",
+        "Sulthan Bathery (Edakkal Caves)",
+        "Kalpetta (Central Wayanad)",
+        "Ambalavayal",
+        "Muthanga & Tholpetty (Safari)",
+        "Mananthavady",
+        "Lakkidi"
+      ],
+      "ambienceTypes": [
+        "Mountain / Valley View",
+        "Lake / Dam Waterfront",
+        "Rainforest & Stream",
+        "Tea / Coffee Plantation",
+        "Romantic / Honeymoon",
+        "Secluded & Peaceful",
+        "Adventure & Hilltop"
+      ],
+      "budgetTiers": [
+        6000,
+        10000,
+        15000,
+        20000,
+        30000
+      ]
+    },
+    "itineraryConfig": {
+      "vehicleTypes": [
+        "Sedan (Dzire / Etios)",
+        "SUV (Innova / Ertiga)",
+        "Innova Crysta",
+        "Tempo Traveller (12-17 Seater)",
+        "Mini Coach"
+      ],
+      "mealPlans": [
+        "EP (Room Only)",
+        "CP (Bed & Breakfast)",
+        "MAP (Breakfast + Dinner)",
+        "AP (All Meals Included)"
+      ],
+      "standardInclusions": [
+        "Accommodation with selected meal plan",
+        "Private dedicated air-conditioned vehicle with fuel, toll & parking",
+        "Driver bata & night halts",
+        "Complimentary plantation walk & morning mist viewpoint access",
+        "24/7 dedicated Aston Holidays travel concierge"
+      ],
+      "standardExclusions": [
+        "Entry tickets to adventure spots, boating, and safari fees",
+        "Personal expenses (laundry, room service, telephone charges)",
+        "Any airfare or train fare",
+        "GST 5% extra on total package value"
+      ],
+      "activityTypes": [
+        "Banasura Sagar Dam Speedboating",
+        "Edakkal Caves Historical Exploration",
+        "Chembra Peak Heart-Shaped Lake Trek",
+        "Kuruva Island Bamboo Rafting",
+        "Wayanad Wildlife Safari",
+        "Tea Factory Tasting Tour",
+        "Romantic Candlelight Dinner by the Pool",
+        "Campfire & Music Setup"
+      ]
+    }
+  },
+  "typography": {
+    "footerLogoColor": "white"
+  }
 }

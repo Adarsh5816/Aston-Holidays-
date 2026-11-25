@@ -23,34 +23,41 @@ const EXPERIENCE_COLLECTION_CHOICES = [
   "Wilderness Glamping"
 ];
 
-const CATEGORY_CHOICES = [
+// 7 Compulsory Automation Dimensions
+const TYPE_CHOICES = [
   "Private Pool Villa",
-  "Family Resort",
-  "Group",
-  "Tree House",
-  "Plantation Stay",
-  "Luxury Resort",
-  "Heritage Bungalow",
-  "Budget Resort",
-  "Glamping / Tent"
+  "Family resort",
+  "Group"
 ];
 
-const STAY_TYPE_CHOICES = [
-  "Independent",
-  "Twin Cottage",
-  "Multi Cottage"
-];
-
-const ROOMS_PROVIDED_CHOICES = [
+const GUEST_TYPE_CHOICES = [
   "Family",
-  "Group",
-  "Family or Group"
+  "Bachelor",
+  "Solo"
 ];
 
-const BUDGET_CATEGORY_CHOICES = [
+const ROOM_TYPE_CHOICES = [
+  "Independent cottage",
+  "twin cottage",
+  "multi cottage"
+];
+
+const LOCATION_CHOICES = [
+  "Sulthan Bathery",
+  "Kalpetta",
+  "Mananthavady"
+];
+
+const PRICE_RANGE_CHOICES = [
   "2000-5000",
   "5000-10000",
   "10000 Plus"
+];
+
+const AMBIANCE_CHOICES = [
+  "Forest/Plantation",
+  "Mountain/Hill top",
+  "Water Frontage"
 ];
 
 const ROOMS_AVAILABLE_OPTIONS = [1, 2, 3, 4, 5, 6, 7, "7+"];
@@ -82,29 +89,28 @@ export default function ResortManagerPage() {
   const [editingResort, setEditingResort] = useState<Resort | null>(null);
   const [saveSuccess, setSaveSuccess] = useState(false);
 
-  // Form State for 9 Dimensions
+  // Form State
   const [code, setCode] = useState("");
   const [name, setName] = useState("");
-  const [destination, setDestination] = useState("Padinjarathara");
   const [locationDetails, setLocationDetails] = useState("");
   const [googleMapsUrl, setGoogleMapsUrl] = useState("");
-  const [accommodationType, setAccommodationType] = useState<AccommodationType>("Private Pool Villa");
-  const [stayPreference, setStayPreference] = useState<StayPreference>("Independent Private Cottage/Villa");
-  const [ambienceStr, setAmbienceStr] = useState("Mountain / Valley View, Lake / Dam Waterfront");
-  const [category, setCategory] = useState<Resort["category"]>("Pool Villa");
 
-  // Automation & Multi-Dimension Filter States
-  const [selectedCategories, setSelectedCategories] = useState<string[]>(["Private Pool Villa"]);
-  const [selectedCollections, setSelectedCollections] = useState<string[]>([]);
-  const [stayType, setStayType] = useState<string>("Independent");
-  const [roomsProvidedType, setRoomsProvidedType] = useState<string>("Family");
-  const [budgetCategory, setBudgetCategory] = useState<string>("5000-10000");
+  // 7 Compulsory Automation Dimensions State
+  const [selectedTypes, setSelectedTypes] = useState<string[]>(["Private Pool Villa"]);
+  const [selectedGuestTypes, setSelectedGuestTypes] = useState<string[]>(["Family"]);
+  const [roomType, setRoomType] = useState<string>("Independent cottage");
+  const [destination, setDestination] = useState<string>("Sulthan Bathery");
+  const [priceRange, setPriceRange] = useState<string>("5000-10000");
+  const [selectedAmbiances, setSelectedAmbiances] = useState<string[]>(["Forest/Plantation"]);
+  const [roomsAvailableCount, setRoomsAvailableCount] = useState<number | string>(2);
+  const [dormitoryDetails, setDormitoryDetails] = useState<string>("");
+
+  // Rates & Operational
   const [rateB2c, setRateB2c] = useState<string>("₹12,000 / night");
   const [rateB2b, setRateB2b] = useState<string>("₹9,000 / night");
   const [ratePerPerson, setRatePerPerson] = useState<string>("");
   const [rateFullProperty, setRateFullProperty] = useState<string>("");
-  const [roomsAvailableCount, setRoomsAvailableCount] = useState<number | string>(2);
-  const [dormitoryDetails, setDormitoryDetails] = useState<string>("");
+  const [selectedCollections, setSelectedCollections] = useState<string[]>([]);
   const [selectedAmenities, setSelectedAmenities] = useState<string[]>([
     "Swimming Pool",
     "WiFi",
@@ -284,19 +290,57 @@ export default function ResortManagerPage() {
     loadResorts();
   }, []);
 
-  const toggleCategory = (cat: string) => {
-    if (selectedCategories.includes(cat)) {
-      setSelectedCategories(selectedCategories.filter((c) => c !== cat));
+  const toggleType = (t: string) => {
+    if (selectedTypes.includes(t)) {
+      if (selectedTypes.length > 1) {
+        setSelectedTypes(selectedTypes.filter((item) => item !== t));
+      }
     } else {
-      setSelectedCategories([...selectedCategories, cat]);
+      setSelectedTypes([...selectedTypes, t]);
     }
   };
 
-  const handleSelectAllCategories = () => {
-    if (selectedCategories.length === CATEGORY_CHOICES.length) {
-      setSelectedCategories([]);
+  const handleSelectAllTypes = () => {
+    if (selectedTypes.length === TYPE_CHOICES.length) {
+      setSelectedTypes([TYPE_CHOICES[0]]);
     } else {
-      setSelectedCategories([...CATEGORY_CHOICES]);
+      setSelectedTypes([...TYPE_CHOICES]);
+    }
+  };
+
+  const toggleGuestType = (gt: string) => {
+    if (selectedGuestTypes.includes(gt)) {
+      if (selectedGuestTypes.length > 1) {
+        setSelectedGuestTypes(selectedGuestTypes.filter((item) => item !== gt));
+      }
+    } else {
+      setSelectedGuestTypes([...selectedGuestTypes, gt]);
+    }
+  };
+
+  const handleSelectAllGuestTypes = () => {
+    if (selectedGuestTypes.length === GUEST_TYPE_CHOICES.length) {
+      setSelectedGuestTypes([GUEST_TYPE_CHOICES[0]]);
+    } else {
+      setSelectedGuestTypes([...GUEST_TYPE_CHOICES]);
+    }
+  };
+
+  const toggleAmbiance = (amb: string) => {
+    if (selectedAmbiances.includes(amb)) {
+      if (selectedAmbiances.length > 1) {
+        setSelectedAmbiances(selectedAmbiances.filter((item) => item !== amb));
+      }
+    } else {
+      setSelectedAmbiances([...selectedAmbiances, amb]);
+    }
+  };
+
+  const handleSelectAllAmbiances = () => {
+    if (selectedAmbiances.length === AMBIANCE_CHOICES.length) {
+      setSelectedAmbiances([AMBIANCE_CHOICES[0]]);
+    } else {
+      setSelectedAmbiances([...AMBIANCE_CHOICES]);
     }
   };
 
@@ -358,24 +402,21 @@ export default function ResortManagerPage() {
     setEditingResort(null);
     setCode(`AH-${120 + resorts.length + 1}`);
     setName("");
-    setDestination("Padinjarathara");
-    setLocationDetails("Near Banasura Dam, Wayanad, Kerala");
-    setGoogleMapsUrl("https://maps.google.com/?q=Banasura+Dam+Wayanad");
-    setAccommodationType("Private Pool Villa");
-    setStayPreference("Independent Private Cottage/Villa");
-    setAmbienceStr("Mountain / Valley View, Lake / Dam Waterfront, Secluded & Peaceful");
-    setCategory("Pool Villa");
-    setSelectedCategories(["Private Pool Villa"]);
-    setSelectedCollections(["Honeymoon & Couples", "Family Vacations", "Private Pool Living"]);
-    setStayType("Independent");
-    setRoomsProvidedType("Family");
-    setBudgetCategory("5000-10000");
+    setLocationDetails("Wayanad, Kerala");
+    setGoogleMapsUrl("");
+    setSelectedTypes(["Private Pool Villa"]);
+    setSelectedGuestTypes(["Family"]);
+    setRoomType("Independent cottage");
+    setDestination("Sulthan Bathery");
+    setPriceRange("5000-10000");
+    setSelectedAmbiances(["Forest/Plantation"]);
+    setRoomsAvailableCount(2);
+    setDormitoryDetails("");
     setRateB2c("₹12,000 / night");
     setRateB2b("₹9,000 / night");
     setRatePerPerson("");
     setRateFullProperty("");
-    setRoomsAvailableCount(2);
-    setDormitoryDetails("");
+    setSelectedCollections(["Honeymoon & Couples", "Family Vacations", "Private Pool Living"]);
     setSelectedAmenities([
       "Parking",
       "Swimming Pool",
@@ -398,10 +439,10 @@ export default function ResortManagerPage() {
     setSpecialitiesStr("Valley view, Peaceful privacy");
     setCheckInTime("01:00 PM");
     setCheckOutTime("11:00 AM");
-    setOverview("Stunning luxury villa nestled in Wayanad with private pool and scenic hill views.");
+    setOverview("Stunning luxury stay in Wayanad offering pristine nature views and premium hospitality.");
     setNearbyAttractions([
-      { name: "Banasura Sagar Dam", distance: "≈03 km" },
-      { name: "Karlad Lake", distance: "≈05 km" }
+      { name: "Edakkal Caves", distance: "≈05 km" },
+      { name: "Karapuzha Dam", distance: "≈08 km" }
     ]);
     setIsModalOpen(true);
   };
@@ -410,32 +451,84 @@ export default function ResortManagerPage() {
     setEditingResort(resort);
     setCode(resort.code);
     setName(resort.name);
-    setDestination(resort.destination);
     setLocationDetails(resort.locationDetails || "");
     setGoogleMapsUrl(resort.googleMapsUrl || "");
-    setAccommodationType(resort.accommodationType || "Private Pool Villa");
-    setStayPreference(resort.stayPreference || "Independent Private Cottage/Villa");
-    setAmbienceStr(resort.ambience ? resort.ambience.join(", ") : "Mountain / Valley View");
-    setCategory(resort.category);
-    setSelectedCategories(
-      Array.isArray(resort.categories) && resort.categories.length > 0
-        ? resort.categories
-        : [resort.accommodationType || "Private Pool Villa"]
-    );
+
+    // 1. Map Type (Compulsory)
+    const rawTypes = resort.types || resort.categories || (resort.accommodationType ? [resort.accommodationType] : []);
+    const mappedTypes: string[] = [];
+    rawTypes.forEach((t) => {
+      const lower = t.toLowerCase();
+      if (lower.includes("pool") || lower.includes("villa") || lower.includes("private")) mappedTypes.push("Private Pool Villa");
+      if (lower.includes("family")) mappedTypes.push("Family resort");
+      if (lower.includes("group") || lower.includes("bachelor")) mappedTypes.push("Group");
+    });
+    setSelectedTypes(mappedTypes.length > 0 ? Array.from(new Set(mappedTypes)) : ["Private Pool Villa"]);
+
+    // 2. Map Guest Type (Compulsory)
+    const rawGuests = resort.guestTypes || (resort.guestType ? [resort.guestType] : []) || (resort.roomsProvidedType ? resort.roomsProvidedType.split(",") : []);
+    const mappedGuests: string[] = [];
+    rawGuests.forEach((g) => {
+      const lower = g.trim().toLowerCase();
+      if (lower.includes("family")) mappedGuests.push("Family");
+      if (lower.includes("bachelor") || lower.includes("group")) mappedGuests.push("Bachelor");
+      if (lower.includes("solo")) mappedGuests.push("Solo");
+    });
+    setSelectedGuestTypes(mappedGuests.length > 0 ? Array.from(new Set(mappedGuests)) : ["Family"]);
+
+    // 3. Map Room Type (Compulsory)
+    const rawRoom = (resort.roomType || resort.stayType || resort.stayPreference || "").toLowerCase();
+    if (rawRoom.includes("multi")) setRoomType("multi cottage");
+    else if (rawRoom.includes("twin")) setRoomType("twin cottage");
+    else setRoomType("Independent cottage");
+
+    // 4. Map Location (Compulsory)
+    const rawLoc = (resort.destination || "").toLowerCase();
+    if (rawLoc.includes("kalpetta")) setDestination("Kalpetta");
+    else if (rawLoc.includes("mananthavady")) setDestination("Mananthavady");
+    else setDestination("Sulthan Bathery");
+
+    // 5. Map Price Range (Compulsory)
+    if (resort.priceRange && PRICE_RANGE_CHOICES.includes(resort.priceRange)) {
+      setPriceRange(resort.priceRange);
+    } else {
+      const p = resort.pricePerNight || 6000;
+      if (p < 5000) setPriceRange("2000-5000");
+      else if (p <= 10000) setPriceRange("5000-10000");
+      else setPriceRange("10000 Plus");
+    }
+
+    // 6. Map Ambiance (Compulsory)
+    const rawAmbs = resort.ambiance || resort.ambience || [];
+    const mappedAmbs: string[] = [];
+    rawAmbs.forEach((a) => {
+      const lower = a.toLowerCase();
+      if (lower.includes("forest") || lower.includes("plantation") || lower.includes("rainforest") || lower.includes("tea") || lower.includes("coffee")) {
+        mappedAmbs.push("Forest/Plantation");
+      }
+      if (lower.includes("mountain") || lower.includes("hill") || lower.includes("valley") || lower.includes("adventure")) {
+        mappedAmbs.push("Mountain/Hill top");
+      }
+      if (lower.includes("water") || lower.includes("lake") || lower.includes("dam") || lower.includes("stream")) {
+        mappedAmbs.push("Water Frontage");
+      }
+    });
+    setSelectedAmbiances(mappedAmbs.length > 0 ? Array.from(new Set(mappedAmbs)) : ["Forest/Plantation"]);
+
+    // 7. Map No of rooms (Compulsory)
+    setRoomsAvailableCount(resort.roomsAvailableCount ?? resort.bedrooms ?? 1);
+    setDormitoryDetails(resort.dormitoryDetails || "");
+
+    // Rates & Operational
+    setRateB2c(resort.rates?.b2c || (resort.pricePerNight ? `₹${resort.pricePerNight.toLocaleString("en-IN")}` : ""));
+    setRateB2b(resort.rates?.b2b || (resort.b2bRate ? `₹${resort.b2bRate.toLocaleString("en-IN")}` : ""));
+    setRatePerPerson(resort.rates?.perPerson || "");
+    setRateFullProperty(resort.rates?.fullProperty || "");
     setSelectedCollections(
       Array.isArray(resort.curatedCollections) && resort.curatedCollections.length > 0
         ? resort.curatedCollections
         : []
     );
-    setStayType(resort.stayType || "Independent");
-    setRoomsProvidedType(resort.roomsProvidedType || "Family");
-    setBudgetCategory(resort.budgetCategory || "5000-10000");
-    setRateB2c(resort.rates?.b2c || (resort.pricePerNight ? `₹${resort.pricePerNight.toLocaleString("en-IN")}` : ""));
-    setRateB2b(resort.rates?.b2b || (resort.b2bRate ? `₹${resort.b2bRate.toLocaleString("en-IN")}` : ""));
-    setRatePerPerson(resort.rates?.perPerson || "");
-    setRateFullProperty(resort.rates?.fullProperty || "");
-    setRoomsAvailableCount(resort.roomsAvailableCount ?? resort.bedrooms ?? 1);
-    setDormitoryDetails(resort.dormitoryDetails || "");
     setSelectedAmenities(
       Array.isArray(resort.amenities) && resort.amenities.length > 0
         ? resort.amenities
@@ -459,7 +552,7 @@ export default function ResortManagerPage() {
     setCheckOutTime(resort.checkOutTime || "11:00 AM");
     setOverview(resort.overview || "");
     setNearbyAttractions(resort.nearbyAttractions && resort.nearbyAttractions.length > 0 ? resort.nearbyAttractions : [
-      { name: "Banasura Sagar Dam", distance: "≈03 km" }
+      { name: "Edakkal Caves", distance: "≈05 km" }
     ]);
     setIsModalOpen(true);
   };
@@ -495,11 +588,6 @@ export default function ResortManagerPage() {
       .map(s => s.trim())
       .filter(s => s.length > 0);
 
-    const ambienceList = ambienceStr
-      .split(",")
-      .map(s => s.trim())
-      .filter(s => s.length > 0) as AmbienceType[];
-
     const parsedB2cNumber = parseInt(rateB2c.replace(/[^0-9]/g, ""), 10) || pricePerNight;
     const parsedB2bNumber = parseInt(rateB2b.replace(/[^0-9]/g, ""), 10) || b2bRate;
 
@@ -507,28 +595,41 @@ export default function ResortManagerPage() {
       id: editingResort ? editingResort.id : `resort-${code.toLowerCase().replace(/[^a-z0-9]/g, "-")}`,
       code: code.trim().toUpperCase(),
       name: name.trim(),
-      slug: name.toLowerCase().replace(/[^a-z0-9]/g, "-") + "-" + destination.toLowerCase(),
+      slug: name.toLowerCase().replace(/[^a-z0-9]/g, "-") + "-" + destination.toLowerCase().replace(/[^a-z0-9]/g, "-"),
       destination,
       locationDetails,
       googleMapsUrl: googleMapsUrl.trim() || undefined,
-      accommodationType,
-      stayPreference,
-      ambience: ambienceList.length > 0 ? ambienceList : ["Mountain / Valley View"],
-      category,
-      categories: selectedCategories.length > 0 ? selectedCategories : [category],
-      curatedCollections: selectedCollections,
-      stayType,
-      roomsProvidedType,
-      budgetCategory,
+
+      // 7 Compulsory Automation Dimensions
+      types: selectedTypes,
+      guestTypes: selectedGuestTypes,
+      guestType: selectedGuestTypes[0] || "Family",
+      roomType,
+      priceRange,
+      ambiance: selectedAmbiances,
+      roomsAvailableCount,
+
+      // Rates & Operational
       rates: {
         b2c: rateB2c.trim() || `₹${parsedB2cNumber.toLocaleString("en-IN")}`,
         b2b: rateB2b.trim() || `₹${parsedB2bNumber.toLocaleString("en-IN")}`,
         perPerson: ratePerPerson.trim() || undefined,
         fullProperty: rateFullProperty.trim() || undefined
       },
-      roomsAvailableCount,
       dormitoryDetails: dormitoryDetails.trim() || undefined,
-      bedrooms: Number(bedrooms),
+      curatedCollections: selectedCollections,
+
+      // Compatibility mappings for legacy consumers
+      accommodationType: selectedTypes[0] as AccommodationType || "Private Pool Villa",
+      stayPreference: roomType as StayPreference,
+      ambience: selectedAmbiances as AmbienceType[],
+      category: selectedTypes.includes("Group") ? "Group" : selectedTypes.includes("Family resort") ? "Family resort" : "Pool Villa",
+      categories: selectedTypes,
+      stayType: roomType,
+      roomsProvidedType: selectedGuestTypes.join(", "),
+      budgetCategory: priceRange,
+
+      bedrooms: typeof roomsAvailableCount === "number" ? roomsAvailableCount : Number(bedrooms) || 1,
       bathrooms: Number(bathrooms),
       maxAdults: Number(maxAdults),
       maxChildren: Number(maxChildren),
@@ -545,13 +646,13 @@ export default function ResortManagerPage() {
       checkOutTime,
       overview,
       inclusions: [
-        "Exclusive access to villa & private pool",
+        "Exclusive property access",
         "Welcome drink on arrival",
         "High-speed WiFi"
       ],
       exclusions: [
-        "Chef-prepared BBQ and dinners",
-        "Vehicle sightseeing"
+        "Personal expenses and laundry",
+        "Sightseeing vehicle fuel"
       ]
     };
 
@@ -802,129 +903,218 @@ export default function ResortManagerPage() {
                     </div>
                   </div>
 
-                  {/* 1. Category Choices (Multi-Select with Select All) */}
-                  <div className="space-y-2">
+                  {/* 1. Type (Compulsory) */}
+                  <div className="bg-white p-3.5 rounded-xl border border-stone-200/80 space-y-2">
                     <div className="flex items-center justify-between">
                       <label className="block text-stone-800 font-bold text-xs flex items-center gap-1.5">
                         <Layers className="w-3.5 h-3.5 text-emerald-700" />
-                        Category Choices (Multi-Select)
+                        1. Type * (Private Pool Villa / Family resort / Group)
                         <span className="text-[11px] font-normal text-stone-500">
-                          ({selectedCategories.length} selected)
+                          ({selectedTypes.length} checked)
                         </span>
                       </label>
                       <button
                         type="button"
-                        onClick={handleSelectAllCategories}
-                        className="inline-flex items-center gap-1 px-2.5 py-1 text-[11px] font-bold rounded-lg border border-emerald-600/40 text-emerald-800 bg-white hover:bg-emerald-50 transition"
+                        onClick={handleSelectAllTypes}
+                        className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-bold rounded-lg border border-emerald-600/40 text-emerald-800 bg-white hover:bg-emerald-50 transition"
                       >
-                        {selectedCategories.length === CATEGORY_CHOICES.length ? (
-                          <>
-                            <Square className="w-3 h-3 text-emerald-700" /> Deselect All
-                          </>
-                        ) : (
-                          <>
-                            <CheckSquare className="w-3 h-3 text-emerald-700" /> Select All Categories
-                          </>
-                        )}
+                        {selectedTypes.length === TYPE_CHOICES.length ? "Deselect All" : "Select All"}
                       </button>
                     </div>
-
-                    <div className="flex flex-wrap gap-2 pt-1">
-                      {CATEGORY_CHOICES.map((cat) => {
-                        const isSelected = selectedCategories.includes(cat);
+                    <div className="flex flex-wrap gap-2 pt-0.5">
+                      {TYPE_CHOICES.map((t) => {
+                        const isSelected = selectedTypes.includes(t);
                         return (
                           <button
-                            key={cat}
+                            key={t}
                             type="button"
-                            onClick={() => toggleCategory(cat)}
+                            onClick={() => toggleType(t)}
                             className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition border ${
                               isSelected
-                                ? "bg-emerald-800 text-white border-emerald-800 shadow-sm"
-                                : "bg-white text-stone-700 border-stone-200 hover:border-emerald-600/60"
+                                ? "bg-emerald-800 text-white border-emerald-800 shadow-sm font-bold"
+                                : "bg-stone-50 text-stone-700 border-stone-200 hover:border-emerald-600/60"
                             }`}
                           >
                             {isSelected && <Check className="w-3.5 h-3.5" />}
-                            {cat}
+                            {t}
                           </button>
                         );
                       })}
                     </div>
                   </div>
 
-                  {/* 2. Stay Type, Rooms Provided & Budget Category in 3 Columns */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 pt-2">
-                    {/* Stay Type */}
-                    <div className="bg-white p-3 rounded-xl border border-stone-200/80 space-y-1.5">
-                      <label className="block text-stone-800 font-bold text-xs">Stay Type</label>
-                      <div className="flex flex-col gap-1.5">
-                        {STAY_TYPE_CHOICES.map((st) => (
-                          <button
-                            key={st}
-                            type="button"
-                            onClick={() => setStayType(st)}
-                            className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between border transition ${
-                              stayType === st
-                                ? "bg-emerald-50 text-emerald-900 border-emerald-600 font-bold"
-                                : "bg-stone-50 text-stone-700 border-transparent hover:border-stone-200"
-                            }`}
-                          >
-                            <span>{st}</span>
-                            {stayType === st && <Check className="w-3.5 h-3.5 text-emerald-700" />}
-                          </button>
-                        ))}
+                  {/* 2. Guest Type & 3. Room Type in 2 Columns */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* 2. Guest type */}
+                    <div className="bg-white p-3.5 rounded-xl border border-stone-200/80 space-y-2">
+                      <div className="flex items-center justify-between">
+                        <label className="block text-stone-800 font-bold text-xs flex items-center gap-1.5">
+                          <Users className="w-3.5 h-3.5 text-emerald-700" />
+                          2. Guest type * (Family / Bachelor / Solo)
+                        </label>
+                        <button
+                          type="button"
+                          onClick={handleSelectAllGuestTypes}
+                          className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-bold rounded-lg border border-emerald-600/40 text-emerald-800 bg-white hover:bg-emerald-50 transition"
+                        >
+                          {selectedGuestTypes.length === GUEST_TYPE_CHOICES.length ? "Deselect All" : "Select All"}
+                        </button>
+                      </div>
+                      <div className="flex flex-wrap gap-2 pt-0.5">
+                        {GUEST_TYPE_CHOICES.map((gt) => {
+                          const isSelected = selectedGuestTypes.includes(gt);
+                          return (
+                            <button
+                              key={gt}
+                              type="button"
+                              onClick={() => toggleGuestType(gt)}
+                              className={`flex-1 min-w-[90px] text-center px-3 py-1.5 rounded-xl text-xs font-semibold transition border flex items-center justify-center gap-1.5 ${
+                                isSelected
+                                  ? "bg-emerald-800 text-white border-emerald-800 shadow-sm font-bold"
+                                  : "bg-stone-50 text-stone-700 border-stone-200 hover:border-emerald-600/60"
+                              }`}
+                            >
+                              {isSelected && <Check className="w-3.5 h-3.5" />}
+                              <span>{gt}</span>
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
 
-                    {/* Rooms Provided */}
-                    <div className="bg-white p-3 rounded-xl border border-stone-200/80 space-y-1.5">
-                      <label className="block text-stone-800 font-bold text-xs">Rooms Provided</label>
-                      <div className="flex flex-col gap-1.5">
-                        {ROOMS_PROVIDED_CHOICES.map((rp) => (
-                          <button
-                            key={rp}
-                            type="button"
-                            onClick={() => setRoomsProvidedType(rp)}
-                            className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between border transition ${
-                              roomsProvidedType === rp
-                                ? "bg-emerald-50 text-emerald-900 border-emerald-600 font-bold"
-                                : "bg-stone-50 text-stone-700 border-transparent hover:border-stone-200"
-                            }`}
-                          >
-                            <span>{rp}</span>
-                            {roomsProvidedType === rp && <Check className="w-3.5 h-3.5 text-emerald-700" />}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Budget Category */}
-                    <div className="bg-white p-3 rounded-xl border border-stone-200/80 space-y-1.5">
-                      <label className="block text-stone-800 font-bold text-xs">Budget Category (₹)</label>
-                      <div className="flex flex-col gap-1.5">
-                        {BUDGET_CATEGORY_CHOICES.map((bc) => (
-                          <button
-                            key={bc}
-                            type="button"
-                            onClick={() => setBudgetCategory(bc)}
-                            className={`w-full text-left px-2.5 py-1.5 rounded-lg text-xs font-semibold flex items-center justify-between border transition ${
-                              budgetCategory === bc
-                                ? "bg-emerald-50 text-emerald-900 border-emerald-600 font-bold"
-                                : "bg-stone-50 text-stone-700 border-transparent hover:border-stone-200"
-                            }`}
-                          >
-                            <span>₹ {bc}</span>
-                            {budgetCategory === bc && <Check className="w-3.5 h-3.5 text-emerald-700" />}
-                          </button>
-                        ))}
+                    {/* 3. Room type */}
+                    <div className="bg-white p-3.5 rounded-xl border border-stone-200/80 space-y-2">
+                      <label className="block text-stone-800 font-bold text-xs flex items-center gap-1.5">
+                        <Bed className="w-3.5 h-3.5 text-emerald-700" />
+                        3. Room type * (Independent cottage / twin cottage / multi cottage)
+                      </label>
+                      <div className="flex flex-wrap gap-2 pt-0.5">
+                        {ROOM_TYPE_CHOICES.map((rt) => {
+                          const isSelected = roomType === rt;
+                          return (
+                            <button
+                              key={rt}
+                              type="button"
+                              onClick={() => setRoomType(rt)}
+                              className={`flex-1 min-w-[100px] text-center px-2.5 py-1.5 rounded-xl text-xs font-semibold transition border flex items-center justify-center gap-1.5 ${
+                                isSelected
+                                  ? "bg-emerald-800 text-white border-emerald-800 shadow-sm font-bold"
+                                  : "bg-stone-50 text-stone-700 border-stone-200 hover:border-emerald-600/60"
+                              }`}
+                            >
+                              {isSelected && <Check className="w-3.5 h-3.5" />}
+                              <span>{rt}</span>
+                            </button>
+                          );
+                        })}
                       </div>
                     </div>
                   </div>
 
-                  {/* 3. No. of Rooms Available & Dormitory Details */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-                    <div className="bg-white p-3 rounded-xl border border-stone-200/80 space-y-2">
+                  {/* 4. Location & 5. Price Range in 2 Columns */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* 4. Location */}
+                    <div className="bg-white p-3.5 rounded-xl border border-stone-200/80 space-y-2">
+                      <label className="block text-stone-800 font-bold text-xs flex items-center gap-1.5">
+                        <MapPin className="w-3.5 h-3.5 text-emerald-700" />
+                        4. Location * (Sulthan Bathery / Kalpetta / Mananthavady)
+                      </label>
+                      <div className="flex flex-wrap gap-2 pt-0.5">
+                        {LOCATION_CHOICES.map((loc) => {
+                          const isSelected = destination === loc;
+                          return (
+                            <button
+                              key={loc}
+                              type="button"
+                              onClick={() => setDestination(loc)}
+                              className={`flex-1 min-w-[100px] text-center px-2.5 py-1.5 rounded-xl text-xs font-semibold transition border flex items-center justify-center gap-1.5 ${
+                                isSelected
+                                  ? "bg-emerald-800 text-white border-emerald-800 shadow-sm font-bold"
+                                  : "bg-stone-50 text-stone-700 border-stone-200 hover:border-emerald-600/60"
+                              }`}
+                            >
+                              {isSelected && <Check className="w-3.5 h-3.5" />}
+                              <span>{loc}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* 5. Price range */}
+                    <div className="bg-white p-3.5 rounded-xl border border-stone-200/80 space-y-2">
+                      <label className="block text-stone-800 font-bold text-xs flex items-center gap-1.5">
+                        <DollarSign className="w-3.5 h-3.5 text-emerald-700" />
+                        5. Price range * (₹)
+                      </label>
+                      <div className="flex flex-wrap gap-2 pt-0.5">
+                        {PRICE_RANGE_CHOICES.map((pr) => {
+                          const isSelected = priceRange === pr;
+                          return (
+                            <button
+                              key={pr}
+                              type="button"
+                              onClick={() => setPriceRange(pr)}
+                              className={`flex-1 min-w-[95px] text-center px-2.5 py-1.5 rounded-xl text-xs font-semibold transition border flex items-center justify-center gap-1.5 ${
+                                isSelected
+                                  ? "bg-emerald-800 text-white border-emerald-800 shadow-sm font-bold"
+                                  : "bg-stone-50 text-stone-700 border-stone-200 hover:border-emerald-600/60"
+                              }`}
+                            >
+                              {isSelected && <Check className="w-3.5 h-3.5" />}
+                              <span>₹ {pr}</span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* 6. Ambiance (Compulsory) */}
+                  <div className="bg-white p-3.5 rounded-xl border border-stone-200/80 space-y-2">
+                    <div className="flex items-center justify-between">
+                      <label className="block text-stone-800 font-bold text-xs flex items-center gap-1.5">
+                        <Sparkles className="w-3.5 h-3.5 text-emerald-700" />
+                        6. Ambiance * (Forest/Plantation / Mountain/Hill top / Water Frontage)
+                        <span className="text-[11px] font-normal text-stone-500">
+                          ({selectedAmbiances.length} checked)
+                        </span>
+                      </label>
+                      <button
+                        type="button"
+                        onClick={handleSelectAllAmbiances}
+                        className="inline-flex items-center gap-1 px-2 py-0.5 text-[10px] font-bold rounded-lg border border-emerald-600/40 text-emerald-800 bg-white hover:bg-emerald-50 transition"
+                      >
+                        {selectedAmbiances.length === AMBIANCE_CHOICES.length ? "Deselect All" : "Select All"}
+                      </button>
+                    </div>
+                    <div className="flex flex-wrap gap-2 pt-0.5">
+                      {AMBIANCE_CHOICES.map((amb) => {
+                        const isSelected = selectedAmbiances.includes(amb);
+                        return (
+                          <button
+                            key={amb}
+                            type="button"
+                            onClick={() => toggleAmbiance(amb)}
+                            className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition border ${
+                              isSelected
+                                ? "bg-emerald-800 text-white border-emerald-800 shadow-sm font-bold"
+                                : "bg-stone-50 text-stone-700 border-stone-200 hover:border-emerald-600/60"
+                            }`}
+                          >
+                            {isSelected && <Check className="w-3.5 h-3.5" />}
+                            {amb}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  {/* 7. No of rooms & Dormitory Details */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div className="bg-white p-3.5 rounded-xl border border-stone-200/80 space-y-2">
                       <label className="block text-stone-800 font-bold text-xs">
-                        No. of Rooms Available
+                        7. No of rooms * (1, 2, 3, 4, 5, 6, 7, 7+)
                       </label>
                       <div className="flex flex-wrap gap-1.5">
                         {ROOMS_AVAILABLE_OPTIONS.map((opt) => {
@@ -950,7 +1140,7 @@ export default function ResortManagerPage() {
                       </div>
                     </div>
 
-                    <div className="bg-white p-3 rounded-xl border border-stone-200/80 space-y-1">
+                    <div className="bg-white p-3.5 rounded-xl border border-stone-200/80 space-y-1">
                       <label className="block text-stone-800 font-bold text-xs">
                         Dormitory Details (If in case there)
                       </label>
@@ -958,13 +1148,13 @@ export default function ResortManagerPage() {
                         type="text"
                         value={dormitoryDetails}
                         onChange={(e) => setDormitoryDetails(e.target.value)}
-                        placeholder="e.g. 12-Bed AC Dormitory with 2 attached washrooms and lockers"
+                        placeholder="e.g. 12-Bed AC Dormitory with attached washrooms"
                         className="w-full px-3 py-2 rounded-xl border border-stone-200 bg-stone-50 text-xs focus:bg-white"
                       />
                     </div>
                   </div>
 
-                  {/* 4. Rates (Text Input Options for B2C, B2B, Per Person, Full Property) */}
+                  {/* Rates (Text inputs for B2C, B2B, Per Person, Full Property) */}
                   <div className="bg-white p-3.5 rounded-xl border border-stone-200/80 space-y-2.5">
                     <div>
                       <label className="block text-stone-800 font-bold text-xs flex items-center gap-1.5">
@@ -1039,7 +1229,7 @@ export default function ResortManagerPage() {
                     </div>
                   </div>
 
-                  {/* 5. Homepage "Start Your Journey" Portfolio Mapping */}
+                  {/* Homepage "Start Your Journey" Portfolio Mapping */}
                   <div className="bg-white p-4 rounded-xl border border-stone-200/80 space-y-4">
                     <div className="flex items-center justify-between pb-2 border-b border-stone-100">
                       <div>
@@ -1127,90 +1317,6 @@ export default function ResortManagerPage() {
                         })}
                       </div>
                     </div>
-                  </div>
-                </div>
-
-                {/* 2. Accommodation Type & Stay Preference */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-stone-700 mb-1">1. Accommodation Type *</label>
-                    <select
-                      value={accommodationType}
-                      onChange={(e) => {
-                        setAccommodationType(e.target.value as AccommodationType);
-                        if (e.target.value === "Private Pool Villa") setCategory("Pool Villa");
-                        else if (e.target.value === "Tree House") setCategory("Tree House");
-                        else if (e.target.value === "Budget Stay") setCategory("Budget Resort");
-                        else setCategory("Luxury Resort");
-                      }}
-                      className="w-full px-3 py-2 rounded-xl border border-stone-200 bg-white"
-                    >
-                      {(taxonomies?.resortFilters?.accommodationTypes || [
-                        "Private Pool Villa",
-                        "Tree House",
-                        "Luxury Resort",
-                        "Plantation Resort",
-                        "Heritage Bungalow",
-                        "Budget Stay",
-                        "Glamping / Tent",
-                        "Houseboat"
-                      ]).map((type: string) => (
-                        <option key={type} value={type}>{type}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-stone-700 mb-1">2. Stay Preference *</label>
-                    <select
-                      value={stayPreference}
-                      onChange={(e) => setStayPreference(e.target.value as StayPreference)}
-                      className="w-full px-3 py-2 rounded-xl border border-stone-200 bg-white"
-                    >
-                      {(taxonomies?.resortFilters?.stayPreferences || [
-                        "Independent Private Cottage/Villa",
-                        "Individual Room/Suite",
-                        "Group / Bachelor Friendly",
-                        "Family Gathering"
-                      ]).map((pref: string) => (
-                        <option key={pref} value={pref}>{pref}</option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-
-                {/* 3. Destination & Ambience */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-stone-700 mb-1">3. Location (Destination) *</label>
-                    <select
-                      value={destination}
-                      onChange={(e) => setDestination(e.target.value)}
-                      className="w-full px-3 py-2 rounded-xl border border-stone-200 bg-white"
-                    >
-                      {(taxonomies?.resortFilters?.destinations || [
-                        "Padinjarathara",
-                        "Vythiri",
-                        "Meppadi",
-                        "Sulthan Bathery",
-                        "Kalpetta",
-                        "Ambalavayal",
-                        "Muthanga",
-                        "Mananthavady",
-                        "Lakkidi"
-                      ]).map((dest: string) => (
-                        <option key={dest} value={dest.split(" ")[0]}>{dest}</option>
-                      ))}
-                    </select>
-                  </div>
-                  <div>
-                    <label className="block text-stone-700 mb-1">4. Ambience / Vibe (Comma-separated)</label>
-                    <input
-                      type="text"
-                      value={ambienceStr}
-                      onChange={(e) => setAmbienceStr(e.target.value)}
-                      placeholder="e.g. Mountain / Valley View, Lake / Dam Waterfront, Secluded"
-                      className="w-full px-3 py-2 rounded-xl border border-stone-200"
-                    />
                   </div>
                 </div>
 

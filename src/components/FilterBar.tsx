@@ -120,54 +120,44 @@ export default function FilterBar({ onFilterChange, initialFilters = {} }: Filte
       {/* Row 1: Primary Filters (Type, Location, Budget, Rooms) */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
-        {/* 1. Accommodation Type */}
+        {/* 1. Type */}
         <div className="space-y-1">
           <label className="text-xs font-bold text-stone-700 flex items-center gap-1.5">
-            <Home className="w-3.5 h-3.5 text-emerald-700" /> 1. Accommodation Type
+            <Home className="w-3.5 h-3.5 text-emerald-700" /> 1. Type
           </label>
           <select
             value={accommodationType}
             onChange={(e) => setAccommodationType(e.target.value)}
             className="w-full text-xs font-medium px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 bg-white"
           >
-            <option value="all">All Stay Types</option>
+            <option value="all">All Types</option>
             {(taxonomies?.resortFilters?.accommodationTypes || [
               "Private Pool Villa",
-              "Tree House",
-              "Luxury Resort",
-              "Plantation Resort",
-              "Heritage Bungalow",
-              "Budget Stay",
-              "Glamping / Tent"
+              "Family resort",
+              "Group"
             ]).map((t: string) => (
               <option key={t} value={t}>{t}</option>
             ))}
           </select>
         </div>
 
-        {/* 2. Location Preference */}
+        {/* 2. Location */}
         <div className="space-y-1">
           <label className="text-xs font-bold text-stone-700 flex items-center gap-1.5">
-            <MapPin className="w-3.5 h-3.5 text-emerald-700" /> 2. Location Preference
+            <MapPin className="w-3.5 h-3.5 text-emerald-700" /> 2. Location
           </label>
           <select
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             className="w-full text-xs font-medium px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 bg-white"
           >
-            <option value="all">All Wayanad Regions</option>
+            <option value="all">All Locations</option>
             {(taxonomies?.resortFilters?.destinations || [
-              "Padinjarathara (Banasura)",
-              "Vythiri",
-              "Meppadi (Chembra)",
               "Sulthan Bathery",
               "Kalpetta",
-              "Ambalavayal",
-              "Muthanga",
-              "Mananthavady",
-              "Lakkidi"
+              "Mananthavady"
             ]).map((d: string) => (
-              <option key={d} value={d.split(" ")[0]}>{d}</option>
+              <option key={d} value={d}>{d}</option>
             ))}
           </select>
         </div>
@@ -175,7 +165,7 @@ export default function FilterBar({ onFilterChange, initialFilters = {} }: Filte
         {/* 3. Budget Max */}
         <div className="space-y-1">
           <label className="text-xs font-bold text-stone-700 flex items-center gap-1.5">
-            <DollarSign className="w-3.5 h-3.5 text-emerald-700" /> 3. Budget / Night
+            <DollarSign className="w-3.5 h-3.5 text-emerald-700" /> 3. Price Range / Budget
           </label>
           <select
             value={budgetMax}
@@ -183,11 +173,9 @@ export default function FilterBar({ onFilterChange, initialFilters = {} }: Filte
             className="w-full text-xs font-medium px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 bg-white"
           >
             <option value={0}>Any Budget</option>
-            <option value={6000}>Under ₹6,000 /night</option>
-            <option value={10000}>Under ₹10,000 /night</option>
-            <option value={15000}>Under ₹15,000 /night</option>
-            <option value={20000}>Under ₹20,000 /night</option>
-            <option value={30000}>Under ₹30,000 /night</option>
+            <option value={5000}>₹2,000 - ₹5,000 /night</option>
+            <option value={10000}>₹5,000 - ₹10,000 /night</option>
+            <option value={50000}>₹10,000 Plus /night</option>
           </select>
         </div>
 
@@ -202,34 +190,36 @@ export default function FilterBar({ onFilterChange, initialFilters = {} }: Filte
             className="w-full text-xs font-medium px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 bg-white"
           >
             <option value={0}>Any Number of Rooms</option>
-            <option value={1}>1 Room (1 BHK / Suite)</option>
-            <option value={2}>2 Rooms (2 BHK)</option>
-            <option value={3}>3 Rooms (3 BHK Villa)</option>
-            <option value={4}>4+ Rooms (Large Estate)</option>
+            <option value={1}>1 Room</option>
+            <option value={2}>2 Rooms</option>
+            <option value={3}>3 Rooms</option>
+            <option value={4}>4 Rooms</option>
+            <option value={5}>5 Rooms</option>
+            <option value={6}>6 Rooms</option>
+            <option value={7}>7+ Rooms</option>
           </select>
         </div>
 
       </div>
 
-      {/* Row 2: Advanced Dimensions (Preference, Ambience, Adults, Kids, Travel Dates) */}
+      {/* Row 2: Advanced Dimensions (Room Type, Ambience, Adults, Kids, Travel Dates) */}
       <div className={`grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mt-4 pt-4 border-t border-stone-100 ${expandedAdvanced ? "block" : "hidden sm:grid"}`}>
         
-        {/* 5. Stay Preference */}
+        {/* 5. Room Type */}
         <div className="space-y-1">
           <label className="text-xs font-bold text-stone-700 flex items-center gap-1.5">
-            <Layers className="w-3.5 h-3.5 text-emerald-700" /> 5. Stay Preference
+            <Layers className="w-3.5 h-3.5 text-emerald-700" /> 5. Room Type
           </label>
           <select
             value={stayPreference}
             onChange={(e) => setStayPreference(e.target.value)}
             className="w-full text-xs font-medium px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 bg-white"
           >
-            <option value="all">Any Preference</option>
+            <option value="all">Any Room Type</option>
             {(taxonomies?.resortFilters?.stayPreferences || [
-              "Independent Private Cottage/Villa",
-              "Individual Room/Suite",
-              "Group / Bachelor Friendly",
-              "Family Gathering"
+              "Independent cottage",
+              "twin cottage",
+              "multi cottage"
             ]).map((p: string) => (
               <option key={p} value={p}>{p}</option>
             ))}
@@ -239,21 +229,17 @@ export default function FilterBar({ onFilterChange, initialFilters = {} }: Filte
         {/* 6. Ambience */}
         <div className="space-y-1">
           <label className="text-xs font-bold text-stone-700 flex items-center gap-1.5">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-700" /> 6. Ambience / Vibe
+            <Sparkles className="w-3.5 h-3.5 text-emerald-700" /> 6. Ambiance
           </label>
           <select
             value={ambience}
             onChange={(e) => setAmbience(e.target.value)}
             className="w-full text-xs font-medium px-3.5 py-2.5 rounded-xl border border-stone-200 focus:outline-none focus:ring-2 focus:ring-emerald-700/20 bg-white"
           >
-            <option value="all">Any Ambience</option>
-            <option value="Mountain / Valley View">Mountain / Valley View</option>
-            <option value="Lake / Dam Waterfront">Lake / Dam Waterfront</option>
-            <option value="Rainforest & Stream">Rainforest & Natural Stream</option>
-            <option value="Tea / Coffee Plantation">Tea & Coffee Plantation</option>
-            <option value="Romantic / Honeymoon">Romantic / Honeymoon</option>
-            <option value="Secluded & Peaceful">Secluded & Peaceful</option>
-            <option value="Adventure & Hilltop">Adventure & Hilltop</option>
+            <option value="all">Any Ambiance</option>
+            <option value="Forest/Plantation">Forest / Plantation</option>
+            <option value="Mountain/Hill top">Mountain / Hill top</option>
+            <option value="Water Frontage">Water Frontage</option>
           </select>
         </div>
 

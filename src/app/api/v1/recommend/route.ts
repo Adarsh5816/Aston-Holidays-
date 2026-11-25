@@ -103,15 +103,20 @@ export async function POST(req: NextRequest) {
     // 4. Input Sanitization & Anti-Injection Shield
     const customerName = sanitizeString(body.customerName, 80);
     const customerPhone = sanitizePhone(body.customerPhone);
-    const accommodationType = sanitizeString(body.accommodationType || body.stayType, 60);
-    const stayPreference = sanitizeString(body.stayPreference, 60);
+    const type = sanitizeString(body.type || body.accommodationType || body.stayType, 60);
+    const guestType = sanitizeString(body.guestType, 60);
+    const roomType = sanitizeString(body.roomType || body.stayPreference, 60);
     const location = sanitizeString(body.location || body.destination, 60);
-    const ambience = sanitizeString(body.ambience, 60);
+    const priceRange = sanitizeString(body.priceRange, 60);
+    const ambiance = sanitizeString(body.ambiance || body.ambience, 60);
+    const accommodationType = type;
+    const stayPreference = roomType;
+    const ambience = ambiance;
     const budgetMin = sanitizeNumber(body.budgetMin, 0, 10000000);
     const budgetMax = sanitizeNumber(body.budgetMax, 0, 10000000);
     const adults = sanitizeNumber(body.adults, 1, 100);
     const children = sanitizeNumber(body.children, 0, 50);
-    const rooms = sanitizeNumber(body.rooms || body.bedrooms, 1, 50);
+    const rooms = sanitizeNumber(body.rooms || body.bedrooms || (body.noOfRooms ? Number(String(body.noOfRooms).replace(/[^0-9]/g, "")) : 0), 1, 50);
     const checkIn = sanitizeString(body.checkIn, 25);
     const checkOut = sanitizeString(body.checkOut, 25);
 
@@ -119,14 +124,18 @@ export async function POST(req: NextRequest) {
     const proto = req.headers.get("x-forwarded-proto") || "http";
     const baseUrl = `${proto}://${host}`;
 
-    // 5. Execute 9-Dimension Filter Query
+    // 5. Execute 7-Dimension & Extended Filter Query
     const matchedResorts = Store.getResorts({
-      accommodationType,
-      stayPreference,
+      type,
+      guestType,
+      roomType,
       location,
+      priceRange,
+      ambiance,
+      accommodationType: type,
+      stayPreference: roomType,
       budgetMin,
       budgetMax,
-      ambience,
       adults,
       children,
       rooms,
